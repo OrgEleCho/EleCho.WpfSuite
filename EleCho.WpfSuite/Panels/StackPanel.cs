@@ -1,47 +1,21 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
-    public class StackPanel : Panel, IScrollInfo
+    public class StackPanel : Panel
     {
-        private Size _viewport;
-        private Size _extent;
-
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
-        public double Spacing
+        public double Spacing   
         {
             get { return (double)GetValue(SpacingProperty); }
             set { SetValue(SpacingProperty, value); }
         }
-
-        [DefaultValue(false)]
-        public bool CanVerticallyScroll { get; set; } = false;
-
-        [DefaultValue(false)]
-        public bool CanHorizontallyScroll { get; set; } = false;
-
-        public double ExtentWidth => _extent.Width;
-
-        public double ExtentHeight => _extent.Height;
-
-        public double ViewportWidth => _viewport.Width;
-
-        public double ViewportHeight => _viewport.Height;
-
-        public double HorizontalOffset => throw new System.NotImplementedException();
-
-        public double VerticalOffset => throw new System.NotImplementedException();
-
-        public ScrollViewer? ScrollOwner { get; set; }
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -118,23 +92,6 @@ namespace EleCho.WpfSuite
 
             return finalSize;
         }
-
-        public void LineUp() => throw new System.NotImplementedException();
-        public void LineDown() => throw new System.NotImplementedException();
-        public void LineLeft() => throw new System.NotImplementedException();
-        public void LineRight() => throw new System.NotImplementedException();
-        public void PageUp() => throw new System.NotImplementedException();
-        public void PageDown() => throw new System.NotImplementedException();
-        public void PageLeft() => throw new System.NotImplementedException();
-        public void PageRight() => throw new System.NotImplementedException();
-        public void MouseWheelUp() => throw new System.NotImplementedException();
-        public void MouseWheelDown() => throw new System.NotImplementedException();
-        public void MouseWheelLeft() => throw new System.NotImplementedException();
-        public void MouseWheelRight() => throw new System.NotImplementedException();
-        public void SetHorizontalOffset(double offset) => throw new System.NotImplementedException();
-        public void SetVerticalOffset(double offset) => throw new System.NotImplementedException();
-        public Rect MakeVisible(Visual visual, Rect rectangle) => throw new System.NotImplementedException();
-
 
         public static readonly DependencyProperty OrientationProperty =
             DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(StackPanel), new FrameworkPropertyMetadata(Orientation.Vertical, FrameworkPropertyMetadataOptions.AffectsMeasure));
