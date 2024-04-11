@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows;net6.0-windows;net48;net47;net46</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    
+    <Version>0.0.1</Version>
+    
+    <Authors>EleCho</Authors>
+    <Copyright>Copyright © 2024 EleCho</Copyright>
+    <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageTags>WPF;MVVM;Toolkit;Controls;Converters;BindingProxy</PackageTags>
+    <Description>WPF layout panels, value converters, utilities suite</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
