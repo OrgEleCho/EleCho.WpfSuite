@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -14,37 +15,93 @@
     </Window.Resources>
 
     <Grid>
-        <StackPanel>
-            <TextBlock Text="{Binding ElementName=flexPanel,Path=ActualWidth}"/>
-            <ws:FlexPanel Name="flexPanel"
-                          Width="200">
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-            </ws:FlexPanel>
-            <hc:FlexPanel Width="200">
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-            </hc:FlexPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
-                <Button Content="QWQ"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ws:ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="{Binding ElementName=flexPanel,Path=ActualWidth}"/>
+                <ws:FlexPanel Name="flexPanel"
+                              Width="200">
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </ws:FlexPanel>
+                <hc:FlexPanel Width="200">
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </hc:FlexPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </StackPanel>
+                <ws:StackPanel Spacing="12">
+
+                    <ItemsControl Style="{DynamicResource ItemsControlResources}" Height="200">
+
+                    </ItemsControl>
+                    <Border Background="Azure"
+                            BorderThickness="5"
+                            BorderBrush="Pink"
+                            CornerRadius="15"
+                            Height="200"
+                            Width="200"/>
+
+                    <Border Background="Azure"
+                            BorderThickness="5"
+                            BorderBrush="Pink"
+                            CornerRadius="15"
+                            Height="200"
+                            Width="200"/>
+
+
+                </ws:StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ws:ScrollViewer>
+        <ScrollViewer Grid.Column="1">
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ws:StackPanel Spacing="12"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemsSource>
+                    <CompositeCollection>
+                        <sys:String>QWQ</sys:String>
+                        <sys:String>QWQ</sys:String>
+                        <sys:String>QWQ</sys:String>
+                    </CompositeCollection>
+                </ItemsControl.ItemsSource>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="TextBlock">
+                        <Border Background="Azure"
+                                BorderThickness="5"
+                                BorderBrush="Pink"
+                                CornerRadius="15"
+                                Height="200"
+                                Width="200">
+                            <ContentPresenter Content="{Binding}"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>

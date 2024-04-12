@@ -20,6 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Controls\ScrollViewerResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\assets\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -28,6 +32,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Controls\ScrollViewerResources.xaml" />
   </ItemGroup>
 
 </Project>
