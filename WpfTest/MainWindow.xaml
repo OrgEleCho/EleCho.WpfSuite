@@ -21,6 +21,25 @@
         </Grid.ColumnDefinitions>
         <ws:ScrollViewer>
             <StackPanel>
+                <ToggleButton Name="toggle" Content="Toggle"/>
+                <ws:ConditionalControl Condition="{Binding ElementName=toggle,Path=IsChecked}"
+                                       ContentWhenTrue="TrueText"
+                                       ContentWhenFalse="FalseText">
+                    <ws:ConditionalControl.ContentTemplateWhenTrue>
+                        <DataTemplate DataType="sys:String">
+                            <Border BorderThickness="1" BorderBrush="Pink">
+                                <TextBlock Text="{Binding}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ws:ConditionalControl.ContentTemplateWhenTrue>
+                    <ws:ConditionalControl.ContentTemplateWhenFalse>
+                        <DataTemplate DataType="sys:String">
+                            <Border BorderThickness="1" BorderBrush="Green">
+                                <TextBlock Text="{Binding}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ws:ConditionalControl.ContentTemplateWhenFalse>
+                </ws:ConditionalControl>
                 <TextBlock Text="{Binding ElementName=flexPanel,Path=ActualWidth}"/>
                 <ws:FlexPanel Name="flexPanel"
                               Width="200">

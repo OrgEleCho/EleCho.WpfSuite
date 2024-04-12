@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Controls\ConditionalControlResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
   </ItemGroup>
 
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Controls\ConditionalControlResources.xaml" />
     <Resource Include="Controls\ScrollViewerResources.xaml" />
   </ItemGroup>
 
