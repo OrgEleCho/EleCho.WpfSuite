@@ -16,4 +16,8 @@
     <ProjectReference Include="..\EleCho.WpfSuite\EleCho.WpfSuite.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="TestAvatar.jpg" />
+  </ItemGroup>
+
 </Project>

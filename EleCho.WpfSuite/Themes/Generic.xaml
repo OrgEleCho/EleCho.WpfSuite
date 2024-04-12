@@ -3,5 +3,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ScrollViewerResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ConditionalControlResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ImageResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

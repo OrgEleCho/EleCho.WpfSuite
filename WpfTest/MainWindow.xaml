@@ -62,7 +62,6 @@
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
                 </hc:FlexPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="QWQ"/>
@@ -71,25 +70,13 @@
                     <Button Content="QWQ"/>
                 </StackPanel>
                 <ws:StackPanel Spacing="12">
-
-                    <ItemsControl Style="{DynamicResource ItemsControlResources}" Height="200">
-
-                    </ItemsControl>
-                    <Border Background="Azure"
-                            BorderThickness="5"
-                            BorderBrush="Pink"
-                            CornerRadius="15"
-                            Height="200"
-                            Width="200"/>
-
-                    <Border Background="Azure"
-                            BorderThickness="5"
-                            BorderBrush="Pink"
-                            CornerRadius="15"
-                            Height="200"
-                            Width="200"/>
-
-
+                    <ws:Image Source="/TestAvatar.jpg"
+                              Stretch="UniformToFill"
+                              Width="100"
+                              Height="100"
+                              CornerRadius="30"
+                              BorderBrush="Pink"
+                              BorderThickness="3"/>
                 </ws:StackPanel>
             </StackPanel>
         </ws:ScrollViewer>
