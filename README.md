@@ -4,6 +4,7 @@ Layout panels:
 
 - StackPanel: Origin stack panel with "Spacing" property
 - WrapPanel: Origin wrap panel with "HorizontalSpacing" and "VerticalSpacing" property
+- FlexPanel: Flex layout implementation with `HorizontalSpacing` and `VerticalSpacing`
 
 Value converters:
 

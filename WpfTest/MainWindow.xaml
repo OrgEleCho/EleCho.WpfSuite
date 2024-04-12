@@ -18,7 +18,7 @@
             <Border Background="Azure">
                 <ws:FlexPanel MainAlignment="Start"
                               CrossAlignment="SpaceAround"
-                              ItemsAlignment="Start"
+                              ItemsAlignment="Stretch"
                               MainSpacing="10"
                               HorizontalAlignment="Left"
                               CrossSpacing="10"
@@ -26,7 +26,7 @@
                               Wrap="WrapReverse">
                     <Button Content="QWQ" Height="35"/>
                     <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
+                    <Button Content="QWQ" ws:FlexPanel.Alignment="Baseline"/>
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
@@ -40,27 +40,6 @@
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
                 </ws:FlexPanel>
-            </Border>
-            <Border Background="Beige">
-                <hc:FlexPanel JustifyContent="FlexStart"
-                              AlignContent="FlexStart"
-                              HorizontalAlignment="Left"
-                              Width="200"
-                              Height="100"
-                              FlexWrap="WrapReverse">
-                    <Button Content="QWQ" Height="35"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                </hc:FlexPanel>
             </Border>
         </StackPanel>
     </Grid>

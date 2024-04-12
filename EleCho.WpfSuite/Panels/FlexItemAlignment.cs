@@ -2,7 +2,7 @@
 {
     public enum FlexItemAlignment
     {
-        Auto,
+        Auto = -1,
         Start,
         End,
         Center,
