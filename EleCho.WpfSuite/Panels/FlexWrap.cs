@@ -2,6 +2,8 @@
 {
     public enum FlexWrap
     {
-        Wrap, NoWrap, WrapReverse
+        NoWrap,
+        Wrap,
+        WrapReverse
     }
 }

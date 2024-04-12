@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
@@ -11,7 +14,7 @@ namespace EleCho.WpfSuite
             set { SetValue(OrientationProperty, value); }
         }
 
-        public double Spacing   
+        public double Spacing
         {
             get { return (double)GetValue(SpacingProperty); }
             set { SetValue(SpacingProperty, value); }
@@ -19,7 +22,7 @@ namespace EleCho.WpfSuite
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var spacing = Spacing; 
+            var spacing = Spacing;
             var panelDesiredSize = new Size();
 
             if (Orientation == Orientation.Vertical)
@@ -37,7 +40,10 @@ namespace EleCho.WpfSuite
                         panelDesiredSize.Width = childDesiredSize.Width;
                 }
 
-                panelDesiredSize.Height -= spacing;
+                if (InternalChildren.Count != 0)
+                {
+                    panelDesiredSize.Height -= spacing;
+                }
             }
             else
             {
@@ -54,7 +60,10 @@ namespace EleCho.WpfSuite
                         panelDesiredSize.Height = childDesiredSize.Height;
                 }
 
-                panelDesiredSize.Width -= spacing;
+                if (InternalChildren.Count != 0)
+                {
+                    panelDesiredSize.Width -= spacing;
+                }
             }
 
             return panelDesiredSize;

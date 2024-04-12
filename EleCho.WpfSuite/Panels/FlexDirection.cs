@@ -3,8 +3,8 @@
     public enum FlexDirection
     {
         Row,
-        Column,
         RowReverse,
+        Column,
         ColumnReverse
     }
 }

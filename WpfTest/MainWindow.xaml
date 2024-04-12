@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -13,6 +14,54 @@
     </Window.Resources>
 
     <Grid>
-
+        <StackPanel>
+            <Border Background="Azure">
+                <ws:FlexPanel MainAlignment="Start"
+                              CrossAlignment="SpaceAround"
+                              ItemsAlignment="Start"
+                              MainSpacing="10"
+                              HorizontalAlignment="Left"
+                              CrossSpacing="10"
+                              Width="200"
+                              Wrap="WrapReverse">
+                    <Button Content="QWQ" Height="35"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </ws:FlexPanel>
+            </Border>
+            <Border Background="Beige">
+                <hc:FlexPanel JustifyContent="FlexStart"
+                              AlignContent="FlexStart"
+                              HorizontalAlignment="Left"
+                              Width="200"
+                              Height="100"
+                              FlexWrap="WrapReverse">
+                    <Button Content="QWQ" Height="35"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </hc:FlexPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

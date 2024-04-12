@@ -1,12 +1,11 @@
 ﻿namespace EleCho.WpfSuite
 {
-    public enum FlexItemAlignment
+    public enum FlexItemsAlignment
     {
-        Auto,
+        Stretch,
         Start,
         End,
         Center,
-        Baseline,
-        Stretch
+        Baseline
     }
 }
