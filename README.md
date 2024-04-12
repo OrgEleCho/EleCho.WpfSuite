@@ -6,6 +6,12 @@ Layout panels:
 - WrapPanel: Origin wrap panel with `HorizontalSpacing` and `VerticalSpacing` property
 - FlexPanel: Flex layout implementation with `HorizontalSpacing` and `VerticalSpacing` property
 
+Controls:
+
+- Image: Simple image control with `CornerRadius` property
+- ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
+- ConditionalControl: Display the control based on the condition
+
 Value converters:
 
 - AddNumberConverter: Mathematical calculations, addition
