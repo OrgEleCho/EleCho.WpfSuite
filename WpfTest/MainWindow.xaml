@@ -15,32 +15,36 @@
 
     <Grid>
         <StackPanel>
-            <Border Background="Azure">
-                <ws:FlexPanel MainAlignment="Start"
-                              CrossAlignment="SpaceAround"
-                              ItemsAlignment="Stretch"
-                              MainSpacing="10"
-                              HorizontalAlignment="Left"
-                              CrossSpacing="10"
-                              Width="200"
-                              Wrap="WrapReverse">
-                    <Button Content="QWQ" Height="35"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ" ws:FlexPanel.Alignment="Baseline"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                </ws:FlexPanel>
-            </Border>
+            <TextBlock Text="{Binding ElementName=flexPanel,Path=ActualWidth}"/>
+            <ws:FlexPanel Name="flexPanel"
+                          Width="200">
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+            </ws:FlexPanel>
+            <hc:FlexPanel Width="200">
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+            </hc:FlexPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+                <Button Content="QWQ"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -167,7 +167,7 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty AlignmentProperty = DependencyProperty.RegisterAttached(
             "Alignment", typeof(FlexItemAlignment), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(default(FlexItemAlignment), OnItemPropertyChanged));
+            new FrameworkPropertyMetadata(FlexItemAlignment.Auto, OnItemPropertyChanged));
 
         #endregion
 
@@ -394,11 +394,12 @@ namespace EleCho.WpfSuite
                     {
                         for (var i = 0; i < _lineCount; i++)
                         {
-                            lineFreeVArr[i] = 0;
+                            lineFreeVArr[i] = crossSpacing;
                         }
 
                         var totalLineSizeV = curLineSizeArr.Select(size => size.V).Sum();
-                        var remainSizeV = uvFinalSize.V - totalLineSizeV;
+                        var totalLineSpacingV = crossSpacing * (_lineCount - 1);
+                        var remainSizeV = uvFinalSize.V - totalLineSizeV - totalLineSpacingV;
                         for (var i = 0; i < _lineCount; i++)
                         {
                             var curLineSize = curLineSizeArr[i];
@@ -586,8 +587,9 @@ namespace EleCho.WpfSuite
             var isReverse = flexDirection == FlexDirection.RowReverse || flexDirection == FlexDirection.ColumnReverse;
             var itemCount = lineInfo.ItemEndIndex - lineInfo.ItemStartIndex;
             var children = InternalChildren;
-            var lineFreeU = lineInfo.LineU - lineInfo.ItemsU;
-            var constraintFreeU = _uvConstraint.U - lineInfo.ItemsU;
+            var lineSpacingU = mainSpacing * (lineInfo.ItemEndIndex - lineInfo.ItemStartIndex - 1);
+            var lineFreeU = lineInfo.LineU - lineInfo.ItemsU - lineSpacingU;
+            var constraintFreeU = _uvConstraint.U - lineInfo.ItemsU - lineSpacingU;
 
             // calculate initial u
             var u = .0;
@@ -666,7 +668,7 @@ namespace EleCho.WpfSuite
                     var flexShrink = GetShrink(children[_orderList[i].Index]);
                     if (double.IsNaN(flexShrink))
                         flexShrink = uniformShrink;
-                    ignoreFlexShrink &= MathHelper.IsVerySmall(flexShrink - 1);
+                    ignoreFlexShrink &= MathHelper.IsVerySmall(flexShrink);
                     flexShrinkUArr[i] = flexShrink;
                     flexShrinkSum += flexShrink;
                 }
@@ -694,7 +696,7 @@ namespace EleCho.WpfSuite
 
             // calculate offset u
             var offsetUArr = new double[itemCount];
-            if (lineFreeU > 0)
+            if (lineFreeU >= 0)
             {
                 if (justifyContent == FlexMainAlignment.SpaceBetween)
                 {
