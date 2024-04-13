@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     
-    <Version>0.0.4</Version>
+    <Version>0.0.5</Version>
     
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Page Remove="Controls\ConditionalControlResources.xaml" />
+    <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
   </ItemGroup>
 
@@ -37,6 +38,7 @@
 
   <ItemGroup>
     <Resource Include="Controls\ConditionalControlResources.xaml" />
+    <Resource Include="Controls\ImageResources.xaml" />
     <Resource Include="Controls\ScrollViewerResources.xaml" />
   </ItemGroup>
 
