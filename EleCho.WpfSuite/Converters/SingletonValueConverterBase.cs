@@ -9,9 +9,9 @@ namespace EleCho.WpfSuite
     public abstract class SingletonValueConverterBase<T> : DependencyObject, IValueConverter
         where T : SingletonValueConverterBase<T>, new()
     {
-        private static Lazy<T> _laziedInstance = new();
+        private static T? _instance = null;
 
-        public static T Instance => _laziedInstance.Value;
+        public static T Instance => _instance ??= new();
 
         public abstract object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture);
 
