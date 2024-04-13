@@ -8,119 +8,22 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}">
 
     <Window.Resources>
-
+        <ws:ValueConverterGroup x:Key="CollectionIsNotEmptyToVisibility">
+            <ws:CollectionIsNullOrEmptyConverter/>
+            <ws:InvertBooleanConverter/>
+            <ws:BooleanToVisibilityConverter/>
+        </ws:ValueConverterGroup>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ws:ScrollViewer>
-            <StackPanel>
-                <ToggleButton Name="toggle" Content="Toggle"/>
-                <ws:ConditionalControl Condition="{Binding ElementName=toggle,Path=IsChecked}"
-                                       ContentWhenTrue="TrueText"
-                                       ContentWhenFalse="FalseText">
-                    <ws:ConditionalControl.ContentTemplateWhenTrue>
-                        <DataTemplate DataType="sys:String">
-                            <Border BorderThickness="1" BorderBrush="Pink">
-                                <TextBlock Text="{Binding}"/>
-                            </Border>
-                        </DataTemplate>
-                    </ws:ConditionalControl.ContentTemplateWhenTrue>
-                    <ws:ConditionalControl.ContentTemplateWhenFalse>
-                        <DataTemplate DataType="sys:String">
-                            <Border BorderThickness="1" BorderBrush="Green">
-                                <TextBlock Text="{Binding}"/>
-                            </Border>
-                        </DataTemplate>
-                    </ws:ConditionalControl.ContentTemplateWhenFalse>
-                </ws:ConditionalControl>
-                <TextBlock Text="{Binding ElementName=flexPanel,Path=ActualWidth}"/>
-                <ws:FlexPanel Name="flexPanel"
-                              Width="200">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                </ws:FlexPanel>
-                <hc:FlexPanel Width="200">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                </hc:FlexPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                </StackPanel>
-                <ws:StackPanel Spacing="12">
-
-                    <ItemsControl Style="{DynamicResource ItemsControlResources}" Height="200">
-
-                    </ItemsControl>
-                    <Border Background="Azure"
-                            BorderThickness="5"
-                            BorderBrush="Pink"
-                            CornerRadius="15"
-                            Height="200"
-                            Width="200"/>
-
-                    <Border Background="Azure"
-                            BorderThickness="5"
-                            BorderBrush="Pink"
-                            CornerRadius="15"
-                            Height="200"
-                            Width="200"/>
-
-
-                </ws:StackPanel>
-            </StackPanel>
-        </ws:ScrollViewer>
-        <ScrollViewer Grid.Column="1">
-            <ItemsControl>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ws:StackPanel Spacing="12"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemsSource>
-                    <CompositeCollection>
-                        <sys:String>QWQ</sys:String>
-                        <sys:String>QWQ</sys:String>
-                        <sys:String>QWQ</sys:String>
-                    </CompositeCollection>
-                </ItemsControl.ItemsSource>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="TextBlock">
-                        <Border Background="Azure"
-                                BorderThickness="5"
-                                BorderBrush="Pink"
-                                CornerRadius="15"
-                                Height="200"
-                                Width="200">
-                            <ContentPresenter Content="{Binding}"/>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
-        </ScrollViewer>
-    </Grid>
+    <DockPanel>
+        <ListBox DockPanel.Dock="Left"
+                 Width="200">
+            <ListBoxItem Content="QWQ" Visibility="{Binding EmptyList,Converter={StaticResource CollectionIsNotEmptyToVisibility}}"/>
+        </ListBox>
+        <Frame Name="AppFrame"/>
+    </DockPanel>
 </Window>
