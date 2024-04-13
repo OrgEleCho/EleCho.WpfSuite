@@ -30,6 +30,7 @@ Value converters:
 - StringIsNotNullOrWhiteSpaceConverter: Check if string is not null or white space, returns a boolean value
 - CollectionIsNullOrEmptyConverter: Check if collection is null or empty, returns a boolean value
 - CollectionIsNotNullOrEmptyConverter: Check if collection is not null or empty, returns a boolean value
+- StringToImageSourceConverter: Convert any valid URI string to image source
 
 Utilities:
 
