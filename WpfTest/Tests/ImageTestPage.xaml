@@ -1,11 +1,11 @@
 ﻿<Page x:Class="WpfTest.Tests.ImageTestPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance Type=local:ImageTestPage}"
       Title="ImageTestPage">
@@ -13,7 +13,7 @@
     <ws:ScrollViewer>
         <ws:StackPanel Spacing="12"
                        Margin="48">
-            <ws:Image Source="/TestAvatar.jpg"
+            <ws:Image Source="/Assets/TestImage1.jpg"
                       Width="{Binding ElementName=WidthSlider,Path=Value}"
                       CornerRadius="{Binding ElementName=CornerRadiusSlider,Path=Value,Converter={x:Static ws:NumberToCornerRadiusConverter.Instance}}"
                       Stretch="{Binding ElementName=StretchModeSelector,Path=SelectedItem}"
@@ -30,7 +30,7 @@
             </ws:StackPanel>
             <ws:StackPanel Orientation="Horizontal"
                            Spacing="8">
-                <TextBlock Text="Width:"/>
+                <TextBlock Text="CornerRadius:"/>
                 <Slider Width="200"
                         Value="10"
                         Maximum="50"
@@ -39,7 +39,7 @@
             </ws:StackPanel>
             <ws:StackPanel Orientation="Horizontal"
                            Spacing="8">
-                <TextBlock Text="Width:"/>
+                <TextBlock Text="BorderThickness:"/>
                 <Slider Width="200"
                         Value="10"
                         Maximum="50"
@@ -48,8 +48,8 @@
             </ws:StackPanel>
             <ws:StackPanel Orientation="Horizontal"
                            Spacing="8">
-                <TextBlock Text="Width:"/>
-                <ComboBox ItemsSource="{Binding StretchModes}" 
+                <TextBlock Text="StretchMode:"/>
+                <ComboBox ItemsSource="{Binding StretchModes}"
                           SelectedIndex="0"
                           Name="StretchModeSelector"/>
             </ws:StackPanel>

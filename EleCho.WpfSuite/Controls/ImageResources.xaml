@@ -5,20 +5,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:Image}">
-                    <ControlTemplate.Resources>
-                        <ImageBrush x:Key="ImageBrush"
-                                    ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Source}"
-                                    Stretch="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Stretch}"/>
-                    </ControlTemplate.Resources>
-
                     <Grid>
+                        <Grid.Resources>
+                            <ImageBrush x:Key="ImageBrush"
+                                        ImageSource="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Source}"
+                                        Stretch="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Stretch}"/>
+                        </Grid.Resources>
+
+                        <Border Background="{StaticResource ImageBrush}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"/>
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
                         </Border>
-                        <Border CornerRadius="{TemplateBinding CornerRadius}"
-                                Background="{StaticResource ImageBrush}"/>
                     </Grid>
 
                 </ControlTemplate>

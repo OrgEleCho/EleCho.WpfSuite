@@ -39,6 +39,12 @@ namespace WpfTest
                 Description = "",
                 PageType = typeof(ImageTestPage)
             },
+            new NavigationItem()
+            {
+                Title = "Temp test",
+                Description = "",
+                PageType = typeof(TempPage)
+            },
         };
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,0 +1,34 @@
+﻿<Page x:Class="WpfTest.Tests.TempPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfTest.Tests"
+      xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TempPage"
+      d:DataContext="{d:DesignInstance Type=local:TempPage}">
+
+    <Grid>
+        <ws:StackPanel Orientation="Vertical" Spacing="12">
+            <Border Width="200"
+                    Height="200"
+                    BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"
+                    BorderBrush="Blue">
+                <Image Source="/Assets/TestImage1.jpg" />
+            </Border>
+            <Slider Name="BorderThicknessSlider" />
+            <ws:StackPanel Orientation="Horizontal"
+                           Spacing="30"
+                           HorizontalAlignment="Center">
+                <ws:Image Source="/Assets/TestImage2.jpg"
+                          Width="200"
+                          Height="200"/>
+                <ws:Image Source="/Assets/TestImage1.jpg"
+                          Width="200"
+                          Height="200"/>
+            </ws:StackPanel>
+        </ws:StackPanel>
+    </Grid>
+</Page>
