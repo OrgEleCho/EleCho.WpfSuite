@@ -44,7 +44,8 @@ namespace EleCho.WpfSuite
                     size.Width = constraint.Width;
                     size.Height = constraint.Width / factor;
                 }
-                else if (constraint.Height < size.Height)
+
+                if (constraint.Height < size.Height)
                 {
                     size.Height = constraint.Height;
                     size.Width = constraint.Height * factor;
