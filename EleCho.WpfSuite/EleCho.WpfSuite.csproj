@@ -7,7 +7,7 @@
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     
-    <Version>0.0.8</Version>
+    <Version>0.0.9</Version>
     
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
