@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>WPF;MVVM;Toolkit;Controls;Converters;BindingProxy</PackageTags>
-    <Description>WPF layout panels, value converters, utilities suite</Description>
+    <Description>WPF layout panels, controls, value converters, utilities suite</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
