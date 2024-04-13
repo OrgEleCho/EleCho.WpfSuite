@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfTest
+namespace WpfTest.Tests
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// FlexPanelTestPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FlexPanelTestPage : Page
     {
-        public MainWindow()
+        public FlexPanelTestPage()
         {
-            DataContext = this;
             InitializeComponent();
         }
-
-        public List<string> EmptyList { get; } = new();
     }
 }
