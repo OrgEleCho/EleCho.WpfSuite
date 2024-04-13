@@ -24,6 +24,12 @@ Value converters:
 - ValueIsNotNullConverter: Determines whether the object is not empty
 - InvertBooleanConverter: Inverts the boolean value
 - ValueConverterGroup: Converts the value using the specified multiple converters
+- StringIsNullOrEmptyConverter: Check if string is null or empty, returns a boolean value
+- StringIsNotNullOrEmptyConverter: Check if string is not null or empty, returns a boolean value
+- StringIsNullOrWhiteSpaceConverter: Check if  string is null or white space, returns a boolean value
+- StringIsNotNullOrWhiteSpaceConverter: Check if string is not null or white space, returns a boolean value
+- CollectionIsNullOrEmptyConverter: Check if collection is null or empty, returns a boolean value
+- CollectionIsNotNullOrEmptyConverter: Check if collection is not null or empty, returns a boolean value
 
 Utilities:
 
