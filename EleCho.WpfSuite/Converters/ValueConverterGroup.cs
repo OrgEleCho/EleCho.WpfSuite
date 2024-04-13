@@ -30,7 +30,7 @@ namespace EleCho.WpfSuite
             if (Converters is null)
                 return value;
 
-            return Converters.Reverse<IValueConverter>().Aggregate(value, (current, converter) => converter.Convert(value, targetType, parameter, culture));
+            return Converters.Reverse<IValueConverter>().Aggregate(value, (current, converter) => converter.Convert(current, targetType, parameter, culture));
         }
 
         public static readonly DependencyProperty ConvertersProperty =
