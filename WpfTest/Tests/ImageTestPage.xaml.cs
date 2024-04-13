@@ -13,16 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfTest
+namespace WpfTest.Tests
 {
     /// <summary>
-    /// Interaction logic for ImageTestPage.xaml
+    /// ImageTestPage.xaml 的交互逻辑
     /// </summary>
     public partial class ImageTestPage : Page
     {
         public ImageTestPage()
         {
+            DataContext = this;
             InitializeComponent();
         }
+
+        public Stretch[] StretchModes { get; } = Enum.GetValues<Stretch>();
     }
 }

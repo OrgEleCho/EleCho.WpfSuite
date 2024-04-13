@@ -37,8 +37,18 @@ namespace EleCho.WpfSuite
             if(Source is { } imageSource)
             {
                 var size = new Size(imageSource.Width, imageSource.Height);
-                size.Width = Math.Min(size.Width, constraint.Width);
-                size.Height = Math.Min(size.Height, constraint.Height);
+                var factor = size.Width / size.Height;
+
+                if (constraint.Width < size.Width)
+                {
+                    size.Width = constraint.Width;
+                    size.Height = constraint.Width / factor;
+                }
+                else if (constraint.Height < size.Height)
+                {
+                    size.Height = constraint.Height;
+                    size.Width = constraint.Height * factor;
+                }
 
                 return size;
             }

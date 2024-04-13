@@ -4,10 +4,10 @@ namespace EleCho.WpfSuite
 {
     public class BooleanToVisibilityConverter : BooleanToValueConverter<Visibility>
     {
-        public BooleanToVisibilityConverter()
+        static BooleanToVisibilityConverter()
         {
-            ValueWhenTrue = Visibility.Visible;
-            ValueWhenFalse = Visibility.Collapsed;
+            ValueWhenTrueProperty.OverrideMetadata(typeof(BooleanToVisibilityConverter), new PropertyMetadata(Visibility.Visible));
+            ValueWhenFalseProperty.OverrideMetadata(typeof(BooleanToVisibilityConverter), new PropertyMetadata(Visibility.Collapsed));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfTest.Models;
+using WpfTest.Tests;
 
 namespace WpfTest
 {
@@ -22,6 +25,30 @@ namespace WpfTest
             InitializeComponent();
         }
 
-        public List<string> EmptyList { get; } = new();
+        public ObservableCollection<NavigationItem> NavigationItems { get; } = new()
+        {
+            new NavigationItem()
+            {
+                Title = "Collection test",
+                Description = "",
+                PageType = typeof(CollectionTest)
+            },
+            new NavigationItem()
+            {
+                Title = "Image test",
+                Description = "",
+                PageType = typeof(ImageTestPage)
+            },
+        };
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is not ListBox listBox ||
+                listBox.SelectedItem is not NavigationItem navigationItem)
+                return;
+
+            var page = Activator.CreateInstance(navigationItem.PageType);
+            AppFrame.Navigate(page);
+        }
     }
 }

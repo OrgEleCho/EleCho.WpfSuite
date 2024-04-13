@@ -11,11 +11,7 @@ namespace EleCho.WpfSuite
     [ContentProperty(nameof(Converters))]
     public class ValueConverterGroup : ValueConverterBase<ValueConverterGroup>
     {
-        public List<IValueConverter> Converters
-        {
-            get { return (List<IValueConverter>)GetValue(ConvertersProperty); }
-            set { SetValue(ConvertersProperty, value); }
-        }
+        public List<IValueConverter> Converters { get; } = new();
 
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
@@ -32,8 +28,5 @@ namespace EleCho.WpfSuite
 
             return Converters.Reverse<IValueConverter>().Aggregate(value, (current, converter) => converter.Convert(current, targetType, parameter, culture));
         }
-
-        public static readonly DependencyProperty ConvertersProperty =
-            DependencyProperty.Register(nameof(Converters), typeof(List<IValueConverter>), typeof(ValueConverterGroup), new PropertyMetadata(new List<IValueConverter>()));
     }
 }

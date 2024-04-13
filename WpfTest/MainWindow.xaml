@@ -12,17 +12,23 @@
         d:DataContext="{d:DesignInstance Type=local:MainWindow}">
 
     <Window.Resources>
-        <ws:ValueConverterGroup x:Key="CollectionIsNotEmptyToVisibility">
-            <ws:CollectionIsNullOrEmptyConverter/>
-            <ws:InvertBooleanConverter/>
-            <ws:BooleanToVisibilityConverter/>
-        </ws:ValueConverterGroup>
+
     </Window.Resources>
 
     <DockPanel>
         <ListBox DockPanel.Dock="Left"
-                 Width="200">
-            <ListBoxItem Content="QWQ" Visibility="{Binding EmptyList,Converter={StaticResource CollectionIsNotEmptyToVisibility}}"/>
+                 Width="200"
+                 ItemsSource="{Binding NavigationItems}"
+                 SelectionChanged="ListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}"
+                                   FontSize="14"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <Frame Name="AppFrame"/>
     </DockPanel>

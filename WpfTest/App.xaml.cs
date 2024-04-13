@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using EleCho.WpfSuite;
 
 namespace WpfTest
 {
@@ -9,6 +10,10 @@ namespace WpfTest
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+
+        }
     }
 
 }
