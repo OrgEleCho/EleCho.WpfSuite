@@ -30,6 +30,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Frame Name="AppFrame"/>
+        <Frame Name="AppFrame"
+               NavigationUIVisibility="Hidden"/>
     </DockPanel>
 </Window>

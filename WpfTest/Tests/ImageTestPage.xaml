@@ -7,52 +7,63 @@
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
       d:DataContext="{d:DesignInstance Type=local:ImageTestPage}"
       Title="ImageTestPage">
 
     <ws:ScrollViewer>
-        <ws:StackPanel Spacing="12"
-                       Margin="48">
-            <ws:Image Source="/Assets/TestImage1.jpg"
-                      Width="{Binding ElementName=WidthSlider,Path=Value}"
-                      CornerRadius="{Binding ElementName=CornerRadiusSlider,Path=Value,Converter={x:Static ws:NumberToCornerRadiusConverter.Instance}}"
-                      Stretch="{Binding ElementName=StretchModeSelector,Path=SelectedItem}"
-                      BorderBrush="Pink"
-                      BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"/>
-            <ws:StackPanel Orientation="Horizontal"
-                           Spacing="8">
-                <TextBlock Text="Width:"/>
-                <Slider Width="200"
-                        Value="100"
-                        Minimum="0"
-                        Maximum="100"
-                        Name="WidthSlider"/>
+        <Grid Margin="28 12 28 28">
+            <ws:StackPanel Spacing="12">
+                <TextBlock Text="Image Test"
+                           FontSize="26"
+                           Margin="0 0 0 12"/>
+                <ws:Image Source="/Assets/TestImage1.jpg"
+                          HorizontalAlignment="Left"
+                          Width="{Binding ElementName=WidthSlider,Path=Value}"
+                          CornerRadius="{Binding ElementName=CornerRadiusSlider,Path=Value,Converter={x:Static ws:NumberToCornerRadiusConverter.Instance}}"
+                          Stretch="{Binding ElementName=StretchModeSelector,Path=SelectedItem}"
+                          BorderBrush="Pink"
+                          BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"/>
+                <GroupBox Header="Options"
+                          Padding="12">
+                    <ws:StackPanel Spacing="8">
+                        <ws:StackPanel Orientation="Horizontal"
+                               Spacing="8">
+                            <TextBlock Text="Width:"/>
+                            <Slider Width="200"
+                            Value="100"
+                            Minimum="10"
+                            Maximum="256"
+                            Name="WidthSlider"/>
+                        </ws:StackPanel>
+                        <ws:StackPanel Orientation="Horizontal"
+                               Spacing="8">
+                            <TextBlock Text="CornerRadius:"/>
+                            <Slider Width="200"
+                            Value="10"
+                            Maximum="50"
+                            Minimum="0"
+                            Name="CornerRadiusSlider"/>
+                        </ws:StackPanel>
+                        <ws:StackPanel Orientation="Horizontal"
+                               Spacing="8">
+                            <TextBlock Text="BorderThickness:"/>
+                            <Slider Width="200"
+                            Value="5"
+                            Minimum="0"
+                            Maximum="50"
+                            Name="BorderThicknessSlider"/>
+                        </ws:StackPanel>
+                        <ws:StackPanel Orientation="Horizontal"
+                               Spacing="8">
+                            <TextBlock Text="StretchMode:"/>
+                            <ComboBox ItemsSource="{Binding StretchModes}"
+                              SelectedIndex="0"
+                              Name="StretchModeSelector"/>
+                        </ws:StackPanel>
+                    </ws:StackPanel>
+                </GroupBox>
             </ws:StackPanel>
-            <ws:StackPanel Orientation="Horizontal"
-                           Spacing="8">
-                <TextBlock Text="CornerRadius:"/>
-                <Slider Width="200"
-                        Value="10"
-                        Maximum="50"
-                        Minimum="0"
-                        Name="CornerRadiusSlider"/>
-            </ws:StackPanel>
-            <ws:StackPanel Orientation="Horizontal"
-                           Spacing="8">
-                <TextBlock Text="BorderThickness:"/>
-                <Slider Width="200"
-                        Value="10"
-                        Maximum="50"
-                        Minimum="0"
-                        Name="BorderThicknessSlider"/>
-            </ws:StackPanel>
-            <ws:StackPanel Orientation="Horizontal"
-                           Spacing="8">
-                <TextBlock Text="StretchMode:"/>
-                <ComboBox ItemsSource="{Binding StretchModes}"
-                          SelectedIndex="0"
-                          Name="StretchModeSelector"/>
-            </ws:StackPanel>
-        </ws:StackPanel>
+        </Grid>
     </ws:ScrollViewer>
 </Page>
