@@ -10,25 +10,25 @@
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
 
-    <Grid>
-        <ws:StackPanel Orientation="Vertical" Spacing="12">
-            <Border Width="200"
-                    Height="200"
-                    BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"
-                    BorderBrush="Blue">
-                <Image Source="/Assets/TestImage1.jpg" />
-            </Border>
-            <Slider Name="BorderThicknessSlider" />
-            <ws:StackPanel Orientation="Horizontal"
-                           Spacing="30"
-                           HorizontalAlignment="Center">
-                <ws:Image Source="/Assets/TestImage2.jpg"
-                          Width="200"
-                          Height="200"/>
-                <ws:Image Source="/Assets/TestImage1.jpg"
-                          Width="200"
-                          Height="200"/>
-            </ws:StackPanel>
+    <ws:ScrollViewer Margin="12"
+                     ScrollWithWheelDelta="True">
+        <ws:StackPanel Spacing="8">
+            <ws:TextBox Width="200"
+                        Placeholder="This is a text box with placeholder"/>
+            <ws:Image Source="/Assets/TestAvatar.jpg"
+                      CornerRadius="10"/>
+
+            <StackPanel>
+                <TextBlock Text="WrapPanel with spacing"/>
+                <ItemsControl ItemsSource="{Binding TestItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ws:WrapPanel HorizontalSpacing="8"
+                                          VerticalSpacing="8"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
         </ws:StackPanel>
-    </Grid>
+    </ws:ScrollViewer>
 </Page>
