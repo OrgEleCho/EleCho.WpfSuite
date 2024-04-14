@@ -23,6 +23,7 @@
     <Page Remove="Controls\ConditionalControlResources.xaml" />
     <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
+    <Page Remove="Controls\TextBoxResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
     <Resource Include="Controls\ConditionalControlResources.xaml" />
     <Resource Include="Controls\ImageResources.xaml" />
     <Resource Include="Controls\ScrollViewerResources.xaml" />
+    <Resource Include="Controls\TextBoxResources.xaml" />
   </ItemGroup>
 
 </Project>

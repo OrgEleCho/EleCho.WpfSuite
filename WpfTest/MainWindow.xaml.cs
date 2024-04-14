@@ -31,7 +31,7 @@ namespace WpfTest
             {
                 Title = "Collection test",
                 Description = "",
-                PageType = typeof(CollectionTest)
+                PageType = typeof(CollectionTestPage)
             },
             new NavigationItem()
             {
@@ -44,6 +44,12 @@ namespace WpfTest
                 Title = "Temp test",
                 Description = "",
                 PageType = typeof(TempPage)
+            },
+            new NavigationItem()
+            {
+                Title = "TextBox test",
+                Description = "",
+                PageType = typeof(TextBoxTestPage)
             },
         };
 

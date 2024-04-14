@@ -18,9 +18,9 @@ using CommunityToolkit.Mvvm.Input;
 namespace WpfTest.Tests
 {
     [ObservableObject]
-    public partial class CollectionTest : Page
+    public partial class CollectionTestPage : Page
     {
-        public CollectionTest()
+        public CollectionTestPage()
         {
             DataContext = this;
             InitializeComponent();
