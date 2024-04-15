@@ -50,6 +50,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "ConditionalControl test",
+                Description = "",
+                PageType = typeof(ConditionalControlTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "TextBox test",
                 Description = "",
                 PageType = typeof(TextBoxTestPage)

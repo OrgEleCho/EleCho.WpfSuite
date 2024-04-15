@@ -52,6 +52,12 @@ namespace EleCho.WpfSuite
             set { SetValue(ContentTemplateWhenFalseProperty, value); }
         }
 
+        public IContentTransition Transition
+        {
+            get { return (IContentTransition)GetValue(TransitionProperty); }
+            set { SetValue(TransitionProperty, value); }
+        }
+
         public object ComputedContent
         {
             get { return (object)GetValue(ComputedContentProperty); }
@@ -85,6 +91,9 @@ namespace EleCho.WpfSuite
             DependencyProperty.Register(nameof(ContentTemplateWhenFalse), typeof(DataTemplate), typeof(ConditionalControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
         public static readonly DependencyProperty ContentTemplateWhenTrueProperty =
             DependencyProperty.Register(nameof(ContentTemplateWhenTrue), typeof(DataTemplate), typeof(ConditionalControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        public static readonly DependencyProperty TransitionProperty =
+            TransitioningContentControl.TransitionProperty.AddOwner(typeof(ConditionalControl));
 
         protected override Size MeasureOverride(Size constraint)
         {

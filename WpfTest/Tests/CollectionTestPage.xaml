@@ -18,7 +18,8 @@
         </ws:ValueConverterGroup>
     </Page.Resources>
 
-    <ws:ScrollViewer ScrollWithWheelDelta="True">
+    <ws:ScrollViewer ScrollWithWheelDelta="True"
+                     VerticalScrollBarVisibility="Auto">
         <Grid Margin="28 12 28 28">
             <ws:StackPanel Spacing="12">
                 <TextBlock Text="Collection test"

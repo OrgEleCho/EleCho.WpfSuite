@@ -1,0 +1,90 @@
+﻿<Page x:Class="WpfTest.Tests.ConditionalControlTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfTest.Tests"
+      xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      Title="ConditionalControlTestPage">
+
+    <ws:ScrollViewer ScrollWithWheelDelta="True"
+                     VerticalScrollBarVisibility="Auto">
+        <ws:StackPanel Margin="28 12 28 28"
+                       Spacing="12">
+            <TextBlock Text="ConditionalControl Test"
+                       FontSize="26"
+                       Margin="0 0 0 12"/>
+            <ws:ConditionalControl Condition="{Binding ElementName=ConditionButton,Path=IsChecked}"
+                                   ContentWhenTrue="{Binding ElementName=ContentWhenTrueBox,Path=Text}"
+                                   ContentWhenFalse="{Binding ElementName=ContentWhenFalseBox,Path=Text}">
+                <ws:ConditionalControl.Transition>
+                    <ws:SlideFadeTransition Orientation="Vertical"
+                                            Distance="10"/>
+                </ws:ConditionalControl.Transition>
+                <ws:ConditionalControl.ContentTemplateWhenTrue>
+                    <DataTemplate>
+                        <Border BorderBrush="Green"
+                                BorderThickness="3"
+                                CornerRadius="3"
+                                Padding="5">
+                            <ws:StackPanel Spacing="4">
+                                <TextBlock Text="Current value is true"/>
+                                <TextBlock>
+                                    <Run Text="Content:"/>
+                                    <Run Text="{Binding Mode=OneWay}"/>
+                                </TextBlock>
+                            </ws:StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ws:ConditionalControl.ContentTemplateWhenTrue>
+                <ws:ConditionalControl.ContentTemplateWhenFalse>
+                    <DataTemplate>
+                        <Border BorderBrush="Red"
+                                BorderThickness="3"
+                                CornerRadius="3"
+                                Padding="5">
+                            <ws:StackPanel Spacing="4">
+                                <TextBlock Text="Current value is true"/>
+                                <TextBlock>
+                                    <Run Text="Content:"/>
+                                    <Run Text="{Binding Mode=OneWay}"/>
+                                </TextBlock>
+                            </ws:StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ws:ConditionalControl.ContentTemplateWhenFalse>
+            </ws:ConditionalControl>
+
+            <GroupBox Header="Options"
+                      Padding="8">
+                <ws:FlexPanel Direction="Column"
+                              MainSpacing="8"
+                              ItemsAlignment="Start">
+                    <ws:ToggleButton x:Name="ConditionButton"
+                                     Content="Toggle Condition"
+                                     Padding="5 3"
+                                     CornerRadius="3"/>
+                    <StackPanel>
+                        <TextBlock Text="ContentWhenTrue:"/>
+                        <ws:TextBox x:Name="ContentWhenTrueBox"
+                                    Placeholder="ContentWhenTrue"
+                                    Text="TrueContent"
+                                    MinWidth="150"
+                                    Padding="5 3"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="ContentWhenFalse:"/>
+                        <ws:TextBox x:Name="ContentWhenFalseBox"
+                                    Placeholder="ContentWhenTrue"
+                                    Text="FalseContent"
+                                    MinWidth="150"
+                                    Padding="5 3"/>
+                    </StackPanel>
+                </ws:FlexPanel>
+            </GroupBox>
+        </ws:StackPanel>
+    </ws:ScrollViewer>
+</Page>

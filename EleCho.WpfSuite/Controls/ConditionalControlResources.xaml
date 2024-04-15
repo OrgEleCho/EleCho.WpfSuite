@@ -9,8 +9,9 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter ContentTemplate="{TemplateBinding ComputedContentTemplate}"
-                                          Content="{TemplateBinding ComputedContent}"/>
+                        <ws:TransitioningContentControl Transition="{TemplateBinding Transition}"
+                                                        Content="{TemplateBinding ComputedContent}"
+                                                        ContentTemplate="{TemplateBinding ComputedContentTemplate}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

@@ -27,12 +27,18 @@ namespace EleCho.WpfSuite
         private Panel? _contentsPanel;
         private UIElement? _lastOldControl;
         private CancellationTokenSource? _lastTaskCancellation;
+        private object? _pendingNewContent;
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
             _contentsPanel = (Panel)GetTemplateChild("PART_Contents");
+
+            if (_pendingNewContent is not null)
+            {
+                _ = this.ApplyContentChangeAsync(null, _pendingNewContent);
+            }
         }
 
         public object? Content
@@ -61,13 +67,13 @@ namespace EleCho.WpfSuite
 
 
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnContentChanged)));
+            DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
 
         public static readonly DependencyProperty ContentTemplateProperty =
-            DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty ContentTemplateSelectorProperty =
-            DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty TransitionProperty =
             DependencyProperty.Register(nameof(Transition), typeof(IContentTransition), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
@@ -76,15 +82,16 @@ namespace EleCho.WpfSuite
         {
             if (d is TransitioningContentControl transitioningContentControl)
             {
-                _ = transitioningContentControl.OnContentChanged(e.OldValue, e.NewValue);
+                _ = transitioningContentControl.ApplyContentChangeAsync(e.OldValue, e.NewValue);
             }
         }
 
-        private async Task OnContentChanged(object oldContent, object newContent)
+        private async Task ApplyContentChangeAsync(object? oldContent, object newContent)
         {
             if (_contentsPanel is null)
             {
-                throw new InvalidOperationException("Can not find 'PART_Contents' in control template");
+                _pendingNewContent = newContent;
+                return;
             }
 
             if (_lastOldControl is not null)
@@ -124,6 +131,7 @@ namespace EleCho.WpfSuite
 
             _contentsPanel.Children.Add(newContentElement);
             _lastOldControl = oldContentElement;
+            _pendingNewContent = null;
             if (Transition is IContentTransition transition && 
                 oldContentElement is FrameworkElement oldContentFrameworkElement)
             {

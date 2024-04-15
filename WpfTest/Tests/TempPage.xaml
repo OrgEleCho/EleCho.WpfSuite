@@ -10,7 +10,8 @@
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
 
-    <ws:ScrollViewer ScrollWithWheelDelta="True">
+    <ws:ScrollViewer ScrollWithWheelDelta="True"
+                     VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="12"
                        Spacing="8">
             <ws:TextBox Width="200"
