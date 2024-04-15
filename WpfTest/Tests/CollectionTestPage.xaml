@@ -28,8 +28,10 @@
                 <ws:StackPanel Orientation="Horizontal"
                                HorizontalAlignment="Left"
                                Spacing="8">
-                    <Button Content="Add item" Command="{Binding AddItemCommand}"/>
-                    <Button Content="Remove item" Command="{Binding RemoveItemCommand}"/>
+                    <ws:Button Content="Add item" Command="{Binding AddItemCommand}"
+                               Padding="5 3" CornerRadius="3"/>
+                    <ws:Button Content="Remove item" Command="{Binding RemoveItemCommand}"
+                               Padding="5 3" CornerRadius="3"/>
                 </ws:StackPanel>
 
                 <GroupBox Header="Items (WrapPanel)"

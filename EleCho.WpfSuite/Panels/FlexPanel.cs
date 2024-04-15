@@ -224,7 +224,7 @@ namespace EleCho.WpfSuite
                 child.Measure(childConstraint);
 
                 var sz = new UVSize(flexDirection, child.DesiredSize);
-                var spacingAfter = mainSpacing * (i - lineChildIndexStart + 1);
+                var spacing = mainSpacing * (i - lineChildIndexStart);
 
                 if (flexWrap == FlexWrap.NoWrap) //continue to accumulate a line
                 {
@@ -233,10 +233,8 @@ namespace EleCho.WpfSuite
                 }
                 else
                 {
-                    if (MathHelper.GreaterThan(curLineSize.U + sz.U + spacingAfter, _uvConstraint.U)) //need to switch to another line
+                    if (MathHelper.GreaterThan(curLineSize.U + sz.U + spacing, _uvConstraint.U)) //need to switch to another line
                     {
-                        // add spacing
-                        var spacing = mainSpacing * (i - lineChildIndexStart);
                         curLineSize.U += spacing;
 
                         panelSize.U = Math.Max(curLineSize.U, panelSize.U);
@@ -246,7 +244,7 @@ namespace EleCho.WpfSuite
 
                         _lineCount++;
 
-                        if (MathHelper.GreaterThan(sz.U + spacingAfter, _uvConstraint.U)) //the element is wider then the constrint - give it a separate line
+                        if (MathHelper.GreaterThan(sz.U, _uvConstraint.U)) //the element is wider then the constrint - give it a separate line
                         {
                             panelSize.U = Math.Max(sz.U, panelSize.U);
                             panelSize.V += sz.V;
@@ -322,7 +320,7 @@ namespace EleCho.WpfSuite
                     continue;
 
                 var sz = new UVSize(flexDirection, child.DesiredSize);
-                var spacingAfter = mainSpacing * (i - lineChildIndexStart + 1);
+                var spacing = mainSpacing * (i - lineChildIndexStart);
 
                 if (flexWrap == FlexWrap.NoWrap)
                 {
@@ -331,10 +329,8 @@ namespace EleCho.WpfSuite
                 }
                 else
                 {
-                    if (MathHelper.GreaterThan(curLineSizeArr[lineIndex].U + sz.U + spacingAfter, uvFinalSize.U)) //need to switch to another line
+                    if (MathHelper.GreaterThan(curLineSizeArr[lineIndex].U + sz.U + spacing, uvFinalSize.U)) //need to switch to another line
                     {
-                        var spacing = mainSpacing * (i - lineChildIndexStart);
-
                         var curLineSize = curLineSizeArr[lineIndex];
                         curLineSize.U += spacing;
 
@@ -344,10 +340,9 @@ namespace EleCho.WpfSuite
                         curLineSizeArr[lineIndex] = sz;
                         lineChildIndexStart = i;
 
-                        if (MathHelper.GreaterThan(sz.U + spacingAfter, uvFinalSize.U)) //the element is wider then the constraint - give it a separate line
+                        spacing = mainSpacing * (i - lineChildIndexStart);
+                        if (MathHelper.GreaterThan(sz.U, uvFinalSize.U)) //the element is wider then the constraint - give it a separate line
                         {
-                            spacing = mainSpacing * (i - lineChildIndexStart);
-
                             //switch to next line which only contain one element
                             curLineSize = curLineSizeArr[lineIndex];
                             curLineSize.U += spacing;

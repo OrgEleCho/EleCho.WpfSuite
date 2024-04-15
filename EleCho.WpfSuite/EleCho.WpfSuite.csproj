@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Controls\ButtonResources.xaml" />
     <Page Remove="Controls\ConditionalControlResources.xaml" />
     <Page Remove="Controls\FrameResources.xaml" />
     <Page Remove="Controls\ImageResources.xaml" />
@@ -40,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Controls\ButtonResources.xaml" />
     <Resource Include="Controls\FrameResources.xaml" />
     <Resource Include="Controls\TransitioningControlResources.xaml">
       <SubType>Designer</SubType>

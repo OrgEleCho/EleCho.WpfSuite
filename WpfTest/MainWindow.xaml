@@ -40,7 +40,7 @@
             <ws:Frame.Transition>
                 <ws:SlideFadeTransition x:Name="AppFrameTransition"
                                         Orientation="Vertical"
-                                        Duration="0:0:0.500"
+                                        Duration="0:0:0.300"
                                         Distance="100"
                                         Reverse="{Binding AppFrameTransitionReverse}">
                     <ws:SlideFadeTransition.EasingFunction>

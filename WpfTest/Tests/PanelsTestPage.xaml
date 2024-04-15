@@ -1,22 +1,22 @@
 ﻿<Page x:Class="WpfTest.Tests.PanelsTestPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:Background="White"
       Title="PanelsTestPage">
 
     <ws:ScrollViewer>
-        <ws:StackPanel Margin="28 12 28 28" 
+        <ws:StackPanel Margin="28 12 28 28"
                        Spacing="8">
             <TextBlock Text="Panels Test"
                        FontSize="26"
                        Margin="0 0 0 12"/>
-            <GroupBox Header="StackPanel (Spacing=8)" 
+            <GroupBox Header="StackPanel (Spacing=8)"
                       Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">
@@ -25,7 +25,7 @@
                     <Button Content="QWQ"/>
                 </ws:StackPanel>
             </GroupBox>
-            <GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)" 
+            <GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)"
                       Padding="8">
                 <ws:WrapPanel Orientation="Horizontal"
                               HorizontalSpacing="8"
@@ -49,6 +49,58 @@
                     <Button Content="QWQ"/>
                     <Button Content="QWQ"/>
                 </ws:WrapPanel>
+            </GroupBox>
+            <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8)"
+                      Padding="8">
+                <ws:FlexPanel MainSpacing="8"
+                              CrossSpacing="8"
+                              Wrap="Wrap">
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                    <Button Content="QWQ"/>
+                </ws:FlexPanel>
+            </GroupBox>
+
+            <Rectangle Height="1"
+                       Fill="Gray"/>
+
+            <GroupBox Header="Origin WrapPanel"
+                      Padding="8">
+                <WrapPanel Orientation="Horizontal">
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                    <Button Content="QWQ" Margin="0 0 8 8"/>
+                </WrapPanel>
             </GroupBox>
         </ws:StackPanel>
     </ws:ScrollViewer>
