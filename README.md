@@ -73,6 +73,7 @@ Layout panels:
 Controls:
 
 - Image: Simple image control with `CornerRadius` property
+- Button: Origin button with `CornerRadius` property
 - ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
 - ConditionalControl: Display the control based on the condition
 - TextBox: Origin text box with `Placeholder` property
