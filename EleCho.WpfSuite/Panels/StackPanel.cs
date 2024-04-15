@@ -34,7 +34,9 @@ namespace EleCho.WpfSuite
                     var childDesiredSize = child.DesiredSize;
 
                     panelDesiredSize.Height += childDesiredSize.Height;
-                    panelDesiredSize.Height += spacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        panelDesiredSize.Height += spacing;
 
                     if (childDesiredSize.Width > panelDesiredSize.Width)
                         panelDesiredSize.Width = childDesiredSize.Width;
@@ -54,7 +56,9 @@ namespace EleCho.WpfSuite
                     var childDesiredSize = child.DesiredSize;
 
                     panelDesiredSize.Width += childDesiredSize.Width;
-                    panelDesiredSize.Width += spacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        panelDesiredSize.Width += spacing;
 
                     if (childDesiredSize.Height > panelDesiredSize.Height)
                         panelDesiredSize.Height = childDesiredSize.Height;
@@ -83,7 +87,9 @@ namespace EleCho.WpfSuite
                     child.Arrange(new Rect(0, offset, finalSize.Width, childDesiredSize.Height));
 
                     offset += childDesiredSize.Height;
-                    offset += spacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        offset += spacing;
                 }
             }
             else
@@ -95,7 +101,8 @@ namespace EleCho.WpfSuite
                     child.Arrange(new Rect(offset, 0, childDesiredSize.Width, finalSize.Height));
 
                     offset += childDesiredSize.Width;
-                    offset += spacing;
+                    if (child.Visibility != Visibility.Collapsed)
+                        offset += spacing;
                 }
             }
 

@@ -15,7 +15,7 @@
         <ws:StackPanel Spacing="8">
             <ws:TextBox Width="200"
                         Placeholder="This is a text box with placeholder"/>
-            <ws:Image Source="/Assets/TestAvatar.jpg"
+            <ws:Image Source="/Assets/TestImage1.jpg"
                       CornerRadius="10"/>
 
             <StackPanel>

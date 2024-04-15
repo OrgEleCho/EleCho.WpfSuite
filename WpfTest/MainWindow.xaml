@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="550" Width="800"
+        Loaded="Window_Loaded"
         d:DataContext="{d:DesignInstance Type=local:MainWindow}">
 
     <Window.Resources>
@@ -16,8 +18,10 @@
     </Window.Resources>
 
     <DockPanel>
-        <ListBox DockPanel.Dock="Left"
-                 Width="200"
+        <ListBox Name="AppNavigations" 
+                 DockPanel.Dock="Left"
+                 Width="180"
+                 BorderThickness="0 0 1 0"
                  ItemsSource="{Binding NavigationItems}"
                  SelectionChanged="ListBox_SelectionChanged">
             <ListBox.ItemTemplate>
@@ -31,6 +35,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Frame Name="AppFrame"
-               NavigationUIVisibility="Hidden"/>
+               NavigationUIVisibility="Hidden"
+               Navigated="AppFrame_Navigated">
+            <Frame.RenderTransform>
+                <TranslateTransform/>
+            </Frame.RenderTransform>
+        </Frame>
     </DockPanel>
 </Window>

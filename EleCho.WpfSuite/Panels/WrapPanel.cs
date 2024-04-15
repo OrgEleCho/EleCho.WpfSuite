@@ -70,7 +70,9 @@ namespace EleCho.WpfSuite
                     var childHeight = childHeightGetter.Invoke(childDesiredSize);
 
                     offsetX += childWidth;
-                    offsetX += horizontalSpacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        offsetX += horizontalSpacing;
 
                     if (offsetX > availableSize.Width)
                     {
@@ -113,11 +115,13 @@ namespace EleCho.WpfSuite
                     var childHeight = childHeightGetter.Invoke(childDesiredSize);
 
                     offsetY += childHeight;
-                    offsetY += verticalSpacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        offsetY += verticalSpacing;
 
                     if (offsetY > availableSize.Height)
                     {
-                        currentLineLength = offsetY -horizontalSpacing - childHeight - verticalSpacing;
+                        currentLineLength = offsetY - horizontalSpacing - childHeight - verticalSpacing;
                         if (currentLineLength > maxLineLength)
                             maxLineLength = currentLineLength;
 
@@ -171,7 +175,9 @@ namespace EleCho.WpfSuite
                     var childHeight = childHeightGetter.Invoke(childDesiredSize);
 
                     tempOffset += childWidth;
-                    tempOffset += horizontalSpacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        tempOffset += horizontalSpacing;
 
                     if (tempOffset - horizontalSpacing > finalSize.Width)
                     {
@@ -224,7 +230,9 @@ namespace EleCho.WpfSuite
                     var childHeight = childHeightGetter.Invoke(childDesiredSize);
 
                     tempOffset += childHeight;
-                    tempOffset += verticalSpacing;
+
+                    if (child.Visibility != Visibility.Collapsed)
+                        tempOffset += verticalSpacing;
 
                     if (tempOffset - verticalSpacing > finalSize.Height)
                     {
@@ -293,7 +301,9 @@ namespace EleCho.WpfSuite
                     lineChild.Arrange(new Rect(currentLineOffsetX + lineChildOffset, currentLineOffsetY, lineChildWidth, currentLineSize));
 
                     lineChildOffset += lineChildWidth;
-                    lineChildOffset += spacing;
+
+                    if (lineChild.Visibility != Visibility.Collapsed)
+                        lineChildOffset += spacing;
                 }
             }
 
@@ -320,7 +330,9 @@ namespace EleCho.WpfSuite
                     lineChild.Arrange(new Rect(currentLineOffsetX, currentLineOffsetY + lineChildOffset, currentLineSize, lineChildHeight));
 
                     lineChildOffset += lineChildHeight;
-                    lineChildOffset += spacing;
+
+                    if (lineChild.Visibility != Visibility.Collapsed)
+                        lineChildOffset += spacing;
                 }
             }
         }

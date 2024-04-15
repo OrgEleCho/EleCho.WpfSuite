@@ -91,7 +91,7 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty ItemsAlignmentProperty =
             DependencyProperty.Register(nameof(ItemsAlignment), typeof(FlexItemsAlignment), typeof(FlexPanel),
-                new FrameworkPropertyMetadata(default(FlexItemsAlignment), FrameworkPropertyMetadataOptions.AffectsMeasure));
+                new FrameworkPropertyMetadata(FlexItemsAlignment.Stretch, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty UniformGrowProperty =
             DependencyProperty.Register(nameof(UniformGrow), typeof(double), typeof(FlexPanel),
