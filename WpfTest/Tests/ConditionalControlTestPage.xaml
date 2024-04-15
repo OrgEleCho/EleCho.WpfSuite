@@ -47,7 +47,7 @@
                                 CornerRadius="3"
                                 Padding="5">
                             <ws:StackPanel Spacing="4">
-                                <TextBlock Text="Current value is true"/>
+                                <TextBlock Text="Current value is false"/>
                                 <TextBlock>
                                     <Run Text="Content:"/>
                                     <Run Text="{Binding Mode=OneWay}"/>
