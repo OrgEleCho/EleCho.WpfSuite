@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite
 {
-    public class SlideTransition : ContentTransition
+    public class SlideFadeTransition : ContentTransition
     {
         public Orientation Orientation
         {
@@ -61,10 +58,20 @@ namespace EleCho.WpfSuite
                 To = 0,
             };
 
+            DoubleAnimation opacityAnimation = new()
+            {
+                EasingFunction = EasingFunction,
+                Duration = Duration,
+                From = 0,
+                To = 1
+            };
+
             if (Reverse ^ !forward)
             {
                 translateAnimation.From *= -1;
             }
+
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
 
             if (Orientation == Orientation.Horizontal)
             {
@@ -80,7 +87,8 @@ namespace EleCho.WpfSuite
                 Duration = Duration,
                 Children =
                 {
-                    translateAnimation
+                    translateAnimation,
+                    opacityAnimation
                 }
             };
         }
@@ -98,10 +106,19 @@ namespace EleCho.WpfSuite
                 To = -distance,
             };
 
+            DoubleAnimation opacityAnimation = new()
+            {
+                EasingFunction = EasingFunction,
+                Duration = Duration,
+                To = 0
+            };
+
             if (Reverse ^ !forward)
             {
                 translateAnimation.To *= -1;
             }
+
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
 
             if (Orientation == Orientation.Horizontal)
             {
@@ -117,19 +134,20 @@ namespace EleCho.WpfSuite
                 Duration = Duration,
                 Children =
                 {
-                    translateAnimation
+                    translateAnimation,
+                    opacityAnimation
                 }
             };
         }
 
 
         public static readonly DependencyProperty OrientationProperty =
-            DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(SlideTransition), new PropertyMetadata(Orientation.Horizontal));
+            DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(SlideFadeTransition), new PropertyMetadata(Orientation.Horizontal));
 
         public static readonly DependencyProperty DistanceProperty =
-            DependencyProperty.Register(nameof(Distance), typeof(double), typeof(SlideTransition), new PropertyMetadata(ValueBoxes.DoubleNaNBox));
+            DependencyProperty.Register(nameof(Distance), typeof(double), typeof(SlideFadeTransition), new PropertyMetadata(ValueBoxes.DoubleNaNBox));
 
         public static readonly DependencyProperty ReverseProperty =
-            DependencyProperty.Register(nameof(Reverse), typeof(bool), typeof(SlideTransition), new PropertyMetadata(ValueBoxes.FalseBox));
+            DependencyProperty.Register(nameof(Reverse), typeof(bool), typeof(SlideFadeTransition), new PropertyMetadata(ValueBoxes.FalseBox));
     }
 }
