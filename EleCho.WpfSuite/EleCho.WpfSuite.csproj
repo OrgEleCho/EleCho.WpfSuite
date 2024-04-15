@@ -21,9 +21,11 @@
 
   <ItemGroup>
     <Page Remove="Controls\ConditionalControlResources.xaml" />
+    <Page Remove="Controls\FrameResources.xaml" />
     <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
     <Page Remove="Controls\TextBoxResources.xaml" />
+    <Page Remove="Controls\TransitioningControlResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +40,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Controls\FrameResources.xaml" />
+    <Resource Include="Controls\TransitioningControlResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Resource Include="Controls\ConditionalControlResources.xaml" />
     <Resource Include="Controls\ImageResources.xaml" />
     <Resource Include="Controls\ScrollViewerResources.xaml" />

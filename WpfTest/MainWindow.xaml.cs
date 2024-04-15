@@ -10,14 +10,13 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CommunityToolkit.Mvvm.ComponentModel;
 using WpfTest.Models;
 using WpfTest.Tests;
 
 namespace WpfTest
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    [ObservableObject]
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,6 +24,9 @@ namespace WpfTest
             DataContext = this;
             InitializeComponent();
         }
+
+        [ObservableProperty]
+        private bool _appFrameTransitionReverse = false;
 
         public ObservableCollection<NavigationItem> NavigationItems { get; } = new()
         {
@@ -71,24 +73,17 @@ namespace WpfTest
                 listBox.SelectedItem is not NavigationItem navigationItem)
                 return;
 
+            var newItemIndex = NavigationItems.IndexOf(navigationItem);
+            var oldItemIndex = -1;
+            if (e.RemovedItems.Count > 0 && e.RemovedItems[0] is NavigationItem oldNavigationItem)
+            {
+                oldItemIndex = NavigationItems.IndexOf(oldNavigationItem);
+            }
+
+            AppFrameTransitionReverse = newItemIndex < oldItemIndex;
+
             var page = Activator.CreateInstance(navigationItem.PageType);
             AppFrame.Navigate(page);
-        }
-
-        private void AppFrame_Navigated(object sender, NavigationEventArgs e)
-        {
-            DoubleAnimation doubleAnimation = new DoubleAnimation()
-            {
-                From = 10,
-                To = 0,
-                Duration = new Duration(TimeSpan.FromMilliseconds(200)),
-                EasingFunction = new CircleEase()
-                {
-                    EasingMode = EasingMode.EaseOut
-                }
-            };
-
-            AppFrame.RenderTransform.BeginAnimation(TranslateTransform.YProperty, doubleAnimation);
         }
     }
 }

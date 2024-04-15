@@ -10,9 +10,9 @@
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
 
-    <ws:ScrollViewer Margin="12"
-                     ScrollWithWheelDelta="True">
-        <ws:StackPanel Spacing="8">
+    <ws:ScrollViewer ScrollWithWheelDelta="True">
+        <ws:StackPanel Margin="12"
+                       Spacing="8">
             <ws:TextBox Width="200"
                         Placeholder="This is a text box with placeholder"/>
             <ws:Image Source="/Assets/TestImage1.jpg"
