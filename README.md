@@ -76,6 +76,15 @@ Controls:
 - ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
 - ConditionalControl: Display the control based on the condition
 - TextBox: Origin text box with `Placeholder` property
+- TransitioningContentControl: ContentControl that allows you to set transitions
+- Frame: Frame that allows you to set transitions
+
+Transitions:
+
+- SlideTransition: Moves the old page out of view, and the new page into view
+- FadeTransition: Fades out the current page and fades in the new page by animating the opacity
+- SlideFadeTransition: SlideTransition and FadeTransition
+- ScaleTransition: Scale the old page to smaller and fade out, and scale the new page from a larger zoom to 1 and fade in
 
 Value converters:
 
@@ -84,7 +93,8 @@ Value converters:
 - MultiplyNumberConverter: Mathematical calculations, multiplication
 - DivideNumberConverter: Mathematical calculations, division
 - NumberCompareConverter: Compare between numbers, support `equal`, `not equal`, `greator than`, `greator or equal`, `less than`, `less or equal`
-- ObjectCompareConverter: Compare between objects, support `equal`, `not equal`
+- EqualConverter: Check if the value equals converter parameter
+- NotEqualConverter: Check if the value not equal to converter parameter
 - ValueIsNullConverter: Determines whether the object is empty
 - ValueIsNotNullConverter: Determines whether the object is not empty
 - InvertBooleanConverter: Inverts the boolean value
