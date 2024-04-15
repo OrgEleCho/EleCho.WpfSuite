@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
-    public class AddNumberConverter : ValueConverterBase<AddNumberConverter>
+    public class AddNumberConverter : SingletonValueConverterBase<AddNumberConverter>
     {
         public double Value
         {
@@ -17,6 +17,9 @@ namespace EleCho.WpfSuite
             try
             {
                 double current = System.Convert.ToDouble(value);
+                if (parameter is double parameterNumber)
+                    current += parameterNumber;
+
                 return current + Value;
             }
             catch

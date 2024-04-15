@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
-    public class DivideNumberConverter : ValueConverterBase<DivideNumberConverter>
+    public class DivideNumberConverter : SingletonValueConverterBase<DivideNumberConverter>
     {
         public double Value
         {
@@ -17,6 +17,9 @@ namespace EleCho.WpfSuite
             try
             {
                 double current = System.Convert.ToDouble(value);
+                if (parameter is double parameterNumber)
+                    current /= parameterNumber;
+
                 return current / Value;
             }
             catch
