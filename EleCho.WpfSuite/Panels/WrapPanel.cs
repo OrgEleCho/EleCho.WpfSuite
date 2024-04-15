@@ -74,7 +74,7 @@ namespace EleCho.WpfSuite
                     if (child.Visibility != Visibility.Collapsed)
                         offsetX += horizontalSpacing;
 
-                    if (offsetX > availableSize.Width)
+                    if (offsetX - horizontalSpacing > availableSize.Width)
                     {
                         currentLineLength = offsetX - horizontalSpacing - childWidth - horizontalSpacing;
                         if (currentLineLength > maxLineLength)
@@ -119,7 +119,7 @@ namespace EleCho.WpfSuite
                     if (child.Visibility != Visibility.Collapsed)
                         offsetY += verticalSpacing;
 
-                    if (offsetY > availableSize.Height)
+                    if (offsetY - verticalSpacing > availableSize.Height)
                     {
                         currentLineLength = offsetY - horizontalSpacing - childHeight - verticalSpacing;
                         if (currentLineLength > maxLineLength)

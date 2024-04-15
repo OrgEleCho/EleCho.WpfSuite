@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfTest.Tests
 {
     /// <summary>
-    /// FlexPanelTestPage.xaml 的交互逻辑
+    /// PanelsTestPage.xaml 的交互逻辑
     /// </summary>
-    public partial class FlexPanelTestPage : Page
+    public partial class PanelsTestPage : Page
     {
-        public FlexPanelTestPage()
+        public PanelsTestPage()
         {
             InitializeComponent();
         }
