@@ -392,9 +392,8 @@
                         </Button.LayoutTransform>
                     </Button>
                 </Grid>
-                <ws:TransitioningContentControl x:Name="PART_FrameCP"
-                                                Transition="{TemplateBinding Transition}"
-                                                Content="{TemplateBinding Content}"/>
+                <ws:TransitioningContentControl x:Name="PART_ContentControl"
+                                                Transition="{TemplateBinding Transition}"/>
             </DockPanel>
         </Border>
         <ControlTemplate.Triggers>
@@ -412,9 +411,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:Frame}">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
-                        <ws:TransitioningContentControl x:Name="PART_FrameCP"
-                                                        Transition="{TemplateBinding Transition}"
-                                                        Content="{TemplateBinding Content}"/>
+                        <ws:TransitioningContentControl x:Name="PART_ContentControl"
+                                                        Transition="{TemplateBinding Transition}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

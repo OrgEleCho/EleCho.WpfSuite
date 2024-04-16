@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
-    [TemplatePart(Name = "PART_Contents")]
+    [TemplatePart(Name = "PART_Contents", Type = typeof(Panel))]
     public class TransitioningContentControl : Control
     {
         static TransitioningContentControl()
@@ -28,6 +18,7 @@ namespace EleCho.WpfSuite
         private UIElement? _lastOldControl;
         private CancellationTokenSource? _lastTaskCancellation;
         private object? _pendingNewContent;
+        private bool _backward;
 
         public override void OnApplyTemplate()
         {
@@ -65,6 +56,16 @@ namespace EleCho.WpfSuite
             set { SetValue(TransitionProperty, value); }
         }
 
+        public void SetContent(object? content)
+        {
+            Content = content;
+        }
+
+        public void SetContent(object? content, bool forward)
+        {
+            _backward = !forward;
+            Content = content;
+        }
 
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
@@ -86,7 +87,7 @@ namespace EleCho.WpfSuite
             }
         }
 
-        private async Task ApplyContentChangeAsync(object? oldContent, object newContent)
+        private async Task ApplyContentChangeAsync(object? oldContent, object? newContent)
         {
             if (_contentsPanel is null)
             {
@@ -105,38 +106,45 @@ namespace EleCho.WpfSuite
             }
 
             UIElement? oldContentElement = null;
+            UIElement? newContentElement = null;
             if (_contentsPanel.Children.Count > 0)
             {
                 oldContentElement = _contentsPanel.Children[_contentsPanel.Children.Count - 1];
             }
 
-            ContentPresenter newContentElement = new ContentPresenter()
+            if(newContent is not null)
             {
-                Content = newContent
-            };
-
-            newContentElement.SetBinding(ContentPresenter.ContentTemplateProperty,
-                new Binding()
+                var contentPresenter = new ContentPresenter()
                 {
-                    Source = this,
-                    Path = new PropertyPath(nameof(ContentTemplate)),
-                });
+                    Content = newContent
+                };
 
-            newContentElement.SetBinding(ContentPresenter.ContentTemplateSelectorProperty,
-                new Binding()
-                {
-                    Source = this,
-                    Path = new PropertyPath(nameof(ContentTemplateSelector)),
-                });
+                contentPresenter.SetBinding(ContentPresenter.ContentTemplateProperty,
+                    new Binding()
+                    {
+                        Source = this,
+                        Path = new PropertyPath(nameof(ContentTemplate)),
+                    });
 
+                contentPresenter.SetBinding(ContentPresenter.ContentTemplateSelectorProperty,
+                    new Binding()
+                    {
+                        Source = this,
+                        Path = new PropertyPath(nameof(ContentTemplateSelector)),
+                    });
+
+                newContentElement = contentPresenter;
+            }
+            
+            var forward = !_backward;
             _contentsPanel.Children.Add(newContentElement);
             _lastOldControl = oldContentElement;
             _pendingNewContent = null;
-            if (Transition is IContentTransition transition && 
-                oldContentElement is FrameworkElement oldContentFrameworkElement)
+            _backward = false;
+            if (Transition is IContentTransition transition)
             {
                 _lastTaskCancellation = new();
-                await transition.Run(this, oldContentFrameworkElement, newContentElement, true, _lastTaskCancellation.Token);
+                await transition.Run(this, oldContentElement as FrameworkElement, newContentElement as FrameworkElement, forward, _lastTaskCancellation.Token);
             }
 
             if (oldContentElement is not null)

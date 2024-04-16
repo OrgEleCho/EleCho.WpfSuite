@@ -10,6 +10,6 @@ namespace EleCho.WpfSuite
 {
     public interface IContentTransition
     {
-        public Task Run(FrameworkElement container, FrameworkElement? oldContent, FrameworkElement newContent, bool forward, CancellationToken cancellationToken);
+        public Task Run(FrameworkElement container, FrameworkElement? oldContent, FrameworkElement? newContent, bool forward, CancellationToken cancellationToken);
     }
 }

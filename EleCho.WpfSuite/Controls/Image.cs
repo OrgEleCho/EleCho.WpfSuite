@@ -39,7 +39,15 @@ namespace EleCho.WpfSuite
                 var borderThickness = BorderThickness;
 
                 var imageSize = new Size(imageSource.Width, imageSource.Height);
-                var imageConstraint = new Size(constraint.Width - borderThickness.Left - borderThickness.Right, constraint.Height - borderThickness.Top - borderThickness.Bottom);
+
+                var imageConstraintWidth = constraint.Width - borderThickness.Left - borderThickness.Right;
+                var imageConstraintHeight = constraint.Height - borderThickness.Top - borderThickness.Bottom;
+                if(imageConstraintWidth < 0 || imageConstraintHeight < 0)
+                {
+                    return constraint;
+                }
+
+                var imageConstraint = new Size(imageConstraintWidth, imageConstraintHeight);
                 var factor = imageSize.Width / imageSize.Height;
 
                 if (imageConstraint.Width < imageSize.Width)
