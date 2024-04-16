@@ -44,6 +44,8 @@ namespace EleCho.WpfSuite
             return distance;
         }
 
+        protected override Freezable CreateInstanceCore() => new SlideFadeTransition();
+
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
             if (newContent.RenderTransform is not TranslateTransform)

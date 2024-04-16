@@ -38,15 +38,16 @@
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True">
             <ws:Frame.Transition>
-                <ws:SlideFadeTransition x:Name="AppFrameTransition"
-                                        Orientation="Vertical"
-                                        Duration="0:0:0.300"
-                                        Distance="100"
-                                        Reverse="{Binding Source={StaticResource DataProxy},Path=Data.AppFrameTransitionReverse}">
-                    <ws:SlideFadeTransition.EasingFunction>
-                        <CircleEase EasingMode="EaseInOut"/>
-                    </ws:SlideFadeTransition.EasingFunction>
-                </ws:SlideFadeTransition>
+                <!--<ws:SlideFadeTransition Orientation="Vertical"
+                Duration="0:0:0.300"
+                Distance="100"
+                Reverse="{Binding AppFrameTransitionReverse}">
+                <ws:SlideFadeTransition.EasingFunction>
+                <CircleEase EasingMode="EaseInOut"/>
+                </ws:SlideFadeTransition.EasingFunction>
+                </ws:SlideFadeTransition>-->
+                <ws:ScaleTransition Duration="0:0:0.300"
+                                    Reverse="{Binding AppFrameTransitionReverse}"/>
             </ws:Frame.Transition>
         </ws:Frame>
     </DockPanel>

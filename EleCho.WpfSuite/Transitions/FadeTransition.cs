@@ -6,6 +6,8 @@ namespace EleCho.WpfSuite
 {
     public class FadeTransition : ContentTransition
     {
+        protected override Freezable CreateInstanceCore() => new FadeTransition();
+
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
             if (newContent.RenderTransform is not TranslateTransform)

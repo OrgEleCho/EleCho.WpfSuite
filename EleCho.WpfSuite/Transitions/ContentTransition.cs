@@ -6,8 +6,13 @@ using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite
 {
-    public abstract class ContentTransition : DependencyObject, IContentTransition
+    public abstract class ContentTransition : Freezable, IContentTransition
     {
+        public ContentTransition()
+        {
+
+        }
+
         public Duration Duration
         {
             get { return (Duration)GetValue(DurationProperty); }

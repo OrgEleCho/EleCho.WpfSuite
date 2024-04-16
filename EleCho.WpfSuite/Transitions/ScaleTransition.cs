@@ -7,6 +7,14 @@ namespace EleCho.WpfSuite
 {
     public class ScaleTransition : ContentTransition
     {
+        public bool Reverse
+        {
+            get { return (bool)GetValue(ReverseProperty); }
+            set { SetValue(ReverseProperty, value); }
+        }
+
+        protected override Freezable CreateInstanceCore() => new ScaleTransition();
+
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
             if (newContent.RenderTransform is not ScaleTransform)
@@ -36,6 +44,14 @@ namespace EleCho.WpfSuite
                 From = 0,
                 To = 1,
             };
+
+            if (Reverse ^ !forward)
+            {
+                scaleXAnimation.From = 0.75;
+                scaleXAnimation.To = 1;
+                scaleYAnimation.From = 0.75;
+                scaleYAnimation.To = 1;
+            }
 
             Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("RenderTransform.ScaleX"));
             Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath("RenderTransform.ScaleY"));
@@ -80,6 +96,12 @@ namespace EleCho.WpfSuite
                 To = 0,
             };
 
+            if (Reverse ^ !forward)
+            {
+                scaleXAnimation.To = 1.25;
+                scaleYAnimation.To = 1.25;
+            }
+
             Storyboard.SetTargetProperty(scaleXAnimation, new PropertyPath("RenderTransform.ScaleX"));
             Storyboard.SetTargetProperty(scaleYAnimation, new PropertyPath("RenderTransform.ScaleY"));
             Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
@@ -96,8 +118,7 @@ namespace EleCho.WpfSuite
             };
         }
 
-
-        public static readonly DependencyProperty OrientationProperty =
-            DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(SlideTransition), new PropertyMetadata(Orientation.Horizontal));
+        public static readonly DependencyProperty ReverseProperty =
+            DependencyProperty.Register(nameof(Reverse), typeof(bool), typeof(ScaleTransition), new PropertyMetadata(false));
     }
 }
