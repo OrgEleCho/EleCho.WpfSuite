@@ -25,9 +25,10 @@
     <Page Remove="Controls\FrameResources.xaml" />
     <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
+    <Page Remove="Controls\SlicedImageResources.xaml" />
     <Page Remove="Controls\TextBoxResources.xaml" />
     <Page Remove="Controls\ToggleButtonResources.xaml" />
-    <Page Remove="Controls\TransitioningControlResources.xaml" />
+    <Page Remove="Controls\TransitioningContentControlResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,8 +45,9 @@
   <ItemGroup>
     <Resource Include="Controls\ButtonResources.xaml" />
     <Resource Include="Controls\FrameResources.xaml" />
+    <Resource Include="Controls\SlicedImageResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
-    <Resource Include="Controls\TransitioningControlResources.xaml">
+    <Resource Include="Controls\TransitioningContentControlResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>

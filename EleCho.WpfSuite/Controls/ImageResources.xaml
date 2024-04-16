@@ -12,15 +12,14 @@
                                         Stretch="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Stretch}"/>
                         </Grid.Resources>
 
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{x:Null}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"/>
                         <Border Background="{StaticResource ImageBrush}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}"/>
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
-                        </Border>
                     </Grid>
 
                 </ControlTemplate>

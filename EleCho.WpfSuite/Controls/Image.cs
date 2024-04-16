@@ -36,22 +36,29 @@ namespace EleCho.WpfSuite
         {
             if(Source is { } imageSource)
             {
-                var size = new Size(imageSource.Width, imageSource.Height);
-                var factor = size.Width / size.Height;
+                var borderThickness = BorderThickness;
 
-                if (constraint.Width < size.Width)
+                var imageSize = new Size(imageSource.Width, imageSource.Height);
+                var imageConstraint = new Size(constraint.Width - borderThickness.Left - borderThickness.Right, constraint.Height - borderThickness.Top - borderThickness.Bottom);
+                var factor = imageSize.Width / imageSize.Height;
+
+                if (imageConstraint.Width < imageSize.Width)
                 {
-                    size.Width = constraint.Width;
-                    size.Height = constraint.Width / factor;
+                    imageSize.Width = imageConstraint.Width;
+                    imageSize.Height = imageConstraint.Width / factor;
                 }
 
-                if (constraint.Height < size.Height)
+                if (imageConstraint.Height < imageSize.Height)
                 {
-                    size.Height = constraint.Height;
-                    size.Width = constraint.Height * factor;
+                    imageSize.Height = imageConstraint.Height;
+                    imageSize.Width = imageConstraint.Height * factor;
                 }
 
-                return size;
+                var finalSize = new Size(
+                    imageSize.Width + borderThickness.Left + borderThickness.Right,
+                    imageSize.Height + borderThickness.Top + borderThickness.Bottom);
+
+                return finalSize;
             }
 
             return base.MeasureOverride(constraint);

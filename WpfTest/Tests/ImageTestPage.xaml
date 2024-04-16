@@ -24,7 +24,7 @@
                           CornerRadius="{Binding ElementName=CornerRadiusSlider,Path=Value,Converter={x:Static ws:NumberToCornerRadiusConverter.Instance}}"
                           Stretch="{Binding ElementName=StretchModeSelector,Path=SelectedItem}"
                           BorderBrush="Pink"
-                          BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"/>
+                          BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value,Converter={x:Static ws:NumberToThicknessConverter.Instance}}"/>
                 <GroupBox Header="Options"
                           Padding="12">
                     <ws:StackPanel Spacing="8">
@@ -64,6 +64,15 @@
                         </ws:StackPanel>
                     </ws:StackPanel>
                 </GroupBox>
+
+                <ws:SlicedImage Source="/Assets/SlicedImage.jpg"
+                                ImageMargin="20"
+                                Width="500"
+                                Height="300"
+                                BorderBrush="Pink"
+                                BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value}"
+                                CornerRadius="{Binding ElementName=CornerRadiusSlider,Path=Value,Converter={x:Static ws:NumberToCornerRadiusConverter.Instance}}"
+                                TileMode="Tile"/>
             </ws:StackPanel>
         </Grid>
     </ws:ScrollViewer>

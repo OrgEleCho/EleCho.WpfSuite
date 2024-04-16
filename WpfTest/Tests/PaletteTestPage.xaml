@@ -1,0 +1,264 @@
+﻿<Page x:Class="WpfTest.Tests.PaletteTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:WpfTest.Tests"
+      xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+      xmlns:utils="clr-namespace:WpfTest.Utilities"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      Title="PaletteTestPage">
+
+    <Page.Resources>
+    </Page.Resources>
+
+    <ws:ScrollViewer>
+        <ws:StackPanel Margin="28 12 28 28"
+                       Spacing="12">
+            <TextBlock Text="Palette Test"
+                       FontSize="26"
+                       Margin="0 0 0 12"/>
+
+            <StackPanel>
+                <TextBlock Text="LightMode:"/>
+                <ws:FlexPanel UniformGrow="1"
+                              Height="60">
+                    <ws:FlexPanel.Resources>
+                        <utils:ColorPalette/>
+                    </ws:FlexPanel.Resources>
+
+                    <Border Background="{DynamicResource BackgroundBrush1}">
+                        <TextBlock Text="Color1"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush1}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush2}">
+                        <TextBlock Text="Color2"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush2}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush3}">
+                        <TextBlock Text="Color3"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush3}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush4}">
+                        <TextBlock Text="Color4"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush4}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush5}">
+                        <TextBlock Text="Color5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush5}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush6}">
+                        <TextBlock Text="Color6"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush6}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush7}">
+                        <TextBlock Text="Color7"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush7}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush8}">
+                        <TextBlock Text="Color8"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush8}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush9}">
+                        <TextBlock Text="Color9"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush9}"/>
+                    </Border>
+                </ws:FlexPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="DarkMode:"/>
+                <ws:FlexPanel UniformGrow="1"
+                              Height="60">
+                    <ws:FlexPanel.Resources>
+                        <utils:ColorPalette DarkMode="True"/>
+                    </ws:FlexPanel.Resources>
+
+                    <Border Background="{DynamicResource BackgroundBrush1}">
+                        <TextBlock Text="Color1"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush1}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush2}">
+                        <TextBlock Text="Color2"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush2}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush3}">
+                        <TextBlock Text="Color3"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush3}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush4}">
+                        <TextBlock Text="Color4"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush4}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush5}">
+                        <TextBlock Text="Color5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush5}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush6}">
+                        <TextBlock Text="Color6"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush6}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush7}">
+                        <TextBlock Text="Color7"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush7}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush8}">
+                        <TextBlock Text="Color8"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush8}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush9}">
+                        <TextBlock Text="Color9"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush9}"/>
+                    </Border>
+                </ws:FlexPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Red:"/>
+                <ws:FlexPanel UniformGrow="1"
+                              Height="60">
+                    <ws:FlexPanel.Resources>
+                        <utils:ColorPalette PrimaryColor="#e4271e"/>
+                    </ws:FlexPanel.Resources>
+
+                    <Border Background="{DynamicResource BackgroundBrush1}">
+                        <TextBlock Text="Color1"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush1}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush2}">
+                        <TextBlock Text="Color2"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush2}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush3}">
+                        <TextBlock Text="Color3"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush3}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush4}">
+                        <TextBlock Text="Color4"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush4}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush5}">
+                        <TextBlock Text="Color5"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush5}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush6}">
+                        <TextBlock Text="Color6"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush6}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush7}">
+                        <TextBlock Text="Color7"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush7}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush8}">
+                        <TextBlock Text="Color8"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush8}"/>
+                    </Border>
+                    <Border Background="{DynamicResource BackgroundBrush9}">
+                        <TextBlock Text="Color9"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource ForegroundBrush9}"/>
+                    </Border>
+                </ws:FlexPanel>
+            </StackPanel>
+            <GroupBox Header="HSV Color"
+                      Padding="8">
+                <ws:StackPanel Spacing="8">
+                    <Border Height="40"
+                            CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="{ws:HsvColor H={Binding ElementName=HueSlider,Path=Value}}"/>
+                        </Border.Background>
+                    </Border>
+
+                    <GroupBox Header="Options"
+                              Padding="8">
+                        <ws:StackPanel Spacing="8">
+                            <ws:StackPanel Orientation="Horizontal"
+                                           Spacing="8">
+                                <TextBlock Text="Hue:"
+                                           Width="80"/>
+                                <Slider x:Name="HueSlider"
+                                        Minimum="0"
+                                        Maximum="0"
+                                        Width="200"/>
+                            </ws:StackPanel>
+                            <ws:StackPanel Orientation="Horizontal"
+                                           Spacing="8">
+                                <TextBlock Text="Satuation:"
+                                           Width="80"/>
+                                <Slider x:Name="SatuationSlider"
+                                        Minimum="0"
+                                        Maximum="0"
+                                        Width="200"/>
+                            </ws:StackPanel>
+                            <ws:StackPanel Orientation="Horizontal"
+                                           Spacing="8">
+                                <TextBlock Text="Value:"
+                                           Width="80"/>
+                                <Slider x:Name="ValueSlider"
+                                        Minimum="0"
+                                        Maximum="0"
+                                        Width="200"/>
+                            </ws:StackPanel>
+                        </ws:StackPanel>
+                    </GroupBox>
+                </ws:StackPanel>
+            </GroupBox>
+        </ws:StackPanel>
+    </ws:ScrollViewer>
+</Page>

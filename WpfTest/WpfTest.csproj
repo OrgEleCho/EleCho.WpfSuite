@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\SlicedImage.jpg" />
     <None Remove="Assets\TestImage2.jpg" />
   </ItemGroup>
 
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\SlicedImage.jpg" />
     <Resource Include="Assets\TestImage1.jpg" />
     <Resource Include="Assets\TestImage2.jpg" />
   </ItemGroup>
