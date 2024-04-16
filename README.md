@@ -73,6 +73,7 @@ Layout panels:
 Controls:
 
 - Image: Simple image control with `CornerRadius` property
+- SlicedImage: Simple image control for drawing '9SliceSprite'
 - Button: Origin button with `CornerRadius` property
 - ToggleButton: Origin toggle button with `CornerRadius` property
 - ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
@@ -108,6 +109,8 @@ Value converters:
 - CollectionIsNullOrEmptyConverter: Check if collection is null or empty, returns a boolean value
 - CollectionIsNotNullOrEmptyConverter: Check if collection is not null or empty, returns a boolean value
 - StringToImageSourceConverter: Convert any valid URI string to image source
+- NumberToThicknessConverter: Convert number to uniform thickness
+- NumberToCornerRadiusConverter: Convert number to uniform corner radius
 
 Utilities:
 
