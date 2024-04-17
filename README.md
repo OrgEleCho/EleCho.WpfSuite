@@ -78,7 +78,9 @@ Controls:
 - ToggleButton: Origin toggle button with `CornerRadius` property
 - ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
 - ConditionalControl: Display the control based on the condition
-- TextBox: Origin text box with `Placeholder` property
+- TextBox: Origin text box with `Placeholder` and `CornerRadius` property
+- ListBox: Origin list box with `CornerRadius` property
+- ListBoxItem: Origin list box item with `CornerRadius` property
 - TransitioningContentControl: ContentControl that allows you to set transitions
 - Frame: Frame that allows you to set transitions
 
