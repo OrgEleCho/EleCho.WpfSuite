@@ -30,9 +30,9 @@
                                HorizontalAlignment="Left"
                                Spacing="8">
                     <ws:Button Content="Add item" Command="{Binding AddItemCommand}"
-                               Padding="5 3" CornerRadius="3"/>
+                               Padding="5 3"/>
                     <ws:Button Content="Remove item" Command="{Binding RemoveItemCommand}"
-                               Padding="5 3" CornerRadius="3"/>
+                               Padding="5 3"/>
                 </ws:StackPanel>
 
                 <GroupBox Header="Items (WrapPanel)"
@@ -49,7 +49,6 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
-                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>
@@ -75,7 +74,6 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
-                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>
@@ -98,7 +96,6 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
-                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>

@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ws="clr-namespace:EleCho.WpfSuite;assembly=EleCho.WpfSuite"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="WpfSuiteDesignName">SimpleDesign</sys:String>
+
+    <Style TargetType="{x:Type ws:TextBox}"
+           BasedOn="{StaticResource {x:Type ws:TextBox}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:Button}"
+           BasedOn="{StaticResource {x:Type ws:Button}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:ToggleButton}"
+           BasedOn="{StaticResource {x:Type ws:ToggleButton}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:ListBox}"
+           BasedOn="{StaticResource {x:Type ws:ListBox}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:ListBoxItem}"
+           BasedOn="{StaticResource {x:Type ws:ListBoxItem}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+</ResourceDictionary>

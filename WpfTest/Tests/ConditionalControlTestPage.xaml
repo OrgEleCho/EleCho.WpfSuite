@@ -44,7 +44,7 @@
                     <DataTemplate>
                         <Border BorderBrush="Red"
                                 BorderThickness="3"
-                                CornerRadius="3"
+                                CornerRadius="4"
                                 Padding="5">
                             <ws:StackPanel Spacing="4">
                                 <TextBlock Text="Current value is false"/>
@@ -66,7 +66,7 @@
                     <ws:ToggleButton x:Name="ConditionButton"
                                      Content="Toggle Condition"
                                      Padding="5 3"
-                                     CornerRadius="3"/>
+                                     CornerRadius="4"/>
                     <StackPanel>
                         <TextBlock Text="ContentWhenTrue:"/>
                         <ws:TextBox x:Name="ContentWhenTrueBox"

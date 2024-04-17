@@ -21,9 +21,9 @@
                       Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
                 </ws:StackPanel>
             </GroupBox>
             <GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)"
@@ -31,24 +31,24 @@
                 <ws:WrapPanel Orientation="Horizontal"
                               HorizontalSpacing="8"
                               VerticalSpacing="8">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
                 </ws:WrapPanel>
             </GroupBox>
             <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8)"
@@ -56,24 +56,24 @@
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
                               Wrap="Wrap">
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
-                    <Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
                 </ws:FlexPanel>
             </GroupBox>
 
@@ -103,6 +103,11 @@
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                 </WrapPanel>
             </GroupBox>
+
+            <TextBlock Margin="0 48 0 0">
+                <Run Text="Current design name:"/>
+                <Run Text="{DynamicResource WpfSuiteDesignName}"/>
+            </TextBlock>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
