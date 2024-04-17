@@ -35,6 +35,9 @@
                 </DataTemplate>
             </ws:ListBox.ItemTemplate>
         </ws:ListBox>
+        <ws:ProgressBar Width="500"
+                        IsIndeterminate="True"
+                        CornerRadius="10"/>
         <ws:Frame Name="AppFrame"
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True">

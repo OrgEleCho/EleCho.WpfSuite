@@ -56,6 +56,13 @@ namespace EleCho.WpfSuite
             set { SetValue(TransitionProperty, value); }
         }
 
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+        
+
         public void SetContent(object? content)
         {
             Content = content;
@@ -66,6 +73,7 @@ namespace EleCho.WpfSuite
             _backward = !forward;
             Content = content;
         }
+
 
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
@@ -78,6 +86,9 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty TransitionProperty =
             DependencyProperty.Register(nameof(Transition), typeof(IContentTransition), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty CornerRadiusProperty =
+            Border.CornerRadiusProperty.AddOwner(typeof(TransitioningContentControl));
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

@@ -36,11 +36,19 @@ namespace EleCho.WpfSuite
             set { SetValue(PlaceholderProperty, value); }
         }
 
+        public Brush PlaceholderBrush
+        {
+            get { return (Brush)GetValue(PlaceholderBrushProperty); }
+            set { SetValue(PlaceholderBrushProperty, value); }
+        }
 
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(TextBox));
 
         public static readonly DependencyProperty PlaceholderProperty =
             DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty PlaceholderBrushProperty =
+            DependencyProperty.Register(nameof(PlaceholderBrush), typeof(Brush), typeof(TextBox), new FrameworkPropertyMetadata(SystemColors.GrayTextBrush, FrameworkPropertyMetadataOptions.AffectsRender));
     }
 }

@@ -79,7 +79,7 @@ namespace EleCho.WpfSuite
             DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(Image), new FrameworkPropertyMetadata(Stretch.Uniform, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Image), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.AffectsRender));
+            Border.CornerRadiusProperty.AddOwner(typeof(Image));
 
     }
 }

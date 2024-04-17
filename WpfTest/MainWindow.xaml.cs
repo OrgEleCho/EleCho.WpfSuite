@@ -76,7 +76,7 @@ namespace WpfTest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            AppNavigations.SelectedItem = NavigationItems.FirstOrDefault();
+            //AppNavigations.SelectedItem = NavigationItems.FirstOrDefault();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

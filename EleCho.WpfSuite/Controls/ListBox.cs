@@ -33,6 +33,11 @@ namespace EleCho.WpfSuite
             return new ListBoxItem();
         }
 
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is ListBoxItem;
+        }
+
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(ListBox));
     }

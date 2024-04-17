@@ -27,6 +27,7 @@
     <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ListBoxItemResources.xaml" />
     <Page Remove="Controls\ListBoxResources.xaml" />
+    <Page Remove="Controls\ProgressBarResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
     <Page Remove="Controls\SlicedImageResources.xaml" />
     <Page Remove="Controls\TextBoxResources.xaml" />
@@ -50,6 +51,7 @@
     <Resource Include="Controls\FrameResources.xaml" />
     <Resource Include="Controls\ListBoxItemResources.xaml" />
     <Resource Include="Controls\ListBoxResources.xaml" />
+    <Resource Include="Controls\ProgressBarResources.xaml" />
     <Resource Include="Controls\SlicedImageResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
     <Resource Include="Controls\TransitioningContentControlResources.xaml">

@@ -12,5 +12,6 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ToggleButtonResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ListBoxResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ListBoxItemResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ProgressBarResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
