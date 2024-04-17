@@ -18,13 +18,20 @@
     </Window.Resources>
 
     <DockPanel>
-        <ListBox Name="AppNavigations"
-                 DockPanel.Dock="Left"
-                 Width="180"
-                 BorderThickness="0 0 1 0"
-                 ItemsSource="{Binding NavigationItems}"
-                 SelectionChanged="ListBox_SelectionChanged">
-            <ListBox.ItemTemplate>
+        <ws:ListBox Name="AppNavigations"
+                    DockPanel.Dock="Left"
+                    Width="180"
+                    BorderThickness="0 0 1 0"
+                    CornerRadius="0 5 5 0"
+                    ItemsSource="{Binding NavigationItems}"
+                    d:ItemsSource="{d:SampleData ItemCount=3}"
+                    SelectionChanged="ListBox_SelectionChanged">
+            <ws:ListBox.ItemContainerStyle>
+                <Style TargetType="ws:ListBoxItem">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </ws:ListBox.ItemContainerStyle>
+            <ws:ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Title}"
@@ -32,8 +39,8 @@
                         <TextBlock Text="{Binding Description}"/>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ws:ListBox.ItemTemplate>
+        </ws:ListBox>
         <ws:Frame Name="AppFrame"
                   NavigationUIVisibility="Visible"
                   ClipToBounds="True">

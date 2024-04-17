@@ -18,11 +18,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:TextBox}">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            SnapsToDevicePixels="True">
                         <Grid>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                             <Border Padding="{TemplateBinding Padding}">
-                                <TextBlock x:Name="PART_Placeholder" 
+                                <TextBlock x:Name="PART_Placeholder"
                                            Text="{TemplateBinding Placeholder}"
                                            TextWrapping="{TemplateBinding TextWrapping}"
                                            Foreground="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}"

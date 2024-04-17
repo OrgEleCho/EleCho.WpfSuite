@@ -15,14 +15,12 @@ using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
-    public class TextBox : System.Windows.Controls.TextBox
+    public class ListBox : System.Windows.Controls.ListBox
     {
-        static TextBox()
+        static ListBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TextBox), new FrameworkPropertyMetadata(typeof(TextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBox), new FrameworkPropertyMetadata(typeof(ListBox)));
         }
-
-
 
         public CornerRadius CornerRadius
         {
@@ -30,17 +28,12 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public string Placeholder
+        protected override DependencyObject GetContainerForItemOverride()
         {
-            get { return (string)GetValue(PlaceholderProperty); }
-            set { SetValue(PlaceholderProperty, value); }
+            return new ListBoxItem();
         }
 
-
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(TextBox));
-
-        public static readonly DependencyProperty PlaceholderProperty =
-            DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.AffectsRender));
+            Border.CornerRadiusProperty.AddOwner(typeof(ListBox));
     }
 }
