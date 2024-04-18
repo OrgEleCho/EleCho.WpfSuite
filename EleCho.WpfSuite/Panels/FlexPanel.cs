@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace EleCho.WpfSuite
 {
+    // 这里吐槽一句, FlexPanel 是基于 HandyControl 的 FlexPanel 改的, 加了 Spacing, 改了些bug
+    // 但随之而来的就是,,, 代码也越来越屎山了
+
     public class FlexPanel : Panel
     {
         private UVSize _uvConstraint;
@@ -388,7 +391,7 @@ namespace EleCho.WpfSuite
             // add spacing to last line
 
             // init status
-            var scaleU = Math.Min(_uvConstraint.U / uvFinalSize.U, 1);
+            //var scaleU = Math.Min(_uvConstraint.U / uvFinalSize.U, 1);
             var firstInLine = 0;
             var wrapReverseAdd = 0;
             var wrapReverseFlag = flexWrap == FlexWrap.WrapReverse ? -1 : 1;
@@ -537,7 +540,6 @@ namespace EleCho.WpfSuite
                             LineU = uvFinalSize.U,
                             ItemStartIndex = firstInLine,
                             ItemEndIndex = i,
-                            ScaleU = scaleU
                         }, arrange);
 
                         accumulatedV += (lineFreeVArr[lineIndex] + curLineSizeArr[lineIndex + accumulatedFlag].V) * wrapReverseFlag;
@@ -556,7 +558,6 @@ namespace EleCho.WpfSuite
                                 LineU = uvFinalSize.U,
                                 ItemStartIndex = i,
                                 ItemEndIndex = ++i,
-                                ScaleU = scaleU
                             }, arrange);
 
                             accumulatedV += (lineFreeVArr[lineIndex] + curLineSizeArr[lineIndex + accumulatedFlag].V) * wrapReverseFlag;
@@ -583,7 +584,6 @@ namespace EleCho.WpfSuite
                     LineU = uvFinalSize.U,
                     ItemStartIndex = firstInLine,
                     ItemEndIndex = children.Count,
-                    ScaleU = scaleU
                 }, arrange);
             }
         }
@@ -632,8 +632,6 @@ namespace EleCho.WpfSuite
                 };
             }
 
-            u *= lineInfo.ScaleU;
-
             // apply FlexGrow
             var flexGrowUArr = new double[itemCount];
             if (constraintFreeU > 0)
@@ -657,7 +655,6 @@ namespace EleCho.WpfSuite
                     if (flexGrowSum > 0)
                     {
                         flexGrowItem = constraintFreeU / flexGrowSum;
-                        lineInfo.ScaleU = 1;
                         lineFreeU = 0; //line free U was used up
                     }
 
@@ -695,7 +692,6 @@ namespace EleCho.WpfSuite
                     if (flexShrinkSum > 0)
                     {
                         flexShrinkItem = constraintFreeU / flexShrinkSum;
-                        lineInfo.ScaleU = 1;
                         lineFreeU = 0; //line free U was used up
                     }
 
@@ -757,8 +753,8 @@ namespace EleCho.WpfSuite
                     continue;
 
                 var childSize = new UVSize(flexDirection, isHorizontal
-                    ? new Size(child.DesiredSize.Width * lineInfo.ScaleU, child.DesiredSize.Height)
-                    : new Size(child.DesiredSize.Width, child.DesiredSize.Height * lineInfo.ScaleU));
+                    ? new Size(child.DesiredSize.Width, child.DesiredSize.Height)
+                    : new Size(child.DesiredSize.Width, child.DesiredSize.Height));
 
                 childSize.U += flexGrowUArr[j] + flexShrinkUArr[j];
 
@@ -851,8 +847,6 @@ namespace EleCho.WpfSuite
             public int ItemStartIndex { get; set; }
 
             public int ItemEndIndex { get; set; }
-
-            public double ScaleU { get; set; }
         }
 
         private struct UVSize
