@@ -83,6 +83,7 @@ Controls:
 - ListBoxItem: Origin list box item with `CornerRadius` property
 - TransitioningContentControl: ContentControl that allows you to set transitions
 - Frame: Frame that allows you to set transitions
+- ProgressBar: Origin progress bar with `CornerRadius` property
 
 Transitions:
 
