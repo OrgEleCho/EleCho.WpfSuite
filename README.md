@@ -84,6 +84,7 @@ Controls:
 - TransitioningContentControl: ContentControl that allows you to set transitions
 - Frame: Frame that allows you to set transitions
 - ProgressBar: Origin progress bar with `CornerRadius` property
+- Border: Origin border with `ContentClip` property for binding
 
 Transitions:
 
