@@ -357,8 +357,10 @@ namespace EleCho.WpfSuite
                 {
                     if (MathHelper.GreaterThan(curLineSizeArr[lineIndex].U + sz.U + spacing, uvFinalSize.U)) //need to switch to another line
                     {
+                        var spacingBefore = mainSpacing * (i - lineChildIndexStart - 1);
+
                         var curLineSize = curLineSizeArr[lineIndex];
-                        curLineSize.U += spacing;
+                        curLineSize.U += spacingBefore;
 
                         lastInLineArr[lineIndex] = i;
                         curLineSizeArr[lineIndex] = curLineSize;
@@ -366,12 +368,10 @@ namespace EleCho.WpfSuite
                         curLineSizeArr[lineIndex] = sz;
                         lineChildIndexStart = i;
 
-                        spacing = mainSpacing * (i - lineChildIndexStart);
                         if (MathHelper.GreaterThan(sz.U, uvFinalSize.U)) //the element is wider then the constraint - give it a separate line
                         {
                             //switch to next line which only contain one element
                             curLineSize = curLineSizeArr[lineIndex];
-                            curLineSize.U += spacing;
 
                             lastInLineArr[lineIndex] = i;
                             curLineSizeArr[lineIndex] = curLineSize;
@@ -391,7 +391,6 @@ namespace EleCho.WpfSuite
             // add spacing to last line
 
             // init status
-            //var scaleU = Math.Min(_uvConstraint.U / uvFinalSize.U, 1);
             var firstInLine = 0;
             var wrapReverseAdd = 0;
             var wrapReverseFlag = flexWrap == FlexWrap.WrapReverse ? -1 : 1;
@@ -757,6 +756,10 @@ namespace EleCho.WpfSuite
                     : new Size(child.DesiredSize.Width, child.DesiredSize.Height));
 
                 childSize.U += flexGrowUArr[j] + flexShrinkUArr[j];
+                if (childSize.U < 0)
+                {
+                    childSize.U = 0;
+                }
 
                 if (isReverse)
                 {
