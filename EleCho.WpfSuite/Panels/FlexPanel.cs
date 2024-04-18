@@ -235,6 +235,7 @@ namespace EleCho.WpfSuite
                 {
                     if (MathHelper.GreaterThan(curLineSize.U + sz.U + spacing, _uvConstraint.U)) //need to switch to another line
                     {
+                        // add spacing to line size
                         curLineSize.U += spacing;
 
                         panelSize.U = Math.Max(curLineSize.U, panelSize.U);
@@ -282,11 +283,33 @@ namespace EleCho.WpfSuite
                 }
             }
 
+            var finalSize = new Size(panelSize.Width, panelSize.Height);
+
+            // layout again, make child not greator than it's box area
+            Layout(finalSize, false);
+
+            if (finalSize.Width > constraint.Width)
+            {
+                finalSize.Width = constraint.Width;
+            }
+
+            if (finalSize.Height > constraint.Height)
+            {
+                finalSize.Height = constraint.Height;
+            }
+
             //go from UV space to W/H space
-            return new Size(panelSize.Width, panelSize.Height);
+            return finalSize;
         }
 
         protected override Size ArrangeOverride(Size arrangeSize)
+        {
+            Layout(arrangeSize, true);
+
+            return arrangeSize;
+        }
+
+        private void Layout(Size size, bool arrange)
         {
             var flexDirection = Direction;
             var flexWrap = Wrap;
@@ -294,9 +317,9 @@ namespace EleCho.WpfSuite
             var mainSpacing = MainSpacing;
             var crossSpacing = CrossSpacing;
 
-            var uvFinalSize = new UVSize(flexDirection, arrangeSize);
+            var uvFinalSize = new UVSize(flexDirection, size);
             if (MathHelper.IsZero(uvFinalSize.U) || MathHelper.IsZero(uvFinalSize.V))
-                return arrangeSize;
+                return;
 
             // init status
             var children = InternalChildren;
@@ -505,7 +528,7 @@ namespace EleCho.WpfSuite
                 {
                     if (i >= lastInLineArr[lineIndex]) //need to switch to another line
                     {
-                        ArrangeLine(new FlexLineInfo
+                        LayoutLine(new FlexLineInfo
                         {
                             ItemsU = itemsU,
                             OffsetV = accumulatedV + freeItemV * wrapReverseAdd,
@@ -515,7 +538,7 @@ namespace EleCho.WpfSuite
                             ItemStartIndex = firstInLine,
                             ItemEndIndex = i,
                             ScaleU = scaleU
-                        });
+                        }, arrange);
 
                         accumulatedV += (lineFreeVArr[lineIndex] + curLineSizeArr[lineIndex + accumulatedFlag].V) * wrapReverseFlag;
                         lineIndex++;
@@ -524,7 +547,7 @@ namespace EleCho.WpfSuite
                         if (i >= lastInLineArr[lineIndex]) //the element is wider then the constraint - give it a separate line
                         {
                             //switch to next line which only contain one element
-                            ArrangeLine(new FlexLineInfo
+                            LayoutLine(new FlexLineInfo
                             {
                                 ItemsU = itemsU,
                                 OffsetV = accumulatedV + freeItemV * wrapReverseAdd,
@@ -534,7 +557,7 @@ namespace EleCho.WpfSuite
                                 ItemStartIndex = i,
                                 ItemEndIndex = ++i,
                                 ScaleU = scaleU
-                            });
+                            }, arrange);
 
                             accumulatedV += (lineFreeVArr[lineIndex] + curLineSizeArr[lineIndex + accumulatedFlag].V) * wrapReverseFlag;
                             lineIndex++;
@@ -551,7 +574,7 @@ namespace EleCho.WpfSuite
             // arrange the last line, if any
             if (firstInLine < children.Count)
             {
-                ArrangeLine(new FlexLineInfo
+                LayoutLine(new FlexLineInfo
                 {
                     ItemsU = itemsU,
                     OffsetV = accumulatedV + freeItemV * wrapReverseAdd,
@@ -561,13 +584,11 @@ namespace EleCho.WpfSuite
                     ItemStartIndex = firstInLine,
                     ItemEndIndex = children.Count,
                     ScaleU = scaleU
-                });
+                }, arrange);
             }
-
-            return arrangeSize;
         }
 
-        private void ArrangeLine(FlexLineInfo lineInfo)
+        private void LayoutLine(FlexLineInfo lineInfo, bool arrange)
         {
             var flexDirection = Direction;
             var flexWrap = Wrap;
@@ -776,7 +797,16 @@ namespace EleCho.WpfSuite
                         break;
                 }
 
-                child.Arrange(isHorizontal ? new Rect(u, v, childSize.U, childSize.V) : new Rect(v, u, childSize.V, childSize.U));
+                var childFinalRect = isHorizontal ? new Rect(u, v, childSize.U, childSize.V) : new Rect(v, u, childSize.V, childSize.U);
+
+                if (arrange)
+                {
+                    child.Arrange(childFinalRect);
+                }
+                else
+                {
+                    child.Measure(childFinalRect.Size);
+                }
 
                 if (!isReverse)
                 {

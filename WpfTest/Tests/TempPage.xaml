@@ -14,22 +14,12 @@
                      VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="12"
                        Spacing="8">
-            <ws:TextBox Width="200"
-                        Placeholder="This is a text box with placeholder"/>
-            <ws:Image Source="/Assets/TestImage1.jpg"
-                      CornerRadius="10"/>
-
-            <StackPanel>
-                <TextBlock Text="WrapPanel with spacing"/>
-                <ItemsControl ItemsSource="{Binding TestItems}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ws:WrapPanel HorizontalSpacing="8"
-                                          VerticalSpacing="8"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </StackPanel>
+            <ws:FlexPanel MainSpacing="8">
+                <ws:TextBox ws:FlexPanel.Grow="1"
+                            HorizontalAlignment="Stretch"/>
+                <ws:Button ws:FlexPanel.Shrink="0"
+                           Content="Test"/>
+            </ws:FlexPanel>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
