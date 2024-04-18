@@ -410,10 +410,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:Frame}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                    <ws:Border x:Name="PART_BD"
+                               Background="{TemplateBinding Background}"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               CornerRadius="{TemplateBinding CornerRadius}"
+                               Padding="{TemplateBinding Padding}">
                         <ws:TransitioningContentControl x:Name="PART_ContentControl"
-                                                        Transition="{TemplateBinding Transition}"/>
-                    </Border>
+                                                        Transition="{TemplateBinding Transition}"
+                                                        Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
+                    </ws:Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

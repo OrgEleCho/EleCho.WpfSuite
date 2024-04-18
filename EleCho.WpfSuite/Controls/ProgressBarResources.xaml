@@ -33,37 +33,29 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                ClipToBounds="True">
-                            <Rectangle x:Name="PART_Inner">
-                            </Rectangle>
-                            <Border.Background>
-                                <VisualBrush>
-                                    <VisualBrush.Visual>
-                                        <Grid Width="{TemplateBinding ActualWidth}"
-                                              Height="{TemplateBinding ActualHeight}"
-                                              Background="{TemplateBinding Background}">
-                                            <Rectangle x:Name="PART_Track"/>
-                                            <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
-                                                <Border x:Name="Indicator" Background="{TemplateBinding Foreground}" />
-                                                <Border x:Name="Animation" Background="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
-                                                    <Border.RenderTransform>
-                                                        <TransformGroup>
-                                                            <ScaleTransform/>
-                                                            <SkewTransform/>
-                                                            <RotateTransform/>
-                                                            <TranslateTransform/>
-                                                        </TransformGroup>
-                                                    </Border.RenderTransform>
-                                                </Border>
-                                            </Grid>
-                                        </Grid>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Border.Background>
-                        </Border>
+                        <ws:Border x:Name="PART_BD"
+                                   BorderBrush="{TemplateBinding BorderBrush}"
+                                   BorderThickness="{TemplateBinding BorderThickness}"
+                                   CornerRadius="{TemplateBinding CornerRadius}"
+                                   Background="{TemplateBinding Background}"
+                                   ClipToBounds="True">
+                            <Grid Clip="{Binding ElementName=PART_BD,Path=ContentClip}">
+                                <Rectangle x:Name="PART_Track"/>
+                                <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left">
+                                    <Border x:Name="Indicator" Background="{TemplateBinding Foreground}" />
+                                    <Border x:Name="Animation" Background="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                                        <Border.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </Border.RenderTransform>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </ws:Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Orientation" Value="Vertical">

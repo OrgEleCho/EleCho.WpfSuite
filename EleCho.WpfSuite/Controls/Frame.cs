@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
@@ -11,13 +12,19 @@ namespace EleCho.WpfSuite
         static Frame()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(typeof(Frame)));
-
             ContentProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(null, OnFrameContentChanged));
         }
 
         private TransitioningContentControl? _contentControl;
         private object? _pendingNewContent;
         private int _lastBackStackSize;
+
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
 
         public IContentTransition Transition
         {
@@ -75,7 +82,10 @@ namespace EleCho.WpfSuite
             }
         }
 
-        // Using a DependencyProperty as the backing store for Transition.  This enables animation, styling, binding, etc...
+
+        public static readonly DependencyProperty CornerRadiusProperty =
+            Border.CornerRadiusProperty.AddOwner(typeof(Frame));
+
         public static readonly DependencyProperty TransitionProperty =
             TransitioningContentControl.TransitionProperty.AddOwner(typeof(Frame));
 

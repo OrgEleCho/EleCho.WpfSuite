@@ -40,6 +40,7 @@
                   ClipToBounds="True">
             <ws:Frame.Transition>
                 <ws:ScaleTransition Duration="0:0:0.300">
+
                 </ws:ScaleTransition>
 
             </ws:Frame.Transition>

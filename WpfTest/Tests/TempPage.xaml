@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1200" d:DesignWidth="800"
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
 
@@ -20,6 +20,21 @@
                 <ws:Button ws:FlexPanel.Shrink="0"
                            Content="Test"/>
             </ws:FlexPanel>
+
+            <ws:Border BorderThickness="20 20 40 50"
+                       BorderBrush="Pink"
+                       Background="Green"
+                       CornerRadius="35 40 50 60"
+                       Width="500"
+                       Height="500">
+                <Rectangle Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"
+                           Fill="Red"/>
+            </ws:Border>
+
+            <ws:ProgressBar Height="40"
+                            BorderThickness="5"
+                            CornerRadius="10"
+                            IsIndeterminate="True"/>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
