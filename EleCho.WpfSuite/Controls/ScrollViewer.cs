@@ -185,10 +185,10 @@ namespace EleCho.WpfSuite
             VerticalOffsetTargetPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
-            DependencyProperty.Register(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(false));
+            DependencyProperty.Register(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(true));
 
         public static readonly DependencyProperty EnableScrollingAnimationProperty =
-            DependencyProperty.Register(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(false));
+            DependencyProperty.Register(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(true));
 
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
             DependencyProperty.Register(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300))));
