@@ -25,10 +25,17 @@ namespace EleCho.WpfSuite
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ScrollViewer), new FrameworkPropertyMetadata(typeof(ScrollViewer)));
 
+#if NETCOREAPP
             _propertyHandlesMouseWheelScrollingGetter = typeof(ScrollViewer)
                 .GetProperty("HandlesMouseWheelScrolling", BindingFlags.Instance | BindingFlags.NonPublic)!
                 .GetGetMethod(true)!
                 .CreateDelegate<GetBool>();
+#else
+            _propertyHandlesMouseWheelScrollingGetter = (GetBool)typeof(ScrollViewer)
+                .GetProperty("HandlesMouseWheelScrolling", BindingFlags.Instance | BindingFlags.NonPublic)!
+                .GetGetMethod(true)!
+                .CreateDelegate(typeof(GetBool));
+#endif
         }
 
         private delegate bool GetBool(ScrollViewer scrollViewer);
