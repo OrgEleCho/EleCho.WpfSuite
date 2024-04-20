@@ -11,7 +11,11 @@
       Title="PanelsTestPage">
 
     <ws:ScrollViewer ScrollWithWheelDelta="True"
-                     VerticalScrollBarVisibility="Auto">
+                     VerticalScrollBarVisibility="Auto"
+                     EnableScrollingAnimation="True">
+        <ws:ScrollViewer.ScrollingAnimationEasingFunction>
+            <CircleEase EasingMode="EaseOut"/>
+        </ws:ScrollViewer.ScrollingAnimationEasingFunction>
         <ws:StackPanel Margin="28 12 28 28"
                        Spacing="8">
             <TextBlock Text="Panels Test"
