@@ -76,7 +76,7 @@ Controls:
 - SlicedImage: Simple image control for drawing '9SliceSprite'
 - Button: Origin button with `CornerRadius` property
 - ToggleButton: Origin toggle button with `CornerRadius` property
-- ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling
+- ScrollViewer: Origin scroll viewer with 'MouseWheelDelta' based scrolling and scroll smoothing feature
 - ConditionalControl: Display the control based on the condition
 - TextBox: Origin text box with `Placeholder` and `CornerRadius` property
 - ListBox: Origin list box with `CornerRadius` property
@@ -116,6 +116,12 @@ Value converters:
 - NumberToThicknessConverter: Convert number to uniform thickness
 - NumberToCornerRadiusConverter: Convert number to uniform corner radius
 
+Animations:
+
+- CornerRadiusAnimation: Animates the value of a CornerRadius property between two target values using linear interpolation over a specified Duration.
+
 Utilities:
 
 - BindingProxy: A utility class for binding, commonly used when a collection element has property to be bound to a page DataContext
+- ScrollViewerHelper: Helper for set vertical offset and horizontal offset of scroll viewer and scroll content presenter
+- ValidateHelper: DependencyProperty validation helper
