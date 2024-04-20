@@ -25,5 +25,14 @@ namespace WpfTest.Tests
             DataContext = this;
             InitializeComponent();
         }
+
+        bool flag = false;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var targetState = flag ? "Normal" : "TestState";
+            flag ^= true;
+
+            VisualStateManager.GoToElementState(testBorder, targetState, true);
+        }
     }
 }

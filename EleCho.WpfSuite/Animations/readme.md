@@ -1,0 +1,1 @@
+﻿- CornerRadiusAnimation.cs is from [Antelcat.Wpf](https://github.com/Antelcat/Antelcat.Wpf)

@@ -14,6 +14,15 @@
                      VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="12"
                        Spacing="8">
+            <ws:StackPanel Spacing="8"
+                           Width="20"
+                           Orientation="Horizontal">
+                <ws:Button Content="QWQ"/>
+                <ws:Button Content="QWQ"/>
+                <ws:Button Content="QWQ"/>
+                <ws:Button Content="QWQ"/>
+            </ws:StackPanel>
+
             <ws:FlexPanel MainSpacing="8">
                 <ws:TextBox ws:FlexPanel.Grow="1"
                             HorizontalAlignment="Stretch"/>
@@ -35,6 +44,69 @@
                             BorderThickness="5"
                             CornerRadius="10"
                             IsIndeterminate="True"/>
+
+            <ws:Button Content="QWQ"
+                       HorizontalAlignment="Left"
+                       Click="Button_Click">
+                <ws:Button.Template>
+                    <ControlTemplate TargetType="ws:Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </ws:Button.Template>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition To="Normal" GeneratedDuration="0:0:0.5"/>
+                            <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.5"/>
+                        </VisualStateGroup.Transitions>
+
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                IsAdditive="True"
+                                                To="Pink"/>
+                            </Storyboard>
+                        </VisualState>
+
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                IsAdditive="True"
+                                                To="Yellow"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ws:Button>
+
+            <Grid Name="testBorder"
+                  Width="200"
+                  Height="50"
+                  Background="Pink">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition To="TestState"
+                                              GeneratedDuration="0:0:0.3">
+                                <VisualTransition.GeneratedEasingFunction>
+                                    <CircleEase/>
+                                </VisualTransition.GeneratedEasingFunction>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+
+                        <VisualState x:Name="TestState">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                 IsAdditive="True"
+                                                 To="10"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
