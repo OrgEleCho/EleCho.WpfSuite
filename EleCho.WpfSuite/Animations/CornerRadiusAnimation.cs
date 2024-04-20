@@ -21,7 +21,7 @@ namespace EleCho.WpfSuite
     }
 
     /// <summary>
-    /// 微软就不会封装一个？
+    /// Animates the value of a CornerRadius property between two target values using linear interpolation over a specified Duration.
     /// </summary>
     public class CornerRadiusAnimation : CornerRadiusAnimationBase
     {
