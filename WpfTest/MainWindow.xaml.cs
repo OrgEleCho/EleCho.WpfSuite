@@ -44,6 +44,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "Masonry test",
+                Description = "",
+                PageType = typeof(MasonryTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "Image test",
                 Description = "",
                 PageType = typeof(ImageTestPage)

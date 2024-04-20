@@ -51,6 +51,30 @@
                     <ws:Button Content="QWQ"/>
                 </ws:WrapPanel>
             </GroupBox>
+            <GroupBox Header="UniformGrid (HorizontalSpacing=8,VerticalSpacing=8)"
+                      Padding="8">
+                <ws:UniformGrid HorizontalSpacing="8"
+                                VerticalSpacing="8">
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                </ws:UniformGrid>
+            </GroupBox>
             <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap)"
                       Padding="8">
                 <ws:FlexPanel MainSpacing="8"

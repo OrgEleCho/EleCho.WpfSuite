@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace EleCho.WpfSuite
 {
     [TemplatePart(Name = "PART_Contents", Type = typeof(Panel))]
+    [ContentProperty(nameof(Content))]
     public class TransitioningContentControl : Control
     {
         static TransitioningContentControl()
