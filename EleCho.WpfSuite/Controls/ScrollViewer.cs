@@ -33,7 +33,9 @@ namespace EleCho.WpfSuite
 
         private delegate bool GetBool(ScrollViewer scrollViewer);
         private static readonly GetBool _propertyHandlesMouseWheelScrollingGetter;
-        private static readonly CircleEase _scrollingAnimationEase = new(){ EasingMode = EasingMode.EaseOut };
+        private static readonly IEasingFunction _scrollingAnimationEase = new CubicEase(){ EasingMode = EasingMode.EaseOut };
+
+        private bool _animationRunning = false;
 
         private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
         {
@@ -53,7 +55,8 @@ namespace EleCho.WpfSuite
 
             if (vertical)
             {
-                var newOffset = VerticalOffsetTarget - e.Delta;
+                var nowOffset = _animationRunning ? VerticalOffsetTarget : VerticalOffset;
+                var newOffset = nowOffset - e.Delta;
 
                 if (newOffset < 0)
                     newOffset = 0;
@@ -77,12 +80,16 @@ namespace EleCho.WpfSuite
                         To = newOffset,
                     };
 
-                    BeginAnimation(ScrollViewerHelper.VerticalOffsetProperty, doubleAnimation);
+                    doubleAnimation.Completed += DoubleAnimation_Completed;
+
+                    _animationRunning = true;
+                    BeginAnimation(ScrollViewerHelper.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
             }
             else if (horizontal)
             {
-                var newOffset = HorizontalOffsetTarget - e.Delta;
+                var nowOffset = _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
+                var newOffset = nowOffset - e.Delta;
 
                 if (newOffset < 0)
                     newOffset = 0;
@@ -106,11 +113,19 @@ namespace EleCho.WpfSuite
                         To = newOffset,
                     };
 
-                    BeginAnimation(ScrollViewerHelper.HorizontalOffsetProperty, doubleAnimation);
+                    doubleAnimation.Completed += DoubleAnimation_Completed;
+
+                    _animationRunning = true;
+                    BeginAnimation(ScrollViewerHelper.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
             }
 
             e.Handled = true;
+        }
+
+        private void DoubleAnimation_Completed(object? sender, EventArgs e)
+        {
+            _animationRunning = false;
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
