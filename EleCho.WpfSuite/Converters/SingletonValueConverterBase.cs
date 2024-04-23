@@ -5,19 +5,19 @@ using System.Windows.Data;
 
 namespace EleCho.WpfSuite
 {
-
-    public abstract class SingletonValueConverterBase<T> : DependencyObject, IValueConverter
+    public abstract class SingletonValueConverterBase<T> : ValueConverterBase<T>, IValueConverter
         where T : SingletonValueConverterBase<T>, new()
     {
         private static T? _instance = null;
 
         public static T Instance => _instance ??= new();
+    }
 
-        public abstract object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture);
+    public abstract class SingletonValueConverterBase<TSelf, TSourceValue, TTargetValue> : ValueConverterBase<TSelf, TSourceValue, TTargetValue>
+        where TSelf : SingletonValueConverterBase<TSelf, TSourceValue, TTargetValue>, new()
+    {
+        private static TSelf? _instance = null;
 
-        public virtual object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        public static TSelf Instance => _instance ??= new();
     }
 }
