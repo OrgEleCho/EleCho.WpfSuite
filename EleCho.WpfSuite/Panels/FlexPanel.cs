@@ -99,22 +99,22 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty UniformGrowProperty =
             DependencyProperty.Register(nameof(UniformGrow), typeof(double), typeof(FlexPanel),
                 new FrameworkPropertyMetadata(ValueBoxes.Double0Box,  FrameworkPropertyMetadataOptions.AffectsMeasure),
-                ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
         public static readonly DependencyProperty UniformShrinkProperty =
             DependencyProperty.Register(nameof(UniformShrink), typeof(double), typeof(FlexPanel),
                 new FrameworkPropertyMetadata(ValueBoxes.Double1Box, FrameworkPropertyMetadataOptions.AffectsMeasure),
-                ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
         public static readonly DependencyProperty CrossSpacingProperty =
             DependencyProperty.Register(nameof(CrossSpacing), typeof(double), typeof(FlexPanel),
                 new FrameworkPropertyMetadata(ValueBoxes.Double0Box, FrameworkPropertyMetadataOptions.AffectsMeasure),
-                ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
         public static readonly DependencyProperty MainSpacingProperty =
             DependencyProperty.Register(nameof(MainSpacing), typeof(double), typeof(FlexPanel),
                 new FrameworkPropertyMetadata(ValueBoxes.Double0Box, FrameworkPropertyMetadataOptions.AffectsMeasure),
-                ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
         #endregion
 
@@ -157,12 +157,12 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty GrowProperty = DependencyProperty.RegisterAttached(
             "Grow", typeof(double), typeof(FlexPanel),
             new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, OnItemPropertyChanged),
-            ValidateHelper.IsNotDoubleInfinity);
+            ValidationUtils.IsNotDoubleInfinity);
 
         public static readonly DependencyProperty ShrinkProperty = DependencyProperty.RegisterAttached(
             "Shrink", typeof(double), typeof(FlexPanel),
             new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, OnItemPropertyChanged),
-            ValidateHelper.IsNotDoubleInfinity);
+            ValidationUtils.IsNotDoubleInfinity);
 
         public static readonly DependencyProperty BasisProperty = DependencyProperty.RegisterAttached(
             "Basis", typeof(double), typeof(FlexPanel),

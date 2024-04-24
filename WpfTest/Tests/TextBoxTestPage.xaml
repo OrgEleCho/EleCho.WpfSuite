@@ -23,6 +23,13 @@
                             Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
             </StackPanel>
 
+            <StackPanel>
+                <TextBlock Text="Password:"/>
+                <ws:PasswordBox Padding="5"
+                                CornerRadius="3"
+                                Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
+            </StackPanel>
+
             <GroupBox Header="Options"
                       Padding="12">
                 <ws:StackPanel Orientation="Horizontal" Spacing="8">

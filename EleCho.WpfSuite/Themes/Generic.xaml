@@ -7,9 +7,11 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ImageResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/SlicedImageResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TextBoxResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/PasswordBoxResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/FrameResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ButtonResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ToggleButtonResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/CheckBoxResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ListBoxResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ListBoxItemResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ProgressBarResources.xaml"/>

@@ -183,15 +183,15 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty FlowsProperty =
             DependencyProperty.Register(nameof(Flows), typeof(int), typeof(MasonryPanel),
-                new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidateHelper.IsInRangeOfPosInt);
+                new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosInt);
 
         public static readonly DependencyProperty FlowSpacingProperty =
             DependencyProperty.Register(nameof(FlowSpacing), typeof(double), typeof(MasonryPanel),
-                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
         public static readonly DependencyProperty ItemSpacingProperty =
             DependencyProperty.Register(nameof(ItemSpacing), typeof(double), typeof(MasonryPanel),
-                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidateHelper.IsInRangeOfPosDoubleIncludeZero);
+                new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
 
     }

@@ -32,14 +32,26 @@ namespace WpfTest.Tests
         public ObservableCollection<MasonryItem> MasonryItems { get; } = new();
 
         [RelayCommand]
-        public void AddItem()
+        public async Task AddItem()
         {
             var h = Random.Shared.NextSingle();
             var s = 1f;
             var v = 0.7f;
-            HsvColor.HSV2RGB(h, s, v, out var r, out var g, out var b);
+            EleCho.WpfSuite.ColorUtils.HSV2RGB(h, s, v, out var r, out var g, out var b);
 
-            MasonryItems.Add(new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), Random.Shared.Next(30, 80)));
+            var newItem = new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), Random.Shared.Next(30, 80));
+            MasonryItems.Add(newItem);
+        }
+
+        [RelayCommand]
+        public async Task RemoveItem()
+        {
+            var last = MasonryItems.LastOrDefault();
+
+            if (last is not null)
+            {
+                await ItemsControlUtils.TransitioningRemoveAsync(MasonryItemsControl, last);
+            }
         }
     }
 }

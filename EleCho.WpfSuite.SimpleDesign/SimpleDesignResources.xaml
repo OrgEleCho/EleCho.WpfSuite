@@ -20,6 +20,11 @@
         <Setter Property="CornerRadius" Value="4"/>
     </Style>
 
+    <Style TargetType="{x:Type ws:CheckBox}"
+           BasedOn="{StaticResource {x:Type ws:CheckBox}}">
+        <Setter Property="CornerRadius" Value="2"/>
+    </Style>
+
     <Style TargetType="{x:Type ws:ListBox}"
            BasedOn="{StaticResource {x:Type ws:ListBox}}">
         <Setter Property="CornerRadius" Value="4"/>

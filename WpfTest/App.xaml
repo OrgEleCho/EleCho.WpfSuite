@@ -8,6 +8,7 @@
     <Application.Resources>
 
         <ResourceDictionary>
+            <ws:Double x:Key="qwq" Value="1231"/>
             <ResourceDictionary.MergedDictionaries>
                 <wsd:SimpleDesignResources/>
             </ResourceDictionary.MergedDictionaries>

@@ -7,6 +7,7 @@
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
       d:DesignHeight="1200" d:DesignWidth="800"
+      d:Background="White"
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
 
@@ -15,7 +16,7 @@
         <ws:StackPanel Margin="12"
                        Spacing="8">
             <ws:StackPanel Spacing="8"
-                           Width="20"
+                           Width="{ws:Double 123}"
                            Orientation="Horizontal">
                 <ws:Button Content="QWQ"/>
                 <ws:Button Content="QWQ"/>
@@ -23,12 +24,44 @@
                 <ws:Button Content="QWQ"/>
             </ws:StackPanel>
 
+            <ws:Button Background="Red"
+                       HoverBackground="{x:Null}"
+                       Content="Test"/>
+
             <ws:FlexPanel MainSpacing="8">
                 <ws:TextBox ws:FlexPanel.Grow="1"
                             HorizontalAlignment="Stretch"/>
                 <ws:Button ws:FlexPanel.Shrink="0"
                            Content="Test"/>
             </ws:FlexPanel>
+
+            <ws:CheckBox x:Name="TextBoxCheckBox"
+                         Content="Active"/>
+
+            <CheckBox  Content="Active"/>
+
+            <ws:TextBox Name="TestTextBox"
+                        Text="What"
+                        AcceptsReturn="True"
+                        IsEnabled="{Binding ElementName=TextBoxCheckBox,Path=IsChecked}">
+            </ws:TextBox>
+
+            <ws:TextBox Text="What"
+                        IsEnabled="False"/>
+
+            <TextBox Text="What"
+                     IsEnabled="False"/>
+
+            <ws:CheckBox DisabledForeground="Gray"
+                         IsEnabled="False">
+                <ws:TextBox Width="100"
+                            Text="Test"/>
+            </ws:CheckBox>
+
+            <CheckBox IsEnabled="False">
+                <TextBox Width="100"
+                         Text="Test"/>
+            </CheckBox>
 
             <ws:Border BorderThickness="20 20 40 50"
                        BorderBrush="Pink"

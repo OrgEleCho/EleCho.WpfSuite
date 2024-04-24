@@ -1,6 +1,6 @@
 ﻿namespace EleCho.WpfSuite
 {
-    public class ValidateHelper
+    public static class ValidationUtils
     {
         /// <summary>
         ///     是否在浮点数范围内

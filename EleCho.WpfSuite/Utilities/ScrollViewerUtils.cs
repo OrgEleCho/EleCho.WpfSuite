@@ -5,7 +5,7 @@ using System.Windows.Controls.Primitives;
 
 namespace EleCho.WpfSuite
 {
-    public class ScrollViewerHelper
+    public static class ScrollViewerUtils
     {
         public static double GetVerticalOffset(DependencyObject obj)
         {
@@ -18,7 +18,7 @@ namespace EleCho.WpfSuite
         }
 
         public static readonly DependencyProperty VerticalOffsetProperty =
-            DependencyProperty.RegisterAttached("VerticalOffset", typeof(double), typeof(ScrollViewerHelper), new PropertyMetadata(0.0, VerticalOffsetChangedCallback));
+            DependencyProperty.RegisterAttached("VerticalOffset", typeof(double), typeof(ScrollViewerUtils), new PropertyMetadata(0.0, VerticalOffsetChangedCallback));
 
         public static double GetHorizontalOffset(DependencyObject obj)
         {
@@ -32,7 +32,7 @@ namespace EleCho.WpfSuite
 
 
         public static readonly DependencyProperty HorizontalOffsetProperty =
-            DependencyProperty.RegisterAttached("HorizontalOffset", typeof(double), typeof(ScrollViewerHelper), new PropertyMetadata(0.0, HorizontalOffsetChangedCallback));
+            DependencyProperty.RegisterAttached("HorizontalOffset", typeof(double), typeof(ScrollViewerUtils), new PropertyMetadata(0.0, HorizontalOffsetChangedCallback));
 
 
         private static void VerticalOffsetChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

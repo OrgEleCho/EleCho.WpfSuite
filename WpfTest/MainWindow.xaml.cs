@@ -77,6 +77,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "SystemColors test",
+                Description = "",
+                PageType = typeof(SystemColorsTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "Temp test",
                 Description = "",
                 PageType = typeof(TempPage)

@@ -12,7 +12,7 @@
                                    BorderBrush="{TemplateBinding BorderBrush}"
                                    BorderThickness="{TemplateBinding BorderThickness}"
                                    CornerRadius="{TemplateBinding CornerRadius}">
-                            <Grid Clip="{Binding ElementName=PART_BD,Path=Clip}">
+                            <Grid Clip="{Binding ElementName=PART_BD,Path=ContentClip}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="{TemplateBinding ImageMarginTop}"/>
                                     <RowDefinition/>
