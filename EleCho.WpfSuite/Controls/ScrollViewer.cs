@@ -71,7 +71,7 @@ namespace EleCho.WpfSuite
                     newOffset = ScrollableHeight;
 
                 SetValue(VerticalOffsetTargetPropertyKey, newOffset);
-                BeginAnimation(ScrollViewerHelper.VerticalOffsetProperty, null);
+                BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, null);
 
                 if (!EnableScrollingAnimation || Math.Abs(e.Delta) < Mouse.MouseWheelDeltaForOneLine)
                 {
@@ -79,10 +79,17 @@ namespace EleCho.WpfSuite
                 }
                 else
                 {
+                    var absDiff = Math.Abs(newOffset - nowOffset);
+                    var duration = ScrollingAnimationDuration;
+                    if (absDiff < Mouse.MouseWheelDeltaForOneLine)
+                    {
+                        duration = new Duration(TimeSpan.FromTicks((long)(duration.TimeSpan.Ticks * absDiff / Mouse.MouseWheelDeltaForOneLine)));
+                    }
+
                     DoubleAnimation doubleAnimation = new DoubleAnimation()
                     {
                         EasingFunction = _scrollingAnimationEase,
-                        Duration = ScrollingAnimationDuration,
+                        Duration = duration,
                         From = VerticalOffset,
                         To = newOffset,
                     };
@@ -90,7 +97,7 @@ namespace EleCho.WpfSuite
                     doubleAnimation.Completed += DoubleAnimation_Completed;
 
                     _animationRunning = true;
-                    BeginAnimation(ScrollViewerHelper.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
+                    BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
             }
             else if (horizontal)
@@ -104,7 +111,7 @@ namespace EleCho.WpfSuite
                     newOffset = ScrollableWidth;
 
                 SetValue(HorizontalOffsetTargetPropertyKey, newOffset);
-                BeginAnimation(ScrollViewerHelper.HorizontalOffsetProperty, null);
+                BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, null);
 
                 if (!EnableScrollingAnimation || Math.Abs(e.Delta) < Mouse.MouseWheelDeltaForOneLine)
                 {
@@ -112,10 +119,17 @@ namespace EleCho.WpfSuite
                 }
                 else
                 {
+                    var absDiff = Math.Abs(newOffset - nowOffset);
+                    var duration = ScrollingAnimationDuration;
+                    if (absDiff < Mouse.MouseWheelDeltaForOneLine)
+                    {
+                        duration = new Duration(TimeSpan.FromTicks((long)(duration.TimeSpan.Ticks * absDiff / Mouse.MouseWheelDeltaForOneLine)));
+                    }
+
                     DoubleAnimation doubleAnimation = new DoubleAnimation()
                     {
                         EasingFunction = _scrollingAnimationEase,
-                        Duration = ScrollingAnimationDuration,
+                        Duration = duration,
                         From = HorizontalOffset,
                         To = newOffset,
                     };
@@ -123,7 +137,7 @@ namespace EleCho.WpfSuite
                     doubleAnimation.Completed += DoubleAnimation_Completed;
 
                     _animationRunning = true;
-                    BeginAnimation(ScrollViewerHelper.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
+                    BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
             }
 
@@ -198,6 +212,9 @@ namespace EleCho.WpfSuite
             DependencyProperty.Register(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(true));
 
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
-            DependencyProperty.Register(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300))));
+            DependencyProperty.Register(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300))), ValidateScrollingAnimationDuration);
+
+        private static bool ValidateScrollingAnimationDuration(object value)
+            => value is Duration duration && duration.HasTimeSpan;
     }
 }
