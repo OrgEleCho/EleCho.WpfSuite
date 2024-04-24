@@ -9,6 +9,7 @@ namespace EleCho.WpfSuite
     public class MasonryPanel : System.Windows.Controls.Panel
     {
         private readonly List<double> _flowOffsets = new();
+        private readonly List<double> _flowMaxUSizes = new();
         private readonly List<int> _flowSortedOffsetIndexes = new();
 
         public Orientation Orientation
@@ -73,12 +74,19 @@ namespace EleCho.WpfSuite
             var childConstraint = isHorizontal ? new Size(double.PositiveInfinity, itemU) : new Size(itemU, double.PositiveInfinity);
 
             EnsureListCount(_flowOffsets, flows);
+            EnsureListCount(_flowMaxUSizes, flows);
             EnsureListCount(_flowSortedOffsetIndexes, flows);
 
             for (int i = 0; i < flows; i++)
+            {
                 _flowOffsets[i] = 0;
+                _flowMaxUSizes[i] = 0;
+            }
+
             for (int i = 0; i < flows; i++)
+            {
                 _flowSortedOffsetIndexes[i] = i;
+            }
 
             var internalChildren = InternalChildren;
             for (int i = 0; i < internalChildren.Count; i++)
@@ -94,6 +102,12 @@ namespace EleCho.WpfSuite
                 var flowOffset = _flowOffsets[flowIndex];
 
                 var childDesiredSize = child.DesiredSize;
+                var childU = isHorizontal ? child.DesiredSize.Height : child.DesiredSize.Width;
+
+                if (childU > _flowMaxUSizes[flowIndex])
+                {
+                    _flowMaxUSizes[flowIndex] = childU;
+                }
 
                 if (arrange)
                 {
@@ -132,10 +146,20 @@ namespace EleCho.WpfSuite
             if (isHorizontal)
             {
                 size.Width = end;
+
+                if (double.IsPositiveInfinity(size.Height))
+                {
+                    size.Height = _flowMaxUSizes.Sum() + (flowSpacing * (flows - 1));
+                }
             }
             else
             {
                 size.Height = end;
+
+                if (double.IsPositiveInfinity(size.Width))
+                {
+                    size.Width = _flowMaxUSizes.Sum() + (flowSpacing * (flows - 1));
+                }
             }
 
             return size;
