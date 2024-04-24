@@ -5,12 +5,12 @@ using System.Windows.Data;
 
 namespace EleCho.WpfSuite
 {
-    public abstract class SingletonValueConverterBase<T> : ValueConverterBase<T>, IValueConverter
-        where T : SingletonValueConverterBase<T>, new()
+    public abstract class SingletonValueConverterBase<TSelf> : ValueConverterBase<TSelf>
+        where TSelf : SingletonValueConverterBase<TSelf>, new()
     {
-        private static T? _instance = null;
+        private static TSelf? _instance = null;
 
-        public static T Instance => _instance ??= new();
+        public static TSelf Instance => _instance ??= new();
     }
 
     public abstract class SingletonValueConverterBase<TSelf, TSourceValue, TTargetValue> : ValueConverterBase<TSelf, TSourceValue, TTargetValue>
