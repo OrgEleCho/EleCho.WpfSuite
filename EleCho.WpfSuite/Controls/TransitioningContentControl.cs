@@ -17,6 +17,7 @@ namespace EleCho.WpfSuite
         }
 
         private Panel? _contentsPanel;
+        private Task? _lastTask;
         private UIElement? _lastOldControl;
         private CancellationTokenSource? _lastTaskCancellation;
         private object? _pendingNewContent;
@@ -30,7 +31,7 @@ namespace EleCho.WpfSuite
 
             if (_pendingNewContent is not null)
             {
-                _ = this.ApplyContentChangeAsync(null, _pendingNewContent);
+                _lastTask = this.ApplyContentChangeAsync(null, _pendingNewContent);
             }
         }
 
@@ -76,6 +77,15 @@ namespace EleCho.WpfSuite
             Content = content;
         }
 
+        public Task WaitForTransitionAsync()
+        {
+#if NET45
+            return _lastTask ?? Task.FromResult(0);
+#else
+            return _lastTask ?? Task.CompletedTask;
+#endif
+        }
+
 
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
@@ -96,7 +106,7 @@ namespace EleCho.WpfSuite
         {
             if (d is TransitioningContentControl transitioningContentControl)
             {
-                _ = transitioningContentControl.ApplyContentChangeAsync(e.OldValue, e.NewValue);
+                transitioningContentControl._lastTask = transitioningContentControl.ApplyContentChangeAsync(e.OldValue, e.NewValue);
             }
         }
 
@@ -150,7 +160,12 @@ namespace EleCho.WpfSuite
             }
             
             var forward = !_backward;
-            _contentsPanel.Children.Add(newContentElement);
+
+            if (newContentElement is not null)
+            {
+                _contentsPanel.Children.Add(newContentElement);
+            }
+
             _lastOldControl = oldContentElement;
             _pendingNewContent = null;
             _backward = false;
