@@ -1,6 +1,6 @@
 # EleCho.WpfSuite
 
-WPF layout panels, controls, value converters and utilities
+WPF layout panels, controls, value converters, markup extensions, transitions and utilities
 
 ## Usage
 
