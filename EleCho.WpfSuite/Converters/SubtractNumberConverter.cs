@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
-    public class SubstractNumberConverter : SingletonValueConverterBase<SubstractNumberConverter>
+    public class SubtractNumberConverter : SingletonValueConverterBase<SubtractNumberConverter>
     {
         public double Value
         {
@@ -30,6 +30,6 @@ namespace EleCho.WpfSuite
 
         // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register(nameof(Value), typeof(double), typeof(SubstractNumberConverter), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(Value), typeof(double), typeof(SubtractNumberConverter), new PropertyMetadata(0.0));
     }
 }
