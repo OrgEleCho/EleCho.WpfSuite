@@ -96,7 +96,7 @@ Transitions:
 Value converters:
 
 - AddNumberConverter: Mathematical calculations, addition
-- SubstractNumberConverter: Mathematical calculations, subtraction
+- SubtractNumberConverter: Mathematical calculations, subtraction
 - MultiplyNumberConverter: Mathematical calculations, multiplication
 - DivideNumberConverter: Mathematical calculations, division
 - NumberCompareConverter: Compare between numbers, support `equal`, `not equal`, `greator than`, `greator or equal`, `less than`, `less or equal`
@@ -116,6 +116,20 @@ Value converters:
 - NumberToThicknessConverter: Convert number to uniform thickness
 - NumberToCornerRadiusConverter: Convert number to uniform corner radius
 
+Markup extensions:
+
+- String: Represents text as a sequence of UTF-16 code units. (returns System.String)
+- Char: Represents a character as a UTF-16 code unit. (returns System.Char)
+- Boolean: Represents a Boolean (true or false) value. (returns System.Boolean)
+- Byte: Represents an 8-bit unsigned integer. (returns System.Byte)
+- Int16: Represents a 16-bit signed integer. (returns System.Int16)
+- Int32: Represents a 32-bit signed integer. (returns System.Int32)
+- Int64: Represents a 64-bit signed integer. (returns System.Int64)
+- Single: Represents a single-precision floating-point number. (returns System.Single)
+- Double: Represents a double-precision floating-point number. (returns System.Double)
+- Decimal: Represents a decimal floating-point number. (returns System.Decimal)
+- HsvColor: Represents a color from HSV color space values (returns System.Windows.Media.Color)
+
 Animations:
 
 - CornerRadiusAnimation: Animates the value of a CornerRadius property between two target values using linear interpolation over a specified Duration.
@@ -123,5 +137,8 @@ Animations:
 Utilities:
 
 - BindingProxy: A utility class for binding, commonly used when a collection element has property to be bound to a page DataContext
-- ScrollViewerHelper: Helper for set vertical offset and horizontal offset of scroll viewer and scroll content presenter
-- ValidateHelper: DependencyProperty validation helper
+- ScrollViewerUtils: Utilities for set vertical offset and horizontal offset of scroll viewer and scroll content presenter
+- ItemsControlUtils: Utilities for removing item from ItemsControl with transitions
+- ColorUtils: Utilities for color calculation
+- BooleanValues: Static value of boolean 'true' and 'false'
+- ValidationUtils: DependencyProperty validation utilities
