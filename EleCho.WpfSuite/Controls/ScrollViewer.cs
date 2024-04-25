@@ -41,8 +41,13 @@ namespace EleCho.WpfSuite
         private delegate bool GetBool(ScrollViewer scrollViewer);
         private static readonly GetBool _propertyHandlesMouseWheelScrollingGetter;
         private static readonly IEasingFunction _scrollingAnimationEase = new CubicEase(){ EasingMode = EasingMode.EaseOut };
+        private const long _millisecondsBetweenTouchpadScrolling = 100;
 
         private bool _animationRunning = false;
+        private int _lastScrollDelta = 0;
+        private int _lastVerticalScrollingDelta = 0;
+        private int _lastHorizontalScrollingDelta = 0;
+        private long _lastScrollingTick;
 
         private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
         {
@@ -60,9 +65,15 @@ namespace EleCho.WpfSuite
             bool vertical = ExtentHeight > 0;
             bool horizontal = ExtentWidth > 0;
 
+            var tickCount = Environment.TickCount;
+            var isTouchpadScrolling =
+                    e.Delta % Mouse.MouseWheelDeltaForOneLine != 0 ||
+                    (tickCount - _lastScrollingTick < _millisecondsBetweenTouchpadScrolling && _lastScrollDelta % Mouse.MouseWheelDeltaForOneLine != 0);
+
             if (vertical)
             {
-                var nowOffset = _animationRunning ? VerticalOffsetTarget : VerticalOffset;
+                var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastVerticalScrollingDelta);
+                var nowOffset = sameDirectionAsLast && _animationRunning ? VerticalOffsetTarget : VerticalOffset;
                 var newOffset = nowOffset - e.Delta;
 
                 if (newOffset < 0)
@@ -73,13 +84,14 @@ namespace EleCho.WpfSuite
                 SetValue(VerticalOffsetTargetPropertyKey, newOffset);
                 BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, null);
 
-                if (!EnableScrollingAnimation || Math.Abs(e.Delta) < Mouse.MouseWheelDeltaForOneLine)
+                if (!EnableScrollingAnimation || isTouchpadScrolling)
                 {
                     ScrollToVerticalOffset(newOffset);
                 }
                 else
                 {
-                    var absDiff = Math.Abs(newOffset - nowOffset);
+                    var diff = newOffset - VerticalOffset;
+                    var absDiff = Math.Abs(diff);
                     var duration = ScrollingAnimationDuration;
                     if (absDiff < Mouse.MouseWheelDeltaForOneLine)
                     {
@@ -99,10 +111,13 @@ namespace EleCho.WpfSuite
                     _animationRunning = true;
                     BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
+
+                _lastVerticalScrollingDelta = e.Delta;
             }
             else if (horizontal)
             {
-                var nowOffset = _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
+                var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastHorizontalScrollingDelta);
+                var nowOffset = sameDirectionAsLast && _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
                 var newOffset = nowOffset - e.Delta;
 
                 if (newOffset < 0)
@@ -113,13 +128,14 @@ namespace EleCho.WpfSuite
                 SetValue(HorizontalOffsetTargetPropertyKey, newOffset);
                 BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, null);
 
-                if (!EnableScrollingAnimation || Math.Abs(e.Delta) < Mouse.MouseWheelDeltaForOneLine)
+                if (!EnableScrollingAnimation || isTouchpadScrolling)
                 {
                     ScrollToHorizontalOffset(newOffset);
                 }
                 else
                 {
-                    var absDiff = Math.Abs(newOffset - nowOffset);
+                    var diff = newOffset - HorizontalOffset;
+                    var absDiff = Math.Abs(diff);
                     var duration = ScrollingAnimationDuration;
                     if (absDiff < Mouse.MouseWheelDeltaForOneLine)
                     {
@@ -139,7 +155,12 @@ namespace EleCho.WpfSuite
                     _animationRunning = true;
                     BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
+
+                _lastHorizontalScrollingDelta = e.Delta;
             }
+
+            _lastScrollingTick = tickCount;
+            _lastScrollDelta = e.Delta;
 
             e.Handled = true;
         }

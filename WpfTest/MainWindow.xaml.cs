@@ -35,55 +35,55 @@ namespace WpfTest
         {
             new NavigationItem()
             {
-                Title = "Collection test",
+                Title = "Collection",
                 Description = "",
                 PageType = typeof(CollectionTestPage)
             },
             new NavigationItem()
             {
-                Title = "Panels test",
+                Title = "Panels",
                 Description = "",
                 PageType = typeof(PanelsTestPage)
             },
             new NavigationItem()
             {
-                Title = "Masonry test",
+                Title = "Masonry",
                 Description = "",
                 PageType = typeof(MasonryTestPage)
             },
             new NavigationItem()
             {
-                Title = "Image test",
+                Title = "Image",
                 Description = "",
                 PageType = typeof(ImageTestPage)
             },
             new NavigationItem()
             {
-                Title = "ConditionalControl test",
+                Title = "ConditionalControl",
                 Description = "",
                 PageType = typeof(ConditionalControlTestPage)
             },
             new NavigationItem()
             {
-                Title = "TextBox test",
+                Title = "TextBox",
                 Description = "",
                 PageType = typeof(TextBoxTestPage)
             },
             new NavigationItem()
             {
-                Title = "Palette test",
+                Title = "Palette",
                 Description = "",
                 PageType = typeof(PaletteTestPage)
             },
             new NavigationItem()
             {
-                Title = "SystemColors test",
+                Title = "SystemColors",
                 Description = "",
                 PageType = typeof(SystemColorsTestPage)
             },
             new NavigationItem()
             {
-                Title = "Temp test",
+                Title = "Temp",
                 Description = "",
                 PageType = typeof(TempPage)
             },

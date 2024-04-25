@@ -17,14 +17,27 @@
         <ws:BindingProxy x:Key="DataProxy" Data="{Binding}"/>
     </Window.Resources>
 
-    <DockPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <ws:ListBox Name="AppNavigations"
-                    DockPanel.Dock="Left"
-                    Width="180"
+                    Grid.Column="0"
                     BorderThickness="0 0 1 0"
                     ItemsSource="{Binding NavigationItems}"
                     d:ItemsSource="{d:SampleData ItemCount=3}"
                     SelectionChanged="ListBox_SelectionChanged">
+            <ws:ListBox.ItemContainerStyle>
+                <Style TargetType="ws:ListBoxItem">
+                    <Setter Property="Margin" Value="2 1"/>
+                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="HoverBackground" Value="#eeeeee"/>
+                    <Setter Property="SelectedBackground" Value="#eeeeee"/>
+                    <Setter Property="SelectedInactiveBackground" Value="#eeeeee"/>
+                </Style>
+            </ws:ListBox.ItemContainerStyle>
             <ws:ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -35,12 +48,18 @@
                 </DataTemplate>
             </ws:ListBox.ItemTemplate>
         </ws:ListBox>
+        <GridSplitter Grid.Column="0"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Stretch"
+                      Background="Transparent"
+                      Width="3"/>
         <ws:Frame Name="AppFrame"
+                  Grid.Column="1"
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True">
             <ws:Frame.Transition>
                 <ws:ScaleTransition Duration="0:0:0.300"/>
             </ws:Frame.Transition>
         </ws:Frame>
-    </DockPanel>
+    </Grid>
 </Window>
