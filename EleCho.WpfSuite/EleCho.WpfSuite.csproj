@@ -14,8 +14,8 @@
     <Copyright>Copyright © 2024 EleCho</Copyright>
     <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
-    <PackageTags>WPF;MVVM;Toolkit;Controls;Converters;BindingProxy</PackageTags>
-    <Description>WPF layout panels, controls, value converters, utilities suite</Description>
+    <PackageTags>WPF;MVVM;XAML;Toolkit;Control;Layout;Transition;Converter;Animation;MarkupExtension;BindingProxy</PackageTags>
+    <Description>WPF layout panels, controls, value converters, markup extensions, transitions and utilities</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
