@@ -19,8 +19,8 @@
             <TextBlock Text="Panels Test"
                        FontSize="26"
                        Margin="0 0 0 12"/>
-            <GroupBox Header="StackPanel (Spacing=8)"
-                      Padding="8">
+            <ws:GroupBox Header="StackPanel (Spacing=8)"
+                         Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">
                     <i:Interaction.Behaviors>
@@ -30,7 +30,7 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:StackPanel>
-            </GroupBox>
+            </ws:GroupBox>
             <GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)"
                       Padding="8">
                 <ws:WrapPanel Orientation="Horizontal"
