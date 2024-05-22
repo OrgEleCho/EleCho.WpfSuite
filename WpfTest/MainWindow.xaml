@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <ws:ListBox Name="AppNavigations"
                     Grid.Column="0"
-                    BorderThickness="0 0 1 0"
+                    BorderThickness="0 0 0 0"
                     ItemsSource="{Binding NavigationItems}"
                     d:ItemsSource="{d:SampleData ItemCount=3}"
                     SelectionChanged="ListBox_SelectionChanged">
@@ -54,11 +54,16 @@
                       Background="Transparent"
                       Width="3"/>
         <ws:Frame Name="AppFrame"
+                  BorderBrush="Gray"
+                  BorderThickness="1 0 0 0"
+                  CornerRadius="0 0 0 15"
                   Grid.Column="1"
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True">
             <ws:Frame.Transition>
-                <ws:ScaleTransition Duration="0:0:0.300"/>
+                <ws:SlideFadeTransition Orientation="Vertical"
+                                        Distance="50"
+                                        Duration="0:0:0.200"/>
             </ws:Frame.Transition>
         </ws:Frame>
     </Grid>

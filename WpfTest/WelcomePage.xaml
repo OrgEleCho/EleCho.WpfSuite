@@ -11,8 +11,13 @@
 
     <ws:ScrollViewer ScrollWithWheelDelta="True"
                      VerticalScrollBarVisibility="Auto">
-        <ws:StackPanel>
+        <ws:StackPanel Spacing="12"
+                       Margin="28 12 28 28">
+            <TextBlock Text="EleCho.WpfSuite"
+                       FontSize="26"
+                       Margin="0 0 0 12"/>
 
+            <TextBlock Text="WPF layout panels, controls, value converters, markup extensions, transitions and utilities"/>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>

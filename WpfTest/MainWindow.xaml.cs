@@ -35,6 +35,12 @@ namespace WpfTest
         {
             new NavigationItem()
             {
+                Title = "Welcome",
+                Description = "",
+                PageType = typeof(WelcomePage)
+            },
+            new NavigationItem()
+            {
                 Title = "Collection",
                 Description = "",
                 PageType = typeof(CollectionTestPage)

@@ -23,6 +23,8 @@
   <ItemGroup>
     <Page Remove="Controls\ButtonResources.xaml" />
     <Page Remove="Controls\CheckBoxResources.xaml" />
+    <Page Remove="Controls\ComboBoxItemResources.xaml" />
+    <Page Remove="Controls\ComboBoxResources.xaml" />
     <Page Remove="Controls\ConditionalControlResources.xaml" />
     <Page Remove="Controls\FrameResources.xaml" />
     <Page Remove="Controls\ImageResources.xaml" />
@@ -51,6 +53,8 @@
   <ItemGroup>
     <Resource Include="Controls\ButtonResources.xaml" />
     <Resource Include="Controls\CheckBoxResources.xaml" />
+    <Resource Include="Controls\ComboBoxItemResources.xaml" />
+    <Resource Include="Controls\ComboBoxResources.xaml" />
     <Resource Include="Controls\FrameResources.xaml" />
     <Resource Include="Controls\ListBoxItemResources.xaml" />
     <Resource Include="Controls\ListBoxResources.xaml" />

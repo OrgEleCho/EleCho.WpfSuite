@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ScrollViewerResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ComboBoxResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ComboBoxItemResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ConditionalControlResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TransitioningContentControlResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ImageResources.xaml"/>

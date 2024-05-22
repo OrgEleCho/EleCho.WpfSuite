@@ -24,9 +24,20 @@
                 <ws:Button Content="QWQ"/>
             </ws:StackPanel>
 
+            <ws:ComboBox CornerRadius="5"
+                         IsEditable="True">
+                <ws:ComboBox.Items>
+                    <ComboBoxItem Content="QWQ"/>
+                </ws:ComboBox.Items>
+            </ws:ComboBox>
+
             <ws:Button Background="Red"
                        HoverBackground="{x:Null}"
                        Content="Test"/>
+
+            <ws:ToggleButton Content="QWQ"/>
+
+            <ws:Button Content="QWQ"/>
 
             <ws:FlexPanel MainSpacing="8">
                 <ws:TextBox ws:FlexPanel.Grow="1"

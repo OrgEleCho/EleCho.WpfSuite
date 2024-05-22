@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       d:DesignHeight="450" d:DesignWidth="800"
       d:Background="White"
       Title="PanelsTestPage">
@@ -22,6 +23,9 @@
                       Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -32,6 +36,9 @@
                 <ws:WrapPanel Orientation="Horizontal"
                               HorizontalSpacing="8"
                               VerticalSpacing="8">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -56,6 +63,9 @@
                       Padding="8">
                 <ws:UniformGrid HorizontalSpacing="8"
                                 VerticalSpacing="8">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -81,6 +91,9 @@
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
                               Wrap="Wrap">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -107,6 +120,9 @@
                               CrossSpacing="8"
                               Wrap="Wrap"
                               UniformGrow="1">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -131,6 +147,9 @@
                       Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
@@ -158,6 +177,9 @@
             <GroupBox Header="Origin WrapPanel"
                       Padding="8">
                 <WrapPanel Orientation="Horizontal">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                     <Button Content="QWQ" Margin="0 0 8 8"/>
