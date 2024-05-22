@@ -34,6 +34,8 @@
     <Page Remove="Controls\ProgressBarResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
     <Page Remove="Controls\SlicedImageResources.xaml" />
+    <Page Remove="Controls\TabControlResources.xaml" />
+    <Page Remove="Controls\TabItemResources.xaml" />
     <Page Remove="Controls\TextBoxResources.xaml" />
     <Page Remove="Controls\ToggleButtonResources.xaml" />
     <Page Remove="Controls\TransitioningContentControlResources.xaml" />
@@ -64,6 +66,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <Resource Include="Controls\TabControlResources.xaml" />
+    <Resource Include="Controls\TabItemResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
     <Resource Include="Controls\TransitioningContentControlResources.xaml">
       <SubType>Designer</SubType>

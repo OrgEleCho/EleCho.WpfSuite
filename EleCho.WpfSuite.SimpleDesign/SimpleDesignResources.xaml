@@ -40,4 +40,14 @@
         <Setter Property="CornerRadius" Value="4"/>
     </Style>
 
+    <Style TargetType="{x:Type ws:TabControl}"
+           BasedOn="{StaticResource {x:Type ws:TabControl}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:TabItem}"
+           BasedOn="{StaticResource {x:Type ws:TabItem}}">
+        <Setter Property="CornerRadius" Value="2"/>
+    </Style>
+
 </ResourceDictionary>

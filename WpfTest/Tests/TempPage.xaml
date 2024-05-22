@@ -151,6 +151,17 @@
                 </VisualStateManager.VisualStateGroups>
             </Grid>
 
+            <ws:TabControl CornerRadius="0 3 5 5">
+                <ws:TabItem Header="QWQ"
+                            CornerRadius="2 2 0 0">
+                    <TextBlock Text="This is a tab item"/>
+                </ws:TabItem>
+                <ws:TabItem Header="QWQ"
+                            CornerRadius="2 2 0 0">
+                    <TextBlock Text="This is a tab item"/>
+                </ws:TabItem>
+            </ws:TabControl>
+
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
