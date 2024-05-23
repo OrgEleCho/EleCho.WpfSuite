@@ -20,7 +20,17 @@ namespace EleCho.WpfSuite
             if (Converters is null)
                 return value;
 
-            return Converters.Aggregate(value, (current, converter) => converter.Convert(current, s_typeObject, parameter, culture));
+            for (int i = 0; i < Converters.Count; i++)
+            {
+                IValueConverter? converter = Converters[i];
+
+                var isLast = i == Converters.Count - 1;
+                var currentTargetType = isLast ? targetType : s_typeObject;
+
+                value = converter.Convert(value, currentTargetType, parameter, culture);
+            }
+
+            return value;
         }
 
         public override object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
@@ -28,7 +38,17 @@ namespace EleCho.WpfSuite
             if (Converters is null)
                 return value;
 
-            return Converters.Reverse<IValueConverter>().Aggregate(value, (current, converter) => converter.Convert(current, s_typeObject, parameter, culture));
+            for (int i = Converters.Count - 1; i >= 0; i--)
+            {
+                IValueConverter? converter = Converters[i];
+
+                var isFirst = i == 0;
+                var currentTargetType = isFirst ? targetType : s_typeObject;
+
+                value = converter.Convert(value, currentTargetType, parameter, culture);
+            }
+
+            return value;
         }
     }
 }

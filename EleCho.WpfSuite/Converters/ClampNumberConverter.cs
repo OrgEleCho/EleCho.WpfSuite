@@ -20,10 +20,10 @@ namespace EleCho.WpfSuite
 
         
         public static readonly DependencyProperty MinimumProperty =
-            DependencyProperty.Register(nameof(Minimum), typeof(double), typeof(ClampNumberConverter), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(Minimum), typeof(double), typeof(ClampNumberConverter), new PropertyMetadata(double.NegativeInfinity));
 
         public static readonly DependencyProperty MaximumProperty =
-            DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(ClampNumberConverter), new PropertyMetadata(1.0));
+            DependencyProperty.Register(nameof(Maximum), typeof(double), typeof(ClampNumberConverter), new PropertyMetadata(double.PositiveInfinity));
 
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
