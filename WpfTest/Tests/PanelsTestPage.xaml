@@ -20,6 +20,7 @@
                        FontSize="26"
                        Margin="0 0 0 12"/>
             <ws:GroupBox Header="StackPanel (Spacing=8)"
+                         CornerRadius="10"
                          Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">

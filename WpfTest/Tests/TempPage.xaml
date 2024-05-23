@@ -153,14 +153,74 @@
 
             <ws:TabControl CornerRadius="0 3 5 5">
                 <ws:TabItem Header="QWQ"
+                            HoverBackground="Pink"
                             CornerRadius="2 2 0 0">
                     <TextBlock Text="This is a tab item"/>
                 </ws:TabItem>
                 <ws:TabItem Header="QWQ"
+                            HoverBackground="Pink"
+                            HoverForeground="Azure"
+                            HoverBorderBrush="Black"
+                            SelectedBackground="Red"
+                            SelectedForeground="Blue"
+                            SelectedBorderBrush="Green"
+                            BorderThickness="5"
                             CornerRadius="2 2 0 0">
                     <TextBlock Text="This is a tab item"/>
                 </ws:TabItem>
             </ws:TabControl>
+            <Button Width="200"
+                    Height="200"
+                    FocusVisualStyle="{x:Null}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Resources>
+                            <ws:CubicBezierEase x:Key="EasingFunction"
+                                                X1=".75"
+                                                Y1=".19"
+                                                X2=".91"
+                                                Y2=".24"/>
+                            <Storyboard x:Key="InAnimation">
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle"
+                                                 EasingFunction="{StaticResource EasingFunction}"
+                                                 BeginTime="0"
+                                                 Duration="0:0:0.500"
+                                                 From="-20"
+                                                 To="0"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleX"
+                                                 EasingFunction="{StaticResource EasingFunction}"
+                                                 BeginTime="0"
+                                                 Duration="0:0:0.400"
+                                                 From="3"
+                                                 To="1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[1].ScaleY"
+                                                 EasingFunction="{StaticResource EasingFunction}"
+                                                 BeginTime="0"
+                                                 Duration="0:0:0.400"
+                                                 From="3"
+                                                 To="1"/>
+                            </Storyboard>
+                        </Style.Resources>
+                        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <RotateTransform/>
+                                    <ScaleTransform/>
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard Storyboard="{StaticResource InAnimation}"/>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Click">
+                                <BeginStoryboard Storyboard="{StaticResource InAnimation}"/>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
         </ws:StackPanel>
     </ws:ScrollViewer>
