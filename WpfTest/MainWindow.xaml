@@ -40,7 +40,14 @@
             </ws:ListBox.ItemContainerStyle>
             <ws:ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Background="Transparent">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Remove"
+                                          Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
+                                          CommandParameter="{Binding}"/>
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
                         <TextBlock Text="{Binding Title}"
                                    FontSize="14"/>
                         <TextBlock Text="{Binding Description}"/>
@@ -59,11 +66,13 @@
                   CornerRadius="0 0 0 15"
                   Grid.Column="1"
                   NavigationUIVisibility="Hidden"
-                  ClipToBounds="True">
+                  ClipToBounds="True"
+                  d:Content="这里是页面内容">
             <ws:Frame.Transition>
                 <ws:SlideFadeTransition Orientation="Vertical"
                                         Distance="50"
-                                        Duration="0:0:0.200"/>
+                                        Duration="0:0:0.200"
+                                        Reverse="{Binding AppFrameTransitionReverse}"/>
             </ws:Frame.Transition>
         </ws:Frame>
     </Grid>

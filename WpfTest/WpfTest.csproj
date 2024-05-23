@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Banners\1.jpg" />
+    <None Remove="Assets\Banners\2.jpg" />
+    <None Remove="Assets\Banners\3.jpg" />
+    <None Remove="Assets\Banners\4.jpg" />
+    <None Remove="Assets\Banners\5.jpg" />
     <None Remove="Assets\SlicedImage.jpg" />
     <None Remove="Assets\TestImage2.jpg" />
   </ItemGroup>
@@ -25,6 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Banners\1.jpg" />
+    <Resource Include="Assets\Banners\2.jpg" />
+    <Resource Include="Assets\Banners\3.jpg" />
+    <Resource Include="Assets\Banners\4.jpg" />
+    <Resource Include="Assets\Banners\5.jpg" />
     <Resource Include="Assets\SlicedImage.jpg" />
     <Resource Include="Assets\TestImage1.jpg" />
     <Resource Include="Assets\TestImage2.jpg" />

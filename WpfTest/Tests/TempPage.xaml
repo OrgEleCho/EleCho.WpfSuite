@@ -25,7 +25,7 @@
             </ws:StackPanel>
 
             <ws:ComboBox CornerRadius="5"
-                         IsEditable="True">
+                         IsEditable="False">
                 <ws:ComboBox.Items>
                     <ComboBoxItem Content="QWQ"/>
                 </ws:ComboBox.Items>
@@ -151,7 +151,8 @@
                 </VisualStateManager.VisualStateGroups>
             </Grid>
 
-            <ws:TabControl CornerRadius="0 3 5 5">
+            <ws:TabControl CornerRadius="0 3 5 5"
+                           MinHeight="300">
                 <ws:TabItem Header="QWQ"
                             HoverBackground="Pink"
                             CornerRadius="2 2 0 0">
@@ -175,11 +176,7 @@
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Resources>
-                            <ws:CubicBezierEase x:Key="EasingFunction"
-                                                X1=".75"
-                                                Y1=".19"
-                                                X2=".91"
-                                                Y2=".24"/>
+                            <QuadraticEase x:Key="EasingFunction"/>
                             <Storyboard x:Key="InAnimation">
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Children[0].Angle"
                                                  EasingFunction="{StaticResource EasingFunction}"

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using WpfTest.Models;
 using WpfTest.Tests;
 
@@ -117,6 +118,12 @@ namespace WpfTest
 
             var page = Activator.CreateInstance(navigationItem.PageType);
             AppFrame.Navigate(page);
+        }
+
+        [RelayCommand]
+        public void RemoveTab(NavigationItem navigationItem)
+        {
+            NavigationItems.Remove(navigationItem);
         }
     }
 }

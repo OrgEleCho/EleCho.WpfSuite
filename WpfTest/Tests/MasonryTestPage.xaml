@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       xmlns:local="clr-namespace:WpfTest.Tests"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:Background="White"
@@ -13,6 +14,7 @@
 
     <Page.Resources>
         <ws:ScaleTransition x:Key="ScaleTransition" Reverse="True"/>
+        <QuadraticEase x:Key="QuadraticEase"/>
     </Page.Resources>
 
     <ws:ScrollViewer>
@@ -41,7 +43,14 @@
                     <ItemsPanelTemplate>
                         <ws:MasonryPanel FlowSpacing="8"
                                          ItemSpacing="8"
-                                         Flows="8"/>
+                                         Flows="{Binding RelativeSource={RelativeSource Mode=Self},Converter={x:Static ws:DivideNumberConverter.Instance},ConverterParameter={ws:Double 100},Path=ActualWidth}">
+                            <i:Interaction.Behaviors>
+                                <i:FluidMoveBehavior AppliesTo="Children"
+                                                     Duration="0:0:0.200"
+                                                     EaseX="{StaticResource QuadraticEase}"
+                                                     EaseY="{StaticResource QuadraticEase}"/>
+                            </i:Interaction.Behaviors>
+                        </ws:MasonryPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>

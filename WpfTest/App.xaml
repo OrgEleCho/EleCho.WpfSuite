@@ -9,7 +9,7 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<wsd:SimpleDesignResources/>-->
+                <wsd:SimpleDesignResources/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

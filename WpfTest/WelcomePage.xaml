@@ -7,6 +7,8 @@
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      d:DataContext="{d:DesignInstance Type=local:WelcomePage}"
       Title="WelcomePage">
 
     <ws:ScrollViewer ScrollWithWheelDelta="True"
@@ -18,6 +20,38 @@
                        Margin="0 0 0 12"/>
 
             <TextBlock Text="WPF layout panels, controls, value converters, markup extensions, transitions and utilities"/>
+
+            <Grid>
+                <ws:TransitioningContentControl Content="{Binding CurrentImageSource}"
+                                                d:Content="{d:DesignInstance Type=ImageSource}"
+                                                CornerRadius="5"
+                                                ClipToBounds="True">
+                    <ws:TransitioningContentControl.Transition>
+                        <ws:SlideTransition Reverse="{Binding TransitionReverse}"/>
+                    </ws:TransitioningContentControl.Transition>
+                    <ws:TransitioningContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Image Height="300"
+                                   Source="{Binding}"
+                                   Stretch="UniformToFill"/>
+                        </DataTemplate>
+                    </ws:TransitioningContentControl.ContentTemplate>
+                </ws:TransitioningContentControl>
+                <ws:Button Command="{Binding GoPrevCommand}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Opacity=".8"
+                           Content="&lt;"
+                           Margin="5"
+                           Padding="5"/>
+                <ws:Button Command="{Binding GoNextCommand}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Opacity=".8"
+                           Content="&gt;"
+                           Margin="5"
+                           Padding="5"/>
+            </Grid>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
