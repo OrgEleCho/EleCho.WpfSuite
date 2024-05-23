@@ -206,17 +206,23 @@
                              BorderBrush="{TemplateBinding BorderBrush}"
                              BorderThickness="{TemplateBinding BorderThickness}"
                              CornerRadius="{TemplateBinding CornerRadius}"
+                             ClipToBounds="{TemplateBinding ClipToBounds}"
                              Grid.ColumnSpan="2"
                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                              Style="{StaticResource ComboBoxToggleButton}"/>
-            <Border x:Name="border"
-                    Background="{StaticResource TextBox.Static.Background}"
-                    CornerRadius="{TemplateBinding CornerRadius}"
-                    Margin="{TemplateBinding BorderThickness}">
+            <ws:Border x:Name="border"
+                       Background="{StaticResource TextBox.Static.Background}"
+                       CornerRadius="{TemplateBinding CornerRadius}"
+                       Margin="{TemplateBinding BorderThickness}">
                 <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </Border>
+            </ws:Border>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="ClipToBounds" Value="True">
+                <Setter TargetName="PART_EditableTextBox"
+                        Property="Clip"
+                        Value="{Binding ElementName=border,Path=ContentClip}"/>
+            </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>
             </Trigger>
@@ -268,12 +274,32 @@
                              BorderBrush="{TemplateBinding BorderBrush}"
                              BorderThickness="{TemplateBinding BorderThickness}"
                              CornerRadius="{TemplateBinding CornerRadius}"
+                             ClipToBounds="{TemplateBinding ClipToBounds}"
                              Grid.ColumnSpan="2"
                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                             Style="{StaticResource ComboBoxToggleButton}"/>
-            <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                             Style="{StaticResource ComboBoxToggleButton}">
+            </ws:ToggleButton>
+            <ws:Border x:Name="PART_Border"
+                       BorderThickness="{TemplateBinding BorderThickness}"
+                       CornerRadius="{TemplateBinding CornerRadius}">
+                <ContentPresenter x:Name="contentPresenter"
+                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  IsHitTestVisible="false"
+                                  Margin="{TemplateBinding Padding}"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+            </ws:Border>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="ClipToBounds" Value="True">
+                <Setter TargetName="contentPresenter"
+                        Property="Clip"
+                        Value="{Binding ElementName=PART_Border,Path=ContentClip}"/>
+            </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                 <Setter Property="Color" TargetName="shadow" Value="#71000000"/>

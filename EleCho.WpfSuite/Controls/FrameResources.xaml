@@ -420,6 +420,13 @@
                                                         Transition="{TemplateBinding Transition}"
                                                         Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
                     </ws:Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="PART_ContentControl"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=PART_BD,Path=ContentClip}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -30,19 +30,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:ListBoxItem}">
-                    <Border x:Name="Bd"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Padding="{TemplateBinding Padding}"
-                            SnapsToDevicePixels="true">
+                    <ws:Border x:Name="Bd"
+                               Background="{TemplateBinding Background}"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               CornerRadius="{TemplateBinding CornerRadius}"
+                               Padding="{TemplateBinding Padding}"
+                               SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="PART_ContentPresenter"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Border>
+                    </ws:Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="PART_ContentPresenter"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=Bd,Path=ContentClip}"/>
+                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>

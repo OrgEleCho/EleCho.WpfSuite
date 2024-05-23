@@ -22,6 +22,12 @@ namespace EleCho.WpfSuite
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ConditionalControl), new FrameworkPropertyMetadata(typeof(ConditionalControl)));
         }
 
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         public bool Condition
         {
             get { return (bool)GetValue(ConditionProperty); }
@@ -68,7 +74,6 @@ namespace EleCho.WpfSuite
             set { SetValue(ComputedContentTemplatePropertyKey, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ComputedContentTemplate.  This enables animation, styling, binding, etc...
         public static readonly DependencyPropertyKey ComputedContentTemplatePropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(ComputedContentTemplate), typeof(DataTemplate), typeof(ConditionalControl), new PropertyMetadata(null));
 
@@ -78,6 +83,11 @@ namespace EleCho.WpfSuite
             DependencyProperty.RegisterReadOnly(nameof(ComputedContent), typeof(object), typeof(ConditionalControl), new PropertyMetadata(null));
 
         public static readonly DependencyProperty ComputedContentProperty = ComputedContentPropertyKey.DependencyProperty;
+
+
+
+        public static readonly DependencyProperty CornerRadiusProperty =
+            Border.CornerRadiusProperty.AddOwner(typeof(ConditionalControl));
 
         public static readonly DependencyProperty ConditionProperty =
             DependencyProperty.Register(nameof(Condition), typeof(bool), typeof(ConditionalControl), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsMeasure));

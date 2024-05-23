@@ -19,14 +19,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:TextBox}">
-                    <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            SnapsToDevicePixels="True">
+                    <ws:Border x:Name="border"
+                               Background="{TemplateBinding Background}"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               CornerRadius="{TemplateBinding CornerRadius}"
+                               SnapsToDevicePixels="True">
 
-                        <Grid>
+                        <Grid x:Name="PART_ContentContainer">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           Focusable="false"
                                           HorizontalScrollBarVisibility="Hidden"
@@ -45,8 +45,13 @@
                                            IsEnabled="False"/>
                             </Border>
                         </Grid>
-                    </Border>
+                    </ws:Border>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="PART_ContentContainer"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=border,Path=ContentClip}"/>
+                        </Trigger>
                         <Trigger Property="Text" Value="">
                             <Setter Property="Visibility" TargetName="PART_Placeholder" Value="Visible"/>
                         </Trigger>

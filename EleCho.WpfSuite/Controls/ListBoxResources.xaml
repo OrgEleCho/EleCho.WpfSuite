@@ -27,13 +27,18 @@
                                CornerRadius="{TemplateBinding CornerRadius}"
                                Padding="1"
                                SnapsToDevicePixels="true">
-                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}"
-                                      Clip="{Binding ElementName=Part_BD,Path=ContentClip}">
+                        <ScrollViewer x:Name="PART_Content"
+                                      Focusable="false" Padding="{TemplateBinding Padding}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </ScrollViewer>
                     </ws:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="PART_Content"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=Part_BD,Path=ContentClip}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" TargetName="Part_BD" Value="{StaticResource ListBox.Disabled.Background}"/>
                             <Setter Property="BorderBrush" TargetName="Part_BD" Value="{StaticResource ListBox.Disabled.Border}"/>
                         </Trigger>

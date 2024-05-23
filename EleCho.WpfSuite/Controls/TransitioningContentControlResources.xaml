@@ -6,11 +6,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ws:TransitioningContentControl}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <ws:Border x:Name="PART_Border"
+                               Background="{TemplateBinding Background}"
+                               BorderBrush="{TemplateBinding BorderBrush}"
+                               BorderThickness="{TemplateBinding BorderThickness}"
+                               CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid x:Name="PART_Contents"/>
-                    </Border>
+                    </ws:Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="PART_Contents"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=PART_Border,Path=ContentClip}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
