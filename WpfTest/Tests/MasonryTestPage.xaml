@@ -41,9 +41,15 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
+                        <ItemsPanelTemplate.Resources>
+                            <ws:ValueConverterGroup x:Key="MasonryFlowsConverter">
+                                <ws:DivideNumberConverter By="100"/>
+                                <ws:ClampNumberConverter Minimum="1"/>
+                            </ws:ValueConverterGroup>
+                        </ItemsPanelTemplate.Resources>
                         <ws:MasonryPanel FlowSpacing="8"
                                          ItemSpacing="8"
-                                         Flows="{Binding RelativeSource={RelativeSource Mode=Self},Converter={x:Static ws:DivideNumberConverter.Instance},ConverterParameter={ws:Double 100},Path=ActualWidth}">
+                                         Flows="{Binding RelativeSource={RelativeSource Mode=Self},Converter={StaticResource MasonryFlowsConverter},Path=ActualWidth}">
                             <i:Interaction.Behaviors>
                                 <i:FluidMoveBehavior AppliesTo="Children"
                                                      Duration="0:0:0.200"

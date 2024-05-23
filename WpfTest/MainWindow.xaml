@@ -42,11 +42,11 @@
                 <DataTemplate>
                     <StackPanel Background="Transparent">
                         <StackPanel.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Remove"
-                                          Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
-                                          CommandParameter="{Binding}"/>
-                            </ContextMenu>
+                            <ws:ContextMenu>
+                                <ws:MenuItem Header="Remove"
+                                             Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
+                                             CommandParameter="{Binding}"/>
+                            </ws:ContextMenu>
                         </StackPanel.ContextMenu>
                         <TextBlock Text="{Binding Title}"
                                    FontSize="14"/>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
       mc:Ignorable="d"
-      d:DesignHeight="1200" d:DesignWidth="800"
+      d:DesignHeight="2200" d:DesignWidth="800"
       d:Background="White"
       Title="TempPage"
       d:DataContext="{d:DesignInstance Type=local:TempPage}">
@@ -173,6 +173,13 @@
             <Button Width="200"
                     Height="200"
                     FocusVisualStyle="{x:Null}">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="qwq"/>
+                        <MenuItem Header="qwq"/>
+                        <MenuItem Header="qwq"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Resources>
@@ -218,6 +225,17 @@
                     </Style>
                 </Button.Style>
             </Button>
+
+            <Menu>
+                <Menu.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="qwq"/>
+                        <MenuItem Header="qwq"/>
+                    </ContextMenu>
+                </Menu.ContextMenu>
+                <MenuItem Header="QWQ"/>
+                <MenuItem Header="AWA"/>
+            </Menu>
 
         </ws:StackPanel>
     </ws:ScrollViewer>
