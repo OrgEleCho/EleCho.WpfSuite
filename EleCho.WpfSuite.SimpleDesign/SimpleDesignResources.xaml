@@ -50,4 +50,19 @@
         <Setter Property="CornerRadius" Value="2"/>
     </Style>
 
+    <Style TargetType="{x:Type ws:ContextMenu}"
+           BasedOn="{StaticResource {x:Type ws:ContextMenu}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:Menu}"
+           BasedOn="{StaticResource {x:Type ws:Menu}}">
+        <Setter Property="CornerRadius" Value="4"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:MenuItem}"
+           BasedOn="{StaticResource {x:Type ws:MenuItem}}">
+        <Setter Property="CornerRadius" Value="2"/>
+    </Style>
+
 </ResourceDictionary>
