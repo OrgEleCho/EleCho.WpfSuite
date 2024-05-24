@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
@@ -15,7 +16,35 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public Brush DisabledForeground
+        {
+            get { return (Brush)GetValue(DisabledForegroundProperty); }
+            set { SetValue(DisabledForegroundProperty, value); }
+        }
+
+        public Brush DisabledBackground
+        {
+            get { return (Brush)GetValue(DisabledBackgroundProperty); }
+            set { SetValue(DisabledBackgroundProperty, value); }
+        }
+
+        public Brush DisabledBorderBrush
+        {
+            get { return (Brush)GetValue(DisabledBorderBrushProperty); }
+            set { SetValue(DisabledBorderBrushProperty, value); }
+        }
+
+
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(TabControl));
+
+        public static readonly DependencyProperty DisabledForegroundProperty =
+            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(TabControl), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty DisabledBackgroundProperty =
+            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(TabControl), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty DisabledBorderBrushProperty =
+            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(TabControl), new FrameworkPropertyMetadata(null));
     }
 }
