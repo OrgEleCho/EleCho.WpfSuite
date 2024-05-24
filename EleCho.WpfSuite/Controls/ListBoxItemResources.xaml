@@ -21,10 +21,10 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="HoverBackground" Value="#1F26A0DA"/>
         <Setter Property="HoverBorderBrush" Value="#a826A0Da"/>
-        <Setter Property="SelectedBackground" Value="#3D26A0DA"/>
-        <Setter Property="SelectedBorderBrush" Value="#FF26A0DA"/>
-        <Setter Property="SelectedInactiveBackground" Value="#3DDADADA"/>
-        <Setter Property="SelectedInactiveBorderBrush" Value="#FFDADADA"/>
+        <Setter Property="SelectedBackground" Value="#3DDADADA"/>
+        <Setter Property="SelectedBorderBrush" Value="#FFDADADA"/>
+        <Setter Property="SelectedActiveBackground" Value="#3D26A0DA"/>
+        <Setter Property="SelectedActiveBorderBrush" Value="#FF26A0DA"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Template">
@@ -85,36 +85,6 @@
                             <Setter Property="Background" TargetName="Bd">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedInactiveBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="BorderBrush" TargetName="Bd">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedInactiveBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="TextElement.Foreground" TargetName="PART_ContentPresenter">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedInactiveForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="Selector.IsSelectionActive" Value="True"/>
-                                <Condition Property="IsSelected" Value="True"/>
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedBackground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
                                     </MultiBinding>
@@ -131,6 +101,39 @@
                             <Setter Property="TextElement.Foreground" TargetName="PART_ContentPresenter">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedActiveBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush" TargetName="Bd">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedActiveBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="TextElement.Foreground" TargetName="PART_ContentPresenter">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedActiveForeground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedForeground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
                                     </MultiBinding>

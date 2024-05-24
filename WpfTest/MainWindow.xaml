@@ -64,8 +64,8 @@
                         <Setter Property="CornerRadius" Value="5"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="HoverBackground" Value="#eeeeee"/>
-                        <Setter Property="SelectedBackground" Value="#eeeeee"/>
-                        <Setter Property="SelectedInactiveBackground" Value="#eeeeee"/>
+                        <Setter Property="SelectedBackground" Value="#e8e8e8"/>
+                        <Setter Property="SelectedActiveBackground" Value="#e4e4e4"/>
                     </Style>
                 </ws:ListBox.ItemContainerStyle>
                 <ws:ListBox.ItemTemplate>

@@ -52,22 +52,22 @@ namespace EleCho.WpfSuite
             set { SetValue(SelectedBorderBrushProperty, value); }
         }
 
-        public Brush SelectedInactiveForeground
+        public Brush SelectedActiveForeground
         {
-            get { return (Brush)GetValue(SelectedInactiveForegroundProperty); }
-            set { SetValue(SelectedInactiveForegroundProperty, value); }
+            get { return (Brush)GetValue(SelectedActiveForegroundProperty); }
+            set { SetValue(SelectedActiveForegroundProperty, value); }
         }
 
-        public Brush SelectedInactiveBackground
+        public Brush SelectedActiveBackground
         {
-            get { return (Brush)GetValue(SelectedInactiveBackgroundProperty); }
-            set { SetValue(SelectedInactiveBackgroundProperty, value); }
+            get { return (Brush)GetValue(SelectedActiveBackgroundProperty); }
+            set { SetValue(SelectedActiveBackgroundProperty, value); }
         }
 
-        public Brush SelectedInactiveBorderBrush
+        public Brush SelectedActiveBorderBrush
         {
-            get { return (Brush)GetValue(SelectedInactiveBorderBrushProperty); }
-            set { SetValue(SelectedInactiveBorderBrushProperty, value); }
+            get { return (Brush)GetValue(SelectedActiveBorderBrushProperty); }
+            set { SetValue(SelectedActiveBorderBrushProperty, value); }
         }
 
         public Brush DisabledForeground
@@ -111,14 +111,14 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty SelectedBorderBrushProperty =
             DependencyProperty.Register(nameof(SelectedBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty SelectedInactiveForegroundProperty =
-            DependencyProperty.Register(nameof(SelectedInactiveForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty SelectedActiveForegroundProperty =
+            DependencyProperty.Register(nameof(SelectedActiveForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty SelectedInactiveBackgroundProperty =
-            DependencyProperty.Register(nameof(SelectedInactiveBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty SelectedActiveBackgroundProperty =
+            DependencyProperty.Register(nameof(SelectedActiveBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty SelectedInactiveBorderBrushProperty =
-            DependencyProperty.Register(nameof(SelectedInactiveBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty SelectedActiveBorderBrushProperty =
+            DependencyProperty.Register(nameof(SelectedActiveBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledForegroundProperty =
             DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
