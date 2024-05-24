@@ -237,6 +237,14 @@
                 <MenuItem Header="AWA"/>
             </Menu>
 
+            <ScrollBar Height="100"
+                       BorderBrush="Pink"/>
+
+            <ws:Thumb Width="20"
+                      Height="20"/>
+
+            <RepeatButton Content="QWQ"/>
+
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>

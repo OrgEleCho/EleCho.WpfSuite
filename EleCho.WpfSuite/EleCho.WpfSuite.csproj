@@ -36,11 +36,14 @@
     <Page Remove="Controls\MenuResources.xaml" />
     <Page Remove="Controls\PasswordBoxResources.xaml" />
     <Page Remove="Controls\ProgressBarResources.xaml" />
+    <Page Remove="Controls\RepeatButtonResources.xaml" />
+    <Page Remove="Controls\ScrollBarResources.xaml" />
     <Page Remove="Controls\ScrollViewerResources.xaml" />
     <Page Remove="Controls\SlicedImageResources.xaml" />
     <Page Remove="Controls\TabControlResources.xaml" />
     <Page Remove="Controls\TabItemResources.xaml" />
     <Page Remove="Controls\TextBoxResources.xaml" />
+    <Page Remove="Controls\ThumbResources.xaml" />
     <Page Remove="Controls\ToggleButtonResources.xaml" />
     <Page Remove="Controls\TransitioningContentControlResources.xaml" />
   </ItemGroup>
@@ -69,6 +72,8 @@
     <Resource Include="Controls\MenuItemResources.xaml" />
     <Resource Include="Controls\MenuResources.xaml" />
     <Resource Include="Controls\ProgressBarResources.xaml" />
+    <Resource Include="Controls\RepeatButtonResources.xaml" />
+    <Resource Include="Controls\ScrollBarResources.xaml" />
     <Resource Include="Controls\SlicedImageResources.xaml" />
     <Resource Include="Controls\PasswordBoxResources.xaml">
       <SubType>Designer</SubType>
@@ -76,6 +81,7 @@
     </Resource>
     <Resource Include="Controls\TabControlResources.xaml" />
     <Resource Include="Controls\TabItemResources.xaml" />
+    <Resource Include="Controls\ThumbResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
     <Resource Include="Controls\TransitioningContentControlResources.xaml">
       <SubType>Designer</SubType>
