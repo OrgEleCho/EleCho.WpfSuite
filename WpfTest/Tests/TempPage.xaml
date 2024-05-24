@@ -24,8 +24,7 @@
                 <ws:Button Content="QWQ"/>
             </ws:StackPanel>
 
-            <ws:ComboBox CornerRadius="5"
-                         IsEditable="False">
+            <ws:ComboBox IsEditable="False">
                 <ws:ComboBox.Items>
                     <ComboBoxItem Content="QWQ"/>
                 </ws:ComboBox.Items>
