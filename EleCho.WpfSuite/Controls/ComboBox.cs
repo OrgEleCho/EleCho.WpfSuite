@@ -28,8 +28,17 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public CornerRadius PopupCornerRadius
+        {
+            get { return (CornerRadius)GetValue(PopupCornerRadiusProperty); }
+            set { SetValue(PopupCornerRadiusProperty, value); }
+        }
+
 
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(ComboBox));
+
+        public static readonly DependencyProperty PopupCornerRadiusProperty =
+            DependencyProperty.Register(nameof(PopupCornerRadius), typeof(CornerRadius), typeof(ComboBox), new PropertyMetadata(default(CornerRadius)));
     }
 }

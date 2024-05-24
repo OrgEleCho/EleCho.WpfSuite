@@ -184,21 +184,35 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
-            <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <Border x:Name="dropDownBorder"
-                            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
-                            BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
-                            BorderThickness="1">
+            <Popup x:Name="PART_Popup"
+                   AllowsTransparency="true"
+                   Grid.ColumnSpan="2"
+                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                   Placement="Bottom"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                <theme:SystemDropShadowChrome x:Name="shadow"
+                                              Color="Transparent"
+                                              CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                              MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
+                                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                    <ws:Border x:Name="dropDownBorder"
+                               Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                               BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                               CornerRadius="{TemplateBinding PopupCornerRadius}"
+                               BorderThickness="1">
                         <ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    <Border x:Name="opaqueRect"
+                                            Background="{Binding Background, ElementName=dropDownBorder}"
+                                            Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                            Width="{Binding ActualWidth, ElementName=dropDownBorder}"
+                                            CornerRadius="{TemplateBinding PopupCornerRadius}"/>
                                 </Canvas>
                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Grid>
                         </ScrollViewer>
-                    </Border>
+                    </ws:Border>
                 </theme:SystemDropShadowChrome>
             </Popup>
             <ws:ToggleButton x:Name="toggleButton"
@@ -222,6 +236,9 @@
                 <Setter TargetName="PART_EditableTextBox"
                         Property="Clip"
                         Value="{Binding ElementName=border,Path=ContentClip}"/>
+                <Setter TargetName="DropDownScrollViewer"
+                        Property="Clip"
+                        Value="{Binding ElementName=dropDownBorder,Path=ContentClip}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>
@@ -256,17 +273,31 @@
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <Border x:Name="dropDownBorder" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
-                        <ScrollViewer x:Name="DropDownScrollViewer">
+                <theme:SystemDropShadowChrome x:Name="shadow"
+                                              Color="Transparent"
+                                              CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                              MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
+                                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                    <ws:Border x:Name="dropDownBorder"
+                               Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                               BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                               CornerRadius="{TemplateBinding PopupCornerRadius}"
+                               BorderThickness="1">
+                        <ws:ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                    <Border x:Name="opaqueRect"
+                                            Background="{Binding Background, ElementName=dropDownBorder}"
+                                            Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                            Width="{Binding ActualWidth, ElementName=dropDownBorder}"
+                                            CornerRadius="{TemplateBinding PopupCornerRadius}"/>
                                 </Canvas>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <ItemsPresenter x:Name="ItemsPresenter"
+                                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Grid>
-                        </ScrollViewer>
-                    </Border>
+                        </ws:ScrollViewer>
+                    </ws:Border>
                 </theme:SystemDropShadowChrome>
             </Popup>
             <ws:ToggleButton x:Name="toggleButton"
@@ -299,6 +330,9 @@
                 <Setter TargetName="contentPresenter"
                         Property="Clip"
                         Value="{Binding ElementName=PART_Border,Path=ContentClip}"/>
+                <Setter TargetName="DropDownScrollViewer"
+                        Property="Clip"
+                        Value="{Binding ElementName=dropDownBorder,Path=ContentClip}"/>
             </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>

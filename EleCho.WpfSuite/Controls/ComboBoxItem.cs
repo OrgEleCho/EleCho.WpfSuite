@@ -8,5 +8,17 @@ namespace EleCho.WpfSuite
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBoxItem), new FrameworkPropertyMetadata(typeof(ComboBoxItem)));
         }
+
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+
+        public static readonly DependencyProperty CornerRadiusProperty =
+            Border.CornerRadiusProperty.AddOwner(typeof(ComboBoxItem));
+
+
     }
 }

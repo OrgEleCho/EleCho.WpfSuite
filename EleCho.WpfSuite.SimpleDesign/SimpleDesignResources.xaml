@@ -23,6 +23,13 @@
     <Style TargetType="{x:Type ws:ComboBox}"
            BasedOn="{StaticResource {x:Type ws:ComboBox}}">
         <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="PopupCornerRadius" Value="4"/>
+        <Setter Property="ClipToBounds" Value="True"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:ComboBoxItem}"
+           BasedOn="{StaticResource {x:Type ws:ComboBoxItem}}">
+        <Setter Property="CornerRadius" Value="2"/>
     </Style>
 
     <Style TargetType="{x:Type ws:CheckBox}"
