@@ -22,45 +22,77 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ws:ListBox Name="AppNavigations"
-                    Grid.Column="0"
-                    BorderThickness="0 0 0 0"
-                    ItemsSource="{Binding NavigationItems}"
-                    d:ItemsSource="{d:SampleData ItemCount=3}"
-                    SelectionChanged="ListBox_SelectionChanged">
-            <ws:ListBox.ItemContainerStyle>
-                <Style TargetType="ws:ListBoxItem">
-                    <Setter Property="Margin" Value="2 1"/>
-                    <Setter Property="CornerRadius" Value="5"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="HoverBackground" Value="#eeeeee"/>
-                    <Setter Property="SelectedBackground" Value="#eeeeee"/>
-                    <Setter Property="SelectedInactiveBackground" Value="#eeeeee"/>
-                </Style>
-            </ws:ListBox.ItemContainerStyle>
-            <ws:ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Background="Transparent">
-                        <StackPanel.ContextMenu>
-                            <ws:ContextMenu>
-                                <ws:MenuItem Header="Remove"
-                                             Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
-                                             CommandParameter="{Binding}"/>
-                            </ws:ContextMenu>
-                        </StackPanel.ContextMenu>
-                        <TextBlock Text="{Binding Title}"
-                                   FontSize="14"/>
-                        <TextBlock Text="{Binding Description}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ws:ListBox.ItemTemplate>
-        </ws:ListBox>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom"
+                        Margin="5">
+                <TextBlock Text="Transition:"/>
+                <ws:ComboBox x:Name="TransitionSelector"
+                             SelectedIndex="0">
+                    <ws:ComboBoxItem Content="SlideFade">
+                        <ws:ComboBoxItem.Tag>
+                            <ws:SlideFadeTransition Orientation="Vertical"
+                                                    Distance="50"
+                                                    Duration="0:0:0.200"
+                                                    Reverse="{Binding AppFrameTransitionReverse}"/>
+                        </ws:ComboBoxItem.Tag>
+                    </ws:ComboBoxItem>
+                    <ws:ComboBoxItem Content="ScaleFade" >
+                        <ws:ComboBoxItem.Tag>
+                            <ws:ScaleFadeTransition Duration="0:0:0.200"
+                                                    Reverse="{Binding AppFrameTransitionReverse}"/>
+                        </ws:ComboBoxItem.Tag>
+                    </ws:ComboBoxItem>
+                    <ws:ComboBoxItem Content="RotateFade" >
+                        <ws:ComboBoxItem.Tag>
+                            <ws:RotateFadeTransition Duration="0:0:0.200"
+                                                     Angle="30"
+                                                     Reverse="{Binding AppFrameTransitionReverse}"/>
+                        </ws:ComboBoxItem.Tag>
+                    </ws:ComboBoxItem>
+                    <ws:ComboBoxItem Content="None"/>
+                </ws:ComboBox>
+            </StackPanel>
+            <ws:ListBox Name="AppNavigations"
+                        Grid.Column="0"
+                        BorderThickness="0 0 0 0"
+                        ItemsSource="{Binding NavigationItems}"
+                        d:ItemsSource="{d:SampleData ItemCount=3}"
+                        SelectionChanged="ListBox_SelectionChanged">
+                <ws:ListBox.ItemContainerStyle>
+                    <Style TargetType="ws:ListBoxItem">
+                        <Setter Property="Margin" Value="2 1"/>
+                        <Setter Property="CornerRadius" Value="5"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="HoverBackground" Value="#eeeeee"/>
+                        <Setter Property="SelectedBackground" Value="#eeeeee"/>
+                        <Setter Property="SelectedInactiveBackground" Value="#eeeeee"/>
+                    </Style>
+                </ws:ListBox.ItemContainerStyle>
+                <ws:ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="Transparent">
+                            <StackPanel.ContextMenu>
+                                <ws:ContextMenu>
+                                    <ws:MenuItem Header="Remove"
+                                                 Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
+                                                 CommandParameter="{Binding}"/>
+                                </ws:ContextMenu>
+                            </StackPanel.ContextMenu>
+                            <TextBlock Text="{Binding Title}"
+                                       FontSize="14"/>
+                            <TextBlock Text="{Binding Description}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ws:ListBox.ItemTemplate>
+            </ws:ListBox>
+        </DockPanel>
         <GridSplitter Grid.Column="0"
                       HorizontalAlignment="Right"
                       VerticalAlignment="Stretch"
                       Background="Transparent"
                       Width="3"/>
         <ws:Frame Name="AppFrame"
+                  Transition="{Binding ElementName=TransitionSelector,Path=SelectedItem.Tag}"
                   BorderBrush="Gray"
                   BorderThickness="1 0 0 0"
                   CornerRadius="0 0 0 15"
@@ -68,12 +100,12 @@
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True"
                   d:Content="这里是页面内容">
-            <ws:Frame.Transition>
-                <ws:SlideFadeTransition Orientation="Vertical"
-                                        Distance="50"
-                                        Duration="0:0:0.200"
-                                        Reverse="{Binding AppFrameTransitionReverse}"/>
-            </ws:Frame.Transition>
+            <!--<ws:Frame.Transition>
+            <ws:SlideFadeTransition Orientation="Vertical"
+            Distance="50"
+            Duration="0:0:0.200"
+            Reverse="{Binding AppFrameTransitionReverse}"/>
+            </ws:Frame.Transition>-->
         </ws:Frame>
     </Grid>
 </Window>

@@ -43,7 +43,7 @@
                     <ItemsPanelTemplate>
                         <ItemsPanelTemplate.Resources>
                             <ws:ValueConverterGroup x:Key="MasonryFlowsConverter">
-                                <ws:DivideNumberConverter By="100"/>
+                                <ws:DivideNumberConverter By="80"/>
                                 <ws:ClampNumberConverter Minimum="1"/>
                             </ws:ValueConverterGroup>
                         </ItemsPanelTemplate.Resources>
