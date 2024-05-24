@@ -33,18 +33,18 @@ namespace EleCho.WpfSuite
         {
             bool completed = false;
             Storyboard? newContentStoryboard = null;
-            Storyboard? oldContentStorybaord = null;
+            Storyboard? oldContentStoryboard = null;
 
             if (oldContent is not null)
             {
-                oldContentStorybaord = CreateOldContentStoryboard(container, oldContent, forward);
+                oldContentStoryboard = CreateOldContentStoryboard(container, oldContent, forward);
             }
             if (newContent is not null)
             {
                 newContentStoryboard = CreateNewContentStoryboard(container, newContent, forward);
             }
 
-            var availableStoryboard = oldContentStorybaord ?? newContentStoryboard;
+            var availableStoryboard = oldContentStoryboard ?? newContentStoryboard;
 
             if (availableStoryboard is null)
             {
@@ -57,7 +57,7 @@ namespace EleCho.WpfSuite
             };
 
             newContentStoryboard?.Begin(newContent);
-            oldContentStorybaord?.Begin(oldContent);
+            oldContentStoryboard?.Begin(oldContent);
 
             while (true)
             {
@@ -71,7 +71,7 @@ namespace EleCho.WpfSuite
                 if (cancellationToken.IsCancellationRequested)
                 {
                     newContentStoryboard?.Stop(newContent);
-                    oldContentStorybaord?.Stop(oldContent);
+                    oldContentStoryboard?.Stop(oldContent);
                     break;
                 }
             }
