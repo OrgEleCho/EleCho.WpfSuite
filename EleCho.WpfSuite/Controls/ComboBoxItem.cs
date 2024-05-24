@@ -2,7 +2,7 @@
 
 namespace EleCho.WpfSuite
 {
-    public class ComboBoxItem : System.Windows.Controls.ComboBox
+    public class ComboBoxItem : System.Windows.Controls.ComboBoxItem
     {
         static ComboBoxItem()
         {
