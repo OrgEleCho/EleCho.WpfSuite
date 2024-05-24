@@ -87,7 +87,15 @@ namespace EleCho.WpfSuite
             set { SetValue(DisabledBorderBrushProperty, value); }
         }
 
-        
+        public Brush HighlightBrush
+        {
+            get { return (Brush)GetValue(HighlightBrushProperty); }
+            set { SetValue(HighlightBrushProperty, value); }
+        }
+
+
+
+
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(Button));
 
@@ -117,5 +125,8 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty DisabledBorderBrushProperty =
             DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(Button), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty HighlightBrushProperty =
+            DependencyProperty.Register(nameof(HighlightBrush), typeof(Brush), typeof(Button), new FrameworkPropertyMetadata(SystemColors.HighlightBrush));
     }
 }

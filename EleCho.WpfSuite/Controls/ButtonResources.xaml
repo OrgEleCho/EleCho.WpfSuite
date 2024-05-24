@@ -56,7 +56,14 @@
                         </Trigger>
 
                         <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            <Setter Property="BorderBrush" TargetName="border">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
 
                         <!--Hover styles bellow-->

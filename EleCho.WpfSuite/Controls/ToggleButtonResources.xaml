@@ -11,20 +11,18 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
     <Style TargetType="{x:Type ws:ToggleButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Background" Value="#FFDDDDDD"/>
+        <Setter Property="BorderBrush" Value="#FF707070"/>
+        <Setter Property="HoverBackground" Value="#FFBEE6FD"/>
+        <Setter Property="HoverBorderBrush" Value="#FF3C7FB1"/>
+        <Setter Property="PressedBackground" Value="#FFC4E5F6"/>
+        <Setter Property="PressedBorderBrush" Value="#FF2C628B"/>
+        <Setter Property="DisabledBackground" Value="#FFF4F4F4"/>
+        <Setter Property="DisabledBorderBrush" Value="#FFADB2B5"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="DisabledForeground" Value="#FF838383"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -42,20 +40,101 @@
                                     Value="{Binding ElementName=border,Path=ContentClip}"/>
                         </Trigger>
                         <Trigger Property="Button.IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            <Setter Property="BorderBrush" TargetName="border">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+
+                        <!--Hover styles bellow-->
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+
+                        <!--Pressed styles bellow-->
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+
+                        <!--Disabled styles bellow-->
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
