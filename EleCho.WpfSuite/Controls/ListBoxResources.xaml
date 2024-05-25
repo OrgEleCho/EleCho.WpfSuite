@@ -27,10 +27,10 @@
                                CornerRadius="{TemplateBinding CornerRadius}"
                                Padding="1"
                                SnapsToDevicePixels="true">
-                        <ScrollViewer x:Name="PART_Content"
-                                      Focusable="false" Padding="{TemplateBinding Padding}">
+                        <ws:ScrollViewer x:Name="PART_Content"
+                                         Focusable="false" Padding="{TemplateBinding Padding}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </ScrollViewer>
+                        </ws:ScrollViewer>
                     </ws:Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipToBounds" Value="True">
