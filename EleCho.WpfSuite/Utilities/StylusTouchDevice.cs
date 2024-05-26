@@ -187,7 +187,7 @@ namespace EleCho.WpfSuite
             DependencyProperty.RegisterAttached("Simulate", typeof(bool), typeof(StylusTouchDevice), new PropertyMetadata(false, SimulatePropertyChanged));
 
         public static readonly DependencyProperty MoveThresholdProperty =
-            DependencyProperty.RegisterAttached("MoveThreshold", typeof(double), typeof(StylusTouchDevice), new PropertyMetadata(2.0));
+            DependencyProperty.RegisterAttached("MoveThreshold", typeof(double), typeof(StylusTouchDevice), new PropertyMetadata(3.0));
 
 
 
