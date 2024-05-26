@@ -60,6 +60,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "Scroll",
+                Description = "",
+                PageType = typeof(ScrollTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "Image",
                 Description = "",
                 PageType = typeof(ImageTestPage)
