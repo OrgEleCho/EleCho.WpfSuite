@@ -69,6 +69,7 @@ namespace EleCho.WpfSuite
 
             _stylusMoved = false;
             _stylusDownPosition = currentPosition;
+            _currentStylusUIElement = null;
         }
 
         private static void StylusMove(object sender, StylusEventArgs e)

@@ -63,6 +63,7 @@ namespace EleCho.WpfSuite
 
             _stylusMoved = false;
             _stylusDownPosition = currentPosition;
+            _currentMouseUIElement = null;
         }
         private static void MouseMove(object sender, MouseEventArgs e)
         {
