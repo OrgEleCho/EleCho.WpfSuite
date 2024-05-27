@@ -132,6 +132,17 @@ which was not available in the original ScrollViewer.
 > The enhanced features of ScrollViewer can be disabled via its properties.
 
 
+In WPF, by default you cannot scroll the content of a ScrollViewer through a pen device.
+However, WPF Suite provides a solution to simulate the pen as a touch device. Through this method, you can use the pen to scroll the content of the ScrollViewer.
+
+```xml
+<ws:ScrollViewer ws:StylusTouchDevice.Simulate="True">
+    <ws:StackPanel Spacing="8">
+        <TextBlock Text="Some content"/>
+        <!--And more-->
+    </ws:StackPanel>
+</ws:ScrollViewer>
+```
 
 ### Transitions:
 
