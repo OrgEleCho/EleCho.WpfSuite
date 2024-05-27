@@ -11,8 +11,7 @@
       d:DataContext="{d:DesignInstance Type=local:WelcomePage}"
       Title="WelcomePage">
 
-    <ws:ScrollViewer ScrollWithWheelDelta="True"
-                     VerticalScrollBarVisibility="Auto">
+    <ws:ScrollViewer VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Spacing="12"
                        Margin="28 12 28 28">
             <TextBlock Text="EleCho.WpfSuite"

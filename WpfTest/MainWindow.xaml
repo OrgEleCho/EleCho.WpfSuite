@@ -57,7 +57,9 @@
                         BorderThickness="0 0 0 0"
                         ItemsSource="{Binding NavigationItems}"
                         d:ItemsSource="{d:SampleData ItemCount=3}"
-                        SelectionChanged="ListBox_SelectionChanged">
+                        SelectionChanged="ListBox_SelectionChanged"
+                        VirtualizingPanel.ScrollUnit="Pixel"
+                        ws:StylusTouchDevice.Simulate="True">
                 <ws:ListBox.ItemContainerStyle>
                     <Style TargetType="ws:ListBoxItem">
                         <Setter Property="Margin" Value="2 1"/>
@@ -99,13 +101,7 @@
                   Grid.Column="1"
                   NavigationUIVisibility="Hidden"
                   ClipToBounds="True"
-                  d:Content="这里是页面内容">
-            <!--<ws:Frame.Transition>
-            <ws:SlideFadeTransition Orientation="Vertical"
-            Distance="50"
-            Duration="0:0:0.200"
-            Reverse="{Binding AppFrameTransitionReverse}"/>
-            </ws:Frame.Transition>-->
+                  d:Content="Page content">
         </ws:Frame>
     </Grid>
 </Window>

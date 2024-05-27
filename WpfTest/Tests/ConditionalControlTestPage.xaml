@@ -10,8 +10,7 @@
       d:Background="White"
       Title="ConditionalControlTestPage">
 
-    <ws:ScrollViewer ScrollWithWheelDelta="True"
-                     VerticalScrollBarVisibility="Auto">
+    <ws:ScrollViewer VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="28 12 28 28"
                        Spacing="12">
             <TextBlock Text="ConditionalControl Test"

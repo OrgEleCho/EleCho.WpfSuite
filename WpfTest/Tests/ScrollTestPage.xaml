@@ -30,17 +30,19 @@
                        Margin="0 0 0 24">
             <TextBlock Text="Scroll Test"
                        FontSize="26"/>
-            <TextBlock TextWrapping="Wrap" 
+            <TextBlock TextWrapping="Wrap"
                        Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen." />
         </ws:StackPanel>
 
-        <Border Grid.Row="1"
-                Grid.Column="0"
-                BorderBrush="Gray"
-                BorderThickness="1">
+        <ws:Border Grid.Row="1"
+                   Grid.Column="0"
+                   BorderBrush="Gray"
+                   BorderThickness="1"
+                   CornerRadius="3">
             <ws:ScrollViewer PanningMode="Both"
                              ws:MouseTouchDevice.Simulate="True"
-                             Padding="14">
+                             Padding="14"
+                             Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
                 <ws:StackPanel Spacing="8">
                     <ws:Button Content="Test" />
                     <ws:Button Content="Test" />
@@ -74,15 +76,17 @@
                     <ws:Button Content="Test" />
                 </ws:StackPanel>
             </ws:ScrollViewer>
-        </Border>
+        </ws:Border>
 
-        <Border Grid.Row="1"
-                Grid.Column="2"
-                BorderBrush="Gray"
-                BorderThickness="1">
+        <ws:Border Grid.Row="1"
+                   Grid.Column="2"
+                   BorderBrush="Gray"
+                   BorderThickness="1"
+                   CornerRadius="3">
             <ws:ScrollViewer ws:StylusTouchDevice.Simulate="True"
                              PanningMode="Both"
-                             Padding="14">
+                             Padding="14"
+                             Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
                 <ws:StackPanel Spacing="8">
                     <ws:Button Content="Test" />
                     <ws:Button Content="Test" />
@@ -116,6 +120,6 @@
                     <ws:Button Content="Test" />
                 </ws:StackPanel>
             </ws:ScrollViewer>
-        </Border>
+        </ws:Border>
     </Grid>
 </Page>

@@ -11,9 +11,7 @@
       d:Background="White"
       Title="PanelsTestPage">
 
-    <ws:ScrollViewer ScrollWithWheelDelta="True"
-                     VerticalScrollBarVisibility="Auto"
-                     EnableScrollingAnimation="True">
+    <ws:ScrollViewer VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="28 12 28 28"
                        Spacing="8">
             <TextBlock Text="Panels Test"
