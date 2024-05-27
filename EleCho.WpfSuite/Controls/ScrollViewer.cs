@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -72,9 +73,16 @@ namespace EleCho.WpfSuite
 
             if (vertical)
             {
+                double scrollDelta = e.Delta;
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
+                    scrollDelta *= scrollInfo.ViewportHeight / ActualHeight;
+                }
+
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastVerticalScrollingDelta);
                 var nowOffset = sameDirectionAsLast && _animationRunning ? VerticalOffsetTarget : VerticalOffset;
-                var newOffset = nowOffset - e.Delta;
+                var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
                     newOffset = 0;
@@ -116,9 +124,16 @@ namespace EleCho.WpfSuite
             }
             else if (horizontal)
             {
+                double scrollDelta = e.Delta;
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
+                    scrollDelta *= scrollInfo.ViewportWidth / ActualWidth;
+                }
+
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastHorizontalScrollingDelta);
                 var nowOffset = sameDirectionAsLast && _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
-                var newOffset = nowOffset - e.Delta;
+                var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
                     newOffset = 0;
@@ -184,12 +199,6 @@ namespace EleCho.WpfSuite
             }
         }
 
-        public bool ScrollWithWheelDelta
-        {
-            get { return (bool)GetValue(ScrollWithWheelDeltaProperty); }
-            set { SetValue(ScrollWithWheelDeltaProperty, value); }
-        }
-
         public double HorizontalOffsetTarget
         {
             get { return (double)GetValue(HorizontalOffsetTargetProperty); }
@@ -198,6 +207,12 @@ namespace EleCho.WpfSuite
         public double VerticalOffsetTarget
         {
             get { return (double)GetValue(VerticalOffsetTargetProperty); }
+        }
+
+        public bool ScrollWithWheelDelta
+        {
+            get { return (bool)GetValue(ScrollWithWheelDeltaProperty); }
+            set { SetValue(ScrollWithWheelDeltaProperty, value); }
         }
 
         public bool EnableScrollingAnimation
@@ -226,14 +241,51 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty VerticalOffsetTargetProperty =
             VerticalOffsetTargetPropertyKey.DependencyProperty;
 
+
+
+        public static bool GetScrollWithWheelDelta(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(ScrollWithWheelDeltaProperty);
+        }
+
+        public static void SetScrollWithWheelDelta(DependencyObject obj, bool value)
+        {
+            obj.SetValue(ScrollWithWheelDeltaProperty, value);
+        }
+
+        public static bool GetEnableScrollingAnimation(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(EnableScrollingAnimationProperty);
+        }
+
+        public static void SetEnableScrollingAnimation(DependencyObject obj, bool value)
+        {
+            obj.SetValue(EnableScrollingAnimationProperty, value);
+        }
+
+        public static Duration GetScrollingAnimationDuration(DependencyObject obj)
+        {
+            return (Duration)obj.GetValue(ScrollingAnimationDurationProperty);
+        }
+
+        public static void SetScrollingAnimationDuration(DependencyObject obj, Duration value)
+        {
+            obj.SetValue(ScrollingAnimationDurationProperty, value);
+        }
+
+
+
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
-            DependencyProperty.Register(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(true));
+            DependencyProperty.RegisterAttached(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), 
+                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty EnableScrollingAnimationProperty =
-            DependencyProperty.Register(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), new PropertyMetadata(true));
+            DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), 
+                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
-            DependencyProperty.Register(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300))), ValidateScrollingAnimationDuration);
+            DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), 
+                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
 
         private static bool ValidateScrollingAnimationDuration(object value)
             => value is Duration duration && duration.HasTimeSpan;
