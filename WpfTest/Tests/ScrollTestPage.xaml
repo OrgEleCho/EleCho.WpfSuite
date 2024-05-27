@@ -30,7 +30,8 @@
                        Margin="0 0 0 24">
             <TextBlock Text="Scroll Test"
                        FontSize="26"/>
-            <TextBlock Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen." />
+            <TextBlock TextWrapping="Wrap" 
+                       Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen." />
         </ws:StackPanel>
 
         <Border Grid.Row="1"

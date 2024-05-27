@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,8 +69,6 @@ namespace EleCho.WpfSuite
 
             _stylusMoved = false;
             _stylusDownPosition = currentPosition;
-
-            Console.WriteLine($"Stylus down, position: {currentPosition}");
         }
 
         private static void StylusMove(object sender, StylusEventArgs e)
@@ -83,7 +82,6 @@ namespace EleCho.WpfSuite
                 _device.IsActive &&
                 (_stylusMoved || GetPointDistance(_stylusDownPosition, currentPosition) >= GetMoveThreshold(dependencyObject)))
             {
-                Console.WriteLine("Stylus report move");
                 _device.Position = currentPosition;
                 _device.ReportMove();
 
@@ -92,7 +90,6 @@ namespace EleCho.WpfSuite
                 {
                     _currentStylusUIElement = element;
                     e.StylusDevice.Capture(_currentStylusUIElement, CaptureMode.SubTree);
-                    Console.WriteLine("Stylus captured element");
                 }
 
                 _stylusMoved = true;
@@ -109,19 +106,13 @@ namespace EleCho.WpfSuite
                 var device = _device;
                 _device = null;
 
-                if (_stylusMoved)
+                device.Position = e.GetPosition(null);
+                device.ReportUp();
+                device.Deactivate();
+
+                if (_currentStylusUIElement is not null)
                 {
-                    device.Position = e.GetPosition(null);
-                    device.ReportUp();
-                    device.Deactivate();
-
-                    Console.WriteLine("Stylus report up");
-
-                    if (_currentStylusUIElement is not null)
-                    {
-                        e.StylusDevice.Capture(null);
-                        Console.WriteLine("Stylus released capture");
-                    }
+                    e.StylusDevice.Capture(null);
                 }
             }
         }

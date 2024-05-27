@@ -99,16 +99,13 @@ namespace EleCho.WpfSuite
                 var device = _device;
                 _device = null;
 
-                if (_stylusMoved)
-                {
-                    device.Position = e.GetPosition(null);
-                    device.ReportUp();
-                    device.Deactivate();
+                device.Position = e.GetPosition(null);
+                device.ReportUp();
+                device.Deactivate();
 
-                    if (_currentMouseUIElement is not null)
-                    {
-                        e.MouseDevice.Capture(null);
-                    }
+                if (_currentMouseUIElement is not null)
+                {
+                    e.MouseDevice.Capture(null);
                 }
             }
         }
