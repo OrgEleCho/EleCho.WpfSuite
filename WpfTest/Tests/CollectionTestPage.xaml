@@ -25,6 +25,7 @@
                            FontSize="26"/>
 
                 <TextBlock Text="By using the value converter provided by WPF Suite, you can display the control only when the collection is not empty"
+                           TextWrapping="Wrap"
                            Margin="0 0 0 12"/>
 
                 <ws:StackPanel Orientation="Horizontal"
