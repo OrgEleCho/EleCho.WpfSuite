@@ -201,6 +201,84 @@ However, WPF Suite provides a solution to simulate the pen as a touch device. Th
 
 ### Utilities:
 
+You can easily create windows with Mica or Acrylic materials through WPF Suite, just like this:
+
+```xml
+<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        Background="Transparent"
+        ws:WindowComposition.IsEnabled="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+</Window>
+```
+
+> When a certain material is not explicitly disabled, WPF Suite will automatically perform Fallback. 
+> If the program is running on Windows 11, the Mica material will be used, otherwise the Acrylic material will be used.
+
+You can also set the color mode of the current window. When IsDarkMode is set to True, Mica and Acrylic materials will also change accordingly.
+
+```xml
+<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        Background="Transparent"
+        ws:WindowComposition.IsDarkMode="True"
+        ws:WindowComposition.IsEnabled="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+</Window>
+```
+
+If you don't want to use Mica material, but want to use Acrylic, just set UseMica to False:
+
+```xml
+<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        Background="Transparent"
+        ws:WindowComposition.UseMica="False"
+        ws:WindowComposition.IsEnabled="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+</Window>
+```
+
+If you want to use an acrylic material mixed with a certain color, there are two options.
+
+Use ordinary acrylic material and set the form color to a translucent corresponding color. 
+
+```xml
+<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        Background="#11FF0000"
+        ws:WindowComposition.UseMica="False"
+        ws:WindowComposition.IsEnabled="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+</Window>
+```
+
+
+Or directly use the options provided by WPF Suite.
+
+```xml
+<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ws:WindowComposition.UseMica="False"
+        ws:WindowComposition.GradientColor="#11FF0000"
+        ws:WindowComposition.IsEnabled="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome/>
+    </WindowChrome.WindowChrome>
+</Window>
+```
+
+> If you want to use the mixed color options provided by WPF Suite, you must ensure that the AllowsTransparency property of the window is True.
+> This means that your window must have WindowStyle set to None. 
+> This will cause the window to lose animations, and if you are using Windows 11, it will also lose rounded corners.
+
+
 - BindingProxy: A utility class for binding, commonly used when a collection element has property to be bound to a page DataContext
 - ScrollViewerUtils: Utilities for set vertical offset and horizontal offset of scroll viewer and scroll content presenter
 - ItemsControlUtils: Utilities for removing item from ItemsControl with transitions

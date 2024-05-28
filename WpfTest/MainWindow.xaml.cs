@@ -27,6 +27,11 @@ namespace WpfTest
         {
             DataContext = this;
             InitializeComponent();
+
+            Loaded += (s, e) =>
+            {
+                //new TestWindow().Show();
+            };
         }
 
         [ObservableProperty]
@@ -63,6 +68,12 @@ namespace WpfTest
                 Title = "Scroll",
                 Description = "",
                 PageType = typeof(ScrollTestPage)
+            },
+            new NavigationItem()
+            {
+                Title = "Mica/Acrylic",
+                Description = "",
+                PageType = typeof(WindowCompositionTest)
             },
             new NavigationItem()
             {

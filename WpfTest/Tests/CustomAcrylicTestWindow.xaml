@@ -1,0 +1,31 @@
+﻿<Window x:Class="WpfTest.Tests.CustomAcrylicTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest.Tests"
+        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        mc:Ignorable="d"
+        Title="CustomAcrylicTestWindow" Height="250" Width="250"
+        Background="#01000000"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ws:WindowComposition.UseMica="False"
+        ws:WindowComposition.GradientColor="#44FF0000"
+        ws:WindowComposition.IsEnabled="True">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="45"
+                      GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+    
+    <Grid>
+        <TextBlock Text="This is a window with custom gradient color acrylic backdrop"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   FontSize="26"
+                   Margin="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+    </Grid>
+</Window>

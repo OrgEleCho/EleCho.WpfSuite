@@ -25,14 +25,14 @@ namespace EleCho.WpfSuite
 
         #region Public Static Methods
 
-        private static void RegisterEvents(FrameworkElement root)
+        private static void RegisterEvents(UIElement root)
         {
             root.PreviewStylusDown += StylusDown;
             root.PreviewStylusMove += StylusMove;
             root.PreviewStylusUp += StylusUp;
         }
 
-        private static void UnregisterEvents(FrameworkElement root)
+        private static void UnregisterEvents(UIElement root)
         {
             root.PreviewStylusDown -= StylusDown;
             root.PreviewStylusMove -= StylusMove;
@@ -154,6 +154,7 @@ namespace EleCho.WpfSuite
 
 
 
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetSimulate(DependencyObject obj)
         {
             return (bool)obj.GetValue(SimulateProperty);
@@ -164,6 +165,8 @@ namespace EleCho.WpfSuite
             obj.SetValue(SimulateProperty, value);
         }
 
+
+        [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static double GetMoveThreshold(DependencyObject obj)
         {
             return (double)obj.GetValue(MoveThresholdProperty);
@@ -185,7 +188,7 @@ namespace EleCho.WpfSuite
 
         private static void SimulatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is not FrameworkElement frameworkElement ||
+            if (d is not UIElement element ||
                 e.NewValue is not bool newValue)
             {
                 return;
@@ -193,11 +196,11 @@ namespace EleCho.WpfSuite
 
             if (newValue)
             {
-                RegisterEvents(frameworkElement);
+                RegisterEvents(element);
             }
             else
             {
-                UnregisterEvents(frameworkElement);
+                UnregisterEvents(element);
             }
         }
     }

@@ -22,7 +22,9 @@
         <Grid Margin="28 12 28 28">
             <ws:StackPanel Spacing="12">
                 <TextBlock Text="Collection Test"
-                           FontSize="26"
+                           FontSize="26"/>
+
+                <TextBlock Text="By using the value converter provided by WPF Suite, you can display the control only when the collection is not empty"
                            Margin="0 0 0 12"/>
 
                 <ws:StackPanel Orientation="Horizontal"

@@ -10,26 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfTest.Tests
 {
     /// <summary>
-    /// Interaction logic for ScrollTestPage.xaml
+    /// TestWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class ScrollTestPage : Page
+    public partial class AcrylicTestWindow : Window
     {
-        public ScrollTestPage()
+        public AcrylicTestWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("You clicked the button");
-
-            new AcrylicTestWindow().Show();
+            MouseLeftButtonDown += (s, e) => DragMove();
+            MouseDoubleClick += (s, e) => Close();
         }
     }
 }

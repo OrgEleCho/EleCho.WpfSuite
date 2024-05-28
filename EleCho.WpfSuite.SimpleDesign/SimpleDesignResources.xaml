@@ -13,6 +13,7 @@
     <Style TargetType="{x:Type ws:Button}"
            BasedOn="{StaticResource {x:Type ws:Button}}">
         <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="5 5"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ToggleButton}"
