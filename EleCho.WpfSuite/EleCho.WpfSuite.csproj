@@ -9,7 +9,7 @@
     <RootNamespace>EleCho.WpfSuite</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
-    <Version>0.3.1</Version>
+    <Version>0.3.2</Version>
     
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
