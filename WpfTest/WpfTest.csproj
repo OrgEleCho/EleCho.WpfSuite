@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
@@ -20,6 +21,7 @@
     <None Remove="Assets\Banners\3.jpg" />
     <None Remove="Assets\Banners\4.jpg" />
     <None Remove="Assets\Banners\5.jpg" />
+    <None Remove="Assets\logo.png" />
     <None Remove="Assets\SlicedImage.jpg" />
     <None Remove="Assets\TestImage2.jpg" />
   </ItemGroup>
@@ -36,14 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Banners\1.jpg" />
-    <Resource Include="Assets\Banners\2.jpg" />
-    <Resource Include="Assets\Banners\3.jpg" />
-    <Resource Include="Assets\Banners\4.jpg" />
-    <Resource Include="Assets\Banners\5.jpg" />
-    <Resource Include="Assets\SlicedImage.jpg" />
-    <Resource Include="Assets\TestImage1.jpg" />
-    <Resource Include="Assets\TestImage2.jpg" />
+    <Resource Include="Assets\**\*.*" />
   </ItemGroup>
 
 </Project>

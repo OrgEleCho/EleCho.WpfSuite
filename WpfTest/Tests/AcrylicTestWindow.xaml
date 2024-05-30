@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:WpfTest"
         xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
         mc:Ignorable="d"
-        Background="Transparent"
+        Background="#01FFFFFF"
         d:Background="White"
         Title="TestWindow" Height="250" Width="250"
-        ws:WindowComposition.UseMica="False"
-        ws:WindowComposition.IsEnabled="True">
+        ws:WindowOption.Backdrop="TransientWindow">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="45"
+        <WindowChrome CaptionHeight="30" 
                       GlassFrameThickness="-1"/>
     </WindowChrome.WindowChrome>
 

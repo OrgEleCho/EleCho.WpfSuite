@@ -13,7 +13,7 @@
       Title="MasonryTestPage">
 
     <Page.Resources>
-        <ws:ScaleTransition x:Key="ScaleTransition" Reverse="True"/>
+        <ws:ScaleFadeTransition x:Key="ScaleFadeTransition" Reverse="True"/>
         <QuadraticEase x:Key="QuadraticEase"/>
     </Page.Resources>
 
@@ -61,7 +61,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ws:TransitioningContentControl Transition="{StaticResource ScaleTransition}">
+                        <ws:TransitioningContentControl Transition="{StaticResource ScaleFadeTransition}">
                             <ws:StackPanel>
                                 <TextBlock Text="Test"/>
                                 <Border Height="{Binding Height}"

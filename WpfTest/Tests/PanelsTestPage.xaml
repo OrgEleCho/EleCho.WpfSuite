@@ -18,7 +18,6 @@
                        FontSize="26"
                        Margin="0 0 0 12"/>
             <ws:GroupBox Header="StackPanel (Spacing=8)"
-                         CornerRadius="10"
                          Padding="8">
                 <ws:StackPanel Orientation="Horizontal"
                                Spacing="8">
@@ -30,8 +29,8 @@
                     <ws:Button Content="QWQ"/>
                 </ws:StackPanel>
             </ws:GroupBox>
-            <GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)"
-                      Padding="8">
+            <ws:GroupBox Header="WrapPanel (HorizontalSpacing=8,VerticalSpacing=8)"
+                         Padding="8">
                 <ws:WrapPanel Orientation="Horizontal"
                               HorizontalSpacing="8"
                               VerticalSpacing="8">
@@ -57,9 +56,9 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:WrapPanel>
-            </GroupBox>
-            <GroupBox Header="UniformGrid (HorizontalSpacing=8,VerticalSpacing=8)"
-                      Padding="8">
+            </ws:GroupBox>
+            <ws:GroupBox Header="UniformGrid (HorizontalSpacing=8,VerticalSpacing=8)"
+                         Padding="8">
                 <ws:UniformGrid HorizontalSpacing="8"
                                 VerticalSpacing="8">
                     <i:Interaction.Behaviors>
@@ -84,9 +83,9 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:UniformGrid>
-            </GroupBox>
-            <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap)"
-                      Padding="8">
+            </ws:GroupBox>
+            <ws:GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap)"
+                         Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
                               Wrap="Wrap">
@@ -112,9 +111,9 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:FlexPanel>
-            </GroupBox>
-            <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap,UniformGrow=1)"
-                      Padding="8">
+            </ws:GroupBox>
+            <ws:GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap,UniformGrow=1)"
+                         Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
                               Wrap="Wrap"
@@ -141,9 +140,9 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:FlexPanel>
-            </GroupBox>
-            <GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8)"
-                      Padding="8">
+            </ws:GroupBox>
+            <ws:GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8)"
+                         Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8">
                     <i:Interaction.Behaviors>
@@ -168,13 +167,13 @@
                     <ws:Button Content="QWQ"/>
                     <ws:Button Content="QWQ"/>
                 </ws:FlexPanel>
-            </GroupBox>
+            </ws:GroupBox>
 
             <Rectangle Height="1"
                        Fill="Gray"/>
 
-            <GroupBox Header="Origin WrapPanel"
-                      Padding="8">
+            <ws:GroupBox Header="Origin WrapPanel"
+                         Padding="8">
                 <WrapPanel Orientation="Horizontal">
                     <i:Interaction.Behaviors>
                         <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
@@ -198,7 +197,7 @@
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                 </WrapPanel>
-            </GroupBox>
+            </ws:GroupBox>
 
             <TextBlock Margin="0 48 0 0">
                 <Run Text="Current design name:"/>

@@ -10,9 +10,8 @@
         Background="#01000000"
         WindowStyle="None"
         AllowsTransparency="True"
-        ws:WindowComposition.UseMica="False"
-        ws:WindowComposition.GradientColor="#44FF0000"
-        ws:WindowComposition.IsEnabled="True">
+        ws:WindowOption.AccentGradientColor="#44FF0000"
+        ws:WindowOption.AccentState="AcrylicBlurBehind">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="45"

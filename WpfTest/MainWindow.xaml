@@ -10,100 +10,131 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="800"
+        Icon="Assets/logo.png"
         Loaded="Window_Loaded"
-        d:DataContext="{d:DesignInstance Type=local:MainWindow}">
+        Background="Transparent"
+        d:Background="White"
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
+        ws:WindowOption.Backdrop="MainWindow">
 
     <Window.Resources>
         <ws:BindingProxy x:Key="DataProxy" Data="{Binding}"/>
     </Window.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Bottom"
-                        Margin="5">
-                <TextBlock Text="Transition:"/>
-                <ws:ComboBox x:Name="TransitionSelector"
-                             SelectedIndex="0">
-                    <ws:ComboBoxItem Content="SlideFade">
-                        <ws:ComboBoxItem.Tag>
-                            <ws:SlideFadeTransition Orientation="Vertical"
-                                                    Distance="50"
-                                                    Duration="0:0:0.200"
-                                                    Reverse="{Binding AppFrameTransitionReverse}"/>
-                        </ws:ComboBoxItem.Tag>
-                    </ws:ComboBoxItem>
-                    <ws:ComboBoxItem Content="ScaleFade" >
-                        <ws:ComboBoxItem.Tag>
-                            <ws:ScaleFadeTransition Duration="0:0:0.200"
-                                                    Reverse="{Binding AppFrameTransitionReverse}"/>
-                        </ws:ComboBoxItem.Tag>
-                    </ws:ComboBoxItem>
-                    <ws:ComboBoxItem Content="RotateFade" >
-                        <ws:ComboBoxItem.Tag>
-                            <ws:RotateFadeTransition Duration="0:0:0.200"
-                                                     Angle="30"
-                                                     Reverse="{Binding AppFrameTransitionReverse}"/>
-                        </ws:ComboBoxItem.Tag>
-                    </ws:ComboBoxItem>
-                    <ws:ComboBoxItem Content="None"/>
-                </ws:ComboBox>
-            </StackPanel>
-            <ws:ListBox Name="AppNavigations"
-                        Background="#33FFFFFF"
-                        Grid.Column="0"
-                        BorderThickness="0 0 0 0"
-                        ItemsSource="{Binding NavigationItems}"
-                        d:ItemsSource="{d:SampleData ItemCount=3}"
-                        SelectionChanged="ListBox_SelectionChanged"
-                        VirtualizingPanel.ScrollUnit="Pixel"
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                        ws:StylusTouchDevice.Simulate="True">
-                <ws:ListBox.ItemContainerStyle>
-                    <Style TargetType="ws:ListBoxItem">
-                        <Setter Property="Margin" Value="2 1"/>
-                        <Setter Property="CornerRadius" Value="5"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="HoverBackground" Value="#eeeeee"/>
-                        <Setter Property="SelectedBackground" Value="#e8e8e8"/>
-                        <Setter Property="SelectedActiveBackground" Value="#e4e4e4"/>
-                    </Style>
-                </ws:ListBox.ItemContainerStyle>
-                <ws:ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Background="Transparent">
-                            <StackPanel.ContextMenu>
-                                <ws:ContextMenu>
-                                    <ws:MenuItem Header="Remove"
-                                                 Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
-                                                 CommandParameter="{Binding}"/>
-                                </ws:ContextMenu>
-                            </StackPanel.ContextMenu>
-                            <TextBlock Text="{Binding Title}"
-                                       FontSize="14"/>
-                            <TextBlock Text="{Binding Description}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ws:ListBox.ItemTemplate>
-            </ws:ListBox>
-        </DockPanel>
-        <GridSplitter Grid.Column="0"
-                      HorizontalAlignment="Right"
-                      VerticalAlignment="Stretch"
-                      Background="Transparent"
-                      Width="3"/>
-        <ws:Frame Name="AppFrame"
-                  Transition="{Binding ElementName=TransitionSelector,Path=SelectedItem.Tag}"
-                  BorderBrush="Gray"
-                  BorderThickness="1 0 0 0"
-                  CornerRadius="0 0 0 15"
-                  Grid.Column="1"
-                  NavigationUIVisibility="Hidden"
-                  ClipToBounds="True"
-                  d:Content="Page content">
-        </ws:Frame>
-    </Grid>
+    <DockPanel>
+        <Grid Height="30"
+              Background="#10000000"
+              DockPanel.Dock="Top"
+              Visibility="Collapsed">
+            <ws:StackPanel Orientation="Horizontal"
+                           HorizontalAlignment="Left">
+                <Border Padding="8 0">
+                    <Image Source="/Assets/logo.png"
+                           Width="18"
+                           Height="18"/>
+                </Border>
+                <Border>
+                    <TextBlock Text="EleCho.WpfSuite"
+                               FontSize="14"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </ws:StackPanel>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Bottom"
+                            Margin="5">
+                    <TextBlock Text="Transition:"/>
+                    <ws:ComboBox x:Name="TransitionSelector"
+                                 Background="#33FFFFFF"
+                                 SelectedIndex="0">
+                        <ws:ComboBox.ToolTip>
+                            <ToolTip>
+                                
+                            </ToolTip>
+                        </ws:ComboBox.ToolTip>
+                        <ws:ComboBoxItem Content="SlideFade">
+                            <ws:ComboBoxItem.Tag>
+                                <ws:SlideFadeTransition Orientation="Vertical"
+                                                        Distance="50"
+                                                        Duration="0:0:0.200"
+                                                        Reverse="{Binding AppFrameTransitionReverse}"/>
+                            </ws:ComboBoxItem.Tag>
+                        </ws:ComboBoxItem>
+                        <ws:ComboBoxItem Content="ScaleFade" >
+                            <ws:ComboBoxItem.Tag>
+                                <ws:ScaleFadeTransition Duration="0:0:0.200"
+                                                        Reverse="{Binding AppFrameTransitionReverse}"/>
+                            </ws:ComboBoxItem.Tag>
+                        </ws:ComboBoxItem>
+                        <ws:ComboBoxItem Content="RotateFade" >
+                            <ws:ComboBoxItem.Tag>
+                                <ws:RotateFadeTransition Duration="0:0:0.200"
+                                                         Angle="30"
+                                                         Reverse="{Binding AppFrameTransitionReverse}"/>
+                            </ws:ComboBoxItem.Tag>
+                        </ws:ComboBoxItem>
+                        <ws:ComboBoxItem Content="None"/>
+                    </ws:ComboBox>
+                </StackPanel>
+                <ws:ListBox Name="AppNavigations"
+                            Background="#33FFFFFF"
+                            Grid.Column="0"
+                            BorderThickness="0 0 0 0"
+                            ItemsSource="{Binding NavigationItems}"
+                            d:ItemsSource="{d:SampleData ItemCount=3}"
+                            SelectionChanged="ListBox_SelectionChanged"
+                            VirtualizingPanel.ScrollUnit="Pixel"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            ws:StylusTouchDevice.Simulate="True">
+                    <ws:ListBox.ItemContainerStyle>
+                        <Style TargetType="ws:ListBoxItem">
+                            <Setter Property="Margin" Value="2 1"/>
+                            <Setter Property="CornerRadius" Value="5"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="HoverBackground" Value="#0F444444"/>
+                            <Setter Property="SelectedBackground" Value="#0F222222"/>
+                            <Setter Property="SelectedActiveBackground" Value="#0F000000"/>
+                        </Style>
+                    </ws:ListBox.ItemContainerStyle>
+                    <ws:ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="Transparent">
+                                <StackPanel.ContextMenu>
+                                    <ws:ContextMenu>
+                                        <ws:MenuItem Header="Remove"
+                                                     Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
+                                                     CommandParameter="{Binding}"/>
+                                    </ws:ContextMenu>
+                                </StackPanel.ContextMenu>
+                                <TextBlock Text="{Binding Title}"
+                                           FontSize="14"/>
+                                <TextBlock Text="{Binding Description}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ws:ListBox.ItemTemplate>
+                </ws:ListBox>
+            </DockPanel>
+            <GridSplitter Grid.Column="0"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Stretch"
+                          Background="Transparent"
+                          Width="3"/>
+            <ws:Frame Name="AppFrame"
+                      Transition="{Binding ElementName=TransitionSelector,Path=SelectedItem.Tag}"
+                      BorderBrush="Gray"
+                      BorderThickness="1 0 0 0"
+                      CornerRadius="0 0 0 15"
+                      Grid.Column="1"
+                      NavigationUIVisibility="Hidden"
+                      ClipToBounds="True"
+                      d:Content="Page content">
+            </ws:Frame>
+        </Grid>
+    </DockPanel>
 </Window>

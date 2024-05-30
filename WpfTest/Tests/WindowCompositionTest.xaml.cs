@@ -52,7 +52,7 @@ namespace WpfTest.Tests
         public void OpenDarkAcrylicWindow()
         {
             var window = new AcrylicTestWindow();
-            WindowComposition.SetIsDarkMode(window, true);
+            WindowOption.SetIsDarkMode(window, true);
             window.Foreground = new SolidColorBrush(Color.FromRgb(214, 214, 214));
             window.Show();
         }
@@ -61,7 +61,7 @@ namespace WpfTest.Tests
         public void OpenDarkMicaTestWindow()
         {
             var window = new MicaTestWindow();
-            WindowComposition.SetIsDarkMode(window, true);
+            WindowOption.SetIsDarkMode(window, true);
             window.Foreground = new SolidColorBrush(Color.FromRgb(214, 214, 214));
             window.Show();
         }
@@ -70,7 +70,7 @@ namespace WpfTest.Tests
         public void OpenDarkCustomAcrylicWindow()
         {
             var window = new CustomAcrylicTestWindow();
-            WindowComposition.SetIsDarkMode(window, true);
+            WindowOption.SetIsDarkMode(window, true);
             window.Foreground = new SolidColorBrush(Color.FromRgb(214, 214, 214));
             window.Show();
         }

@@ -3,12 +3,15 @@ using System.Runtime.InteropServices;
 
 namespace EleCho.WpfSuite
 {
-    public partial class WindowComposition
+    public partial class WindowOption
     {
         internal static class NativeDefinition
         {
             [DllImport("DWMAPI")]
-            public static extern nint DwmSetWindowAttribute(nint hwnd, DwmWindowAttribute attribute, nint pointerValue, uint pointerSize);
+            public static extern nint DwmSetWindowAttribute(nint hwnd, DwmWindowAttribute attribute, nint dataPointer, uint dataSize);
+
+            [DllImport("DWMAPI")]
+            public static extern nint DwmExtendFrameIntoClientArea(nint hwnd, ref Margins margins);
 
             [DllImport("User32")]
             public static extern bool SetWindowCompositionAttribute(nint hwnd, ref WindowCompositionAttributeData data);
@@ -16,7 +19,10 @@ namespace EleCho.WpfSuite
             [DllImport("User32")]
             public static extern bool GetWindowCompositionAttribute(nint hwnd, ref WindowCompositionAttributeData data);
 
-            [DllImport("user32.dll")]
+            [DllImport("User32")]
+            public static extern bool SetWindowPos(nint hwnd, nint hwndInsertAfter, int x, int y, int width, int height, SetWindowPosFlags flags);
+
+            [DllImport("User32")]
             public static extern bool InvalidateRect(IntPtr hWnd, IntPtr lpRect, bool bErase);
 
             [DllImport("User32")]
@@ -54,22 +60,13 @@ namespace EleCho.WpfSuite
                 public int AnimationId;
             }
 
-            [Flags]
-            public enum AccentFlags
+            [StructLayout(LayoutKind.Sequential)]
+            public struct Margins
             {
-                None = 0,
-                ExtendSize = 0x4,
-                LeftBorder = 0x20,
-                TopBorder = 0x40,
-                RightBorder = 0x80,
-                BottomBorder = 0x100
-            }
-
-            public enum WindowCompositionAttribute
-            {
-                // 省略其他未使用的字段
-                WcaAccentPolicy = 19,
-                // 省略其他未使用的字段
+                public int LeftWidth;
+                public int RightWidth;
+                public int TopHeight;
+                public int BottomHeight;
             }
 
             public enum AccentState
@@ -81,6 +78,25 @@ namespace EleCho.WpfSuite
                 EnableAcrylicBlurBehind = 4,
                 EnableHostBackdrop = 5,
                 InvalidState = 6,
+            }
+
+            [Flags]
+            public enum AccentFlags
+            {
+                None = 0,
+                ExtendSize = 0x4,
+                LeftBorder = 0x20,
+                TopBorder = 0x40,
+                RightBorder = 0x80,
+                BottomBorder = 0x100,
+                AllBorder = LeftBorder | TopBorder | RightBorder | BottomBorder,
+            }
+
+            public enum WindowCompositionAttribute
+            {
+                // 省略其他未使用的字段
+                WcaAccentPolicy = 19,
+                // 省略其他未使用的字段
             }
 
             public enum DwmWindowAttribute
@@ -110,6 +126,42 @@ namespace EleCho.WpfSuite
                 VISIBLE_FRAME_BORDER_THICKNESS,
                 SYSTEMBACKDROP_TYPE,
                 LAST
+            }
+
+            // Token: 0x0200002E RID: 46
+            [Flags]
+            public enum SetWindowPosFlags
+            {
+                // Token: 0x04000368 RID: 872
+                ASYNCWINDOWPOS = 16384,
+                // Token: 0x04000369 RID: 873
+                DEFERERASE = 8192,
+                // Token: 0x0400036A RID: 874
+                DRAWFRAME = 32,
+                // Token: 0x0400036B RID: 875
+                FRAMECHANGED = 32,
+                // Token: 0x0400036C RID: 876
+                HIDEWINDOW = 128,
+                // Token: 0x0400036D RID: 877
+                NOACTIVATE = 16,
+                // Token: 0x0400036E RID: 878
+                NOCOPYBITS = 256,
+                // Token: 0x0400036F RID: 879
+                NOMOVE = 2,
+                // Token: 0x04000370 RID: 880
+                NOOWNERZORDER = 512,
+                // Token: 0x04000371 RID: 881
+                NOREDRAW = 8,
+                // Token: 0x04000372 RID: 882
+                NOREPOSITION = 512,
+                // Token: 0x04000373 RID: 883
+                NOSENDCHANGING = 1024,
+                // Token: 0x04000374 RID: 884
+                NOSIZE = 1,
+                // Token: 0x04000375 RID: 885
+                NOZORDER = 4,
+                // Token: 0x04000376 RID: 886
+                SHOWWINDOW = 64
             }
         }
     }

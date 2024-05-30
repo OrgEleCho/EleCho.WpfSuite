@@ -42,7 +42,20 @@
                            Opacity=".8"
                            Content="&lt;"
                            Margin="5"
-                           Padding="5"/>
+                           Padding="5">
+                    <ws:Button.ToolTip>
+                        <ToolTip Background="Transparent" 
+                                 ws:WindowOption.AccentState="AcrylicBlurBehind">
+                            <StackPanel>
+
+                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
+                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
+                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
+                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
+                            </StackPanel>
+                        </ToolTip>
+                    </ws:Button.ToolTip>
+                </ws:Button>
                 <ws:Button Command="{Binding GoNextCommand}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Right"
@@ -51,6 +64,18 @@
                            Margin="5"
                            Padding="5"/>
             </Grid>
+
+            <ws:ToggleButton Name="PopupToggle"
+                             Content="Toggle acrylic popup"
+                             HorizontalAlignment="Left"/>
+
+            <Popup IsOpen="{Binding ElementName=PopupToggle,Path=IsChecked}" 
+                   ws:WindowOption.AccentState="AcrylicBlurBehind">
+                <Border Width="250"
+                        Height="250 ">
+                    
+                </Border>
+            </Popup>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>

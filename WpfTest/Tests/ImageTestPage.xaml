@@ -24,8 +24,8 @@
                           Stretch="{Binding ElementName=StretchModeSelector,Path=SelectedItem}"
                           BorderBrush="Pink"
                           BorderThickness="{Binding ElementName=BorderThicknessSlider,Path=Value,Converter={x:Static ws:NumberToThicknessConverter.Instance}}"/>
-                <GroupBox Header="Options"
-                          Padding="12">
+                <ws:GroupBox Header="Options"
+                             Padding="12">
                     <ws:StackPanel Spacing="8">
                         <ws:StackPanel Orientation="Horizontal"
                                        Spacing="8">
@@ -57,12 +57,12 @@
                         <ws:StackPanel Orientation="Horizontal"
                                        Spacing="8">
                             <TextBlock Text="StretchMode:"/>
-                            <ComboBox ItemsSource="{Binding StretchModes}"
-                                      SelectedIndex="0"
-                                      Name="StretchModeSelector"/>
+                            <ws:ComboBox ItemsSource="{Binding StretchModes}"
+                                         SelectedIndex="0"
+                                         Name="StretchModeSelector"/>
                         </ws:StackPanel>
                     </ws:StackPanel>
-                </GroupBox>
+                </ws:GroupBox>
 
                 <ws:SlicedImage Source="/Assets/SlicedImage.jpg"
                                 ImageMargin="20"

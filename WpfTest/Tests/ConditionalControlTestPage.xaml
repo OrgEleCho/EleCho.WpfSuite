@@ -57,8 +57,8 @@
                 </ws:ConditionalControl.ContentTemplateWhenFalse>
             </ws:ConditionalControl>
 
-            <GroupBox Header="Options"
-                      Padding="8">
+            <ws:GroupBox Header="Options"
+                         Padding="8">
                 <ws:FlexPanel Direction="Column"
                               MainSpacing="8"
                               ItemsAlignment="Start">
@@ -83,7 +83,7 @@
                                     Padding="5 3"/>
                     </StackPanel>
                 </ws:FlexPanel>
-            </GroupBox>
+            </ws:GroupBox>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
