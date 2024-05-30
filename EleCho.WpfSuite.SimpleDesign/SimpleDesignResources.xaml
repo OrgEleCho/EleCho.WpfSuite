@@ -92,4 +92,9 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="{x:Type ws:Tooltip}"
+           BasedOn="{StaticResource {x:Type ws:Tooltip}}">
+        <!--nothing-->
+    </Style>
+
 </ResourceDictionary>

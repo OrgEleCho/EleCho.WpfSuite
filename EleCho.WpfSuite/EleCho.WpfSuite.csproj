@@ -46,7 +46,12 @@
     <Page Remove="Controls\TextBoxResources.xaml" />
     <Page Remove="Controls\ThumbResources.xaml" />
     <Page Remove="Controls\ToggleButtonResources.xaml" />
+    <Page Remove="Controls\TooltipResources.xaml" />
     <Page Remove="Controls\TransitioningContentControlResources.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Controls\TooltipResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>

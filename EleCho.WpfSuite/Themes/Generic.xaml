@@ -27,5 +27,6 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ScrollViewerResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ScrollBarResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ThumbResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TooltipResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

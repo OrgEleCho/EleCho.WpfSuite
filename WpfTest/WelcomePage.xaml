@@ -43,13 +43,6 @@
                            Content="&lt;"
                            Margin="5"
                            Padding="5">
-                    <ws:Button.ToolTip>
-                        <ToolTip Background="Transparent" 
-                                 Content="QAQ"
-                                 ws:WindowOption.AccentState="AcrylicBlurBehind">
-                            
-                        </ToolTip>
-                    </ws:Button.ToolTip>
                 </ws:Button>
                 <ws:Button Command="{Binding GoNextCommand}"
                            VerticalAlignment="Center"

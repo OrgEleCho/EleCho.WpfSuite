@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media.Animation;
+using System.Xml;
 
 namespace WpfTest
 {
@@ -17,7 +18,11 @@ namespace WpfTest
     {
         public App()
         {
+            var stringWriter = new StringWriter();
+            var xmlWriter = XmlWriter.Create(stringWriter);
 
+            XamlWriter.Save(FindResource(typeof(ToolTip)), xmlWriter);
+            var output = stringWriter.ToString();
         }
     }
 
