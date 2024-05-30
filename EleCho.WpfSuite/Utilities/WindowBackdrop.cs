@@ -6,8 +6,8 @@ namespace EleCho.WpfSuite
     {
         Auto = 0,
         None = 1,
-        MainWindow = 2,
-        TransientWindow = 3,
-        TabbedWindow = 4
+        Mica = 2,
+        Acrylic = 3,
+        MicaAlt = 4
     }
 }

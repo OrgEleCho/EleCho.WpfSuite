@@ -45,14 +45,9 @@
                            Padding="5">
                     <ws:Button.ToolTip>
                         <ToolTip Background="Transparent" 
+                                 Content="QAQ"
                                  ws:WindowOption.AccentState="AcrylicBlurBehind">
-                            <StackPanel>
-
-                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
-                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
-                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
-                                <TextBlock Text="QWQjaowiefjaoiwjefoajweofjawejifjawioejf"/>
-                            </StackPanel>
+                            
                         </ToolTip>
                     </ws:Button.ToolTip>
                 </ws:Button>

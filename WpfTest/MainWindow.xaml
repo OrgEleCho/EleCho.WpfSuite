@@ -15,7 +15,7 @@
         Background="Transparent"
         d:Background="White"
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
-        ws:WindowOption.Backdrop="MainWindow">
+        ws:WindowOption.Backdrop="Mica">
 
     <Window.Resources>
         <ws:BindingProxy x:Key="DataProxy" Data="{Binding}"/>

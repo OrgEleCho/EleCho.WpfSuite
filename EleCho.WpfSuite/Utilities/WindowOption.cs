@@ -406,19 +406,16 @@ namespace EleCho.WpfSuite
             {
                 return PresentationSource.FromVisual(window) as HwndSource;
             }
+            else if (dependencyObject is ToolTip tooltip)
+            {
+                return PresentationSource.FromVisual(tooltip) as HwndSource;
+            }
             else if (dependencyObject is Popup popup)
             {
                 if (popup.Child is null)
                     return null;
 
                 return PresentationSource.FromVisual(popup.Child) as HwndSource;
-            }
-            else if (dependencyObject is ToolTip tooltip)
-            {
-                if (tooltip.Content is not Visual contentVisual)
-                    return null;
-
-                return PresentationSource.FromVisual(contentVisual) as HwndSource;
             }
 
             return null;
