@@ -7,10 +7,13 @@ using System.Windows.Media.Media3D;
 namespace EleCho.WpfSuite
 {
     /// <summary>
-    /// The Border decorator is used to draw a border and/or background around another element.
+    /// <inheritdoc/>
     /// </summary>
     public class Border : System.Windows.Controls.Border
     {
+        /// <summary>
+        /// A geometry to clip the content of this border correctly
+        /// </summary>
         public Geometry ContentClip
         {
             get { return (Geometry)GetValue(ContentClipProperty); }
@@ -18,8 +21,17 @@ namespace EleCho.WpfSuite
         }
 
 
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
         public static readonly DependencyPropertyKey ContentClipPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Border), new PropertyMetadata(default(Geometry)));
+
+        /// <summary>
+        /// The DependencyProperty for the ContentClip property. <br/>
+        /// Flags: None <br/>
+        /// Default value: null
+        /// </summary>
         public static readonly DependencyProperty ContentClipProperty =
             ContentClipPropertyKey.DependencyProperty;
 
@@ -51,6 +63,9 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void OnRender(DrawingContext dc)
         {
             SetValue(ContentClipPropertyKey, CalculateContentClip());
@@ -61,7 +76,7 @@ namespace EleCho.WpfSuite
         ///     Generates a StreamGeometry.
         /// </summary>
         /// <param name="ctx">An already opened StreamGeometryContext.</param>
-        /// <param name="rect">Rectangle for geomentry conversion.</param>
+        /// <param name="rect">Rectangle for geometry conversion.</param>
         /// <param name="radii">Corner radii.</param>
         /// <returns>Result geometry.</returns>
         private static void GenerateGeometry(StreamGeometryContext ctx, Rect rect, Radii radii)
@@ -80,7 +95,7 @@ namespace EleCho.WpfSuite
             Point leftTop = new Point(0, radii.TopLeft);
 
             //
-            //  check keypoints for overlap and resolve by partitioning radii according to
+            //  check key points for overlap and resolve by partitioning radii according to
             //  the percentage of each one.  
             //
 

@@ -3,7 +3,9 @@ using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite
 {
-
+    /// <summary>
+    /// Cubic bezier curve easing function
+    /// </summary>
     public class CubicBezierEase : BezierEaseBase
     {
         private double x1;
@@ -12,7 +14,7 @@ namespace EleCho.WpfSuite
         private double y2;
 
         /// <summary>
-        /// X value of control point 1
+        /// X value of the first control point
         /// </summary>
         public double X1
         {
@@ -26,12 +28,12 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// Y value of control point 1
+        /// Y value of the first control point
         /// </summary>
         public double Y1 { get => y1; set => y1 = value; }
 
         /// <summary>
-        /// X value of control point 2
+        /// X value of the second control point
         /// </summary>
         public double X2
         {
@@ -45,7 +47,7 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// Y value of control point 2
+        /// Y value of the second control point
         /// </summary>
         public double Y2 { get => y2; set => y2 = value; }
 
@@ -127,10 +129,17 @@ namespace EleCho.WpfSuite
             // return 3 * cp1 * rate - 3 * cp1 * 2 * rate * rate + 3 * cp1 * rate * rate * rate + 3 * cp2 * rate * rate - 3 * cp2 * rate * rate * rate + rate * rate * rate;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override double GetSampleRate(double time)
         {
             return GetSampleRate(X1, X2, time);
         }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override double GetSampleValue(double rate)
         {
             return GetSamplePoint(Y1, Y2, rate);

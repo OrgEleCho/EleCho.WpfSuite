@@ -4,6 +4,9 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Provides a way to arrange content in a grid where all the cells in the grid have the same size.
+    /// </summary>
     public class UniformGrid : System.Windows.Controls.Panel
     {
         private int _rows;
@@ -16,30 +19,45 @@ namespace EleCho.WpfSuite
         }
 #endif
 
+        /// <summary>
+        /// The number of columns that are in the grid.
+        /// </summary>
         public int Columns
         {
             get { return (int)GetValue(ColumnsProperty); }
             set { SetValue(ColumnsProperty, value); }
         }
 
+        /// <summary>
+        /// The number of rows that are in the grid.
+        /// </summary>
         public int Rows
         {
             get { return (int)GetValue(RowsProperty); }
             set { SetValue(RowsProperty, value); }
         }
 
+        /// <summary>
+        /// The number of leading blank cells in the first row of the grid.
+        /// </summary>
         public int FirstColumn
         {
             get { return (int)GetValue(FirstColumnProperty); }
             set { SetValue(FirstColumnProperty, value); }
         }
 
+        /// <summary>
+        /// Horizontal spacing between items
+        /// </summary>
         public double HorizontalSpacing
         {
             get { return (double)GetValue(HorizontalSpacingProperty); }
             set { SetValue(HorizontalSpacingProperty, value); }
         }
 
+        /// <summary>
+        /// Vertical spacing between items
+        /// </summary>
         public double VerticalSpacing
         {
             get { return (double)GetValue(VerticalSpacingProperty); }
@@ -63,6 +81,9 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty VerticalSpacingProperty =
             DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(UniformGrid), new PropertyMetadata(0.0));
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override Size MeasureOverride(Size constraint)
         {
             UpdateComputedValues();
@@ -132,6 +153,9 @@ namespace EleCho.WpfSuite
             return requiredSize;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             if (_rows == 0 && _columns == 0)

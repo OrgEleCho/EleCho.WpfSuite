@@ -22,6 +22,11 @@ namespace EleCho.WpfSuite
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBox), new FrameworkPropertyMetadata(typeof(ListBox)));
         }
 
+        /// <summary>
+        /// The CornerRadius property allows users to control the roundness of the corners independently by
+        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
+        /// smoothly blend from corner to corner.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }

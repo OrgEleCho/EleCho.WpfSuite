@@ -8,9 +8,10 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>EleCho.WpfSuite</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
     <Version>0.3.3</Version>
-    
+
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
     <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>

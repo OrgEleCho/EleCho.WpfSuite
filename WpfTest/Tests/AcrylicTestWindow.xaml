@@ -9,7 +9,7 @@
         Background="#01FFFFFF"
         d:Background="White"
         Title="TestWindow" Height="250" Width="250"
-        ws:WindowOption.Backdrop="TransientWindow">
+        ws:WindowOption.Backdrop="Acrylic">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="30" 

@@ -5,35 +5,52 @@ using System.Windows.Controls;
 
 namespace EleCho.WpfSuite
 {
-
+    /// <summary>
+    /// Enhanced WrapPanel
+    /// </summary>
     public class WrapPanel : Panel
     {
         private List<UIElement> _layoutHelperList = new();
 
+        /// <summary>
+        /// Layout orientation
+        /// </summary>
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
+        /// <summary>
+        /// Item width. double.NaN for auto width.
+        /// </summary>
         public double ItemWidth
         {
             get { return (double)GetValue(ItemWidthProperty); }
             set { SetValue(ItemWidthProperty, value); }
         }
 
+        /// <summary>
+        /// Item height. double.NaN for auto height.
+        /// </summary>
         public double ItemHeight
         {
             get { return (double)GetValue(ItemHeightProperty); }
             set { SetValue(ItemHeightProperty, value); }
         }
 
+        /// <summary>
+        /// Vertical spacing between items
+        /// </summary>
         public double VerticalSpacing
         {
             get { return (double)GetValue(VerticalSpacingProperty); }
             set { SetValue(VerticalSpacingProperty, value); }
         }
 
+        /// <summary>
+        /// Horizontal spacing between items
+        /// </summary>
         public double HorizontalSpacing
         {
             get { return (double)GetValue(HorizontalSpacingProperty); }
@@ -337,18 +354,34 @@ namespace EleCho.WpfSuite
             }
         }
 
+
+        /// <summary>
+        /// Dependency property of Orientation property
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty =
             DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(WrapPanel), new FrameworkPropertyMetadata(Orientation.Horizontal, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// Dependency property of ItemHeight property
+        /// </summary>
         public static readonly DependencyProperty ItemHeightProperty =
             DependencyProperty.Register(nameof(ItemHeight), typeof(double), typeof(WrapPanel), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// Dependency property of ItemWidth property
+        /// </summary>
         public static readonly DependencyProperty ItemWidthProperty =
             DependencyProperty.Register(nameof(ItemWidth), typeof(double), typeof(WrapPanel), new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// Dependency property of VerticalSpacing property
+        /// </summary>
         public static readonly DependencyProperty VerticalSpacingProperty =
             DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(WrapPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// Dependency property of HorizontalSpacing property
+        /// </summary>
         public static readonly DependencyProperty HorizontalSpacingProperty =
             DependencyProperty.Register(nameof(HorizontalSpacing), typeof(double), typeof(WrapPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 

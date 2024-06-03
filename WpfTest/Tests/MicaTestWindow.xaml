@@ -9,7 +9,7 @@
         Title="MicaTestWindow" Height="250" Width="250"
         Background="Transparent"
         d:Background="White"
-        ws:WindowOption.Backdrop="MainWindow">
+        ws:WindowOption.Backdrop="Mica">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="45"

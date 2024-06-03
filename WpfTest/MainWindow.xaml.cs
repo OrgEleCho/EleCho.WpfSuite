@@ -28,10 +28,21 @@ namespace WpfTest
             DataContext = this;
             InitializeComponent();
 
-            Loaded += (s, e) =>
-            {
-                //new TestWindow().Show();
-            };
+            //Loaded += (s, e) =>
+            //{
+            //    var hwndSource = ((HwndSource)HwndSource.FromVisual(this));
+            //    hwndSource.CompositionTarget.BackgroundColor = Colors.Transparent;
+
+            //    var margins = new EleCho.WpfSuite.WindowOption.NativeDefinition.Margins()
+            //    {
+            //        LeftWidth = -1, 
+            //        RightWidth = -1,
+            //        TopHeight = -1,
+            //        BottomHeight = -1
+            //    };
+
+            //    EleCho.WpfSuite.WindowOption.NativeDefinition.DwmExtendFrameIntoClientArea(hwndSource.Handle, ref margins);
+            //};
         }
 
         [ObservableProperty]

@@ -2,6 +2,9 @@
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Quadratic bezier curve easing function
+    /// </summary>
     public class QuadraticBezierEase : BezierEaseBase
     {
         private double x;
@@ -21,6 +24,7 @@ namespace EleCho.WpfSuite
         {
             return 2 * rate * (1 - rate) * cp + rate * rate * 1;
         }
+
         private double PickAppropriateRate(double cp, double p, params double[] rates)
         {
             double result = double.NaN;
@@ -30,6 +34,7 @@ namespace EleCho.WpfSuite
                     result = rate;
             return result;
         }
+
         private double GetSampleRate(double cp, double p)
         {
             double
@@ -58,7 +63,14 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override double GetSampleRate(double time) => GetSampleRate(this.X, time);
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override double GetSampleValue(double rate) => GetSamplePoint(this.X, rate);
     }
 }

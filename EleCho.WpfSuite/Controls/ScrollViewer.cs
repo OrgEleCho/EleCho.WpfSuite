@@ -20,6 +20,9 @@ using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// </summary>
     public class ScrollViewer : System.Windows.Controls.ScrollViewer
     {
         static ScrollViewer()
@@ -185,6 +188,9 @@ namespace EleCho.WpfSuite
             _animationRunning = false;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             if (!ScrollWithWheelDelta)
@@ -199,28 +205,44 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <summary>
+        /// The horizontal offset of scrolling target 
+        /// </summary>
         public double HorizontalOffsetTarget
         {
             get { return (double)GetValue(HorizontalOffsetTargetProperty); }
         }
 
+        /// <summary>
+        /// The vertical offset of scrolling target 
+        /// </summary>
         public double VerticalOffsetTarget
         {
             get { return (double)GetValue(VerticalOffsetTargetProperty); }
         }
 
+        /// <summary>
+        /// Scroll with wheel delta instead of scrolling fixed number of lines
+        /// </summary>
         public bool ScrollWithWheelDelta
         {
             get { return (bool)GetValue(ScrollWithWheelDeltaProperty); }
             set { SetValue(ScrollWithWheelDeltaProperty, value); }
         }
 
+        /// <summary>
+        /// Enable scrolling animation while using mouse <br/>
+        /// You need to set ScrollWithWheelDelta to true to use this
+        /// </summary>
         public bool EnableScrollingAnimation
         {
             get { return (bool)GetValue(EnableScrollingAnimationProperty); }
             set { SetValue(EnableScrollingAnimationProperty, value); }
         }
 
+        /// <summary>
+        /// Scrolling animation duration
+        /// </summary>
         public Duration ScrollingAnimationDuration
         {
             get { return (Duration)GetValue(ScrollingAnimationDurationProperty); }
@@ -229,60 +251,110 @@ namespace EleCho.WpfSuite
 
 
 
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
         public static readonly DependencyPropertyKey HorizontalOffsetTargetPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(HorizontalOffsetTarget), typeof(double), typeof(ScrollViewer), new PropertyMetadata(0.0));
 
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
         public static readonly DependencyPropertyKey VerticalOffsetTargetPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(VerticalOffsetTarget), typeof(double), typeof(ScrollViewer), new PropertyMetadata(0.0));
 
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
         public static readonly DependencyProperty HorizontalOffsetTargetProperty = 
             HorizontalOffsetTargetPropertyKey.DependencyProperty;
 
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
         public static readonly DependencyProperty VerticalOffsetTargetProperty =
             VerticalOffsetTargetPropertyKey.DependencyProperty;
 
 
 
+        /// <summary>
+        /// Get value of ScrollWithWheelDelta property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool GetScrollWithWheelDelta(DependencyObject obj)
         {
             return (bool)obj.GetValue(ScrollWithWheelDeltaProperty);
         }
 
+        /// <summary>
+        /// Set value of ScrollWithWheelDelta property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetScrollWithWheelDelta(DependencyObject obj, bool value)
         {
             obj.SetValue(ScrollWithWheelDeltaProperty, value);
         }
 
+        /// <summary>
+        /// Get value of EnableScrollingAnimation property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static bool GetEnableScrollingAnimation(DependencyObject obj)
         {
             return (bool)obj.GetValue(EnableScrollingAnimationProperty);
         }
 
+        /// <summary>
+        /// Set value of EnableScrollingAnimation property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetEnableScrollingAnimation(DependencyObject obj, bool value)
         {
             obj.SetValue(EnableScrollingAnimationProperty, value);
         }
 
+        /// <summary>
+        /// Get value of ScrollingAnimationDuration property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static Duration GetScrollingAnimationDuration(DependencyObject obj)
         {
             return (Duration)obj.GetValue(ScrollingAnimationDurationProperty);
         }
 
+        /// <summary>
+        /// Set value of ScrollingAnimationDuration property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetScrollingAnimationDuration(DependencyObject obj, Duration value)
         {
             obj.SetValue(ScrollingAnimationDurationProperty, value);
         }
 
 
-
+        /// <summary>
+        /// The DependencyProperty of ScrollWithWheelDelta property.
+        /// </summary>
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>
+        /// The DependencyProperty of EnableScrollingAnimation property.
+        /// </summary>
         public static readonly DependencyProperty EnableScrollingAnimationProperty =
             DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>
+        /// The DependencyProperty of ScrollingAnimationDuration property.
+        /// </summary>
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);

@@ -7,7 +7,6 @@
         xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="800"
         Icon="Assets/logo.png"

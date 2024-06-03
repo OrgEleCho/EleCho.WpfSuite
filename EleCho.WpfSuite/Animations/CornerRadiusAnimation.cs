@@ -385,6 +385,9 @@ namespace EleCho.WpfSuite
         #endregion
     }
 
+    /// <summary>
+    /// Base class of CornerRadiusAnimation
+    /// </summary>
     public abstract class CornerRadiusAnimationBase : AnimationTimeline
     {
         #region Constructors

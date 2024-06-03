@@ -15,7 +15,9 @@ using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
-
+    /// <summary>
+    /// Represents the enhanced button component that inherently reacts to the Click event.
+    /// </summary>
     public class Button : System.Windows.Controls.Button
     {
         static Button()
@@ -27,6 +29,11 @@ namespace EleCho.WpfSuite
             BorderBrushProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(Border.BorderBrushProperty.DefaultMetadata.DefaultValue));
         }
 
+        /// <summary>
+        /// The CornerRadius property allows users to control the roundness of the corners independently by
+        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
+        /// smoothly blend from corner to corner.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
