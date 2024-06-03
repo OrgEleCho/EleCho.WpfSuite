@@ -6,9 +6,7 @@ using System.Windows.Media.Media3D;
 
 namespace EleCho.WpfSuite
 {
-    /// <summary>
     /// <inheritdoc/>
-    /// </summary>
     public class Border : System.Windows.Controls.Border
     {
         /// <summary>
@@ -63,9 +61,7 @@ namespace EleCho.WpfSuite
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override void OnRender(DrawingContext dc)
         {
             SetValue(ContentClipPropertyKey, CalculateContentClip());

@@ -20,9 +20,7 @@ using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
-    /// <summary>
     /// <inheritdoc/>
-    /// </summary>
     public class ScrollViewer : System.Windows.Controls.ScrollViewer
     {
         static ScrollViewer()
@@ -188,9 +186,7 @@ namespace EleCho.WpfSuite
             _animationRunning = false;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             if (!ScrollWithWheelDelta)

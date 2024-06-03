@@ -21,9 +21,7 @@ namespace EleCho.WpfSuite
         /// <returns></returns>
         protected abstract double GetSampleValue(double rate);
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public double Ease(double normalizedTime) => GetSampleValue(GetSampleRate(normalizedTime));
     }
 }

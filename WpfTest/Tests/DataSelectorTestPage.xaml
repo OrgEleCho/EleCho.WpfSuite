@@ -1,0 +1,65 @@
+﻿<Page x:Class="WpfTest.Tests.DataSelectorTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+      xmlns:local="clr-namespace:WpfTest.Tests"
+      mc:Ignorable="d" 
+      d:Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance Type=local:DataSelectorTestPage}"
+      Title="DataSelectorTestPage">
+
+    <ws:ScrollViewer>
+        <ws:StackPanel Margin="28 12 28 28"
+                       Spacing="8">
+            <TextBlock Text="DataTemplateSelector Test"
+                       FontSize="26"/>
+            <TextBlock TextWrapping="Wrap"
+                       Text="Differenct types of data can have different data templates." 
+                       Margin="0 0 0 12"/>
+
+            <ItemsControl ItemsSource="{Binding DataList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ws:StackPanel Spacing="8"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="local:DataTypeBase">
+                        <ContentPresenter Content="{Binding}">
+                            <ContentPresenter.ContentTemplateSelector>
+                                <ws:TypeMatchDataTemplateSelector>
+                                    <DataTemplate DataType="{x:Type local:DataTypeA}">
+                                        <ws:GroupBox Header="{Binding Name}"
+                                                     BorderBrush="Pink">
+                                            <TextBlock>
+                                                <Run Text="FieldA:"/>
+                                                <Run Text="{Binding FieldA}"/>
+                                            </TextBlock>
+                                        </ws:GroupBox>
+                                    </DataTemplate>
+                                    <DataTemplate DataType="{x:Type local:DataTypeB}">
+                                        <ws:GroupBox Header="{Binding Name}"
+                                                     BorderBrush="Purple">
+                                            <TextBlock>
+                                                <Run Text="FieldB:"/>
+                                                <Run Text="{Binding FieldB}"/>
+                                            </TextBlock>
+                                        </ws:GroupBox>
+                                    </DataTemplate>
+                                    <DataTemplate DataType="{x:Type local:DataTypeBase}">
+                                        <ws:GroupBox Header="{Binding Name}">
+                                            <TextBlock Text="No properties"/>
+                                        </ws:GroupBox>
+                                    </DataTemplate>
+                                </ws:TypeMatchDataTemplateSelector>
+                            </ContentPresenter.ContentTemplateSelector>
+                        </ContentPresenter>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ws:StackPanel>        
+    </ws:ScrollViewer>
+</Page>

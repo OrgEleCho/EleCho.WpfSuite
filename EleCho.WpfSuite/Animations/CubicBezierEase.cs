@@ -129,17 +129,13 @@ namespace EleCho.WpfSuite
             // return 3 * cp1 * rate - 3 * cp1 * 2 * rate * rate + 3 * cp1 * rate * rate * rate + 3 * cp2 * rate * rate - 3 * cp2 * rate * rate * rate + rate * rate * rate;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override double GetSampleRate(double time)
         {
             return GetSampleRate(X1, X2, time);
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override double GetSampleValue(double rate)
         {
             return GetSamplePoint(Y1, Y2, rate);

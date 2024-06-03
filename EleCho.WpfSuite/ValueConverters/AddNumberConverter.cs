@@ -12,9 +12,7 @@ namespace EleCho.WpfSuite
             set { SetValue(OtherProperty, value); }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try

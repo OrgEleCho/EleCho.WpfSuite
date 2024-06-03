@@ -15,7 +15,9 @@
         <ws:StackPanel Margin="28 12 28 28"
                        Spacing="8">
             <TextBlock Text="Panels Test"
-                       FontSize="26"
+                       FontSize="26"/>
+            <TextBlock TextWrapping="Wrap"
+                       Text="Here are some different layout panels."
                        Margin="0 0 0 12"/>
             <ws:GroupBox Header="StackPanel (Spacing=8)"
                          Padding="8">

@@ -63,14 +63,10 @@ namespace EleCho.WpfSuite
             }
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override double GetSampleRate(double time) => GetSampleRate(this.X, time);
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override double GetSampleValue(double rate) => GetSamplePoint(this.X, rate);
     }
 }

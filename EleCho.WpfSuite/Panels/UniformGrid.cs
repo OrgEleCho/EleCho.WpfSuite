@@ -81,9 +81,7 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty VerticalSpacingProperty =
             DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(UniformGrid), new PropertyMetadata(0.0));
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override Size MeasureOverride(Size constraint)
         {
             UpdateComputedValues();
@@ -153,9 +151,7 @@ namespace EleCho.WpfSuite
             return requiredSize;
         }
 
-        /// <summary>
         /// <inheritdoc/>
-        /// </summary>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             if (_rows == 0 && _columns == 0)

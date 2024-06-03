@@ -100,6 +100,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "DataTemplateSelector",
+                Description = "",
+                PageType = typeof(DataSelectorTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "TextBox",
                 Description = "",
                 PageType = typeof(TextBoxTestPage)
