@@ -63,9 +63,7 @@
                               MainSpacing="8"
                               ItemsAlignment="Start">
                     <ws:ToggleButton x:Name="ConditionButton"
-                                     Content="Toggle Condition"
-                                     Padding="5 3"
-                                     CornerRadius="4"/>
+                                     Content="Toggle Condition"/>
                     <StackPanel>
                         <TextBlock Text="ContentWhenTrue:"/>
                         <ws:TextBox x:Name="ContentWhenTrueBox"

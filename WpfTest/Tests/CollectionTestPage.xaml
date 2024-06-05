@@ -31,15 +31,13 @@
                 <ws:StackPanel Orientation="Horizontal"
                                HorizontalAlignment="Left"
                                Spacing="8">
-                    <ws:Button Content="Add item" Command="{Binding AddItemCommand}"
-                               Padding="5 3"/>
-                    <ws:Button Content="Remove item" Command="{Binding RemoveItemCommand}"
-                               Padding="5 3"/>
+                    <ws:Button Content="Add item" Command="{Binding AddItemCommand}"/>
+                    <ws:Button Content="Remove item" Command="{Binding RemoveItemCommand}"/>
                 </ws:StackPanel>
 
-                <GroupBox Header="Items (WrapPanel)"
-                          Padding="8"
-                          Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
+                <ws:GroupBox Header="Items (WrapPanel)"
+                             Padding="8"
+                             Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -57,11 +55,11 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </GroupBox>
+                </ws:GroupBox>
 
-                <GroupBox Header="Items (FlexPanel)"
-                          Padding="8"
-                          Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
+                <ws:GroupBox Header="Items (FlexPanel)"
+                             Padding="8"
+                             Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -82,11 +80,11 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </GroupBox>
+                </ws:GroupBox>
 
-                <GroupBox Header="Items (StackPanel)"
-                          Padding="8"
-                          Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
+                <ws:GroupBox Header="Items (StackPanel)"
+                             Padding="8"
+                             Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}"
                                   HorizontalAlignment="Left">
                         <ItemsControl.ItemsPanel>
@@ -104,7 +102,7 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </GroupBox>
+                </ws:GroupBox>
             </ws:StackPanel>
         </Grid>
     </ws:ScrollViewer>
