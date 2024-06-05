@@ -2,14 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
-             xmlns:wsd="https://github.com/OrgEleCho/EleCho.WpfSuite/SimpleDesign"
+             xmlns:wssd="https://github.com/OrgEleCho/EleCho.WpfSuite/SimpleDesign"
+             xmlns:wsfd="https://github.com/OrgEleCho/EleCho.WpfSuite/FluentDesign"
              xmlns:utils="clr-namespace:WpfTest.Utilities"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <wsd:SimpleDesignResources/>
+                <wsfd:FluentDesignResources/>
+                <!--<wssd:SimpleDesignResources/>-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
