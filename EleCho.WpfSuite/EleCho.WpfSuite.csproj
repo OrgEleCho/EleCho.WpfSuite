@@ -52,10 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Controls\TooltipResources.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\assets\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -71,33 +67,28 @@
     <Resource Include="Controls\CheckBoxResources.xaml" />
     <Resource Include="Controls\ComboBoxItemResources.xaml" />
     <Resource Include="Controls\ComboBoxResources.xaml" />
+    <Resource Include="Controls\ConditionalControlResources.xaml" />
     <Resource Include="Controls\ContextMenuResources.xaml" />
     <Resource Include="Controls\FrameResources.xaml" />
     <Resource Include="Controls\GroupBoxResources.xaml" />
+    <Resource Include="Controls\ImageResources.xaml" />
     <Resource Include="Controls\ListBoxItemResources.xaml" />
     <Resource Include="Controls\ListBoxResources.xaml" />
     <Resource Include="Controls\MenuItemResources.xaml" />
     <Resource Include="Controls\MenuResources.xaml" />
+    <Resource Include="Controls\PasswordBoxResources.xaml" />
     <Resource Include="Controls\ProgressBarResources.xaml" />
     <Resource Include="Controls\RepeatButtonResources.xaml" />
     <Resource Include="Controls\ScrollBarResources.xaml" />
+    <Resource Include="Controls\ScrollViewerResources.xaml" />
     <Resource Include="Controls\SlicedImageResources.xaml" />
-    <Resource Include="Controls\PasswordBoxResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
     <Resource Include="Controls\TabControlResources.xaml" />
     <Resource Include="Controls\TabItemResources.xaml" />
+    <Resource Include="Controls\TextBoxResources.xaml" />
     <Resource Include="Controls\ThumbResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
-    <Resource Include="Controls\TransitioningContentControlResources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-    <Resource Include="Controls\ConditionalControlResources.xaml" />
-    <Resource Include="Controls\ImageResources.xaml" />
-    <Resource Include="Controls\ScrollViewerResources.xaml" />
-    <Resource Include="Controls\TextBoxResources.xaml" />
+    <Resource Include="Controls\TooltipResources.xaml" />
+    <Resource Include="Controls\TransitioningContentControlResources.xaml" />
   </ItemGroup>
 
 </Project>
