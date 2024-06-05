@@ -20,6 +20,7 @@ namespace EleCho.WpfSuite
             set { SetValue(SpacingProperty, value); }
         }
 
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size availableSize)
         {
             var spacing = Spacing;
@@ -73,6 +74,7 @@ namespace EleCho.WpfSuite
             return panelDesiredSize;
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var offset = 0.0;

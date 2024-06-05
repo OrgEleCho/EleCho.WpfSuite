@@ -33,6 +33,16 @@ namespace EleCho.WpfSuite
 
         static readonly Version s_versionCurrentWindows = Environment.OSVersion.Version;
 
+        /// <summary>
+        /// Check whether the current platform can set backdrop property
+        /// </summary>
+        public static bool CanSetBackdrop => s_versionCurrentWindows >= s_versionWindows11_22621;
+
+        /// <summary>
+        /// Check whether the current platform can set accent properties
+        /// </summary>
+        public static bool CanSetAccent => s_versionCurrentWindows >= s_versionWindows10_1809;
+
 
 
         [AttachedPropertyBrowsableForType(typeof(Window))]
@@ -141,7 +151,6 @@ namespace EleCho.WpfSuite
         {
             obj.SetValue(AccentGradientColorProperty, value);
         }
-
 
 
         public static readonly DependencyProperty BackdropProperty =

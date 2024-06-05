@@ -10,6 +10,9 @@ namespace EleCho.WpfSuite
     // 这里吐槽一句, FlexPanel 是基于 HandyControl 的 FlexPanel 改的, 加了 Spacing, 改了些bug
     // 但随之而来的就是,,, 代码也越来越屎山了
 
+    /// <summary>
+    /// Flex layout panel
+    /// </summary>
     public class FlexPanel : Panel
     {
         private UVSize _uvConstraint;
@@ -185,6 +188,7 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)
         {
             var flexDirection = Direction;
@@ -305,6 +309,7 @@ namespace EleCho.WpfSuite
             return finalSize;
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             Layout(arrangeSize, true);
