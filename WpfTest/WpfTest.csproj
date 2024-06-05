@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EleCho.WpfSuite.FluentDesign\EleCho.WpfSuite.FluentDesign.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.SimpleDesign\EleCho.WpfSuite.SimpleDesign.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite\EleCho.WpfSuite.csproj" />
   </ItemGroup>
