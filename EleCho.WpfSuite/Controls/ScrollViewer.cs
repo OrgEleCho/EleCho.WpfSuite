@@ -75,6 +75,16 @@ namespace EleCho.WpfSuite
             if (vertical)
             {
                 double scrollDelta = e.Delta;
+
+                if (isTouchpadScrolling)
+                {
+                    scrollDelta *= TouchpadScrollDeltaFactor;
+                }
+                else
+                {
+                    scrollDelta *= MouseScrollDeltaFactor;
+                }
+
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -126,6 +136,16 @@ namespace EleCho.WpfSuite
             else if (horizontal)
             {
                 double scrollDelta = e.Delta;
+
+                if (isTouchpadScrolling)
+                {
+                    scrollDelta *= TouchpadScrollDeltaFactor;
+                }
+                else
+                {
+                    scrollDelta *= MouseScrollDeltaFactor;
+                }
+
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -245,6 +265,26 @@ namespace EleCho.WpfSuite
             set { SetValue(ScrollingAnimationDurationProperty, value); }
         }
 
+        /// <summary>
+        /// Delta value factor while mouse scrolling
+        /// </summary>
+        public double MouseScrollDeltaFactor
+        {
+            get { return (double)GetValue(MouseScrollDeltaFactorProperty); }
+            set { SetValue(MouseScrollDeltaFactorProperty, value); }
+        }
+
+        /// <summary>
+        /// Delta value factor while touchpad scrolling
+        /// </summary>
+        public double TouchpadScrollDeltaFactor
+        {
+            get { return (double)GetValue(TouchpadScrollDeltaFactorProperty); }
+            set { SetValue(TouchpadScrollDeltaFactorProperty, value); }
+        }
+
+
+
 
 
         /// <summary>
@@ -335,25 +375,37 @@ namespace EleCho.WpfSuite
 
 
         /// <summary>
-        /// The DependencyProperty of ScrollWithWheelDelta property.
+        /// The DependencyProperty of <see cref="ScrollWithWheelDelta"/> property.
         /// </summary>
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// The DependencyProperty of EnableScrollingAnimation property.
+        /// The DependencyProperty of <see cref="EnableScrollingAnimation"/> property.
         /// </summary>
         public static readonly DependencyProperty EnableScrollingAnimationProperty =
             DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// The DependencyProperty of ScrollingAnimationDuration property.
+        /// The DependencyProperty of <see cref="ScrollingAnimationDuration"/> property.
         /// </summary>
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), 
                 new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="MouseScrollDeltaFactor"/> property
+        /// </summary>
+        public static readonly DependencyProperty MouseScrollDeltaFactorProperty =
+            DependencyProperty.Register(nameof(MouseScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new PropertyMetadata(1.0));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="TouchpadScrollDeltaFactor"/> property
+        /// </summary>
+        public static readonly DependencyProperty TouchpadScrollDeltaFactorProperty =
+            DependencyProperty.Register(nameof(TouchpadScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new PropertyMetadata(1.0));
 
         private static bool ValidateScrollingAnimationDuration(object value)
             => value is Duration duration && duration.HasTimeSpan;
