@@ -151,7 +151,8 @@ namespace WpfTest
             AppFrameTransitionReverse = newItemIndex < oldItemIndex;
 
             var page = Activator.CreateInstance(navigationItem.PageType);
-            AppFrame.Navigate(page);
+            //AppFrame.Navigate(page);
+            AppFrame.Content = page;
         }
 
         [RelayCommand]

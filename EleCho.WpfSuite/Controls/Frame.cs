@@ -12,7 +12,7 @@ namespace EleCho.WpfSuite
         static Frame()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(typeof(Frame)));
-            ContentProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(null, OnFrameContentChanged));
+            ContentProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CoerceContent)));
         }
 
         private TransitioningContentControl? _contentControl;
@@ -80,12 +80,19 @@ namespace EleCho.WpfSuite
             _lastBackStackSize = currentBackStackSize;
         }
 
-        private static void OnFrameContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static object CoerceContent(DependencyObject d, object value)
         {
-            if (d is Frame frame)
+            var frame = (Frame)d;
+
+            if (frame.NavigationService.Content == value)
             {
-                frame.ApplyFrameContentChange(e.NewValue);
+                frame.ApplyFrameContentChange(value);
+                return value;
             }
+
+            frame.Navigate(value);
+
+            return DependencyProperty.UnsetValue;
         }
 
 
