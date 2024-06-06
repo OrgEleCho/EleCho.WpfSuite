@@ -57,6 +57,14 @@
                 </ws:ConditionalControl.ContentTemplateWhenFalse>
             </ws:ConditionalControl>
 
+            <ws:ConditionalControl Condition="{Binding ElementName=ConditionButton,Path=IsChecked}">
+                <ws:ConditionalControl.Transition>
+                    <ws:SlideFadeTransition Orientation="Vertical"
+                                            Distance="10"/>
+                </ws:ConditionalControl.Transition>
+                <TextBlock Text="Condition is true"/>
+            </ws:ConditionalControl>
+
             <ws:GroupBox Header="Options"
                          Padding="8">
                 <ws:FlexPanel Direction="Column"
@@ -69,16 +77,14 @@
                         <ws:TextBox x:Name="ContentWhenTrueBox"
                                     Placeholder="ContentWhenTrue"
                                     Text="TrueContent"
-                                    MinWidth="150"
-                                    Padding="5 3"/>
+                                    MinWidth="150"/>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock Text="ContentWhenFalse:"/>
                         <ws:TextBox x:Name="ContentWhenFalseBox"
                                     Placeholder="ContentWhenTrue"
                                     Text="FalseContent"
-                                    MinWidth="150"
-                                    Padding="5 3"/>
+                                    MinWidth="150"/>
                     </StackPanel>
                 </ws:FlexPanel>
             </ws:GroupBox>
