@@ -37,6 +37,7 @@
     <Page Remove="Controls\MenuItemResources.xaml" />
     <Page Remove="Controls\MenuResources.xaml" />
     <Page Remove="Controls\PasswordBoxResources.xaml" />
+    <Page Remove="Controls\PopupResources.xaml" />
     <Page Remove="Controls\ProgressBarResources.xaml" />
     <Page Remove="Controls\RepeatButtonResources.xaml" />
     <Page Remove="Controls\ScrollBarResources.xaml" />
@@ -77,6 +78,7 @@
     <Resource Include="Controls\MenuItemResources.xaml" />
     <Resource Include="Controls\MenuResources.xaml" />
     <Resource Include="Controls\PasswordBoxResources.xaml" />
+    <Resource Include="Controls\PopupResources.xaml" />
     <Resource Include="Controls\ProgressBarResources.xaml" />
     <Resource Include="Controls\RepeatButtonResources.xaml" />
     <Resource Include="Controls\ScrollBarResources.xaml" />
