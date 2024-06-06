@@ -28,13 +28,13 @@
     <Style TargetType="{x:Type ws:TextBox}"
            BasedOn="{StaticResource {x:Type ws:TextBox}}">
         <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="Padding" Value="4 2"/>
+        <Setter Property="Padding" Value="4 6"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="FocusedBorderBrush" Value="{StaticResource FocusedTextBoxBorder}"/>
-        <Setter Property="Background" Value="#fbfcf8"/>
-        <Setter Property="HoverBackground" Value="#f5f7f2"/>
+        <Setter Property="Background" Value="#EEFFFFFF"/>
+        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
     </Style>
 
     <Style TargetType="{x:Type ws:Button}"
@@ -44,9 +44,9 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
-        <Setter Property="Background" Value="#fbfcf8"/>
-        <Setter Property="HoverBackground" Value="#f5f7f2"/>
-        <Setter Property="PressedBackground" Value="#f3f7eb"/>
+        <Setter Property="Background" Value="#EEFFFFFF"/>
+        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
+        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ToggleButton}"
@@ -56,9 +56,9 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
-        <Setter Property="Background" Value="#fbfcf8"/>
-        <Setter Property="HoverBackground" Value="#f5f7f2"/>
-        <Setter Property="PressedBackground" Value="#f3f7eb"/>
+        <Setter Property="Background" Value="#EEFFFFFF"/>
+        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
+        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ComboBox}"
@@ -70,9 +70,9 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
         <Setter Property="HoverBorderBrush" Value="{StaticResource ControlBorder}"/>
         <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
-        <Setter Property="Background" Value="#fbfcf8"/>
-        <Setter Property="HoverBackground" Value="#f5f7f2"/>
-        <Setter Property="PressedBackground" Value="#f3f7eb"/>
+        <Setter Property="Background" Value="#EEFFFFFF"/>
+        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
+        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ComboBoxItem}"
