@@ -11,10 +11,8 @@
         Title="MainWindow" Height="550" Width="800"
         Icon="Assets/logo.png"
         Loaded="Window_Loaded"
-        Background="Transparent"
         d:Background="White"
-        d:DataContext="{d:DesignInstance Type=local:MainWindow}"
-        ws:WindowOption.Backdrop="Mica">
+        d:DataContext="{d:DesignInstance Type=local:MainWindow}">
 
     <Window.Resources>
         <ws:BindingProxy x:Key="DataProxy" Data="{Binding}"/>
