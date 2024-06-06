@@ -17,7 +17,7 @@
             <ws:StackPanel Spacing="8"
                            Width="{ws:Double 123}"
                            Orientation="Horizontal">
-                <ws:Button Content="QWQ"/>
+                <ws:Button Content="QWQ" PressedBackground="Red"/>
                 <ws:Button Content="QWQ"/>
                 <ws:Button Content="QWQ"/>
                 <ws:Button Content="QWQ"/>

@@ -50,7 +50,6 @@
                             Margin="5">
                     <TextBlock Text="Transition:"/>
                     <ws:ComboBox x:Name="TransitionSelector"
-                                 Background="#33FFFFFF"
                                  SelectedIndex="0">
                         <ws:ComboBox.ToolTip>
                             <ToolTip>

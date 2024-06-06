@@ -31,7 +31,7 @@
             <TextBlock Text="Scroll Test"
                        FontSize="26"/>
             <TextBlock TextWrapping="Wrap"
-                       Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen." />
+                       Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen. And if you use mouse scroll the right panel, operation is reversed." />
         </ws:StackPanel>
 
         <ws:Border Grid.Row="1"
@@ -86,6 +86,7 @@
             <ws:ScrollViewer ws:StylusTouchDevice.Simulate="True"
                              PanningMode="Both"
                              Padding="14"
+                             MouseScrollDeltaFactor="-1"
                              Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
                 <ws:StackPanel Spacing="8">
                     <ws:Button Content="Test" Click="Button_Click"/>

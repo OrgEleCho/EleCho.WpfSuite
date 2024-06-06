@@ -27,11 +27,9 @@
             <ws:StackPanel Orientation="Horizontal"
                            Spacing="8">
                 <ws:Button Content="Add item"
-                           Padding="15 5"
                            HorizontalAlignment="Left"
                            Command="{Binding AddItemCommand}"/>
                 <ws:Button Content="Remove item"
-                           Padding="15 5"
                            HorizontalAlignment="Left"
                            Command="{Binding RemoveItemCommand}"/>
             </ws:StackPanel>
