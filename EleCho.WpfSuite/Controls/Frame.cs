@@ -6,6 +6,9 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Frame is a content control that supports navigation.
+    /// </summary>
     [TemplatePart(Name = "PART_ContentControl", Type = typeof(TransitioningContentControl))]
     public class Frame : System.Windows.Controls.Frame
     {
@@ -32,12 +35,16 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// Transition of content switching
+        /// </summary>
         public IContentTransition Transition
         {
             get { return (IContentTransition)GetValue(TransitionProperty); }
             set { SetValue(TransitionProperty, value); }
         }
 
+        /// <inheritdoc/>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -96,9 +103,15 @@ namespace EleCho.WpfSuite
         }
 
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="CornerRadius"/> property
+        /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(Frame));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Transition"/> property
+        /// </summary>
         public static readonly DependencyProperty TransitionProperty =
             TransitioningContentControl.TransitionProperty.AddOwner(typeof(Frame));
 

@@ -3,6 +3,9 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Represents a control that a user can select and clear.
+    /// </summary>
     public class CheckBox : System.Windows.Controls.CheckBox
     {
         private static readonly Brush s_glyphBrush = new SolidColorBrush(Color.FromRgb(33, 33, 33));

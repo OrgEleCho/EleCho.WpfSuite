@@ -26,7 +26,7 @@ namespace EleCho.WpfSuite
             var basePopupType = typeof(System.Windows.Controls.Primitives.Popup);
 
             s_baseRepositionMethod = (Action<System.Windows.Controls.Primitives.Popup>)basePopupType
-                .GetMethod("Reposition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                .GetMethod("Reposition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
                 .CreateDelegate(typeof(Action<System.Windows.Controls.Primitives.Popup>));
 
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Popup), new FrameworkPropertyMetadata(typeof(Popup)));

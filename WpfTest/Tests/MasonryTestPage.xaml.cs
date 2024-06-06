@@ -32,7 +32,7 @@ namespace WpfTest.Tests
         public ObservableCollection<MasonryItem> MasonryItems { get; } = new();
 
         [RelayCommand]
-        public async Task AddItem()
+        public Task AddItem()
         {
             var h = Random.Shared.NextSingle();
             var s = 1f;
@@ -41,6 +41,8 @@ namespace WpfTest.Tests
 
             var newItem = new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), Random.Shared.Next(30, 80));
             MasonryItems.Add(newItem);
+
+            return Task.CompletedTask;
         }
 
         [RelayCommand]
