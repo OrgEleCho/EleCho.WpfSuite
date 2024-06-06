@@ -7,6 +7,9 @@ using System.Windows.Markup;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// ContentControl with transition
+    /// </summary>
     [TemplatePart(Name = "PART_Contents", Type = typeof(Panel))]
     [ContentProperty(nameof(Content))]
     public class TransitioningContentControl : Control
@@ -23,6 +26,7 @@ namespace EleCho.WpfSuite
         private object? _pendingNewContent;
         private bool _backward;
 
+        /// <inheritdoc/>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -35,48 +39,75 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <summary>
+        /// Content of this <see cref="TransitioningContentControl"/>
+        /// </summary>
         public object? Content
         {
             get { return (object?)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
 
+        /// <summary>
+        /// ContentTemplate of this <see cref="TransitioningContentControl"/>
+        /// </summary>
         public DataTemplate ContentTemplate
         {
             get { return (DataTemplate)GetValue(ContentTemplateProperty); }
             set { SetValue(ContentTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// ContentTemplateSelector of this <see cref="TransitioningContentControl"/>
+        /// </summary>
         public DataTemplateSelector ContentTemplateSelector
         {
             get { return (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty); }
             set { SetValue(ContentTemplateSelectorProperty, value); }
         }
 
+        /// <summary>
+        /// Transition of content switching
+        /// </summary>
         public IContentTransition? Transition
         {
             get { return (IContentTransition?)GetValue(TransitionProperty); }
             set { SetValue(TransitionProperty, value); }
         }
 
+        /// <summary>
+        /// Corner radius of 
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
         
-
+        /// <summary>
+        /// Set content of the <see cref="TransitioningContentControl"/>
+        /// </summary>
+        /// <param name="content"></param>
         public void SetContent(object? content)
         {
             Content = content;
         }
 
+        /// <summary>
+        /// Set content of the <see cref="TransitioningContentControl"/>
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="forward"></param>
         public void SetContent(object? content, bool forward)
         {
             _backward = !forward;
             Content = content;
         }
 
+        /// <summary>
+        /// Wait for the running transition
+        /// </summary>
+        /// <returns></returns>
         public Task WaitForTransitionAsync()
         {
 #if NET45
@@ -87,18 +118,33 @@ namespace EleCho.WpfSuite
         }
 
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Content"/> property
+        /// </summary>
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="ContentTemplate"/> property
+        /// </summary>
         public static readonly DependencyProperty ContentTemplateProperty =
             DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="ContentTemplateSelector"/> property
+        /// </summary>
         public static readonly DependencyProperty ContentTemplateSelectorProperty =
             DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Transition"/> property
+        /// </summary>
         public static readonly DependencyProperty TransitionProperty =
             DependencyProperty.Register(nameof(Transition), typeof(IContentTransition), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="CornerRadius"/> property
+        /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(TransitioningContentControl));
 
