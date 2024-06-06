@@ -57,13 +57,14 @@
                              Content="Toggle acrylic popup"
                              HorizontalAlignment="Left"/>
 
-            <Popup IsOpen="{Binding ElementName=PopupToggle,Path=IsChecked}" 
-                   ws:WindowOption.AccentState="AcrylicBlurBehind">
+            <ws:Popup IsOpen="{Binding ElementName=PopupToggle,Path=IsChecked}"
+                      PlacementTarget="{Binding ElementName=PopupToggle}"
+                      ws:WindowOption.AccentState="AcrylicBlurBehind">
                 <Border Width="250"
                         Height="250 ">
-                    
+
                 </Border>
-            </Popup>
+            </ws:Popup>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>
