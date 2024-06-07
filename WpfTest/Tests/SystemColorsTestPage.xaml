@@ -15,7 +15,7 @@
     <Page.Resources>
         <ws:ValueConverterGroup x:Key="ColorIsLightConverter">
             <ws:ColorBrightnessConverter/>
-            <ws:NumberCompareConverter Comparison="GreatorOrEqual"
+            <ws:NumberCompareConverter Comparison="GreaterOrEqual"
                                        TargetValue="0.5"/>
         </ws:ValueConverterGroup>
     </Page.Resources>
