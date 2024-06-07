@@ -6,6 +6,7 @@
     <sys:String x:Key="WpfSuiteDesignName">SimpleDesign</sys:String>
 
     <Color x:Key="PrimaryColor">#0067c0</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}"/>
 
     <LinearGradientBrush x:Key="ControlBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
@@ -27,6 +28,18 @@
 
     <Style TargetType="{x:Type ws:TextBox}"
            BasedOn="{StaticResource {x:Type ws:TextBox}}">
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Padding" Value="4 6"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+        <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
+        <Setter Property="FocusedBorderBrush" Value="{StaticResource FocusedTextBoxBorder}"/>
+        <Setter Property="Background" Value="#EEFFFFFF"/>
+        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
+    </Style>
+
+    <Style TargetType="{x:Type ws:PasswordBox}"
+           BasedOn="{StaticResource {x:Type ws:PasswordBox}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="4 6"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -77,7 +90,20 @@
 
     <Style TargetType="{x:Type ws:ComboBoxItem}"
            BasedOn="{StaticResource {x:Type ws:ComboBoxItem}}">
+        <Setter Property="Margin" Value="2 1"/>
+        <Setter Property="Padding" Value="8 6"/>
         <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="BorderThickness" Value="2 0 0 0"/>
+        <Setter Property="HoverBackground" Value="#11000000"/>
+        <Setter Property="SelectedBackground" Value="#11000000"/>
+        <Setter Property="SelectedFocusedBackground" Value="#11000000"/>
+        <Setter Property="HoverFocusedBackground" Value="#11000000"/>
+        <Setter Property="HoverSelectedBackground" Value="#11000000"/>
+        <Setter Property="HoverBorderBrush" Value="Transparent"/>
+        <Setter Property="HoverFocusedBorderBrush" Value="Transparent"/>
+        <Setter Property="SelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="FocusedBorderBrush" Value="Transparent"/>
     </Style>
 
     <Style TargetType="{x:Type ws:CheckBox}"
