@@ -5,7 +5,7 @@ using System.Windows;
 namespace EleCho.WpfSuite
 {
     /// <summary>
-    /// Fallback value between multiple bindings
+    /// Fallback between multiple values, return the first non-null value
     /// </summary>
     public class FallbackConverter : SingletonMultiValueConverterBase<FallbackConverter>
     {

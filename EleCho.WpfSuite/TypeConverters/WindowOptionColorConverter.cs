@@ -9,8 +9,12 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// <see cref="WindowOptionColor"/> converter
+    /// </summary>
     public class WindowOptionColorConverter : TypeConverter
     {
+        /// <inheritdoc/>
         public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
             if (sourceType == typeof(string) ||
@@ -20,12 +24,7 @@ namespace EleCho.WpfSuite
             return base.CanConvertFrom(context, sourceType);
         }
 
-        public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType)
-        {
-            destinationType = typeof(WindowOptionColor);
-            return true;
-        }
-
+        /// <inheritdoc/>
         public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
             if (value is string stringValue)

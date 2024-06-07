@@ -48,84 +48,154 @@ namespace EleCho.WpfSuite
 
 
 
+        /// <summary>
+        /// Get value of Backdrop property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowBackdrop GetBackdrop(DependencyObject obj)
         {
             return (WindowBackdrop)obj.GetValue(BackdropProperty);
         }
 
+        /// <summary>
+        /// Set value of Backdrop property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetBackdrop(DependencyObject obj, WindowBackdrop value)
         {
             obj.SetValue(BackdropProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of Corner property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowCorner GetCorner(DependencyObject obj)
         {
             return (WindowCorner)obj.GetValue(CornerProperty);
         }
 
+        /// <summary>
+        /// Set value of Corner property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetCorner(DependencyObject obj, WindowCorner value)
         {
             obj.SetValue(CornerProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of CaptionColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowOptionColor GetCaptionColor(DependencyObject obj)
         {
             return (WindowOptionColor)obj.GetValue(CaptionColorProperty);
         }
 
+        /// <summary>
+        /// Set value of CaptionColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetCaptionColor(DependencyObject obj, WindowOptionColor value)
         {
             obj.SetValue(CaptionColorProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of TextColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowOptionColor GetTextColor(DependencyObject obj)
         {
             return (WindowOptionColor)obj.GetValue(TextColorProperty);
         }
 
+        /// <summary>
+        /// Set value of TextColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetTextColor(DependencyObject obj, WindowOptionColor value)
         {
             obj.SetValue(TextColorProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of BorderColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowOptionColor GetBorderColor(DependencyObject obj)
         {
             return (WindowOptionColor)obj.GetValue(BorderColorProperty);
         }
 
+        /// <summary>
+        /// Set value of BorderColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetBorderColor(DependencyObject obj, WindowOptionColor value)
         {
             obj.SetValue(BorderColorProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of IsDarkMode property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static bool GetIsDarkMode(DependencyObject obj)
         {
             return (bool)obj.GetValue(IsDarkModeProperty);
         }
 
+        /// <summary>
+        /// Set value of IsDarkMode property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetIsDarkMode(DependencyObject obj, bool value)
         {
             obj.SetValue(IsDarkModeProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of AccentState property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static WindowAccentState GetAccentState(DependencyObject obj)
         {
             return (WindowAccentState)obj.GetValue(AccentStateProperty);
         }
 
+        /// <summary>
+        /// Set value of AccentState property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetAccentState(DependencyObject obj, WindowAccentState value)
         {
             obj.SetValue(AccentStateProperty, value);

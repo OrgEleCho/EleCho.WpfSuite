@@ -5,8 +5,12 @@ using System.Windows.Media.Imaging;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Convert a string uri to ImageSource
+    /// </summary>
     public class StringToImageSourceConverter : SingletonValueConverterBase<StringToImageSourceConverter>
     {
+        /// <inheritdoc/>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is string path)

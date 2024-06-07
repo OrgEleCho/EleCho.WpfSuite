@@ -9,7 +9,8 @@ using System.Windows.Controls;
 namespace EleCho.WpfSuite
 {
     /// <summary>
-    /// Box
+    /// Box. <br/>
+    /// Each member takes up the entire container's space
     /// </summary>
     public class BoxPanel : Panel
     {

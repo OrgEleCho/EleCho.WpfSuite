@@ -4,14 +4,21 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Multiply the specified value with the parameter value
+    /// </summary>
     public class MultiplyNumberConverter : SingletonValueConverterBase<MultiplyNumberConverter>
     {
+        /// <summary>
+        /// Value to be multiplied
+        /// </summary>
         public double By
         {
             get { return (double)GetValue(ByProperty); }
             set { SetValue(ByProperty, value); }
         }
 
+        /// <inheritdoc/>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try
@@ -36,7 +43,9 @@ namespace EleCho.WpfSuite
             }
         }
 
-        // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
+        /// <summary>
+        /// The DependencyProperty of <see cref="By"/> property
+        /// </summary>
         public static readonly DependencyProperty ByProperty =
             DependencyProperty.Register(nameof(By), typeof(double), typeof(MultiplyNumberConverter), new PropertyMetadata(1.0));
     }

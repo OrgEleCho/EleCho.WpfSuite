@@ -2,6 +2,9 @@
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Convert boolean to visibility
+    /// </summary>
     public class BooleanToVisibilityConverter : BooleanToValueConverter<Visibility>
     {
         static BooleanToVisibilityConverter()

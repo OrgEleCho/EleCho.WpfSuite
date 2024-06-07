@@ -5,32 +5,80 @@ using System.Windows.Controls.Primitives;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// ScrollViewer Utilities
+    /// </summary>
     public static class ScrollViewerUtils
     {
-        public static double GetVerticalOffset(DependencyObject obj)
+        /// <summary>
+        /// Get value of VerticalOffset property
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static double GetVerticalOffset(DependencyObject d)
         {
-            return (double)obj.GetValue(VerticalOffsetProperty);
+            if (d is ScrollViewer sv)
+            {
+                return sv.VerticalOffset;
+            }
+            else if (d is ScrollContentPresenter scp)
+            {
+                return scp.VerticalOffset;
+            }
+
+
+            return (double)d.GetValue(VerticalOffsetProperty);
         }
 
+        /// <summary>
+        /// Set value of VerticalOffset property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetVerticalOffset(DependencyObject obj, double value)
         {
             obj.SetValue(VerticalOffsetProperty, value);
         }
 
-        public static readonly DependencyProperty VerticalOffsetProperty =
-            DependencyProperty.RegisterAttached("VerticalOffset", typeof(double), typeof(ScrollViewerUtils), new PropertyMetadata(0.0, VerticalOffsetChangedCallback));
-
-        public static double GetHorizontalOffset(DependencyObject obj)
+        /// <summary>
+        /// Get value of HorizontalOffset property
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static double GetHorizontalOffset(DependencyObject d)
         {
-            return (double)obj.GetValue(HorizontalOffsetProperty);
+            if (d is ScrollViewer sv)
+            {
+                return sv.HorizontalOffset;
+            }
+            else if (d is ScrollContentPresenter scp)
+            {
+                return scp.HorizontalOffset;
+            }
+
+            return (double)d.GetValue(HorizontalOffsetProperty);
         }
 
+        /// <summary>
+        /// Set value of HorizontalOffset property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetHorizontalOffset(DependencyObject obj, double value)
         {
             obj.SetValue(HorizontalOffsetProperty, value);
         }
 
 
+        /// <summary>
+        /// The DependencyProperty of VerticalOffset property
+        /// </summary>
+        public static readonly DependencyProperty VerticalOffsetProperty =
+            DependencyProperty.RegisterAttached("VerticalOffset", typeof(double), typeof(ScrollViewerUtils), new PropertyMetadata(0.0, VerticalOffsetChangedCallback));
+
+        /// <summary>
+        /// The DependencyProperty of HorizontalOffset property
+        /// </summary>
         public static readonly DependencyProperty HorizontalOffsetProperty =
             DependencyProperty.RegisterAttached("HorizontalOffset", typeof(double), typeof(ScrollViewerUtils), new PropertyMetadata(0.0, HorizontalOffsetChangedCallback));
 

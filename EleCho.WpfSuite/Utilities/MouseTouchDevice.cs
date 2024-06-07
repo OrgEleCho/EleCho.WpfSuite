@@ -5,6 +5,9 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Mouse simulated touch device
+    /// </summary>
     public class MouseTouchDevice : TouchDevice
     {
         #region Class Members
@@ -14,6 +17,9 @@ namespace EleCho.WpfSuite
         private static bool _stylusMoved;
         private static Point _stylusDownPosition;
 
+        /// <summary>
+        /// Touch position
+        /// </summary>
         public Point Position { get; set; }
 
         #endregion
@@ -125,11 +131,13 @@ namespace EleCho.WpfSuite
 
         #region Overridden methods
 
+        /// <inheritdoc/>
         public override TouchPointCollection GetIntermediateTouchPoints(IInputElement relativeTo)
         {
             return new TouchPointCollection();
         }
 
+        /// <inheritdoc/>
         public override TouchPoint GetTouchPoint(IInputElement relativeTo)
         {
             Point point = Position;
@@ -151,33 +159,58 @@ namespace EleCho.WpfSuite
 
 
 
+        /// <summary>
+        /// Get value of Simulate property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static bool GetSimulate(DependencyObject obj)
         {
             return (bool)obj.GetValue(SimulateProperty);
         }
 
+        /// <summary>
+        /// Set value of Simulate property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetSimulate(DependencyObject obj, bool value)
         {
             obj.SetValue(SimulateProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of MoveThreshold property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
         public static double GetMoveThreshold(DependencyObject obj)
         {
             return (double)obj.GetValue(MoveThresholdProperty);
         }
 
+        /// <summary>
+        /// Set value of MoveThreshold property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetMoveThreshold(DependencyObject obj, double value)
         {
             obj.SetValue(MoveThresholdProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Simulate.  This enables animation, styling, binding, etc...
+        /// <summary>
+        /// The DependencyProperty of Simulate property
+        /// </summary>
         public static readonly DependencyProperty SimulateProperty =
             DependencyProperty.RegisterAttached("Simulate", typeof(bool), typeof(MouseTouchDevice), new PropertyMetadata(false, SimulatePropertyChanged));
 
+        /// <summary>
+        /// The DependencyProperty of MoveThreshold property
+        /// </summary>
         public static readonly DependencyProperty MoveThresholdProperty =
             DependencyProperty.RegisterAttached("MoveThreshold", typeof(double), typeof(MouseTouchDevice), new PropertyMetadata(3.0));
 

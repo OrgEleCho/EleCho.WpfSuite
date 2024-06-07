@@ -6,14 +6,23 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Arranges child elements into a single line that can be oriented horizontally or vertically.
+    /// </summary>
     public class StackPanel : Panel
     {
+        /// <summary>
+        /// Layout orientation
+        /// </summary>
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
+        /// <summary>
+        /// Spacing between children
+        /// </summary>
         public double Spacing
         {
             get { return (double)GetValue(SpacingProperty); }
@@ -111,9 +120,16 @@ namespace EleCho.WpfSuite
             return finalSize;
         }
 
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="Orientation"/> property
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty =
             DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(StackPanel), new FrameworkPropertyMetadata(Orientation.Vertical, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Spacing"/> property
+        /// </summary>
         public static readonly DependencyProperty SpacingProperty =
             DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(StackPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
     }

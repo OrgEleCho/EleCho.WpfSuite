@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace EleCho.WpfSuite
 {
-    // 这里吐槽一句, FlexPanel 是基于 HandyControl 的 FlexPanel 改的, 加了 Spacing, 改了些bug
+    // 这里吐槽一句, FlexPanel 是基于 HandyControl 的 FlexPanel 改的, 加了 Spacing, 改了些 bug
     // 但随之而来的就是,,, 代码也越来越屎山了
 
     /// <summary>

@@ -6,30 +6,45 @@ using System.Windows.Controls;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Masonry layout panel
+    /// </summary>
     public class MasonryPanel : System.Windows.Controls.Panel
     {
         private readonly List<double> _flowOffsets = new();
         private readonly List<double> _flowMaxUSizes = new();
         private readonly List<int> _flowSortedOffsetIndexes = new();
 
+        /// <summary>
+        /// Layout orientation
+        /// </summary>
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
             set { SetValue(OrientationProperty, value); }
         }
 
+        /// <summary>
+        /// Flow count
+        /// </summary>
         public int Flows
         {
             get { return (int)GetValue(FlowsProperty); }
             set { SetValue(FlowsProperty, value); }
         }
 
+        /// <summary>
+        /// Spacing between flows
+        /// </summary>
         public double FlowSpacing
         {
             get { return (double)GetValue(FlowSpacingProperty); }
             set { SetValue(FlowSpacingProperty, value); }
         }
 
+        /// <summary>
+        /// Spacing between items in a flow
+        /// </summary>
         public double ItemSpacing
         {
             get { return (double)GetValue(ItemSpacingProperty); }
@@ -61,6 +76,7 @@ namespace EleCho.WpfSuite
         //    }
         //}
 
+        /// <inheritdoc/>
         protected Size Layout(Size size, bool arrange)
         {
             var isHorizontal = Orientation == Orientation.Horizontal;
@@ -165,11 +181,13 @@ namespace EleCho.WpfSuite
             return size;
         }
 
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size availableSize)
         {
             return Layout(availableSize, false);
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
             Layout(finalSize, true);
@@ -177,18 +195,33 @@ namespace EleCho.WpfSuite
             return finalSize;
         }
 
+
+
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="Orientation"/> property
+        /// </summary>
         public static readonly DependencyProperty OrientationProperty =
             DependencyProperty.Register(nameof(Orientation), typeof(Orientation), typeof(MasonryPanel),
                 new FrameworkPropertyMetadata(Orientation.Vertical, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Flows"/> property
+        /// </summary>
         public static readonly DependencyProperty FlowsProperty =
             DependencyProperty.Register(nameof(Flows), typeof(int), typeof(MasonryPanel),
                 new FrameworkPropertyMetadata(1, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosInt);
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="FlowSpacing"/> property
+        /// </summary>
         public static readonly DependencyProperty FlowSpacingProperty =
             DependencyProperty.Register(nameof(FlowSpacing), typeof(double), typeof(MasonryPanel),
                 new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="ItemSpacing"/> property
+        /// </summary>
         public static readonly DependencyProperty ItemSpacingProperty =
             DependencyProperty.Register(nameof(ItemSpacing), typeof(double), typeof(MasonryPanel),
                 new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosDoubleIncludeZero);

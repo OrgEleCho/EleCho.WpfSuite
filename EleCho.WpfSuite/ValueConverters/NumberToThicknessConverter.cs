@@ -4,8 +4,12 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Convert number to <see cref="Thickness"/>
+    /// </summary>
     public class NumberToThicknessConverter : SingletonValueConverterBase<NumberToThicknessConverter>
     {
+        /// <inheritdoc/>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try

@@ -4,7 +4,7 @@ using System.Globalization;
 namespace EleCho.WpfSuite
 {
     /// <summary>
-    /// Returns a Boolean value that indicates that the value is not empty
+    /// Returns a Boolean value that indicates that the value is not null
     /// </summary>
     public class ValueIsNotNullConverter : SingletonValueConverterBase<ValueIsNotNullConverter>
     {

@@ -4,10 +4,15 @@ using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Fade transition
+    /// </summary>
     public class FadeTransition : ContentTransition
     {
+        /// <inheritdoc/>
         protected override Freezable CreateInstanceCore() => new FadeTransition();
 
+        /// <inheritdoc/>
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
             if (newContent.RenderTransform is not TranslateTransform)
@@ -33,6 +38,7 @@ namespace EleCho.WpfSuite
             };
         }
 
+        /// <inheritdoc/>
         protected override Storyboard CreateOldContentStoryboard(UIElement container, UIElement oldContent, bool forward)
         {
             if (oldContent.RenderTransform is not TranslateTransform)

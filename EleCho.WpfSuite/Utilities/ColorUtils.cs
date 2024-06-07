@@ -1,7 +1,19 @@
 ﻿namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Color utilities
+    /// </summary>
     public static class ColorUtils
     {
+        /// <summary>
+        /// Convert HSV color to RGB color
+        /// </summary>
+        /// <param name="h">hue</param>
+        /// <param name="s">situation</param>
+        /// <param name="v">value</param>
+        /// <param name="r">red</param>
+        /// <param name="g">green</param>
+        /// <param name="b">blue</param>
         public static void HSV2RGB(
             float h, float s, float v,
             out float r, out float g, out float b)

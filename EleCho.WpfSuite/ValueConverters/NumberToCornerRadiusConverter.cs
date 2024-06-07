@@ -4,8 +4,12 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Convert number to <see cref="CornerRadius"/>
+    /// </summary>
     public class NumberToCornerRadiusConverter : SingletonValueConverterBase<NumberToCornerRadiusConverter>
     {
+        /// <inheritdoc/>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             try

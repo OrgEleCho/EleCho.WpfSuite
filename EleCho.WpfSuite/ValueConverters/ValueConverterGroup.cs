@@ -8,13 +8,20 @@ using System.Windows.Markup;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Convert value with specified value converters
+    /// </summary>
     [ContentProperty(nameof(Converters))]
     public class ValueConverterGroup : ValueConverterBase<ValueConverterGroup>
     {
         static readonly Type s_typeObject = typeof(object);
 
+        /// <summary>
+        /// Value converters to use
+        /// </summary>
         public List<IValueConverter> Converters { get; } = new();
 
+        /// <inheritdoc/>
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (Converters is null)
@@ -33,6 +40,7 @@ namespace EleCho.WpfSuite
             return value;
         }
 
+        /// <inheritdoc/>
         public override object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (Converters is null)

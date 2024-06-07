@@ -1,9 +1,12 @@
 ﻿namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Validation Utilities
+    /// </summary>
     public static class ValidationUtils
     {
         /// <summary>
-        ///     是否在浮点数范围内
+        /// Value is in range of double number
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -14,7 +17,7 @@
         }
 
         /// <summary>
-        /// 非无限
+        /// Value is not double infinity
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -25,7 +28,7 @@
         }
 
         /// <summary>
-        ///     是否在正浮点数范围内
+        /// In in range of positive double number
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -36,7 +39,7 @@
         }
 
         /// <summary>
-        ///     是否在正浮点数范围内（包括0）
+        /// Value is in range of positive double number include zero
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -47,7 +50,7 @@
         }
 
         /// <summary>
-        ///     是否在负浮点数范围内
+        /// Value is in range of negative double number
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -58,7 +61,7 @@
         }
 
         /// <summary>
-        ///     是否在负浮点数范围内（包括0）
+        /// Value is in range of negative double number include zero
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -69,7 +72,7 @@
         }
 
         /// <summary>
-        ///     是否在正整数范围内
+        /// Value is in range of positive integer
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -80,7 +83,7 @@
         }
 
         /// <summary>
-        ///     是否在正整数范围内（包括0）
+        /// Value is in range of positive integer include zero
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -91,7 +94,7 @@
         }
 
         /// <summary>
-        ///     是否在负整数范围内
+        /// Value is in range of negative integer
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -102,7 +105,7 @@
         }
 
         /// <summary>
-        ///     是否在负整数范围内（包括0）
+        /// Value is in range of negative integer include zero
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -112,6 +115,11 @@
             return v <= 0;
         }
 
+        /// <summary>
+        /// Value is not null
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool IsNotNull(object? value)
         {
             return value is not null;
