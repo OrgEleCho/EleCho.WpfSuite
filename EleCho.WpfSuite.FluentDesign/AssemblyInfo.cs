@@ -1,3 +1,3 @@
 ﻿using System.Windows.Markup;
 
-[assembly: XmlnsDefinition("https://github.com/OrgEleCho/EleCho.WpfSuite/FluentDesign", "EleCho.WpfSuite.FluentDesign")]
+[assembly: XmlnsDefinition("https://schemas.elecho.dev/wpfsuite-design/fluent", "EleCho.WpfSuite.FluentDesign")]

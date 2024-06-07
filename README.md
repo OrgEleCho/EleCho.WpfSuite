@@ -7,7 +7,7 @@ WPF layout panels, controls, value converters, markup extensions, transitions an
 Add XML namespace to your XAML file:
 
 ```xml
-<Window xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite">
+<Window xmlns:ws="https://schemas.elecho.dev/wpfsuite">
     ...     
 </Window>
 ```
@@ -21,7 +21,7 @@ Enjoy!
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -205,7 +205,7 @@ You can easily create windows with Mica or Acrylic materials through WPF Suite, 
 
 ```xml
 <Window ... 
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         Background="Transparent"
         ws:WindowOption.Backdrop="Mica">
     ...
@@ -216,7 +216,7 @@ You can also set the color mode of the current window. When IsDarkMode is set to
 
 ```xml
 <Window ...
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         Background="Transparent"
         ws:WindowOption.Backdrop="Mica"
         ws.WindowOption.IsDarkMode="True">
@@ -230,7 +230,7 @@ WindowOption.Backdrop can be used only on Windows11, if you want use acrylic on 
 
 ```xml
 <Window ...
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         Background="Transparent"
         ws.WindowOption.AccentState="AcrylicBlurBehind">
     ...
@@ -243,7 +243,7 @@ Use ordinary acrylic material and set the form color to a translucent correspond
 
 ```xml
 <Window ...
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         Background="#11FF0000"
         ws.WindowOption.AccentState="AcrylicBlurBehind">
     ...
@@ -255,7 +255,7 @@ Or use accent gradient color property.
 
 ```xml
 <Window ...
-        xmlns:ws="https://github.com/OrgEleCho/EleCho.WpfSuite"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         Background="Transparent"
         ws.WindowOption.AccentState="AcrylicBlurBehind"
         ws.WindowOption.AccentGradientColor="#33FF8888">
