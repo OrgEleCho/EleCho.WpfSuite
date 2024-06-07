@@ -43,8 +43,21 @@ namespace EleCho.WpfSuite
         }
 
 
+
+        public bool AlwaysMask
+        {
+            get { return (bool)GetValue(AlwaysMaskProperty); }
+            set { SetValue(AlwaysMaskProperty, value); }
+        }
+
+
+
+
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register(nameof(Password), typeof(SecureString), typeof(PasswordBox), new UIPropertyMetadata(new SecureString()));
+
+        public static readonly DependencyProperty AlwaysMaskProperty =
+            DependencyProperty.Register(nameof(AlwaysMask), typeof(bool), typeof(PasswordBox), new PropertyMetadata(true));
 
 
         /// <summary>
@@ -70,6 +83,12 @@ namespace EleCho.WpfSuite
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs textCompositionEventArgs)
         {
             AddToSecureString(textCompositionEventArgs.Text);
+
+            if (AlwaysMask)
+            {
+                MaskAllDisplayText();
+            }
+
             textCompositionEventArgs.Handled = true;
         }
 
@@ -84,9 +103,17 @@ namespace EleCho.WpfSuite
             switch (pressedKey)
             {
                 case Key.Space:
+                {
                     AddToSecureString(" ");
+
+                    if (AlwaysMask)
+                    {
+                        MaskAllDisplayText();
+                    }
+
                     keyEventArgs.Handled = true;
                     break;
+                }
                 case Key.Back:
                 case Key.Delete:
                     if (SelectionLength > 0)
