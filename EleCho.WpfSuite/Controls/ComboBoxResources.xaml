@@ -314,10 +314,10 @@
                                               MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
                                               MaxHeight="{TemplateBinding MaxDropDownHeight}">
                     <ws:Border x:Name="dropDownBorder"
-                               Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
-                               BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
-                               CornerRadius="{TemplateBinding PopupCornerRadius}"
-                               BorderThickness="1">
+                               Background="{TemplateBinding PopupBackground}"
+                               BorderThickness="{TemplateBinding PopupBorderThickness}"
+                               BorderBrush="{TemplateBinding PopupBorderBrush}"
+                               CornerRadius="{TemplateBinding PopupCornerRadius}">
                         <ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -430,10 +430,10 @@
                                               MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
                                               MaxHeight="{TemplateBinding MaxDropDownHeight}">
                     <ws:Border x:Name="dropDownBorder"
-                               Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
-                               BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
-                               CornerRadius="{TemplateBinding PopupCornerRadius}"
-                               BorderThickness="1">
+                               Background="{TemplateBinding PopupBackground}"
+                               BorderThickness="{TemplateBinding PopupBorderThickness}"
+                               BorderBrush="{TemplateBinding PopupBorderBrush}"
+                               CornerRadius="{TemplateBinding PopupCornerRadius}">
                         <ws:ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -540,6 +540,8 @@
     </ControlTemplate>
     <Style TargetType="{x:Type ws:ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
+        <Setter Property="PopupBorderThickness" Value="1"/>
 
         <!--NormalState-->
         <Setter Property="TextBoxBackground" Value="#FFFFFFFF"/>

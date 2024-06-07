@@ -37,6 +37,26 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public Brush PopupBackground
+        {
+            get { return (Brush)GetValue(PopupBackgroundProperty); }
+            set { SetValue(PopupBackgroundProperty, value); }
+        }
+
+        public Thickness PopupBorderThickness
+        {
+            get { return (Thickness)GetValue(PopupBorderThicknessProperty); }
+            set { SetValue(PopupBorderThicknessProperty, value); }
+        }
+
+        public Brush PopupBorderBrush
+        {
+            get { return (Brush)GetValue(PopupBorderBrushProperty); }
+            set { SetValue(PopupBorderBrushProperty, value); }
+        }
+
+
+
         /// <summary>
         /// CornerRadius of popup content
         /// </summary>
@@ -382,8 +402,17 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(ComboBox));
 
+        public static readonly DependencyProperty PopupBackgroundProperty =
+            DependencyProperty.Register(nameof(PopupBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(SystemColors.WindowBrush));
+
         public static readonly DependencyProperty PopupCornerRadiusProperty =
             DependencyProperty.Register(nameof(PopupCornerRadius), typeof(CornerRadius), typeof(ComboBox), new PropertyMetadata(default(CornerRadius)));
+
+        public static readonly DependencyProperty PopupBorderThicknessProperty =
+            DependencyProperty.Register(nameof(PopupBorderThickness), typeof(Thickness), typeof(ComboBox), new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty PopupBorderBrushProperty =
+            DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
 
         #endregion
     }

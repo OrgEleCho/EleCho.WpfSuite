@@ -86,6 +86,9 @@
         <Setter Property="Background" Value="#EEFFFFFF"/>
         <Setter Property="HoverBackground" Value="#88FFFFFF"/>
         <Setter Property="PressedBackground" Value="#44FFFFFF"/>
+        
+        <!--Popup-->
+        <Setter Property="PopupBorderBrush" Value="{DynamicResource ControlBorder}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ComboBoxItem}"
@@ -95,13 +98,16 @@
         <Setter Property="CornerRadius" Value="2"/>
         <Setter Property="BorderThickness" Value="2 0 0 0"/>
         <Setter Property="HoverBackground" Value="#11000000"/>
+        <Setter Property="HoverBorderBrush" Value="#11000000"/>
+
         <Setter Property="SelectedBackground" Value="#11000000"/>
-        <Setter Property="SelectedFocusedBackground" Value="#11000000"/>
-        <Setter Property="HoverFocusedBackground" Value="#11000000"/>
-        <Setter Property="HoverSelectedBackground" Value="#11000000"/>
-        <Setter Property="HoverBorderBrush" Value="Transparent"/>
-        <Setter Property="HoverFocusedBorderBrush" Value="Transparent"/>
         <Setter Property="SelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+
+        <Setter Property="HoverFocusedBackground" Value="#11000000"/>
+        <Setter Property="HoverFocusedBorderBrush" Value="#11000000"/>
+        
+        <Setter Property="SelectedFocusedBackground" Value="#11000000"/>
+        <Setter Property="HoverSelectedBackground" Value="#11000000"/>
         <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         <Setter Property="FocusedBorderBrush" Value="Transparent"/>
     </Style>
