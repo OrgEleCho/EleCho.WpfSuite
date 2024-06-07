@@ -252,6 +252,17 @@ namespace EleCho.WpfSuite
 
 
 
+        /// <inheritdoc/>
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new ComboBoxItem();
+        }
+
+        /// <inheritdoc/>
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is ComboBoxItem;
+        }
 
 
 
