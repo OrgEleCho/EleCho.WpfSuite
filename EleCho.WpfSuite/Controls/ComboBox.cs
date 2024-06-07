@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Represents a selection control with a drop-down list that can be shown or hidden by clicking the arrow on the control.
+    /// </summary>
     public class ComboBox : System.Windows.Controls.ComboBox
     {
         static ComboBox()
@@ -34,6 +37,9 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// CornerRadius of popup content
+        /// </summary>
         public CornerRadius PopupCornerRadius
         {
             get { return (CornerRadius)GetValue(PopupCornerRadiusProperty); }

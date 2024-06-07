@@ -12,6 +12,9 @@ using static EleCho.WpfSuite.WindowOption.NativeDefinition;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// Window options
+    /// </summary>
     public partial class WindowOption
     {
         const int BackdropTypeNone = 1;
@@ -129,54 +132,101 @@ namespace EleCho.WpfSuite
         }
 
 
+        /// <summary>
+        /// Get value of AccentBorder property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static bool GetAccentBorder(DependencyObject obj)
         {
             return (bool)obj.GetValue(AccentBorderProperty);
         }
 
+        /// <summary>
+        /// Set value of AccentBorder property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetAccentBorder(DependencyObject obj, bool value)
         {
             obj.SetValue(AccentBorderProperty, value);
         }
 
 
+        /// <summary>
+        /// Get value of AccentGradientColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static Color GetAccentGradientColor(DependencyObject obj)
         {
             return (Color)obj.GetValue(AccentGradientColorProperty);
         }
 
+        /// <summary>
+        /// Set value of AccentGradientColor property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
         public static void SetAccentGradientColor(DependencyObject obj, Color value)
         {
             obj.SetValue(AccentGradientColorProperty, value);
         }
 
 
+        /// <summary>
+        /// The DependencyProperty of Backdrop property
+        /// </summary>
         public static readonly DependencyProperty BackdropProperty =
             DependencyProperty.RegisterAttached("Backdrop", typeof(WindowBackdrop), typeof(WindowOption), new FrameworkPropertyMetadata(WindowBackdrop.Auto, OnBackdropChanged));
 
+        /// <summary>
+        /// The DependencyProperty of Corner property
+        /// </summary>
         public static readonly DependencyProperty CornerProperty =
             DependencyProperty.RegisterAttached("Corner", typeof(WindowCorner), typeof(WindowOption), new PropertyMetadata(WindowCorner.Default, OnCornerChanged));
 
+        /// <summary>
+        /// The DependencyProperty of CaptionColor property
+        /// </summary>
         public static readonly DependencyProperty CaptionColorProperty =
             DependencyProperty.RegisterAttached("CaptionColor", typeof(WindowOptionColor), typeof(WindowOption), new PropertyMetadata(WindowOptionColor.Default, OnCaptionColorChanged));
 
+        /// <summary>
+        /// The DependencyProperty of TextColor property
+        /// </summary>
         public static readonly DependencyProperty TextColorProperty =
             DependencyProperty.RegisterAttached("TextColor", typeof(WindowOptionColor), typeof(WindowOption), new PropertyMetadata(WindowOptionColor.Default, OnTextColorChanged));
 
+        /// <summary>
+        /// The DependencyProperty of BorderColor property
+        /// </summary>
         public static readonly DependencyProperty BorderColorProperty =
             DependencyProperty.RegisterAttached("BorderColor", typeof(WindowOptionColor), typeof(WindowOption), new PropertyMetadata(WindowOptionColor.Default, OnBorderColorChanged));
 
+        /// <summary>
+        /// The DependencyProperty of IsDarkMode property
+        /// </summary>
         public static readonly DependencyProperty IsDarkModeProperty =
             DependencyProperty.RegisterAttached("IsDarkMode", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsDarkModeChanged));
 
+        /// <summary>
+        /// The DependencyProperty of AccentState property
+        /// </summary>
         public static readonly DependencyProperty AccentStateProperty =
             DependencyProperty.RegisterAttached("AccentState", typeof(WindowAccentState), typeof(WindowOption), new FrameworkPropertyMetadata(WindowAccentState.None, OnAccentChanged));
 
+        /// <summary>
+        /// The DependencyProperty of AccentBorder property
+        /// </summary>
         public static readonly DependencyProperty AccentBorderProperty =
             DependencyProperty.RegisterAttached("AccentBorder", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(true, OnAccentChanged));
 
+        /// <summary>
+        /// The DependencyProperty of AccentGradientColor property
+        /// </summary>
         public static readonly DependencyProperty AccentGradientColorProperty =
             DependencyProperty.RegisterAttached("AccentGradientColor", typeof(Color), typeof(WindowOption), new FrameworkPropertyMetadata(Color.FromScRgb(0.25f, 1, 1, 1), OnAccentChanged));
 
