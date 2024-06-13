@@ -72,19 +72,23 @@ namespace EleCho.WpfSuite
                     e.Delta % Mouse.MouseWheelDeltaForOneLine != 0 ||
                     (tickCount - _lastScrollingTick < _millisecondsBetweenTouchpadScrolling && _lastScrollDelta % Mouse.MouseWheelDeltaForOneLine != 0);
 
+            double scrollDelta = e.Delta;
+
+            if (isTouchpadScrolling)
+            {
+                // touchpad 应该滚动更慢一些, 所以这里预先除以一个合适的值
+                scrollDelta /= 2;
+
+                // 
+                scrollDelta *= TouchpadScrollDeltaFactor;
+            }
+            else
+            {
+                scrollDelta *= MouseScrollDeltaFactor;
+            }
+
             if (vertical)
             {
-                double scrollDelta = e.Delta;
-
-                if (isTouchpadScrolling)
-                {
-                    scrollDelta *= TouchpadScrollDeltaFactor;
-                }
-                else
-                {
-                    scrollDelta *= MouseScrollDeltaFactor;
-                }
-
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -135,17 +139,6 @@ namespace EleCho.WpfSuite
             }
             else if (horizontal)
             {
-                double scrollDelta = e.Delta;
-
-                if (isTouchpadScrolling)
-                {
-                    scrollDelta *= TouchpadScrollDeltaFactor;
-                }
-                else
-                {
-                    scrollDelta *= MouseScrollDeltaFactor;
-                }
-
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -302,7 +295,7 @@ namespace EleCho.WpfSuite
         /// <summary>
         /// The key needed set a read-only property
         /// </summary>
-        public static readonly DependencyProperty HorizontalOffsetTargetProperty = 
+        public static readonly DependencyProperty HorizontalOffsetTargetProperty =
             HorizontalOffsetTargetPropertyKey.DependencyProperty;
 
         /// <summary>
@@ -378,22 +371,22 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="ScrollWithWheelDelta"/> property.
         /// </summary>
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
-            DependencyProperty.RegisterAttached(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer), 
+            DependencyProperty.RegisterAttached(nameof(ScrollWithWheelDelta), typeof(bool), typeof(ScrollViewer),
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// The DependencyProperty of <see cref="EnableScrollingAnimation"/> property.
         /// </summary>
         public static readonly DependencyProperty EnableScrollingAnimationProperty =
-            DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer), 
+            DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer),
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// The DependencyProperty of <see cref="ScrollingAnimationDuration"/> property.
         /// </summary>
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
-            DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer), 
-                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(300)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
+            DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer),
+                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
 
         /// <summary>
         /// The DependencyProperty of <see cref="MouseScrollDeltaFactor"/> property
