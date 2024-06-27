@@ -396,7 +396,7 @@ namespace EleCho.WpfSuite
         /// </summary>
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer),
-                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
+                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(250)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
 
         /// <summary>
         /// The DependencyProperty of <see cref="MouseScrollDeltaFactor"/> property
