@@ -51,6 +51,16 @@ namespace EleCho.WpfSuite
         private int _lastHorizontalScrollingDelta = 0;
         private long _lastScrollingTick;
 
+        private FrameworkElement? _scrollContentPrensenter;
+
+        /// <inheritdoc/>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _scrollContentPrensenter = GetTemplateChild("PART_ScrollContentPresenter") as FrameworkElement;
+        }
+
         private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
         {
             if (e.Handled)
@@ -92,7 +102,7 @@ namespace EleCho.WpfSuite
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
-                    scrollDelta *= scrollInfo.ViewportHeight / ActualHeight;
+                    scrollDelta *= scrollInfo.ViewportHeight / (_scrollContentPrensenter?.ActualHeight ?? ActualHeight);
                 }
 
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastVerticalScrollingDelta);
@@ -142,7 +152,7 @@ namespace EleCho.WpfSuite
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
-                    scrollDelta *= scrollInfo.ViewportWidth / ActualWidth;
+                    scrollDelta *= scrollInfo.ViewportWidth / (_scrollContentPrensenter?.ActualWidth ?? ActualWidth);
                 }
 
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastHorizontalScrollingDelta);
