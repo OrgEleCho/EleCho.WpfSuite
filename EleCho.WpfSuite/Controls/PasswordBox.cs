@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Security;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace EleCho.WpfSuite
 {
+    /// <summary>
+    /// PasswordBox
+    /// </summary>
     public class PasswordBox : TextBox
     {
-
+        private readonly StringBuilder _passwordBuilder;
+        private readonly StringBuilder _maskTextBuilder;
 
         private readonly DispatcherTimer _maskTimer;
 
@@ -28,22 +33,39 @@ namespace EleCho.WpfSuite
         {
             PreviewTextInput += OnPreviewTextInput;
             PreviewKeyDown += OnPreviewKeyDown;
+
             CommandManager.AddPreviewExecutedHandler(this, PreviewExecutedHandler);
+
+            _passwordBuilder = new();
+            _maskTextBuilder = new();
+
             _maskTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1) };
             _maskTimer.Tick += (sender, args) => MaskAllDisplayText();
         }
 
 
 
-
-        public SecureString Password
+        /// <summary>
+        /// Mask text
+        /// </summary>
+        public string Mask
         {
-            get => (SecureString)GetValue(PasswordProperty);
+            get { return (string)GetValue(MaskProperty); }
+            set { SetValue(MaskProperty, value); }
+        }
+
+        /// <summary>
+        /// Password
+        /// </summary>
+        public string Password
+        {
+            get => (string)GetValue(PasswordProperty);
             set => SetValue(PasswordProperty, value);
         }
 
-
-
+        /// <summary>
+        /// Mask text immediately after input
+        /// </summary>
         public bool AlwaysMask
         {
             get { return (bool)GetValue(AlwaysMaskProperty); }
@@ -53,9 +75,22 @@ namespace EleCho.WpfSuite
 
 
 
-        public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register(nameof(Password), typeof(SecureString), typeof(PasswordBox), new UIPropertyMetadata(new SecureString()));
 
+        /// <summary>
+        /// The DependencyProperty of <see cref="Mask"/> property
+        /// </summary>
+        public static readonly DependencyProperty MaskProperty =
+            DependencyProperty.Register(nameof(Mask), typeof(string), typeof(PasswordBox), new PropertyMetadata("*"));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="Password"/> property
+        /// </summary>
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register(nameof(Password), typeof(string), typeof(PasswordBox), new UIPropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="AlwaysMask"/> property
+        /// </summary>
         public static readonly DependencyProperty AlwaysMaskProperty =
             DependencyProperty.Register(nameof(AlwaysMask), typeof(bool), typeof(PasswordBox), new PropertyMetadata(true));
 
@@ -152,20 +187,25 @@ namespace EleCho.WpfSuite
             foreach (char c in text)
             {
                 int caretIndex = CaretIndex;
-                Password.InsertAt(caretIndex, c);
+                _passwordBuilder.Insert(caretIndex, c);
                 MaskAllDisplayText();
+
                 if (caretIndex == Text.Length)
                 {
                     _maskTimer.Stop();
                     _maskTimer.Start();
+
                     Text = Text.Insert(caretIndex++, c.ToString());
                 }
                 else
                 {
-                    Text = Text.Insert(caretIndex++, "*");
+                    Text = Text.Insert(caretIndex++, Mask);
                 }
+
                 CaretIndex = caretIndex;
             }
+
+            SetValue(PasswordProperty, _passwordBuilder.ToString());
         }
 
         /// <summary>
@@ -176,20 +216,22 @@ namespace EleCho.WpfSuite
         private void RemoveFromSecureString(int startIndex, int trimLength)
         {
             int caretIndex = CaretIndex;
-            for (int i = 0; i < trimLength; ++i)
-            {
-                Password.RemoveAt(startIndex);
-            }
+            _passwordBuilder.Remove(startIndex, trimLength);
 
             Text = Text.Remove(startIndex, trimLength);
             CaretIndex = caretIndex;
+            SetValue(PasswordProperty, _passwordBuilder.ToString());
         }
 
         private void MaskAllDisplayText()
         {
             _maskTimer.Stop();
             int caretIndex = CaretIndex;
-            Text = new string('*', Text.Length);
+
+            _maskTextBuilder.Clear();
+            _maskTextBuilder.Insert(0, Mask, Text.Length);
+
+            Text = _maskTextBuilder.ToString();
             CaretIndex = caretIndex;
         }
     }

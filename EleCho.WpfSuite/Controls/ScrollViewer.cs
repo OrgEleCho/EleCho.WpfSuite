@@ -51,14 +51,14 @@ namespace EleCho.WpfSuite
         private int _lastHorizontalScrollingDelta = 0;
         private long _lastScrollingTick;
 
-        private FrameworkElement? _scrollContentPrensenter;
+        private FrameworkElement? _scrollContentPresenter;
 
         /// <inheritdoc/>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            _scrollContentPrensenter = GetTemplateChild("PART_ScrollContentPresenter") as FrameworkElement;
+            _scrollContentPresenter = GetTemplateChild("PART_ScrollContentPresenter") as FrameworkElement;
         }
 
         private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
@@ -68,8 +68,8 @@ namespace EleCho.WpfSuite
                 return;
             }
 
-            var handlesMouseWheelScrolling = _propertyHandlesMouseWheelScrollingGetter.Invoke(this);
-            if (!handlesMouseWheelScrolling)
+            if (!AlwaysHandleMouseWheelScrolling && 
+                !_propertyHandlesMouseWheelScrollingGetter.Invoke(this))
             {
                 return;
             }
@@ -102,7 +102,7 @@ namespace EleCho.WpfSuite
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
-                    scrollDelta *= scrollInfo.ViewportHeight / (_scrollContentPrensenter?.ActualHeight ?? ActualHeight);
+                    scrollDelta *= scrollInfo.ViewportHeight / (_scrollContentPresenter?.ActualHeight ?? ActualHeight);
                 }
 
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastVerticalScrollingDelta);
@@ -152,7 +152,7 @@ namespace EleCho.WpfSuite
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
-                    scrollDelta *= scrollInfo.ViewportWidth / (_scrollContentPrensenter?.ActualWidth ?? ActualWidth);
+                    scrollDelta *= scrollInfo.ViewportWidth / (_scrollContentPresenter?.ActualWidth ?? ActualWidth);
                 }
 
                 var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastHorizontalScrollingDelta);
@@ -286,6 +286,19 @@ namespace EleCho.WpfSuite
             set { SetValue(TouchpadScrollDeltaFactorProperty, value); }
         }
 
+        /// <summary>
+        /// Always handle mouse wheel scrolling. <br />
+        /// (Especially in "TextBox")
+        /// </summary>
+        public bool AlwaysHandleMouseWheelScrolling
+        {
+            get { return (bool)GetValue(AlwaysHandleMouseWheelScrollingProperty); }
+            set { SetValue(AlwaysHandleMouseWheelScrollingProperty, value); }
+        }
+
+
+
+
 
 
 
@@ -378,6 +391,27 @@ namespace EleCho.WpfSuite
 
 
         /// <summary>
+        /// Set value of AlwaysHandleMouseWheelScrolling property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool GetAlwaysHandleMouseWheelScrolling(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(AlwaysHandleMouseWheelScrollingProperty);
+        }
+
+        /// <summary>
+        /// Get value of AlwaysHandleMouseWheelScrolling property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
+        public static void SetAlwaysHandleMouseWheelScrolling(DependencyObject obj, bool value)
+        {
+            obj.SetValue(AlwaysHandleMouseWheelScrollingProperty, value);
+        }
+
+
+        /// <summary>
         /// The DependencyProperty of <see cref="ScrollWithWheelDelta"/> property.
         /// </summary>
         public static readonly DependencyProperty ScrollWithWheelDeltaProperty =
@@ -397,6 +431,12 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty ScrollingAnimationDurationProperty =
             DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer),
                 new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(250)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="AlwaysHandleMouseWheelScrolling"/> property
+        /// </summary>
+        public static readonly DependencyProperty AlwaysHandleMouseWheelScrollingProperty =
+            DependencyProperty.RegisterAttached(nameof(AlwaysHandleMouseWheelScrolling), typeof(bool), typeof(ScrollViewer), new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// The DependencyProperty of <see cref="MouseScrollDeltaFactor"/> property

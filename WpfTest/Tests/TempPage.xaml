@@ -29,6 +29,18 @@
                 </ws:ComboBox.Items>
             </ws:ComboBox>
 
+            <ws:TextBox AcceptsReturn="True"
+                        MaxHeight="300"
+                        Placeholder="Multi line TextBox"/>
+
+            <ws:PasswordBox Name="passwordBox" 
+                            Placeholder="PasswordBox"/>
+
+            <StackPanel>
+                <TextBlock Text="PasswordValue:"/>
+                <TextBlock Text="{Binding ElementName=passwordBox,Path=Password}"/>
+            </StackPanel>
+
             <ws:Button Background="Red"
                        HoverBackground="{x:Null}"
                        Content="Test"/>
