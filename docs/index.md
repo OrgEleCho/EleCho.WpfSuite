@@ -13,8 +13,8 @@ The WPF Suite extends WPF with a number of basic but essential features that can
 {: .fs-6 .fw-300 }
 
 
-[Get started now](/getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][https://github.com/OrgEleCho/EleCho.WpfSuite]{: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View it on GitHub](https://github.com/OrgEleCho/EleCho.WpfSuite){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
@@ -41,7 +41,7 @@ You can install the EleCho.WpfSuite package for your project directly via the nu
 
 After installation, there is no need to import any resources, all you need to do is introduce the namespace, and use it.
 
-```xaml
+```xml
 <Window ...
         xmlns:ws="https://schemas.elecho.dev/wpfsuite">
 
