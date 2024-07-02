@@ -50,8 +50,8 @@ After installation, there is no need to import any resources, all you need to do
 
 ## About the project
 
-Just the Docs is &copy; 2024-{{ "now" | date: "%Y" }} by [EleCho](https://github.com/OrgEleCho).
+EleCho.WpfSuite is &copy; 2024-{{ "now" | date: "%Y" }} by [EleCho](https://github.com/OrgEleCho).
 
 ### License
 
-Just the Docs is distributed by an [MIT license](https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt).
+EleCho.WpfSuite is distributed by an [MIT license](https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt).
