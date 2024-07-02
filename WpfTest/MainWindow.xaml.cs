@@ -150,5 +150,31 @@ namespace WpfTest
         {
             NavigationItems.Remove(navigationItem);
         }
+
+        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        [RelayCommand]
+        private void MinimumSelf()
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        [RelayCommand]
+        private void MaximumSelf()
+        {
+            if (WindowState == WindowState.Normal)
+                SystemCommands.MaximizeWindow(this);
+            else
+                SystemCommands.RestoreWindow(this);
+        }
+
+        [RelayCommand]
+        private void CloseSelf()
+        {
+            SystemCommands.CloseWindow(this);
+        }
     }
 }

@@ -7,6 +7,21 @@ namespace EleCho.WpfSuite
     {
         internal static class NativeDefinition
         {
+            public const int GWL_STYLE = -16;
+
+            public const nint WS_CAPTION = 0x00C00000;
+            public const nint WS_SYSMENU = 0x00080000;
+
+            public const nint WM_NCHITTEST = 0x0084;
+            public const nint WM_NCMOUSELEAVE = 0x02A2;
+            public const nint WM_NCLBUTTONDOWN = 0x00A1;
+            public const nint WM_NCLBUTTONUP = 0x00A2;
+            public const nint WM_MOUSEMOVE = 0x0200;
+
+            public const nint HTCLOSE = 20;
+            public const nint HTMAXBUTTON = 9;
+            public const nint HTMINBUTTON = 8;
+
             [DllImport("DWMAPI")]
             public static extern nint DwmSetWindowAttribute(nint hwnd, DwmWindowAttribute attribute, nint dataPointer, uint dataSize);
 
@@ -27,6 +42,12 @@ namespace EleCho.WpfSuite
 
             [DllImport("User32")]
             public static extern bool UpdateWindow(nint hwnd);
+
+            [DllImport("User32")]
+            public extern static nint GetWindowLongPtr(nint hwnd, int index);
+
+            [DllImport("User32")]
+            public extern static nint SetWindowLongPtr(nint hwnd, int index, nint newLong);
 
 
             [StructLayout(LayoutKind.Sequential)]

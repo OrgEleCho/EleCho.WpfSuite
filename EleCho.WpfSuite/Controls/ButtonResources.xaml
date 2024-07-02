@@ -17,10 +17,8 @@
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Background" Value="#FFDDDDDD"/>
         <Setter Property="BorderBrush" Value="#FF707070"/>
-        <Setter Property="HoverForeground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="HoverBackground" Value="#FFBEE6FD"/>
         <Setter Property="HoverBorderBrush" Value="#FF3C7FB1"/>
-        <Setter Property="PressedForeground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="PressedBackground" Value="#FFC4E5F6"/>
         <Setter Property="PressedBorderBrush" Value="#FF2C628B"/>
         <Setter Property="DisabledBackground" Value="#FFF4F4F4"/>
@@ -102,6 +100,7 @@
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
@@ -110,6 +109,7 @@
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
@@ -118,6 +118,7 @@
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverForeground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
                                     </MultiBinding>
                                 </Setter.Value>
