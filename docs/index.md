@@ -1,1 +1,6 @@
-Welcome to EleCho.WpfSuite documents.
+---
+title: Home
+layout: home
+---
+
+Welcome to EleCho.WpfSuite!
