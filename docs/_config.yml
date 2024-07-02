@@ -3,6 +3,7 @@ description: A starter template for a Jeykll site using the Just the Docs theme!
 theme: just-the-docs
 
 url: https://wpfsuite.elecho.dev
+favicon_ico: "/assets/favicon.ico"
 
 aux_links:
   Source Code: https://github.com/OrgEleCho/EleCho.WpfSuite
