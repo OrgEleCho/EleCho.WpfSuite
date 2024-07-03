@@ -84,9 +84,10 @@ namespace EleCho.WpfSuite
             var containerU = isHorizontal ? size.Height : size.Width;
             var maxFlowSpacing = containerU / flows;
             var flowSpacing = Math.Min(FlowSpacing, maxFlowSpacing);
+            var flowTotalSpacing = flowSpacing * (flows - 1);
             var itemSpacing = ItemSpacing;
-            var flowStep = containerU / flows;
-            var itemU = flowStep - flowSpacing;
+            var itemU = (containerU - flowTotalSpacing) / flows;
+            var flowStep = itemU + flowSpacing;
             var childConstraint = isHorizontal ? new Size(double.PositiveInfinity, itemU) : new Size(itemU, double.PositiveInfinity);
 
             EnsureListCount(_flowOffsets, flows);
