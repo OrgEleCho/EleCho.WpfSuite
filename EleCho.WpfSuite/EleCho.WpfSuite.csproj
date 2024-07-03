@@ -10,16 +10,17 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <Version>0.5.2</Version>
+    <Version>0.5.3</Version>
 
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
-    <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>
+    <PackageProjectUrl>https://wpfsuite.elecho.dev</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>WPF;MVVM;XAML;Toolkit;Control;Layout;Transition;Converter;Animation;MarkupExtension;BindingProxy</PackageTags>
     <Description>WPF layout panels, controls, value converters, markup extensions, transitions and utilities</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
