@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
 
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
