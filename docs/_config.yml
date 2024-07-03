@@ -5,5 +5,16 @@ theme: just-the-docs
 url: https://wpfsuite.elecho.dev
 favicon_ico: "/assets/favicon.ico"
 
+callouts:
+  danger:
+    title: Danger
+    color: red
+  warning:
+    title: Warning
+    color: yellow
+  tip:
+    title: Tip
+    color: green
+
 aux_links:
   Source Code: https://github.com/OrgEleCho/EleCho.WpfSuite

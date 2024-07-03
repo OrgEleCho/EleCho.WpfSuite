@@ -18,7 +18,7 @@ The WPF Suite extends WPF with a number of basic but essential features that can
 
 ---
 
-WPF Suite is a suite of layout panels, enhancement controls, value converters, markup extensions, transitions and utilities.
+WPF Suite is a suite of layout panels, enhanced controls, value converters, markup extensions, transitions and utilities.
 
 With the enhanced layout panel, you can easily add spacing between items using the "Spacing" property. 
 The WPF Suite also provides two additional layout panels, FlexPanel and MasonryPanel. 
@@ -32,7 +32,7 @@ WPF Suite is also optimized for pen devices. Now you can drag and drop the conte
 
 There is a lot more to explore with the WPF Suite, such as transition animations for content switching and page jumps, form options that allow you to set transparent blurred backgrounds, light/dark color switching, value converters to reduce logic code, and more.
 
-Browse the docs to learn more about how to use this theme.
+Browse the docs to learn more about how to use this library.
 
 
 ## Getting started
