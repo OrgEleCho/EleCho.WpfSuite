@@ -292,7 +292,7 @@ namespace EleCho.WpfSuite
 
             var finalSize = new Size(panelSize.Width, panelSize.Height);
 
-            // layout again, make child not greator than it's box area
+            // layout again, make child not greater than it's box area
             Layout(finalSize, false);
 
             if (finalSize.Width > constraint.Width)
@@ -621,8 +621,8 @@ namespace EleCho.WpfSuite
                     FlexMainAlignment.SpaceBetween => lineInfo.LineU,
                     FlexMainAlignment.SpaceAround => lineInfo.LineU,
                     FlexMainAlignment.SpaceEvenly => lineInfo.LineU,
-                    FlexMainAlignment.End => lineInfo.ItemsU,
-                    FlexMainAlignment.Center => (lineInfo.LineU + lineInfo.ItemsU) * 0.5,
+                    FlexMainAlignment.End => lineInfo.ItemsU + lineSpacingU,
+                    FlexMainAlignment.Center => (lineInfo.LineU + lineInfo.ItemsU + lineSpacingU) / 2,
                     _ => u
                 };
             }
@@ -631,7 +631,7 @@ namespace EleCho.WpfSuite
                 u = justifyContent switch
                 {
                     FlexMainAlignment.End => lineFreeU,
-                    FlexMainAlignment.Center => lineFreeU * 0.5,
+                    FlexMainAlignment.Center => lineFreeU / 2,
                     _ => u
                 };
             }
@@ -740,13 +740,6 @@ namespace EleCho.WpfSuite
                     }
                 }
 
-                for (var i = 1; i < itemCount; i++)
-                {
-                    if (offsetUArr[i] < mainSpacing)
-                    {
-                        offsetUArr[i] = mainSpacing;
-                    }
-                }
             }
 
             // arrange item
@@ -812,9 +805,14 @@ namespace EleCho.WpfSuite
                     child.Measure(childFinalRect.Size);
                 }
 
-                if (!isReverse)
+                if (isReverse)
+                {
+                    u -= mainSpacing;
+                }
+                else
                 {
                     u += childSize.U;
+                    u += mainSpacing;
                 }
             }
         }
