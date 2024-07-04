@@ -13,7 +13,7 @@ WPF Suite 为 WPF 拓展了一些基础但必备的功能, 能够极大的提升
 {: .fs-6 .fw-300 }
 
 
-[快速开始](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[快速开始](#快速开始){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [在 GitHub 上查看](https://github.com/OrgEleCho/EleCho.WpfSuite){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---

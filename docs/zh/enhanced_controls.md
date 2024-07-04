@@ -108,3 +108,59 @@ TextBox 和 PasswordBox 现在可以通过 Placeholder 属性来设置占位符.
 ```
 
 ![圆角裁剪示例效果](/images/borderclip-example.png)
+
+## 平滑滚动
+
+如果你使用 WPF Suite 提供的 ScrollViewer, 那么对于使用鼠标的内容滚动, 会有更平滑的效果.
+
+| 附加属性 | 类型 | 描述 |
+| --- | --- | --- |
+| ScrollWithWheelDelta | bool | 通过 Wheel 事件的 delta 值决定滚动距离, 此选项用于优化触摸板滚动效果, 默认为 true |
+| EnableScrollingAnimation | bool | 启用滚动动画, 决定使用鼠标进行滚动时是否使用缓动的效果, 默认为 true, 并且此选项要求 ScrollWithWheelDelta 设为 true, 否则不起作用 |
+| ScrollingAnimationDuration | Duration | 滚动动画的时长, 默认为 250ms |
+| MouseScrollDeltaFactor | double | 当使用鼠标进行滚动时, 滚动 Delta 值的乘数. 改变此值可以变更滚动速度与方向, 默认为 1 |
+| TouchpadScrollDeltaFactor | double | 当使用触摸板进行滚动时, 滚动 Delta 值的乘数. 改变此值可以变更滚动速度与方向, 默认为 1 |
+| AlwaysHandleMouseWheelScrolling | bool | 总是处理鼠标 Wheel 事件的滚动, 当鼠标滚轮滚动时则滚动 ScrollViewer 内容. 默认为 true |
+
+{: .tip }
+> 将 AlwaysHandleMouseWheelScrolling 设置为 false 时, ScrollViewer 的滚动效果将不会应用于 TextBox 上
+
+使用示例:
+{: .fw-300}
+
+```xml
+<ws:ScrollViewer>
+    省略内容...
+</ws:ScrollViewer>
+```
+
+![ScrollViewer 示例效果](/images/scrollviewer-example.webp)
+
+## 触摸模拟
+
+原生的 WPF 是无法使用笔对 ScrollViewer 进行滚动的, 如果你想要通过笔来滚动, 可以使用 "触摸设备模拟". 通过笔来模拟一个触摸设备, 实现笔滚动.
+
+| 附加属性 | 类型 | 描述 |
+| --- | --- | --- |
+| StylusTouchDevice.Simulate | bool | 是否将笔模拟为触摸设备, 默认为 false |
+| StylusTouchDevice.MoveThreshold | double | 移动阈值, 笔在移动超过指定的距离之后, 才会将移动汇报为触摸移动, 默认为 3 |
+| MouseTouchDevice.Simulate | bool | 是否将鼠标模拟为触摸设备, 默认为 false |
+| MouseTouchDevice.MoveThreshold | double | 移动阈值, 笔在移动超过指定的距离之后, 才会将移动汇报为触摸移动, 默认为 3 |
+
+{: .tip }
+> 如果你将移动阈值设为 0, 那么你将无法通过笔来进行点击 ScrollViewer 内的控件, 因为笔总是存在抖动的, 触摸移动会进行 ScrollViewer 的滚动, 从而打断点击这一动作.
+> 
+> 所以, 根据你想要的 "精度", 适当调整 "移动阈值".
+> (很多程序对于这个都有一个较大的阈值, 例如 5px, 甚至 10px 或更多)
+
+使用示例:
+{: .fw-300}
+
+```xml
+<ws:ScrollViewer PanningMode="Both"
+                 ws:MouseTouchDevice.Simulate="True">
+    省略内容...
+</ws:ScrollViewer>
+```
+
+![模拟触摸示例效果](/images/simulatetouch-example.webp)
