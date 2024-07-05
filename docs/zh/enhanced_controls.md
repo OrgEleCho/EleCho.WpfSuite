@@ -115,7 +115,7 @@ TextBox 和 PasswordBox 现在可以通过 Placeholder 属性来设置占位符.
 
 | 附加属性 | 类型 | 描述 |
 | --- | --- | --- |
-| ScrollWithWheelDelta | bool | 通过 Wheel 事件的 delta 值决定滚动距离, 此选项用于优化触摸板滚动效果, 默认为 true |
+| ScrollWithWheelDelta | bool | 通过 Wheel 事件的 delta 值决定滚动距离, 此选项用于优化滚动效果, 默认为 true |
 | EnableScrollingAnimation | bool | 启用滚动动画, 决定使用鼠标进行滚动时是否使用缓动的效果, 默认为 true, 并且此选项要求 ScrollWithWheelDelta 设为 true, 否则不起作用 |
 | ScrollingAnimationDuration | Duration | 滚动动画的时长, 默认为 250ms |
 | MouseScrollDeltaFactor | double | 当使用鼠标进行滚动时, 滚动 Delta 值的乘数. 改变此值可以变更滚动速度与方向, 默认为 1 |
@@ -123,7 +123,7 @@ TextBox 和 PasswordBox 现在可以通过 Placeholder 属性来设置占位符.
 | AlwaysHandleMouseWheelScrolling | bool | 总是处理鼠标 Wheel 事件的滚动, 当鼠标滚轮滚动时则滚动 ScrollViewer 内容. 默认为 true |
 
 {: .tip }
-> 将 AlwaysHandleMouseWheelScrolling 设置为 false 时, ScrollViewer 的滚动效果将不会应用于 TextBox 上
+> 将 AlwaysHandleMouseWheelScrolling 设置为 false 时, ScrollViewer 的平滑滚动效果将不会应用于 TextBox 上
 
 使用示例:
 {: .fw-300}

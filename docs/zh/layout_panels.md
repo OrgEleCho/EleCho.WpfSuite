@@ -127,8 +127,8 @@ WPF Suite 中的布局面板, 如与 WPF 原有面板名称一致, 则使用方�
 | Direction | FlexDirection | 布局方向, 默认为行, 也就是水平方向 |
 | Wrap | FlexWrap | 换行行为, 默认为不换行 |
 | MainAlignment | FlexMainAlignment | 元素在主轴上的对齐方式, 默认是对齐到开头 |
-| CrossAlignment | FlexCrossAlignment | 内容在交叉轴上的对其方式, 默认是对齐到开头 |
-| ItemsAlignment | FlexItemsAlignment | 元素自身在主轴上的对齐方式, 默认是对齐到开头 |
+| CrossAlignment | FlexCrossAlignment | 内容在交叉轴上的对其方式, 默认是拉伸 |
+| ItemsAlignment | FlexItemsAlignment | 元素自身的对齐方式, 默认是拉伸 |
 | UniformGrow | double | 统一的大小增长系数 |
 | UniformShrink | double | 统一的大小收缩系数 |
 | MainSpacing | double | 元素在主轴上的间距 |

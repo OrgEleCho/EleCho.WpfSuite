@@ -1,9 +1,10 @@
 ---
-title: Home
+title: Documentation
 layout: home
 nav_order: 1
 description: 'WPF layout panels, controls, value converters, markup extensions, transitions and utilities.'
 permalink: /
+has_children: true
 ---
 
 # Boost your WPF development
