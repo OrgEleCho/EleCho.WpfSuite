@@ -38,7 +38,7 @@ namespace EleCho.WpfSuite
 
 
         /// <summary>
-        /// Auto repostion if the window position of placement target changed
+        /// Auto reposition if the window position of placement target changed
         /// </summary>
         public bool AutoReposition
         {
@@ -60,8 +60,8 @@ namespace EleCho.WpfSuite
         {
             base.OnOpened(e);
 
-            if (AutoReposition && 
-                PlacementTarget is not null && 
+            if (AutoReposition &&
+                PlacementTarget is not null &&
                 Window.GetWindow(PlacementTarget) is Window placementTargetWindow)
             {
                 placementTargetWindow.LocationChanged += OnPlacementTargetWindowLocationChanged;

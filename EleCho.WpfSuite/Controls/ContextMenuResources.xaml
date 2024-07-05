@@ -7,16 +7,16 @@
         <Style.Resources>
             <ResourceDictionary />
         </Style.Resources>
-        <Setter Property="Panel.Background" Value="#FFF5F5F5"/>
-        <Setter Property="TextElement.FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
-        <Setter Property="TextElement.FontSize" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontSizeKey}}"/>
-        <Setter Property="TextElement.FontStyle" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontStyleKey}}"/>
-        <Setter Property="TextElement.FontWeight" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontWeightKey}}"/>
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.MenuTextBrushKey}}"/>
-        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Border.BorderThickness" Value="1,1,1,1"/>
-        <Setter Property="Border.BorderBrush" Value="#FF959595"/>
-        <Setter Property="Control.Padding" Value="2,2,2,2"/>
+        <Setter Property="Background" Value="#FFF5F5F5"/>
+        <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
+        <Setter Property="FontSize" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontSizeKey}}"/>
+        <Setter Property="FontStyle" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontStyleKey}}"/>
+        <Setter Property="FontWeight" Value="{DynamicResource ResourceKey={x:Static SystemFonts.MenuFontWeightKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.MenuTextBrushKey}}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
+        <Setter Property="BorderBrush" Value="#FF959595"/>
+        <Setter Property="Padding" Value="2,2,2,2"/>
         <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
         <Setter Property="ContextMenuService.HasDropShadow" Value="{DynamicResource ResourceKey={x:Static SystemParameters.DropShadowKey}}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
@@ -30,7 +30,7 @@
                                 Background="{TemplateBinding Panel.Background}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 Name="ContextMenuBorder">
-                            <ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
+                            <ws:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
                                 <Grid RenderOptions.ClearTypeHint="Enabled">
                                     <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Rectangle Fill="{x:Null}" Name="OpaqueRect" Width="Auto" Height="Auto" />
@@ -40,7 +40,7 @@
                                     <Rectangle Fill="#FFFFFFFF" Width="1" Margin="30,2,0,2" HorizontalAlignment="Left" />
                                     <ItemsPresenter Name="ItemsPresenter" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Cycle" />
                                 </Grid>
-                            </ScrollViewer>
+                            </ws:ScrollViewer>
                         </Border>
                     </mwt:SystemDropShadowChrome>
                     <ControlTemplate.Triggers>

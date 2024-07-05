@@ -1138,6 +1138,10 @@ namespace EleCho.WpfSuite
 
                 return PresentationSource.FromVisual(popup.Child) as HwndSource;
             }
+            else if (dependencyObject is Visual visual)
+            {
+                return PresentationSource.FromVisual(visual) as HwndSource;
+            }
 
             return null;
         }
