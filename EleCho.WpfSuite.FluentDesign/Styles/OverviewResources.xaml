@@ -1,12 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="clr-namespace:EleCho.WpfSuite;assembly=EleCho.WpfSuite"
+                    xmlns:wsd="clr-namespace:EleCho.WpfSuite.FluentDesign"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <sys:String x:Key="WpfSuiteDesignName">SimpleDesign</sys:String>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/TextBoxResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/PasswordBoxResources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
-    <Color x:Key="PrimaryColor">#0067c0</Color>
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}"/>
+    <Color x:Key="{x:Static wsd:FluentDesignResources.PrimaryColorKey}">#0067c0</Color>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResources.PrimaryBrushKey}" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResources.PrimaryColorKey}}"/>
 
     <LinearGradientBrush x:Key="ControlBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
@@ -23,40 +27,16 @@
     <LinearGradientBrush x:Key="FocusedTextBoxBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
         <GradientStop Offset=".9" Color="#18000000"/>
-        <GradientStop Offset="1" Color="{DynamicResource PrimaryColor}"/>
+        <GradientStop Offset="1" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResources.PrimaryColorKey}}"/>
     </LinearGradientBrush>
-
-    <Style TargetType="{x:Type ws:TextBox}"
-           BasedOn="{StaticResource {x:Type ws:TextBox}}">
-        <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="Padding" Value="4 6"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
-        <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
-        <Setter Property="FocusedBorderBrush" Value="{StaticResource FocusedTextBoxBorder}"/>
-        <Setter Property="Background" Value="#EEFFFFFF"/>
-        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
-    </Style>
-
-    <Style TargetType="{x:Type ws:PasswordBox}"
-           BasedOn="{StaticResource {x:Type ws:PasswordBox}}">
-        <Setter Property="CornerRadius" Value="4"/>
-        <Setter Property="Padding" Value="4 6"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
-        <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
-        <Setter Property="FocusedBorderBrush" Value="{StaticResource FocusedTextBoxBorder}"/>
-        <Setter Property="Background" Value="#EEFFFFFF"/>
-        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
-    </Style>
 
     <Style TargetType="{x:Type ws:Button}"
            BasedOn="{StaticResource {x:Type ws:Button}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="8 6"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
-        <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
+        <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
         <Setter Property="Background" Value="#EEFFFFFF"/>
         <Setter Property="HoverBackground" Value="#88FFFFFF"/>
         <Setter Property="PressedBackground" Value="#44FFFFFF"/>
@@ -66,9 +46,9 @@
            BasedOn="{StaticResource {x:Type ws:ToggleButton}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="8 6"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
-        <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
+        <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
         <Setter Property="Background" Value="#EEFFFFFF"/>
         <Setter Property="HoverBackground" Value="#88FFFFFF"/>
         <Setter Property="PressedBackground" Value="#44FFFFFF"/>
@@ -80,9 +60,9 @@
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="PopupCornerRadius" Value="4"/>
         <Setter Property="ClipToBounds" Value="True"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorder}"/>
-        <Setter Property="HoverBorderBrush" Value="{StaticResource ControlBorder}"/>
-        <Setter Property="PressedBorderBrush" Value="{StaticResource ControlBorder}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
+        <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
+        <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
         <Setter Property="Background" Value="#EEFFFFFF"/>
         <Setter Property="HoverBackground" Value="#88FFFFFF"/>
         <Setter Property="PressedBackground" Value="#44FFFFFF"/>

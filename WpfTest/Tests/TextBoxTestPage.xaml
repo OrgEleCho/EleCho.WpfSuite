@@ -18,15 +18,13 @@
                        Margin="0 0 0 12"/>
             <StackPanel>
                 <TextBlock Text="TextBox:"/>
-                <ws:TextBox Padding="5"
-                            CornerRadius="3"
+                <ws:TextBox CornerRadius="3"
                             Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
             </StackPanel>
 
             <StackPanel>
                 <TextBlock Text="Password:"/>
-                <ws:PasswordBox Padding="5"
-                                CornerRadius="3"
+                <ws:PasswordBox CornerRadius="3"
                                 Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
             </StackPanel>
 
@@ -36,8 +34,7 @@
                     <TextBlock Text="Place holder:"/>
                     <ws:TextBox Name="PlaceHolderBox"
                                 Text="Input something"
-                                MinWidth="200"
-                                Padding="5"/>
+                                MinWidth="200"/>
                 </ws:StackPanel>
             </ws:GroupBox>
         </ws:StackPanel>

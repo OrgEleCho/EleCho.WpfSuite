@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.SimpleDesign", "EleCho.WpfSuite.SimpleDesign\EleCho.WpfSuite.SimpleDesign.csproj", "{EAD122E7-549D-4057-83C4-DCD2A04E4481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EleCho.WpfSuite.FluentDesign", "EleCho.WpfSuite.FluentDesign\EleCho.WpfSuite.FluentDesign.csproj", "{B1568882-49D8-4D6A-8DC9-8BFFC0D46104}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.FluentDesign", "EleCho.WpfSuite.FluentDesign\EleCho.WpfSuite.FluentDesign.csproj", "{B1568882-49D8-4D6A-8DC9-8BFFC0D46104}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

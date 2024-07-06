@@ -4,20 +4,32 @@ using System.Windows;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
-    public class FluentDesignResourceKey : ResourceKey
-    {
-        private static readonly Assembly s_thisAssembly = Assembly.GetExecutingAssembly();
-
-        public override Assembly Assembly => s_thisAssembly;
-    }
 
     public class FluentDesignResources : ResourceDictionary
     {
+        FluentDesignThemeResources _themeResource;
+        ResourceDictionary _overviewResources;
+
         public FluentDesignResources()
         {
-            MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/FluentDesignResources.xaml") });
+            _themeResource = new FluentDesignThemeResources();
+            _overviewResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/OverviewResources.xaml") };
+
+            MergedDictionaries.Add(_themeResource);
+            MergedDictionaries.Add(_overviewResources);
         }
 
-        
+        public bool IsDarkMode 
+        { 
+            get => _themeResource.IsDarkMode;  
+            set => _themeResource.IsDarkMode = value; 
+        }
+
+
+        // color keys
+        public static readonly FluentDesignResourceKey PrimaryColorKey = new FluentDesignResourceKey(nameof(PrimaryColorKey));
+
+        // brush keys
+        public static readonly FluentDesignResourceKey PrimaryBrushKey = new FluentDesignResourceKey(nameof(PrimaryBrushKey));
     }
 }

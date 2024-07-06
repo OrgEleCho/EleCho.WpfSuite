@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Controls\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

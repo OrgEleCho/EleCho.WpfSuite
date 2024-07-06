@@ -53,16 +53,44 @@
                            Padding="5"/>
             </Grid>
 
-            <ws:ToggleButton Name="PopupToggle"
-                             Content="Toggle acrylic popup"
-                             HorizontalAlignment="Left"/>
+            <ws:Button x:Name="PopupToggle"
+                       Content="Toggle acrylic popup"
+                       HorizontalAlignment="Left"
+                       Command="{Binding TogglePopupCommand}"/>
 
-            <ws:Popup IsOpen="{Binding ElementName=PopupToggle,Path=IsChecked}"
+            <ws:Popup IsOpen="{Binding PopupOpen}"
                       PlacementTarget="{Binding ElementName=PopupToggle}"
-                      ws:WindowOption.AccentState="AcrylicBlurBehind">
+                      Focusable="True"
+                      ws:WindowOption.Backdrop="Mica">
+                <ws:Popup.RenderTransform>
+                    <TranslateTransform/>
+                </ws:Popup.RenderTransform>
                 <Border Width="250"
-                        Height="250 ">
-
+                        Height="250"
+                        x:Name="PopupContent">
+                    <Border.RenderTransform>
+                        <TranslateTransform/>
+                    </Border.RenderTransform>
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="PopupContent"
+                                                     Storyboard.TargetProperty="RenderTransform.Y"
+                                                     Duration="0:0:0.150"
+                                                     From="-30"
+                                                     To="0">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CircleEase EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Text="Popup Text"/>
                 </Border>
             </ws:Popup>
         </ws:StackPanel>

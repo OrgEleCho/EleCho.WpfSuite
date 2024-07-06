@@ -31,6 +31,9 @@ namespace WpfTest
         [ObservableProperty]
         private bool _transitionReverse;
 
+        [ObservableProperty]
+        private bool _popupOpen;
+
         public ObservableCollection<ImageSource> ImageSources { get; } = new()
         {
             new BitmapImage(new Uri("pack://application:,,,/WpfTest;component/Assets/Banners/1.jpg")),
@@ -47,6 +50,14 @@ namespace WpfTest
             InitializeComponent();
 
             DataContext = this;
+        }
+
+        [RelayCommand]
+        public async void TogglePopup()
+        {
+            await Task.Yield();
+
+            PopupOpen ^= true;
         }
 
         [RelayCommand]

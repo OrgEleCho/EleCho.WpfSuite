@@ -27,21 +27,17 @@ namespace WpfTest.Tests
             InitializeComponent();
         }
 
-        bool flag = false;
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var targetState = flag ? "Normal" : "TestState";
-            flag ^= true;
-
-            VisualStateManager.GoToElementState(testBorder, targetState, true);
-        }
-
         [ObservableProperty]
         private Brush? _currentBrush;
 
         partial void OnCurrentBrushChanged(Brush? value)
         {
             Debug.WriteLine(value);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            buttonContentControl.Content = System.IO.Path.GetRandomFileName();
         }
     }
 }

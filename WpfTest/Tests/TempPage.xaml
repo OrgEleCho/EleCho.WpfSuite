@@ -23,6 +23,23 @@
                 <ws:Button Content="QWQ"/>
             </ws:StackPanel>
 
+            <Grid x:Name="TestPanel"
+                  MaxWidth="300">
+                <ws:WrapPanel Orientation="Horizontal"
+                              HorizontalSpacing="4"
+                              VerticalSpacing="4">
+                    <ws:Button Click="Button_Click"
+                               ClipToBounds="True">
+                        <ws:TransitioningContentControl Name="buttonContentControl"
+                                                        Content="Test">
+                            <ws:TransitioningContentControl.Transition>
+                                <ws:SlideFadeTransition Orientation="Vertical"/>
+                            </ws:TransitioningContentControl.Transition>
+                        </ws:TransitioningContentControl>
+                    </ws:Button>
+                </ws:WrapPanel>
+            </Grid>
+
             <ws:ComboBox IsEditable="False">
                 <ws:ComboBox.Items>
                     <ComboBoxItem Content="QWQ"/>
@@ -33,7 +50,7 @@
                         MaxHeight="300"
                         Placeholder="Multi line TextBox"/>
 
-            <ws:PasswordBox Name="passwordBox" 
+            <ws:PasswordBox Name="passwordBox"
                             Placeholder="PasswordBox"/>
 
             <StackPanel>
@@ -98,42 +115,6 @@
                             BorderThickness="5"
                             CornerRadius="10"
                             IsIndeterminate="True"/>
-
-            <ws:Button Content="QWQ"
-                       HorizontalAlignment="Left"
-                       Click="Button_Click">
-                <ws:Button.Template>
-                    <ControlTemplate TargetType="ws:Button">
-                        <Grid Background="{TemplateBinding Background}">
-                            <ContentPresenter Content="{TemplateBinding Content}"/>
-                        </Grid>
-                    </ControlTemplate>
-                </ws:Button.Template>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup>
-                        <VisualStateGroup.Transitions>
-                            <VisualTransition To="Normal" GeneratedDuration="0:0:0.5"/>
-                            <VisualTransition To="MouseOver" GeneratedDuration="0:0:0.5"/>
-                        </VisualStateGroup.Transitions>
-
-                        <VisualState x:Name="Normal">
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                IsAdditive="True"
-                                                To="Pink"/>
-                            </Storyboard>
-                        </VisualState>
-
-                        <VisualState x:Name="MouseOver">
-                            <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                IsAdditive="True"
-                                                To="Yellow"/>
-                            </Storyboard>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </ws:Button>
 
             <Grid Name="testBorder"
                   Width="200"
@@ -255,7 +236,7 @@
 
             <RepeatButton Content="QWQ"/>
 
-            
+
 
         </ws:StackPanel>
     </ws:ScrollViewer>
