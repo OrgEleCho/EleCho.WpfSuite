@@ -3,34 +3,34 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:wsd="clr-namespace:EleCho.WpfSuite.FluentDesign">
 
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.TextColorKey}">Black</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.TextColor}">Black</Color>
 
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlBackgroundColorKey}">#EEFFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundColorKey}">#88FFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundColorKey}">#44FFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.ControlBackgroundColor}">#EEFFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.ControlHoverBackgroundColor}">#88FFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.ControlPressedBackgroundColor}">#44FFFFFF</Color>
 
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxBackgroundColorKey}">#AAFFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxHoverBackgroundColorKey}">#66FFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxFocusedBackgroundColorKey}">White</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.TextBoxBackgroundColor}">#AAFFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.TextBoxHoverBackgroundColor}">#66FFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentDesignResource.TextBoxFocusedBackgroundColor}">White</Color>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextColorKey}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.TextBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.TextColor}}"/>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBackgroundColorKey}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundColorKey}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundColorKey}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.ControlBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.ControlBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.ControlHoverBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.ControlHoverBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.ControlPressedBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.ControlPressedBackgroundColor}}"/>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBoxBackgroundColorKey}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxHoverBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBoxHoverBackgroundColorKey}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxFocusedBackgroundBrushKey}"
-                     Color="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBoxFocusedBackgroundColorKey}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.TextBoxBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.TextBoxHoverBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxHoverBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResource.TextBoxFocusedBackgroundBrush}"
+                     Color="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxFocusedBackgroundColor}}"/>
 
-    <LinearGradientBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.ControlBorderBrushKey}"
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentDesignResource.ControlBorderBrush}"
                          StartPoint="0,0" EndPoint="0,3"
                          MappingMode="Absolute"
                          SpreadMethod="Pad">
@@ -41,7 +41,7 @@
         <GradientStop Color="#0f000000" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.TextBoxBorderBrushKey}"
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentDesignResource.TextBoxBorderBrush}"
                          StartPoint="0,0" EndPoint="0,2"
                          MappingMode="Absolute"
                          SpreadMethod="Pad">

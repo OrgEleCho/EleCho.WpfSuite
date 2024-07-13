@@ -7,11 +7,11 @@
         <Setter Property="Padding" Value="4 6"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxBackgroundBrushKey}}"/>
-        <Setter Property="HoverBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxHoverBackgroundBrushKey}}"/>
-        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxFocusedBackgroundBrushKey}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBrushKey}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBoxBorderBrushKey}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxBackgroundBrush}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxHoverBackgroundBrush}}"/>
+        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResource.TextBoxFocusedBackgroundBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBrush}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxBorderBrush}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="FocusedBorderBrush" Value="{x:Null}"/>
         <Setter Property="DisabledBorderBrush" Value="#d0d1d4"/>
@@ -55,7 +55,7 @@
                             </ws:BoxPanel>
                         </ws:Border>
                         <Border x:Name="focusBorder"
-                                BorderBrush="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.PrimaryBrushKey}}"
+                                BorderBrush="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResource.PrimaryBrush}}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 BorderThickness="0 0 0 2"
                                 Visibility="Hidden"/>
