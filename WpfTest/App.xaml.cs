@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -23,7 +24,9 @@ namespace WpfTest
 
             XamlWriter.Save(FindResource(typeof(ToolTip)), xmlWriter);
             var output = stringWriter.ToString();
+
         }
     }
+
 
 }

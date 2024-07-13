@@ -5,16 +5,16 @@
 
     <Style TargetType="{x:Type ws:TextBox}">
         <Setter Property="Padding" Value="4 6"/>
+        <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignThemeResources.TextBoxBackgroundBrushKey}}"/>
-        <Setter Property="HoverBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignThemeResources.TextBoxHoverBackgroundBrushKey}}"/>
-        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignThemeResources.TextBoxFocusedBackgroundBrushKey}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.TextBoxBorderBrushKey}}"/>
+        <Setter Property="Background" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxBackgroundBrushKey}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxHoverBackgroundBrushKey}}"/>
+        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.TextBoxFocusedBackgroundBrushKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBrushKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.TextBoxBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="FocusedBorderBrush" Value="{x:Null}"/>
         <Setter Property="DisabledBorderBrush" Value="#d0d1d4"/>
-        <Setter Property="CornerRadius" Value="4"/>
 
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
@@ -55,7 +55,7 @@
                             </ws:BoxPanel>
                         </ws:Border>
                         <Border x:Name="focusBorder"
-                                BorderBrush="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResources.PrimaryBrushKey}}"
+                                BorderBrush="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.PrimaryBrushKey}}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 BorderThickness="0 0 0 2"
                                 Visibility="Hidden"/>

@@ -61,7 +61,7 @@
             <ws:Popup IsOpen="{Binding PopupOpen}"
                       PlacementTarget="{Binding ElementName=PopupToggle}"
                       Focusable="True"
-                      ws:WindowOption.Backdrop="Mica">
+                      ws:WindowOption.AccentState="AcrylicBlurBehind">
                 <ws:Popup.RenderTransform>
                     <TranslateTransform/>
                 </ws:Popup.RenderTransform>

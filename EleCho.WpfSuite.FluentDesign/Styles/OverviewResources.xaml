@@ -9,8 +9,8 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/PasswordBoxResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Color x:Key="{x:Static wsd:FluentDesignResources.PrimaryColorKey}">#0067c0</Color>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResources.PrimaryBrushKey}" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResources.PrimaryColorKey}}"/>
+    <Color x:Key="{x:Static wsd:FluentDesignResourceKeys.PrimaryColorKey}">#0067c0</Color>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentDesignResourceKeys.PrimaryBrushKey}" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.PrimaryColorKey}}"/>
 
     <LinearGradientBrush x:Key="ControlBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
@@ -27,31 +27,33 @@
     <LinearGradientBrush x:Key="FocusedTextBoxBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
         <GradientStop Offset=".9" Color="#18000000"/>
-        <GradientStop Offset="1" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResources.PrimaryColorKey}}"/>
+        <GradientStop Offset="1" Color="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResourceKeys.PrimaryColorKey}}"/>
     </LinearGradientBrush>
 
     <Style TargetType="{x:Type ws:Button}"
            BasedOn="{StaticResource {x:Type ws:Button}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="8 6"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
-        <Setter Property="Background" Value="#EEFFFFFF"/>
-        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
-        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
+        <Setter Property="DisabledBorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBackgroundBrushKey}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundBrushKey}}"/>
+        <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundBrushKey}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ToggleButton}"
            BasedOn="{StaticResource {x:Type ws:ToggleButton}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="8 6"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
-        <Setter Property="Background" Value="#EEFFFFFF"/>
-        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
-        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
+        <Setter Property="DisabledBorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBackgroundBrushKey}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundBrushKey}}"/>
+        <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundBrushKey}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ComboBox}"
@@ -60,12 +62,13 @@
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="PopupCornerRadius" Value="4"/>
         <Setter Property="ClipToBounds" Value="True"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignThemeResources.ControlBorderBrushKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBorderBrushKey}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
-        <Setter Property="Background" Value="#EEFFFFFF"/>
-        <Setter Property="HoverBackground" Value="#88FFFFFF"/>
-        <Setter Property="PressedBackground" Value="#44FFFFFF"/>
+        <Setter Property="DisabledBorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlBackgroundBrushKey}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlHoverBackgroundBrushKey}}"/>
+        <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResourceKeys.ControlPressedBackgroundBrushKey}}"/>
         
         <!--Popup-->
         <Setter Property="PopupBorderBrush" Value="{DynamicResource ControlBorder}"/>

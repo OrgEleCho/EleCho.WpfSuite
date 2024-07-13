@@ -41,6 +41,9 @@
                    CornerRadius="3">
             <ws:ScrollViewer PanningMode="Both"
                              ws:MouseTouchDevice.Simulate="True"
+                             ScrollingAnimationDuration="0:0:0.5"
+                             MouseScrollDeltaFactor="2"
+                             TouchpadScrollDeltaFactor="3"
                              Padding="14"
                              Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
                 <ws:StackPanel Spacing="8">

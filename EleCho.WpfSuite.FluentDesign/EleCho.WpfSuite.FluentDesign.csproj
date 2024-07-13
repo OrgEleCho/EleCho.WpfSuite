@@ -6,7 +6,7 @@
     <LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <RootNamespace>EleCho.WpfSuite</RootNamespace>
+    <RootNamespace>EleCho.WpfSuite.FluentDesign</RootNamespace>
 
     <Version>0.0.1</Version>
 

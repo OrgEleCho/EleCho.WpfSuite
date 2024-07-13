@@ -24,12 +24,5 @@ namespace EleCho.WpfSuite.FluentDesign
             get => _themeResource.IsDarkMode;  
             set => _themeResource.IsDarkMode = value; 
         }
-
-
-        // color keys
-        public static readonly FluentDesignResourceKey PrimaryColorKey = new FluentDesignResourceKey(nameof(PrimaryColorKey));
-
-        // brush keys
-        public static readonly FluentDesignResourceKey PrimaryBrushKey = new FluentDesignResourceKey(nameof(PrimaryBrushKey));
     }
 }

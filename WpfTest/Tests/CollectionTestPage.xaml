@@ -49,6 +49,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
+                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>
@@ -74,6 +75,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
+                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>
@@ -96,6 +98,7 @@
                             <DataTemplate>
                                 <Border BorderBrush="Gray"
                                         BorderThickness="1"
+                                        CornerRadius="3"
                                         Padding="5 3">
                                     <ContentPresenter Content="{Binding}"/>
                                 </Border>
