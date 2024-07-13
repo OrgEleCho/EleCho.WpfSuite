@@ -15,10 +15,7 @@ namespace EleCho.WpfSuite
         /// <inheritdoc/>
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
-            if (newContent.RenderTransform is not TranslateTransform)
-                newContent.RenderTransform = new TranslateTransform();
-
-            DoubleAnimation translateAnimation = new()
+            DoubleAnimation opacityAnimation = new()
             {
                 EasingFunction = EasingFunction,
                 Duration = Duration,
@@ -26,14 +23,14 @@ namespace EleCho.WpfSuite
                 To = 1,
             };
 
-            Storyboard.SetTargetProperty(translateAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
 
             return new Storyboard()
             {
                 Duration = Duration,
                 Children =
                 {
-                    translateAnimation
+                    opacityAnimation
                 }
             };
         }
@@ -41,24 +38,21 @@ namespace EleCho.WpfSuite
         /// <inheritdoc/>
         protected override Storyboard CreateOldContentStoryboard(UIElement container, UIElement oldContent, bool forward)
         {
-            if (oldContent.RenderTransform is not TranslateTransform)
-                oldContent.RenderTransform = new TranslateTransform();
-
-            DoubleAnimation translateAnimation = new()
+            DoubleAnimation opacityAnimation = new()
             {
                 EasingFunction = EasingFunction,
                 Duration = Duration,
                 To = 0,
             };
 
-            Storyboard.SetTargetProperty(translateAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(nameof(FrameworkElement.Opacity)));
 
             return new Storyboard()
             {
                 Duration = Duration,
                 Children =
                 {
-                    translateAnimation
+                    opacityAnimation
                 }
             };
         }

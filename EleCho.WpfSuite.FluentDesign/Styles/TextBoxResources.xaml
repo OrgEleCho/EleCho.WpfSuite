@@ -7,11 +7,11 @@
         <Setter Property="Padding" Value="4 6"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxBackgroundBrush}}"/>
-        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxHoverBackgroundBrush}}"/>
-        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResource.TextBoxFocusedBackgroundBrush}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextControlBackgroundBrush}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextControlHoverBackgroundBrush}}"/>
+        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentDesignResource.TextControlFocusedBackgroundBrush}}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBrush}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextBoxBorderBrush}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentDesignResource.TextControlBorderBrush}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="FocusedBorderBrush" Value="{x:Null}"/>
         <Setter Property="DisabledBorderBrush" Value="#d0d1d4"/>

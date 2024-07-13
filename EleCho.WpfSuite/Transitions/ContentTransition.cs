@@ -105,11 +105,29 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
+        /// Coerce value of Duration property
+        /// </summary>
+        /// <param name="d"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        protected static object CoerceDuration(DependencyObject d, object value)
+        {
+            if (value is not Duration duration ||
+                !duration.HasTimeSpan)
+            {
+                throw new ArgumentException();
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// The DependencyProperty of <see cref="Duration"/> property
         /// </summary>
 
         public static readonly DependencyProperty DurationProperty =
-            DependencyProperty.Register(nameof(Duration), typeof(Duration), typeof(ContentTransition), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150))));
+            DependencyProperty.Register(nameof(Duration), typeof(Duration), typeof(ContentTransition), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150)), null, CoerceDuration));
 
         /// <summary>
         /// The DependencyProperty of <see cref="EasingFunction"/> property

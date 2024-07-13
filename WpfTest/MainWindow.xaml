@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+        xmlns:wsd="https://schemas.elecho.dev/wpfsuite-design/fluent"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
@@ -105,6 +106,12 @@
 
                             </ToolTip>
                         </ws:ComboBox.ToolTip>
+                        <ws:ComboBoxItem Content="Fluent" >
+                            <ws:ComboBoxItem.Tag>
+                                <wsd:FluentTransition Duration="0:0:0.400"
+                                                      Distance="100"/>
+                            </ws:ComboBoxItem.Tag>
+                        </ws:ComboBoxItem>
                         <ws:ComboBoxItem Content="SlideFade">
                             <ws:ComboBoxItem.Tag>
                                 <ws:SlideFadeTransition Orientation="Vertical"

@@ -7,19 +7,20 @@
         ControlBackgroundColor,
         ControlHoverBackgroundColor,
         ControlPressedBackgroundColor,
-        TextBoxBackgroundColor,
-        TextBoxHoverBackgroundColor,
-        TextBoxFocusedBackgroundColor,
+        TextControlBackgroundColor,
+        TextControlHoverBackgroundColor,
+        TextControlFocusedBackgroundColor,
 
         TextBrush,
         PrimaryBrush,
         ControlBackgroundBrush,
         ControlHoverBackgroundBrush,
         ControlPressedBackgroundBrush,
-        TextBoxBackgroundBrush,
-        TextBoxHoverBackgroundBrush,
-        TextBoxFocusedBackgroundBrush,
+        TextControlBackgroundBrush,
+        TextControlHoverBackgroundBrush,
+        TextControlFocusedBackgroundBrush,
+
         ControlBorderBrush,
-        TextBoxBorderBrush,
+        TextControlBorderBrush,
     }
 }
