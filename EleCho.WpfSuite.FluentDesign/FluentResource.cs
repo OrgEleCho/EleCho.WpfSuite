@@ -1,6 +1,6 @@
 ﻿namespace EleCho.WpfSuite.FluentDesign
 {
-    public enum FluentDesignResource
+    public enum FluentResource
     {
         TextColor,
         PrimaryColor,

@@ -35,6 +35,8 @@
     <Page Remove="Controls\ImageResources.xaml" />
     <Page Remove="Controls\ListBoxItemResources.xaml" />
     <Page Remove="Controls\ListBoxResources.xaml" />
+    <Page Remove="Controls\ListViewItemResources.xaml" />
+    <Page Remove="Controls\ListViewResources.xaml" />
     <Page Remove="Controls\MenuItemResources.xaml" />
     <Page Remove="Controls\MenuResources.xaml" />
     <Page Remove="Controls\PasswordBoxResources.xaml" />
@@ -76,6 +78,8 @@
     <Resource Include="Controls\ImageResources.xaml" />
     <Resource Include="Controls\ListBoxItemResources.xaml" />
     <Resource Include="Controls\ListBoxResources.xaml" />
+    <Resource Include="Controls\ListViewItemResources.xaml" />
+    <Resource Include="Controls\ListViewResources.xaml" />
     <Resource Include="Controls\MenuItemResources.xaml" />
     <Resource Include="Controls\MenuResources.xaml" />
     <Resource Include="Controls\PasswordBoxResources.xaml" />

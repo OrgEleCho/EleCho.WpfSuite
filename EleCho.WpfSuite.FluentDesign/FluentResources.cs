@@ -5,14 +5,14 @@ using System.Windows;
 namespace EleCho.WpfSuite.FluentDesign
 {
 
-    public class FluentDesignResources : ResourceDictionary
+    public class FluentResources : ResourceDictionary
     {
-        FluentDesignThemeResources _themeResource;
+        FluentThemeResources _themeResource;
         ResourceDictionary _overviewResources;
 
-        public FluentDesignResources()
+        public FluentResources()
         {
-            _themeResource = new FluentDesignThemeResources();
+            _themeResource = new FluentThemeResources();
             _overviewResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/OverviewResources.xaml") };
 
             MergedDictionaries.Add(_themeResource);

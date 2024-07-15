@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
     <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
-    <Style TargetType="{x:Type ws:ListBox}">
+    <Style TargetType="{x:Type ws:ListView}">
         <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
         <Setter Property="DisabledBackground" Value="{StaticResource ListBox.Disabled.Background}"/>
@@ -21,7 +21,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ws:ListBox}">
+                <ControlTemplate TargetType="{x:Type ws:ListView}">
                     <ws:Border x:Name="Part_BD"
                                Background="{TemplateBinding Background}"
                                BorderBrush="{TemplateBinding BorderBrush}"

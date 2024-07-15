@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EleCho.WpfSuite
 {
     /// <inheritdoc/>
-    public class ListBox : System.Windows.Controls.ListBox
+    public class ListView : System.Windows.Controls.ListView
     {
-        static ListBox()
+        static ListView()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBox), new FrameworkPropertyMetadata(typeof(ListBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListView), new FrameworkPropertyMetadata(typeof(ListView)));
         }
+
 
         /// <summary>
         /// The CornerRadius property allows users to control the roundness of the corners independently by
@@ -54,31 +44,32 @@ namespace EleCho.WpfSuite
         /// <inheritdoc/>
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new ListBoxItem();
+            return new ListViewItem();
         }
 
         /// <inheritdoc/>
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
-            return item is ListBoxItem;
+            return item is ListViewItem;
         }
+
 
         /// <summary>
         /// DependencyProperty of <see cref="CornerRadius"/> property
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(ListBox));
+            Border.CornerRadiusProperty.AddOwner(typeof(ListView));
 
         /// <summary>
         /// The DependencyProperty of <see cref="DisabledBackground"/> property
         /// </summary>
         public static readonly DependencyProperty DisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ListBox), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ListView), new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// The DependencyProperty of <see cref="DisabledBorderBrush"/> property
         /// </summary>
         public static readonly DependencyProperty DisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ListBox), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ListView), new FrameworkPropertyMetadata(null));
     }
 }

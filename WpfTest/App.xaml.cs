@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Xml;
 
@@ -24,6 +25,17 @@ namespace WpfTest
 
             XamlWriter.Save(FindResource(typeof(ToolTip)), xmlWriter);
             var output = stringWriter.ToString();
+
+            FontFamily fontFamily = new FontFamily("Segoe Fluent Icons");
+            var typefaces = fontFamily.GetTypefaces();
+
+            foreach (var typeface in typefaces)
+            {
+                if (!typeface.TryGetGlyphTypeface(out var glyphTypeface))
+                    continue;
+
+                
+            }
 
         }
     }

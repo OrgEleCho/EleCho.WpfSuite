@@ -35,8 +35,12 @@
                     <ws:Button Content="Remove item" Command="{Binding RemoveItemCommand}"/>
                 </ws:StackPanel>
 
+                <ws:CheckBox Name="enableCheckBox" 
+                             Content="IsEnabled"/>
+
                 <ws:GroupBox Header="Items (WrapPanel)"
                              Padding="8"
+                             IsEnabled="{Binding ElementName=enableCheckBox,Path=IsChecked}"
                              Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}">
                         <ItemsControl.ItemsPanel>
@@ -60,6 +64,7 @@
 
                 <ws:GroupBox Header="Items (FlexPanel)"
                              Padding="8"
+                             IsEnabled="{Binding ElementName=enableCheckBox,Path=IsChecked}"
                              Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}">
                         <ItemsControl.ItemsPanel>
@@ -86,6 +91,7 @@
 
                 <ws:GroupBox Header="Items (StackPanel)"
                              Padding="8"
+                             IsEnabled="{Binding ElementName=enableCheckBox,Path=IsChecked}"
                              Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
                     <ItemsControl ItemsSource="{Binding StringArray}"
                                   HorizontalAlignment="Left">
@@ -105,6 +111,16 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                </ws:GroupBox>
+
+                <ws:GroupBox Header="Items (ListView, GridView)"
+                             Padding="8"
+                             IsEnabled="{Binding ElementName=enableCheckBox,Path=IsChecked}"
+                             Visibility="{Binding StringArray,Converter={StaticResource CollectionIsNotEmptyToVisibilityConverter}}">
+                    <ws:ListView Height="50"
+                                 ItemsSource="{Binding StringArray}">
+                        
+                    </ws:ListView>
                 </ws:GroupBox>
             </ws:StackPanel>
         </Grid>

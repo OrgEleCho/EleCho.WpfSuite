@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+      xmlns:wsd="https://schemas.elecho.dev/wpfsuite-design/fluent"
       mc:Ignorable="d"
       d:DesignHeight="2200" d:DesignWidth="800"
       d:Background="White"
@@ -18,7 +19,14 @@
                            Width="{ws:Double 123}"
                            Orientation="Horizontal">
                 <ws:Button Content="QWQ" PressedBackground="Red"/>
-                <ws:Button Content="QWQ"/>
+                <ws:Button>
+                    <ws:StackPanel Orientation="Horizontal"
+                                   Spacing="4">
+                        <wsd:FluentIcon Symbol="Accept"
+                                        VerticalAlignment="Center"/>
+                        <TextBlock Text="Test"/>
+                    </ws:StackPanel>
+                </ws:Button>
                 <ws:Button Content="QWQ"/>
                 <ws:Button Content="QWQ"/>
             </ws:StackPanel>

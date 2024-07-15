@@ -10,9 +10,10 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <wsfd:FluentDesignResources/>
+                <wsfd:FluentResources/>
                 <!--<wssd:SimpleDesignResources/>-->
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
 
     </Application.Resources>
