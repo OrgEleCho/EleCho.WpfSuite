@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfTest"
       xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+      xmlns:winforms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:Background="White"
@@ -57,6 +58,21 @@
                        Content="Toggle acrylic popup"
                        HorizontalAlignment="Left"
                        Command="{Binding TogglePopupCommand}"/>
+
+            <WindowsFormsHost Background="White" 
+                              HorizontalAlignment="Stretch"
+                              Height="500">
+                <winforms:Panel>
+                    <winforms:Panel.Controls>
+                        <winforms:Button Text="QWQ"
+                                         Location="10,10"/>
+
+                        <winforms:Button Text="QWQ"
+                                         Location="50,10"
+                                         Anchor="Right,Bottom"/>
+                    </winforms:Panel.Controls>
+                </winforms:Panel>
+            </WindowsFormsHost>
 
             <ws:Popup IsOpen="{Binding PopupOpen}"
                       PlacementTarget="{Binding ElementName=PopupToggle}"

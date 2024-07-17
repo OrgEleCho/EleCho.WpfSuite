@@ -53,7 +53,7 @@ namespace EleCho.WpfSuite
                 var isFirst = i == 0;
                 var currentTargetType = isFirst ? targetType : s_typeObject;
 
-                value = converter.Convert(value, currentTargetType, parameter, culture);
+                value = converter.ConvertBack(value, currentTargetType, parameter, culture);
             }
 
             return value;

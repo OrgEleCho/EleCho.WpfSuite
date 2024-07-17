@@ -1,14 +1,13 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace EleCho.WpfSuite
 {
-    public class ListBoxItem : System.Windows.Controls.ListBoxItem
+    public class ListViewItem : System.Windows.Controls.ListViewItem
     {
-        static ListBoxItem()
+        static ListViewItem()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBoxItem), new FrameworkPropertyMetadata(typeof(ListBoxItem)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListViewItem), new FrameworkPropertyMetadata(typeof(ListViewItem)));
         }
 
         /// <summary>
@@ -95,43 +94,43 @@ namespace EleCho.WpfSuite
 
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(ListBoxItem));
+            Border.CornerRadiusProperty.AddOwner(typeof(ListViewItem));
 
 
         public static readonly DependencyProperty HoverForegroundProperty =
-            DependencyProperty.Register(nameof(HoverForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverForeground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty HoverBackgroundProperty =
-            DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty HoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedForegroundProperty =
-            DependencyProperty.Register(nameof(SelectedForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedForeground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedBackgroundProperty =
-            DependencyProperty.Register(nameof(SelectedBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedBackground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedBorderBrushProperty =
-            DependencyProperty.Register(nameof(SelectedBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedBorderBrush), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedActiveForegroundProperty =
-            DependencyProperty.Register(nameof(SelectedActiveForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedActiveForeground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedActiveBackgroundProperty =
-            DependencyProperty.Register(nameof(SelectedActiveBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedActiveBackground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty SelectedActiveBorderBrushProperty =
-            DependencyProperty.Register(nameof(SelectedActiveBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(SelectedActiveBorderBrush), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledForegroundProperty =
-            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ListBoxItem), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ListViewItem), new FrameworkPropertyMetadata(null));
     }
 }

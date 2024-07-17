@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -31,7 +33,7 @@ namespace WpfTest
             if (EleCho.WpfSuite.WindowOption.CanSetBackdrop)
             {
                 Background = Brushes.Transparent;
-                EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Mica);
+                EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Acrylic);
             }
         }
 
