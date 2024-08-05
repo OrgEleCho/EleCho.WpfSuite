@@ -155,25 +155,25 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty OrderProperty = DependencyProperty.RegisterAttached(
             "Order", typeof(int), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(ValueBoxes.Int0Box, OnItemPropertyChanged));
+            new FrameworkPropertyMetadata(ValueBoxes.Int0Box, FrameworkPropertyMetadataOptions.AffectsMeasure, OnItemPropertyChanged));
 
         public static readonly DependencyProperty GrowProperty = DependencyProperty.RegisterAttached(
             "Grow", typeof(double), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, OnItemPropertyChanged),
+            new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, FrameworkPropertyMetadataOptions.AffectsMeasure, OnItemPropertyChanged),
             ValidationUtils.IsNotDoubleInfinity);
 
         public static readonly DependencyProperty ShrinkProperty = DependencyProperty.RegisterAttached(
             "Shrink", typeof(double), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, OnItemPropertyChanged),
+            new FrameworkPropertyMetadata(ValueBoxes.DoubleNaNBox, FrameworkPropertyMetadataOptions.AffectsMeasure, OnItemPropertyChanged),
             ValidationUtils.IsNotDoubleInfinity);
 
         public static readonly DependencyProperty BasisProperty = DependencyProperty.RegisterAttached(
             "Basis", typeof(double), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(double.NaN, OnItemPropertyChanged));
+            new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.AffectsMeasure, OnItemPropertyChanged));
 
         public static readonly DependencyProperty AlignmentProperty = DependencyProperty.RegisterAttached(
             "Alignment", typeof(FlexItemAlignment), typeof(FlexPanel),
-            new FrameworkPropertyMetadata(FlexItemAlignment.Auto, OnItemPropertyChanged));
+            new FrameworkPropertyMetadata(FlexItemAlignment.Auto, FrameworkPropertyMetadataOptions.AffectsMeasure, OnItemPropertyChanged));
 
         #endregion
 

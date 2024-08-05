@@ -12,7 +12,7 @@
     <Color x:Key="{x:Static wsd:FluentResource.PrimaryColor}">#0067c0</Color>
     <SolidColorBrush x:Key="{x:Static wsd:FluentResource.PrimaryBrush}" Color="{DynamicResource ResourceKey={x:Static wsd:FluentResource.PrimaryColor}}"/>
 
-    <LinearGradientBrush x:Key="ControlBorder" StartPoint="0,0" EndPoint="0,1">
+    <!--<LinearGradientBrush x:Key="ControlBorder" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0" Color="#18000000"/>
         <GradientStop Offset=".9" Color="#18000000"/>
         <GradientStop Offset="1" Color="#33000000"/>
@@ -28,7 +28,7 @@
         <GradientStop Offset="0" Color="#18000000"/>
         <GradientStop Offset=".9" Color="#18000000"/>
         <GradientStop Offset="1" Color="{DynamicResource ResourceKey={x:Static wsd:FluentResource.PrimaryColor}}"/>
-    </LinearGradientBrush>
+    </LinearGradientBrush>-->
 
     <Style TargetType="{x:Type ws:Button}"
            BasedOn="{StaticResource {x:Type ws:Button}}">
@@ -71,7 +71,7 @@
         <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlPressedBackgroundBrush}}"/>
         
         <!--Popup-->
-        <Setter Property="PopupBorderBrush" Value="{DynamicResource ControlBorder}"/>
+        <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlBorderBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ComboBoxItem}"
@@ -84,14 +84,14 @@
         <Setter Property="HoverBorderBrush" Value="#11000000"/>
 
         <Setter Property="SelectedBackground" Value="#11000000"/>
-        <Setter Property="SelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="SelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.PrimaryBrush}}"/>
 
         <Setter Property="HoverFocusedBackground" Value="#11000000"/>
         <Setter Property="HoverFocusedBorderBrush" Value="#11000000"/>
         
         <Setter Property="SelectedFocusedBackground" Value="#11000000"/>
         <Setter Property="HoverSelectedBackground" Value="#11000000"/>
-        <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.PrimaryBrush}}"/>
         <Setter Property="FocusedBorderBrush" Value="Transparent"/>
     </Style>
 

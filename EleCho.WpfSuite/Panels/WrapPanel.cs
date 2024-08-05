@@ -57,6 +57,7 @@ namespace EleCho.WpfSuite
             set { SetValue(HorizontalSpacingProperty, value); }
         }
 
+        /// <inheritdoc/>
         protected override Size MeasureOverride(Size availableSize)
         {
             var itemWidth = ItemWidth;
@@ -165,6 +166,7 @@ namespace EleCho.WpfSuite
             }
         }
 
+        /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var itemWidth = ItemWidth;

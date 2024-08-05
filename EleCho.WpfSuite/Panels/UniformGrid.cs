@@ -66,20 +66,35 @@ namespace EleCho.WpfSuite
 
 
 
+        /// <summary>
+        /// DependencyProperty of <see cref="Columns"/> Property
+        /// </summary>
         public static readonly DependencyProperty ColumnsProperty =
-            DependencyProperty.Register(nameof(Columns), typeof(int), typeof(UniformGrid), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(Columns), typeof(int), typeof(UniformGrid), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// DependencyProperty of <see cref="Rows"/> Property
+        /// </summary>
         public static readonly DependencyProperty RowsProperty =
-            DependencyProperty.Register(nameof(Rows), typeof(int), typeof(UniformGrid), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(Rows), typeof(int), typeof(UniformGrid), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// DependencyProperty of <see cref="FirstColumn"/> Property
+        /// </summary>
         public static readonly DependencyProperty FirstColumnProperty =
-            DependencyProperty.Register(nameof(FirstColumn), typeof(int), typeof(UniformGrid), new PropertyMetadata(0));
+            DependencyProperty.Register(nameof(FirstColumn), typeof(int), typeof(UniformGrid), new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// DependencyProperty of <see cref="HorizontalSpacing"/> Property
+        /// </summary>
         public static readonly DependencyProperty HorizontalSpacingProperty =
-            DependencyProperty.Register(nameof(HorizontalSpacing), typeof(double), typeof(UniformGrid), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(HorizontalSpacing), typeof(double), typeof(UniformGrid), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// DependencyProperty of <see cref="VerticalSpacing"/> Property
+        /// </summary>
         public static readonly DependencyProperty VerticalSpacingProperty =
-            DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(UniformGrid), new PropertyMetadata(0.0));
+            DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(UniformGrid), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)

@@ -86,6 +86,41 @@
                     <ws:Button Content="QWQ"/>
                 </ws:UniformGrid>
             </ws:GroupBox>
+            <ws:GroupBox Header="UniformGrid (HorizontalSpacing=8,VerticalSpacing=8,ColumnsBinding)"
+                         Padding="8"
+                         xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                <ws:GroupBox.Resources>
+                    <ws:ValueConverterGroup x:Key="NumberDivideBy150Converter">
+                        <ws:DivideNumberConverter By="150"/>
+                        <ws:PrimitiveTypeConverter TargetType="{x:Type sys:Int32}"/>
+                    </ws:ValueConverterGroup>
+                </ws:GroupBox.Resources>
+                <ws:UniformGrid HorizontalSpacing="8"
+                                VerticalSpacing="8"
+                                Columns="{Binding RelativeSource={RelativeSource Mode=Self},Path=ActualWidth,Converter={StaticResource NumberDivideBy150Converter}}">
+                    <i:Interaction.Behaviors>
+                        <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
+                    </i:Interaction.Behaviors>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                    <ws:Button Content="QWQ"/>
+                </ws:UniformGrid>
+            </ws:GroupBox>
             <ws:GroupBox Header="FlexPanel (HorizontalSpacing=8,VerticalSpacing=8,Wrap=Wrap)"
                          Padding="8">
                 <ws:FlexPanel MainSpacing="8"

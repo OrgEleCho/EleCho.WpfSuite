@@ -33,7 +33,7 @@ namespace WpfTest
             if (EleCho.WpfSuite.WindowOption.CanSetBackdrop)
             {
                 Background = Brushes.Transparent;
-                EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Acrylic);
+                EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Mica);
             }
         }
 
