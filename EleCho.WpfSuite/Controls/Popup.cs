@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,17 +22,38 @@ namespace EleCho.WpfSuite
     {
         private static readonly Action<System.Windows.Controls.Primitives.Popup> s_baseRepositionMethod;
 
+        private static readonly Action<DependencyObject, DependencyPropertyChangedEventArgs> s_baseOnPlacementTargetChangedMethod;
+
         static Popup()
         {
             var basePopupType = typeof(System.Windows.Controls.Primitives.Popup);
 
             s_baseRepositionMethod = (Action<System.Windows.Controls.Primitives.Popup>)basePopupType
-                .GetMethod("Reposition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
+                .GetMethod("Reposition", BindingFlags.NonPublic | BindingFlags.Instance)!
                 .CreateDelegate(typeof(Action<System.Windows.Controls.Primitives.Popup>));
 
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Popup), new FrameworkPropertyMetadata(typeof(Popup)));
-        }
+            s_baseOnPlacementTargetChangedMethod = (Action<DependencyObject, DependencyPropertyChangedEventArgs>)basePopupType
+                .GetMethod("OnPlacementTargetChanged", BindingFlags.NonPublic | BindingFlags.Static)!
+                .CreateDelegate(typeof(Action<DependencyObject, DependencyPropertyChangedEventArgs>));
 
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Popup), new FrameworkPropertyMetadata(typeof(Popup)));
+            PlacementTargetProperty.OverrideMetadata(typeof(Popup), new FrameworkPropertyMetadata(null, (dp, v) =>
+            {
+                s_baseOnPlacementTargetChangedMethod.Invoke(dp, v);
+                if (dp is Popup popup)
+                {
+                    if (popup.PlacementTarget is not null)
+                    {
+                        popup.PlacementTarget.LayoutUpdated -= popup.OnPlacementTargetWindowLocationChanged;
+                    }
+                    if (popup.AutoReposition && v.NewValue is not null)
+                    {
+                        ((UIElement)v.NewValue).LayoutUpdated += popup.OnPlacementTargetWindowLocationChanged;
+                    }
+                }
+
+            }));
+        }
 
 
         private Window? _placementTargetWindow;
@@ -51,7 +73,38 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="AutoReposition"/> property
         /// </summary>
         public static readonly DependencyProperty AutoRepositionProperty =
-            DependencyProperty.Register(nameof(AutoReposition), typeof(bool), typeof(Popup), new PropertyMetadata(true));
+            DependencyProperty.Register(nameof(AutoReposition), typeof(bool), typeof(Popup), new PropertyMetadata(true, AutoRepositionCallback));
+
+        private static void AutoRepositionCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not Popup popup)
+            {
+                return;
+            }
+
+            if (e.NewValue is true)
+            {
+                if (popup._placementTargetWindow is not null)
+                {
+                    popup._placementTargetWindow.LocationChanged += popup.OnPlacementTargetWindowLocationChanged;
+                }
+                if (popup.PlacementTarget is not null)
+                {
+                    popup.PlacementTarget.LayoutUpdated += popup.OnPlacementTargetWindowLocationChanged;
+                }
+            }
+            else
+            {
+                if (popup._placementTargetWindow is not null)
+                {
+                    popup._placementTargetWindow.LocationChanged -= popup.OnPlacementTargetWindowLocationChanged;
+                }
+                if (popup.PlacementTarget is not null)
+                {
+                    popup.PlacementTarget.LayoutUpdated -= popup.OnPlacementTargetWindowLocationChanged;
+                }
+            }
+        }
 
 
 
@@ -67,6 +120,7 @@ namespace EleCho.WpfSuite
                 placementTargetWindow.LocationChanged += OnPlacementTargetWindowLocationChanged;
                 _placementTargetWindow = placementTargetWindow;
             }
+
         }
 
         /// <inheritdoc/>
