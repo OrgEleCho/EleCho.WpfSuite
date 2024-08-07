@@ -92,7 +92,7 @@
                 <ws:GroupBox.Resources>
                     <ws:ValueConverterGroup x:Key="NumberDivideBy150Converter">
                         <ws:DivideNumberConverter By="150"/>
-                        <ws:PrimitiveTypeConverter TargetType="{x:Type sys:Int32}"/>
+                        <ws:NumberConverter/>
                     </ws:ValueConverterGroup>
                 </ws:GroupBox.Resources>
                 <ws:UniformGrid HorizontalSpacing="8"
