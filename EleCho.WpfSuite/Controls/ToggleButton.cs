@@ -69,6 +69,24 @@ namespace EleCho.WpfSuite
             set { SetValue(PressedBorderBrushProperty, value); }
         }
 
+        public Brush CheckedForeground
+        {
+            get { return (Brush)GetValue(CheckedForegroundProperty); }
+            set { SetValue(CheckedForegroundProperty, value); }
+        }
+
+        public Brush CheckedBackground
+        {
+            get { return (Brush)GetValue(CheckedBackgroundProperty); }
+            set { SetValue(CheckedBackgroundProperty, value); }
+        }
+
+        public Brush CheckedBorderBrush
+        {
+            get { return (Brush)GetValue(CheckedBorderBrushProperty); }
+            set { SetValue(CheckedBorderBrushProperty, value); }
+        }
+
         public Brush DisabledForeground
         {
             get { return (Brush)GetValue(DisabledForegroundProperty); }
@@ -114,6 +132,15 @@ namespace EleCho.WpfSuite
 
         public static readonly DependencyProperty PressedBorderBrushProperty =
             DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush), typeof(ToggleButton), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty CheckedForegroundProperty =
+            DependencyProperty.Register(nameof(CheckedForeground), typeof(Brush), typeof(ToggleButton), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty CheckedBackgroundProperty =
+            DependencyProperty.Register(nameof(CheckedBackground), typeof(Brush), typeof(ToggleButton), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty CheckedBorderBrushProperty =
+            DependencyProperty.Register(nameof(CheckedBorderBrush), typeof(Brush), typeof(ToggleButton), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledForegroundProperty =
             DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ToggleButton), new FrameworkPropertyMetadata(null));

@@ -19,6 +19,8 @@
         <Setter Property="HoverBorderBrush" Value="#FF3C7FB1"/>
         <Setter Property="PressedBackground" Value="#FFC4E5F6"/>
         <Setter Property="PressedBorderBrush" Value="#FF2C628B"/>
+        <Setter Property="CheckedBackground" Value="#FFBCDDEE"/>
+        <Setter Property="CheckedBorderBrush" Value="#FF245A83"/>
         <Setter Property="DisabledBackground" Value="#FFF4F4F4"/>
         <Setter Property="DisabledBorderBrush" Value="#FFADB2B5"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -102,6 +104,35 @@
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <!--Checked styles bellow-->
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
                                         <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
                                     </MultiBinding>
                                 </Setter.Value>

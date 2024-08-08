@@ -16,7 +16,6 @@
         <ws:StackPanel Margin="12"
                        Spacing="8">
             <ws:StackPanel Spacing="8"
-                           Width="{ws:Double 123}"
                            Orientation="Horizontal">
                 <ws:Button Content="QWQ" PressedBackground="Red"/>
                 <ws:Button>
@@ -29,6 +28,8 @@
                 </ws:Button>
                 <ws:Button Content="QWQ"/>
                 <ws:Button Content="QWQ"/>
+                <ws:ToggleButton Content="QWQ"/>
+                <ToggleButton Content="Toggle test" IsChecked="True"/>
             </ws:StackPanel>
 
             <Grid x:Name="TestPanel"
