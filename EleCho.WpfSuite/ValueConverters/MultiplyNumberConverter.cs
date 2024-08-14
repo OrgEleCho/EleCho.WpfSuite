@@ -24,10 +24,49 @@ namespace EleCho.WpfSuite
             try
             {
                 double current = System.Convert.ToDouble(value);
-                if (parameter is double parameterNumber)
-                    current *= parameterNumber;
+
+                if (parameter is not null)
+                {
+                    try
+                    {
+                        current *= System.Convert.ToDouble(parameter);
+                    }
+                    catch { }
+                }
 
                 var result = current * By;
+                if (typeof(IConvertible).IsAssignableFrom(targetType))
+                {
+                    return System.Convert.ChangeType(result, targetType);
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            catch
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            try
+            {
+                double current = System.Convert.ToDouble(value);
+
+                if (parameter is not null)
+                {
+                    try
+                    {
+                        current /= System.Convert.ToDouble(parameter);
+                    }
+                    catch { }
+                }
+
+                var result = current / By;
                 if (typeof(IConvertible).IsAssignableFrom(targetType))
                 {
                     return System.Convert.ChangeType(result, targetType);
