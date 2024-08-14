@@ -1,7 +1,7 @@
 ---
 title: 窗口选项
 layout: default
-nav_order: 4
+nav_order: 5
 permalink: /zh/window-options
 parent: 中文文档
 ---

@@ -1,7 +1,7 @@
 ---
 title: Window Options
 layout: default
-nav_order: 4
+nav_order: 5
 permalink: /en/window-options
 parent: Documentation
 ---
