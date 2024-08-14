@@ -48,9 +48,9 @@ WPF Suite 中还有许多值得探索的东西, 例如内容切换与页面跳�
 </Window>
 ```
 
-## 示例图片
+## 示例程序
 
-下面是来自 WPF Suite 示例程序的一些截图
+下面是来自 WPF Suite 示例程序的截图, 要下载, 请到 [GitHub 的最新 Release](https://github.com/OrgEleCho/EleCho.WpfSuite/releases/latest)
 
 <div class=".d-flex">
 

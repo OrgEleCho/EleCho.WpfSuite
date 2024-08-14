@@ -7,8 +7,10 @@ namespace EleCho.WpfSuite
     /// <summary>
     /// Convert boolean to any other type
     /// </summary>
+    /// <typeparam name="TSelf"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class BooleanToValueConverter<TValue> : SingletonValueConverterBase<BooleanToValueConverter<TValue>>
+    public class BooleanToValueConverter<TSelf, TValue> : SingletonValueConverterBase<TSelf>
+        where TSelf : BooleanToValueConverter<TSelf, TValue>, new()
     {
         /// <summary>
         /// Result value when the boolean value is true
@@ -50,13 +52,13 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="ValueWhenTrue"/> property
         /// </summary>
         public static readonly DependencyProperty ValueWhenTrueProperty =
-            DependencyProperty.Register(nameof(ValueWhenTrue), typeof(TValue), typeof(BooleanToValueConverter<TValue>), new PropertyMetadata(default(TValue)));
+            DependencyProperty.Register(nameof(ValueWhenTrue), typeof(TValue), typeof(BooleanToValueConverter<TSelf, TValue>), new PropertyMetadata(default(TValue)));
 
         /// <summary>
         /// The DependencyProperty of <see cref="ValueWhenFalse"/> property
         /// </summary>
         public static readonly DependencyProperty ValueWhenFalseProperty =
-            DependencyProperty.Register(nameof(ValueWhenFalse), typeof(TValue), typeof(BooleanToValueConverter<TValue>), new PropertyMetadata(default(TValue)));
+            DependencyProperty.Register(nameof(ValueWhenFalse), typeof(TValue), typeof(BooleanToValueConverter<TSelf, TValue>), new PropertyMetadata(default(TValue)));
 
 
     }

@@ -49,6 +49,16 @@ After installation, there is no need to import any resources, all you need to do
 </Window>
 ```
 
+## Sample App
+
+Here's a screenshot from the WPF Suite sample program, to download it, go to [GitHub: Latest Release](https://github.com/OrgEleCho/EleCho.WpfSuite/releases/latest)
+
+<div class=".d-flex">
+
+<img src="/images/app1.png" height="300">
+
+</div>
+
 ## About the project
 
 EleCho.WpfSuite is &copy; 2024-{{ "now" | date: "%Y" }} by [EleCho](https://github.com/OrgEleCho).
