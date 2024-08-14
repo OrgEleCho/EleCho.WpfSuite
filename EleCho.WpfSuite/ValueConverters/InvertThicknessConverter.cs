@@ -13,7 +13,7 @@ namespace EleCho.WpfSuite
         public override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not Thickness thickness)
-                throw new ArgumentException("Invalid type of value", nameof(value));
+                return DependencyProperty.UnsetValue;
 
             return new Thickness(-thickness.Left, -thickness.Top, -thickness.Right, -thickness.Bottom);
         }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 
@@ -28,9 +29,13 @@ namespace EleCho.WpfSuite
             else
             {
                 var valueType = value.GetType();
-                if (valueType.IsGenericType && valueType.GetGenericTypeDefinition() == _typeGenericCollection)
+                var interfaceTypes = valueType.GetInterfaces();
+
+                if (interfaceTypes.FirstOrDefault(type => type.GetGenericTypeDefinition() == _typeGenericCollection) is Type interfaceType)
                 {
-                    return (int)(_genericCollectionCountProperty.GetValue(value)!) != 0;
+                    var property = interfaceType.GetProperty(nameof(ICollection<object>.Count));
+
+                    return (int)(property.GetValue(value)!) != 0;
                 }
             }
 
