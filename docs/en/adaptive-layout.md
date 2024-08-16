@@ -2,7 +2,7 @@
 title: Adaptive Layout
 layout: default
 nav_order: 7
-permalink: /zh/adaptive-layout
+permalink: /en/adaptive-layout
 parent: Documentation
 ---
 
