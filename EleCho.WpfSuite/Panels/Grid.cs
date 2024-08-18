@@ -8,22 +8,36 @@ using System.Windows.Markup;
 
 namespace EleCho.WpfSuite.Controls
 {
-    [ContentProperty(nameof(Children))]
+    /// <inheritdoc/>
     public class Grid : System.Windows.Controls.Grid
     {
-        public static readonly DependencyProperty ColumnDefinitionsProperty =
-              DependencyProperty.Register(
-                  nameof(ColumnDefinitions),
-                  typeof(ColumnDefinitionCollection),
-                  typeof(Grid),
-                  new PropertyMetadata(null, OnColumnDefinitionsChanged));
-
+        /// <inheritdoc/>
         [TypeConverter(typeof(ColumnDefinitionsConverter))]
         public new ColumnDefinitionCollection ColumnDefinitions
         {
             get { return base.ColumnDefinitions; }
             set { SetValue(ColumnDefinitionsProperty, value); }
         }
+
+        /// <inheritdoc/>
+        [TypeConverter(typeof(RowDefinitionsConverter))]
+        public new RowDefinitionCollection RowDefinitions
+        {
+            get { return base.RowDefinitions; }
+            set { SetValue(RowDefinitionsProperty, value); }
+        }
+
+        /// <summary>
+        /// DependencyProperty of <see cref="ColumnDefinitions"/>
+        /// </summary>
+        public static readonly DependencyProperty ColumnDefinitionsProperty = DependencyProperty.Register(
+                  nameof(ColumnDefinitions), typeof(ColumnDefinitionCollection), typeof(Grid), new PropertyMetadata(null, OnColumnDefinitionsChanged));
+
+        /// <summary>
+        /// DependencyProperty of <see cref="RowDefinitions"/>
+        /// </summary>
+        public static readonly DependencyProperty RowDefinitionsProperty = DependencyProperty.Register(
+                  nameof(RowDefinitions), typeof(RowDefinitionCollection), typeof(Grid), new PropertyMetadata(null, OnRowDefinitionsChanged));
 
         private static void OnColumnDefinitionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -33,34 +47,20 @@ namespace EleCho.WpfSuite.Controls
             }
         }
 
+        private static void OnRowDefinitionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Grid grid && e.NewValue is RowDefinitionCollection rowDefinitions)
+            {
+                grid.UpdateRowDefinitions(rowDefinitions);
+            }
+        }
+
         private void UpdateColumnDefinitions(ColumnDefinitionCollection columnDefinitions)
         {
             base.ColumnDefinitions.Clear();
             foreach (ColumnDefinition columnDefinition in columnDefinitions)
             {
                 base.ColumnDefinitions.Add(new ColumnDefinition { Width = columnDefinition.Width });
-            }
-        }
-
-        public static readonly DependencyProperty RowDefinitionsProperty =
-              DependencyProperty.Register(
-                  nameof(RowDefinitions),
-                  typeof(RowDefinitionCollection),
-                  typeof(Grid),
-                  new PropertyMetadata(null, OnRowDefinitionsChanged));
-
-        [TypeConverter(typeof(RowDefinitionsConverter))]
-        public new RowDefinitionCollection RowDefinitions
-        {
-            get { return base.RowDefinitions; }
-            set { SetValue(RowDefinitionsProperty, value); }
-        }
-
-        private static void OnRowDefinitionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Grid grid && e.NewValue is RowDefinitionCollection rowDefinitions)
-            {
-                grid.UpdateRowDefinitions(rowDefinitions);
             }
         }
 
@@ -171,6 +171,7 @@ namespace EleCho.WpfSuite.Controls
                         null!,
                         [_grid],
                         null!)!;
+
                     GridLengthConverter converter = new();
                     string[] definitions = strValue.Split(',');
 
