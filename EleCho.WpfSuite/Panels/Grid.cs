@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace EleCho.WpfSuite.Controls
+namespace EleCho.WpfSuite
 {
     /// <inheritdoc/>
     public class Grid : System.Windows.Controls.Grid
