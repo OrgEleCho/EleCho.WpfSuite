@@ -105,15 +105,15 @@ you can achieve automatic clipping by binding the content's Clip property to the
 </ws:Border>
 ```
 
-TransitioningContentControl can be understood as a ContentControl with added transition effects. 
+ContentControl in WPF suite can be understood as a ContentControl with added transition effects. 
 After setting the transition effects, the specified transition effect will be executed when the content changes.
 
 ```xml
-<ws:TransitioningContentControl Content="Some content">
-    <ws:TransitioningContentControl.Transition>
+<ws:ContentControl Content="Some content">
+    <ws:ContentControl.Transition>
         <ws:SlideFadeTransition Duration="0:0:0.200"/>
-    </ws:TransitioningContentControl.Transition>
-</ws:TransitioningContentControl>
+    </ws:ContentControl.Transition>
+</ws:ContentControl>
 ```
 
 WPF Suite has also made several optimizations for ScrollViewer.
