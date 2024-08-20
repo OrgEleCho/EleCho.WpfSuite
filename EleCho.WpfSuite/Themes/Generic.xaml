@@ -6,7 +6,7 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ConditionalControlResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TabControlResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TabItemResources.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TransitioningContentControlResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ContentControlResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/ImageResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/SlicedImageResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite;component/Controls/TextBoxResources.xaml"/>

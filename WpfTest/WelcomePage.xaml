@@ -22,21 +22,21 @@
             <TextBlock Text="WPF layout panels, controls, value converters, markup extensions, transitions and utilities"/>
 
             <Grid>
-                <ws:TransitioningContentControl Content="{Binding CurrentImageSource}"
+                <ws:ContentControl Content="{Binding CurrentImageSource}"
                                                 d:Content="{d:DesignInstance Type=ImageSource}"
                                                 CornerRadius="5"
                                                 ClipToBounds="True">
-                    <ws:TransitioningContentControl.Transition>
+                    <ws:ContentControl.Transition>
                         <ws:SlideTransition Reverse="{Binding TransitionReverse}"/>
-                    </ws:TransitioningContentControl.Transition>
-                    <ws:TransitioningContentControl.ContentTemplate>
+                    </ws:ContentControl.Transition>
+                    <ws:ContentControl.ContentTemplate>
                         <DataTemplate>
                             <Image Height="300"
                                    Source="{Binding}"
                                    Stretch="UniformToFill"/>
                         </DataTemplate>
-                    </ws:TransitioningContentControl.ContentTemplate>
-                </ws:TransitioningContentControl>
+                    </ws:ContentControl.ContentTemplate>
+                </ws:ContentControl>
                 <ws:Button Command="{Binding GoPrevCommand}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"

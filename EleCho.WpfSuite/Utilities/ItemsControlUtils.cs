@@ -14,7 +14,7 @@ namespace EleCho.WpfSuite
     public static class ItemsControlUtils
     {
         /// <summary>
-        /// Remove items from <see cref="ItemsControl"/> that has a <see cref="TransitioningContentControl"/> container
+        /// Remove items from <see cref="ItemsControl"/> that has a <see cref="ContentControl"/> container
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="container"></param>
@@ -24,7 +24,7 @@ namespace EleCho.WpfSuite
             => TransitioningRemoveRangeAsync(container, items, true);
 
         /// <summary>
-        /// Remove items from <see cref="ItemsControl"/> that has a <see cref="TransitioningContentControl"/> container
+        /// Remove items from <see cref="ItemsControl"/> that has a <see cref="ContentControl"/> container
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="container"></param>
@@ -35,7 +35,7 @@ namespace EleCho.WpfSuite
             => Task.WhenAll(items.Select(item => TransitioningRemoveAsync(container, item, forwardTransition)));
 
         /// <summary>
-        /// Remove an item from <see cref="ItemsControl"/> that has a <see cref="TransitioningContentControl"/> container
+        /// Remove an item from <see cref="ItemsControl"/> that has a <see cref="ContentControl"/> container
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="container"></param>
@@ -45,7 +45,7 @@ namespace EleCho.WpfSuite
             => TransitioningRemoveAsync(container, item, true);
 
         /// <summary>
-        /// Remove an item from <see cref="ItemsControl"/> that has a <see cref="TransitioningContentControl"/> container
+        /// Remove an item from <see cref="ItemsControl"/> that has a <see cref="ContentControl"/> container
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="container"></param>
@@ -73,7 +73,7 @@ namespace EleCho.WpfSuite
                 return;
             }
 
-            if (itemControl is ContentControl itemContentControl)
+            if (itemControl is System.Windows.Controls.ContentControl itemContentControl)
             {
                 itemControl = VisualTreeHelper.GetChild(itemContentControl, 0);
             }
@@ -83,7 +83,7 @@ namespace EleCho.WpfSuite
                 itemControl = VisualTreeHelper.GetChild(itemContentPresenter, 0);
             }
 
-            if (itemControl is TransitioningContentControl itemTransitioningContentControl)
+            if (itemControl is ContentControl itemTransitioningContentControl)
             {
                 itemTransitioningContentControl.SetContent(null, forwardTransition);
                 await itemTransitioningContentControl.WaitForTransitionAsync();

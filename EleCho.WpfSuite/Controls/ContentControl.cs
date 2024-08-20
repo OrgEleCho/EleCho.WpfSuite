@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,11 +13,11 @@ namespace EleCho.WpfSuite
     /// </summary>
     [TemplatePart(Name = "PART_Contents", Type = typeof(Panel))]
     [ContentProperty(nameof(Content))]
-    public class TransitioningContentControl : Control
+    public class ContentControl : Control
     {
-        static TransitioningContentControl()
+        static ContentControl()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(TransitioningContentControl), new FrameworkPropertyMetadata(typeof(TransitioningContentControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentControl), new FrameworkPropertyMetadata(typeof(ContentControl)));
         }
 
         private Panel? _contentsPanel;
@@ -40,7 +41,7 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// Content of this <see cref="TransitioningContentControl"/>
+        /// Content of this <see cref="ContentControl"/>
         /// </summary>
         public object? Content
         {
@@ -49,7 +50,16 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// ContentTemplate of this <see cref="TransitioningContentControl"/>
+        /// Delay of content setting
+        /// </summary>
+        public Duration ContentDelay
+        {
+            get { return (Duration)GetValue(ContentDelayProperty); }
+            set { SetValue(ContentDelayProperty, value); }
+        }
+
+        /// <summary>
+        /// ContentTemplate of this <see cref="ContentControl"/>
         /// </summary>
         public DataTemplate ContentTemplate
         {
@@ -58,7 +68,7 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// ContentTemplateSelector of this <see cref="TransitioningContentControl"/>
+        /// ContentTemplateSelector of this <see cref="ContentControl"/>
         /// </summary>
         public DataTemplateSelector ContentTemplateSelector
         {
@@ -85,7 +95,7 @@ namespace EleCho.WpfSuite
         }
         
         /// <summary>
-        /// Set content of the <see cref="TransitioningContentControl"/>
+        /// Set content of the <see cref="ContentControl"/>
         /// </summary>
         /// <param name="content"></param>
         public void SetContent(object? content)
@@ -94,7 +104,7 @@ namespace EleCho.WpfSuite
         }
 
         /// <summary>
-        /// Set content of the <see cref="TransitioningContentControl"/>
+        /// Set content of the <see cref="ContentControl"/>
         /// </summary>
         /// <param name="content"></param>
         /// <param name="forward"></param>
@@ -122,42 +132,67 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="Content"/> property
         /// </summary>
         public static readonly DependencyProperty ContentProperty =
-            DependencyProperty.Register(nameof(Content), typeof(object), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
+            DependencyProperty.Register(nameof(Content), typeof(object), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure, new PropertyChangedCallback(OnContentChanged)));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="ContentDelay"/>
+        /// </summary>
+        public static readonly DependencyProperty ContentDelayProperty =
+            DependencyProperty.Register(nameof(ContentDelay), typeof(Duration), typeof(ContentControl), new FrameworkPropertyMetadata(default(Duration), propertyChangedCallback: null, coerceValueCallback: CoerceContentDelay));
 
         /// <summary>
         /// The DependencyProperty of <see cref="ContentTemplate"/> property
         /// </summary>
         public static readonly DependencyProperty ContentTemplateProperty =
-            DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// The DependencyProperty of <see cref="ContentTemplateSelector"/> property
         /// </summary>
         public static readonly DependencyProperty ContentTemplateSelectorProperty =
-            DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// The DependencyProperty of <see cref="Transition"/> property
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
-            DependencyProperty.Register(nameof(Transition), typeof(IContentTransition), typeof(TransitioningContentControl), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register(nameof(Transition), typeof(IContentTransition), typeof(ContentControl), new FrameworkPropertyMetadata(null));
 
         /// <summary>
         /// The DependencyProperty of <see cref="CornerRadius"/> property
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(TransitioningContentControl));
+            Border.CornerRadiusProperty.AddOwner(typeof(ContentControl));
 
         private static void OnContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is TransitioningContentControl transitioningContentControl)
+            if (d is ContentControl transitioningContentControl)
             {
                 transitioningContentControl._lastTask = transitioningContentControl.ApplyContentChangeAsync(e.OldValue, e.NewValue);
             }
         }
 
+        private static object CoerceContentDelay(DependencyObject d, object baseValue)
+        {
+            if (baseValue is not Duration duration ||
+                !duration.HasTimeSpan)
+            {
+                throw new ArgumentException();
+            }
+
+            return baseValue;
+        }
+
         private async Task ApplyContentChangeAsync(object? oldContent, object? newContent)
         {
+            var delay = ContentDelay;
+
+            if (delay != default && 
+                delay.TimeSpan != default)
+            {
+                await Task.Delay(delay.TimeSpan);
+            }
+
             if (_contentsPanel is null)
             {
                 _pendingNewContent = newContent;

@@ -392,8 +392,8 @@
                         </Button.LayoutTransform>
                     </Button>
                 </Grid>
-                <ws:TransitioningContentControl x:Name="PART_ContentControl"
-                                                Transition="{TemplateBinding Transition}"/>
+                <ws:ContentControl x:Name="PART_ContentControl"
+                                   Transition="{TemplateBinding Transition}"/>
             </DockPanel>
         </Border>
         <ControlTemplate.Triggers>
@@ -416,9 +416,9 @@
                                BorderThickness="{TemplateBinding BorderThickness}"
                                CornerRadius="{TemplateBinding CornerRadius}"
                                Padding="{TemplateBinding Padding}">
-                        <ws:TransitioningContentControl x:Name="PART_ContentControl"
-                                                        Transition="{TemplateBinding Transition}"
-                                                        Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
+                        <ws:ContentControl x:Name="PART_ContentControl"
+                                           Transition="{TemplateBinding Transition}"
+                                           Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
                     </ws:Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipToBounds" Value="True">

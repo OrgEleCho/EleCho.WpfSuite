@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite">
 
-    <Style TargetType="{x:Type ws:TransitioningContentControl}">
+    <Style TargetType="{x:Type ws:ContentControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ws:TransitioningContentControl}">
+                <ControlTemplate TargetType="{x:Type ws:ContentControl}">
                     <ws:Border x:Name="PART_Border"
                                Background="{TemplateBinding Background}"
                                BorderBrush="{TemplateBinding BorderBrush}"

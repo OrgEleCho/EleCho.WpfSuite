@@ -29,6 +29,7 @@
     <Page Remove="Controls\ComboBoxItemResources.xaml" />
     <Page Remove="Controls\ComboBoxResources.xaml" />
     <Page Remove="Controls\ConditionalControlResources.xaml" />
+    <Page Remove="Controls\ContentControlResources.xaml" />
     <Page Remove="Controls\ContextMenuResources.xaml" />
     <Page Remove="Controls\FrameResources.xaml" />
     <Page Remove="Controls\GroupBoxResources.xaml" />
@@ -52,7 +53,6 @@
     <Page Remove="Controls\ThumbResources.xaml" />
     <Page Remove="Controls\ToggleButtonResources.xaml" />
     <Page Remove="Controls\TooltipResources.xaml" />
-    <Page Remove="Controls\TransitioningContentControlResources.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,7 +95,7 @@
     <Resource Include="Controls\ThumbResources.xaml" />
     <Resource Include="Controls\ToggleButtonResources.xaml" />
     <Resource Include="Controls\TooltipResources.xaml" />
-    <Resource Include="Controls\TransitioningContentControlResources.xaml" />
+    <Resource Include="Controls\ContentControlResources.xaml" />
   </ItemGroup>
 
 </Project>

@@ -173,7 +173,7 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="TransitionProperty"/> property
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
-            TransitioningContentControl.TransitionProperty.AddOwner(typeof(ConditionalControl));
+            ContentControl.TransitionProperty.AddOwner(typeof(ConditionalControl));
 
         /// <inheritdoc/>
         protected override Size MeasureOverride(Size constraint)

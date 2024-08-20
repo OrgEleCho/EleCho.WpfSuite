@@ -9,7 +9,7 @@ namespace EleCho.WpfSuite
     /// <summary>
     /// Frame is a content control that supports navigation.
     /// </summary>
-    [TemplatePart(Name = "PART_ContentControl", Type = typeof(TransitioningContentControl))]
+    [TemplatePart(Name = "PART_ContentControl", Type = typeof(ContentControl))]
     public class Frame : System.Windows.Controls.Frame
     {
         static Frame()
@@ -18,7 +18,7 @@ namespace EleCho.WpfSuite
             ContentProperty.OverrideMetadata(typeof(Frame), new FrameworkPropertyMetadata(null, new CoerceValueCallback(CoerceContent)));
         }
 
-        private TransitioningContentControl? _contentControl;
+        private ContentControl? _contentControl;
         private object? _pendingNewContent;
         private int _lastBackStackSize;
 
@@ -49,7 +49,7 @@ namespace EleCho.WpfSuite
         {
             base.OnApplyTemplate();
 
-            _contentControl = GetTemplateChild("PART_ContentControl") as TransitioningContentControl;
+            _contentControl = GetTemplateChild("PART_ContentControl") as ContentControl;
             if (_contentControl is not null && 
                 _pendingNewContent is not null)
             {
@@ -113,7 +113,7 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="Transition"/> property
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
-            TransitioningContentControl.TransitionProperty.AddOwner(typeof(Frame));
+            ContentControl.TransitionProperty.AddOwner(typeof(Frame));
 
 
     }
