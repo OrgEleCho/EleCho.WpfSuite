@@ -237,7 +237,8 @@
             </ws:GroupBox>
 
             <ws:GroupBox Header="Relative Panel">
-                <ws:RelativePanel>
+                <ws:RelativePanel VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
                     <Border x:Name="firstBD"
                             ws:RelativePanel.AlignHorizontalCenterWithPanel="True"
                             BorderBrush="Red"
