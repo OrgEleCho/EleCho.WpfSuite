@@ -1,9 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System;
-using System.Windows.Controls;
+﻿// Ported from https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.controls.relativepanel
+// Code: 
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/components/relativepanel/inc/RPGraph.h
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/components/relativepanel/inc/RPNode.h
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/components/relativepanel/lib/RPGraph.cpp
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/components/relativepanel/lib/RPNode.cpp
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/core/inc/RelativePanel.h
+//   - https://github.com/microsoft/microsoft-ui-xaml/blob/main/src/dxaml/xcp/core/core/elements/RelativePanel.cpp
+// Origin Commit ID: https://github.com/microsoft/microsoft-ui-xaml/commit/66a7b0ae71c19f89c6a7d86a1986794ad1a1bf09
+
 using System.ComponentModel;
-using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Markup;
 
 namespace EleCho.WpfSuite
