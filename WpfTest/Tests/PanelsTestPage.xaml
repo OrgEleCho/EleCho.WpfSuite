@@ -7,7 +7,7 @@
       xmlns:ws="https://schemas.elecho.dev/wpfsuite"
       mc:Ignorable="d"
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-      d:DesignHeight="950" d:DesignWidth="800"
+      d:DesignHeight="2000" d:DesignWidth="800"
       d:Background="White"
       Title="PanelsTestPage">
 
@@ -234,6 +234,40 @@
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                     <Button Content="QWQ" Margin="0 0 8 8"/>
                 </WrapPanel>
+            </ws:GroupBox>
+
+            <ws:GroupBox Header="Relative Panel">
+                <ws:RelativePanel>
+                    <Border x:Name="firstBD"
+                            ws:RelativePanel.AlignHorizontalCenterWithPanel="True"
+                            BorderBrush="Red"
+                            BorderThickness="2"
+                            Width="50"
+                            Height="50"/>
+                    <Border x:Name="secondBD"
+                            ws:RelativePanel.RightOf="firstBD"
+                            BorderBrush="Green"
+                            BorderThickness="2"
+                            Width="50"
+                            Height="30"/>
+                    <Border x:Name="thirdBD" ws:RelativePanel.RightOf="secondBD"
+                            BorderBrush="#00a2ea"
+                            BorderThickness="2"
+                            Width="50"
+                            Height="60"/>
+                    <Border x:Name="forthBD"
+                            ws:RelativePanel.Below="firstBD"
+                            BorderBrush="#9c4e9a"
+                            BorderThickness="2"
+                            Width="60"
+                            Height="55"/>
+                    <Border ws:RelativePanel.RightOf="forthBD"
+                            ws:RelativePanel.Below="thirdBD"
+                            BorderBrush="#ffca0a"
+                            BorderThickness="2"
+                            Width="76"
+                            Height="55"/>
+                </ws:RelativePanel>
             </ws:GroupBox>
 
             <TextBlock Margin="0 48 0 0">
