@@ -28,25 +28,25 @@ namespace EleCho.WpfSuite
         /// Identifies the AlignLeftWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignLeftWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignLeftWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsArrange));
+            "AlignLeftWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignTopWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignTopWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignTopWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsArrange));
+            "AlignTopWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignRightWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignRightWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignRightWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsArrange));
+            "AlignRightWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignBottomWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignBottomWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignBottomWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsArrange));
+            "AlignBottomWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Set value of AlignLeftWithPanel attached property
@@ -120,25 +120,25 @@ namespace EleCho.WpfSuite
         /// Identifies the AlignLeftWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignLeftWithProperty = DependencyProperty.RegisterAttached(
-            "AlignLeftWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignLeftWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignTopWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignTopWithProperty = DependencyProperty.RegisterAttached(
-            "AlignTopWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignTopWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignRightWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignRightWithProperty = DependencyProperty.RegisterAttached(
-            "AlignRightWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignRightWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignBottomWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignBottomWithProperty = DependencyProperty.RegisterAttached(
-            "AlignBottomWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignBottomWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Set value of AlignLeftWith attached property
@@ -216,25 +216,25 @@ namespace EleCho.WpfSuite
         /// Identifies the LeftOf attached property
         /// </summary>
         public static readonly DependencyProperty LeftOfProperty = DependencyProperty.RegisterAttached(
-            "LeftOf", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "LeftOf", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the Above attached property
         /// </summary>
         public static readonly DependencyProperty AboveProperty = DependencyProperty.RegisterAttached(
-            "Above", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "Above", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the RightOf attached property
         /// </summary>
         public static readonly DependencyProperty RightOfProperty = DependencyProperty.RegisterAttached(
-            "RightOf", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "RightOf", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the Below attached property
         /// </summary>
         public static readonly DependencyProperty BelowProperty = DependencyProperty.RegisterAttached(
-            "Below", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "Below", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Set value of LeftOf attached property
@@ -312,25 +312,25 @@ namespace EleCho.WpfSuite
         /// Identifies the AlignHorizontalCenterWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignHorizontalCenterWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignHorizontalCenterWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignHorizontalCenterWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignVerticalCenterWithPanel attached property
         /// </summary>
         public static readonly DependencyProperty AlignVerticalCenterWithPanelProperty = DependencyProperty.RegisterAttached(
-            "AlignVerticalCenterWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignVerticalCenterWithPanel", typeof(bool), typeof(RelativePanel), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.AffectsMeasure| FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignHorizontalCenterWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignHorizontalCenterWithProperty = DependencyProperty.RegisterAttached(
-            "AlignHorizontalCenterWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignHorizontalCenterWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Identifies the AlignVerticalCenterWith attached property
         /// </summary>
         public static readonly DependencyProperty AlignVerticalCenterWithProperty = DependencyProperty.RegisterAttached(
-            "AlignVerticalCenterWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            "AlignVerticalCenterWith", typeof(UIElement), typeof(RelativePanel), new FrameworkPropertyMetadata(default(UIElement), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
 
         /// <summary>
         /// Set value of AlignHorizontalCenterWithPanel attached property

@@ -888,9 +888,8 @@ namespace EleCho.WpfSuite
 
                     node.SetPending(false);
 
-                    CalculateMeasureRectHorizontally(node, availableSize, out var measureRectX, out var measureRectWidth);
-                    CalculateMeasureRectVertically(node, availableSize, out var measureRectY, out var measureRectHeight);
-                    node.m_measureRect = new UnsafeRect(measureRectX, measureRectY, measureRectWidth, measureRectHeight);
+                    CalculateMeasureRectHorizontally(node, availableSize, out node.m_measureRect.X, out node.m_measureRect.Width);
+                    CalculateMeasureRectVertically(node, availableSize, out node.m_measureRect.Y, out node.m_measureRect.Height);
 
                     constrainedAvailableSize.Width = Math.Max(node.m_measureRect.Width, 0.0f);
                     constrainedAvailableSize.Height = Math.Max(node.m_measureRect.Height, 0.0f);
@@ -904,19 +903,13 @@ namespace EleCho.WpfSuite
                     // calculations until then.
                     if (availableSize.Width != double.PositiveInfinity)
                     {
-                        CalculateArrangeRectHorizontally(node, out var arrangeRectX, out var arrangeRectWidth);
-                        node.m_arrangeRect.X = arrangeRectX;
-                        node.m_arrangeRect.Width = arrangeRectWidth;
-
+                        CalculateArrangeRectHorizontally(node, out node.m_arrangeRect.X, out node.m_arrangeRect.Width);
                         node.SetArrangedHorizontally(true);
                     }
 
                     if (availableSize.Height != double.PositiveInfinity)
                     {
-                        CalculateArrangeRectVertically(node, out var arrangeRectY, out var arrangeRectHeight);
-                        node.m_arrangeRect.Y = arrangeRectY;
-                        node.m_arrangeRect.Height = arrangeRectHeight;
-
+                        CalculateArrangeRectVertically(node, out node.m_arrangeRect.Y, out node.m_arrangeRect.Height);
                         node.SetArrangedVertically(true);
                     }
                 }
@@ -949,12 +942,8 @@ namespace EleCho.WpfSuite
                     ArrangeNodeHorizontally(node.m_alignHorizontalCenterWithNode, finalSize);
                     ArrangeNodeHorizontally(node.m_alignVerticalCenterWithNode, finalSize);
 
-                    CalculateMeasureRectHorizontally(node, finalSize, out var measureRectX, out var measureRectWidth);
-                    node.m_measureRect.X = measureRectX;
-                    node.m_measureRect.Width = measureRectWidth;
-                    CalculateArrangeRectHorizontally(node, out var arrangeRectX, out var arrangeRectWidth);
-                    node.m_arrangeRect.X = arrangeRectX;
-                    node.m_arrangeRect.Width = arrangeRectWidth;
+                    CalculateMeasureRectHorizontally(node, finalSize, out node.m_measureRect.X, out node.m_measureRect.Width);
+                    CalculateArrangeRectHorizontally(node, out node.m_arrangeRect.X, out node.m_arrangeRect.Width);
 
                     node.SetArrangedHorizontally(true);
                 }
@@ -987,12 +976,8 @@ namespace EleCho.WpfSuite
                     ArrangeNodeVertically(node.m_alignHorizontalCenterWithNode, finalSize);
                     ArrangeNodeVertically(node.m_alignVerticalCenterWithNode, finalSize);
 
-                    CalculateMeasureRectVertically(node, finalSize, out var measureRectY, out var measureRectHeight);
-                    node.m_measureRect.Y = measureRectY;
-                    node.m_measureRect.Height = measureRectHeight;
-                    CalculateArrangeRectVertically(node, out var arrangeRectY, out var arrangeRectHeight);
-                    node.m_arrangeRect.Y = arrangeRectY;
-                    node.m_arrangeRect.Height = arrangeRectHeight;
+                    CalculateMeasureRectVertically(node, finalSize, out node.m_measureRect.Y, out node.m_measureRect.Height);
+                    CalculateArrangeRectVertically(node, out node.m_arrangeRect.Y, out node.m_arrangeRect.Height);
 
                     node.SetArrangedVertically(true);
                 }
