@@ -427,7 +427,7 @@ namespace EleCho.WpfSuite
 
             foreach (UIElement child in InternalChildren)
             {
-                _graph.Nodes.AddLast(new GraphNode(child));
+                _graph.Nodes.Add(new GraphNode(child));
             }
 
             _graph.ResolveConstraints();

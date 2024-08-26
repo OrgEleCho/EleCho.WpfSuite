@@ -22,7 +22,7 @@ namespace EleCho.WpfSuite
             private bool _agErrorCode;
             private Size _availableSizeForNodeResolution;
 
-            public LinkedList<GraphNode> Nodes { get; }
+            public List<GraphNode> Nodes { get; }
 
             public Graph()
             {
