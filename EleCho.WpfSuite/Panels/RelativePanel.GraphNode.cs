@@ -6,45 +6,47 @@ namespace EleCho.WpfSuite
 {
     public partial class RelativePanel
     {
-        private class GraphNode
+        private sealed class GraphNode
         {
-            private readonly UIElement m_element;
-            private State m_state;
-            private Constraints m_constraints;
-            internal bool m_isHorizontalLeaf;
-            internal bool m_isVerticalLeaf;
-            internal GraphNode? m_leftOfNode;
-            internal GraphNode? m_aboveNode;
-            internal GraphNode? m_rightOfNode;
-            internal GraphNode? m_belowNode;
-            internal GraphNode? m_alignHorizontalCenterWithNode;
-            internal GraphNode? m_alignVerticalCenterWithNode;
-            internal GraphNode? m_alignLeftWithNode;
-            internal GraphNode? m_alignTopWithNode;
-            internal GraphNode? m_alignRightWithNode;
-            internal GraphNode? m_alignBottomWithNode;
-            internal UnsafeRect m_measureRect;
-            internal UnsafeRect m_arrangeRect;
+            private readonly UIElement _element;
 
-            public UIElement Element => m_element;
+            private State _state;
+            private Constraints _constraints;
+
+            internal bool _isHorizontalLeaf;
+            internal bool _isVerticalLeaf;
+            internal GraphNode? _leftOfNode;
+            internal GraphNode? _aboveNode;
+            internal GraphNode? _rightOfNode;
+            internal GraphNode? _belowNode;
+            internal GraphNode? _alignHorizontalCenterWithNode;
+            internal GraphNode? _alignVerticalCenterWithNode;
+            internal GraphNode? _alignLeftWithNode;
+            internal GraphNode? _alignTopWithNode;
+            internal GraphNode? _alignRightWithNode;
+            internal GraphNode? _alignBottomWithNode;
+            internal UnsafeRect _measureRect;
+            internal UnsafeRect _arrangeRect;
+
+            public UIElement Element => _element;
 
             public GraphNode(UIElement element)
             {
-                m_element = element;
-                m_state = State.Unresolved;
-                m_isHorizontalLeaf = true;
-                m_isVerticalLeaf = true;
-                m_constraints = Constraints.None;
-                m_leftOfNode = default(GraphNode);
-                m_aboveNode = default(GraphNode);
-                m_rightOfNode = default(GraphNode);
-                m_belowNode = default(GraphNode);
-                m_alignHorizontalCenterWithNode = default(GraphNode);
-                m_alignVerticalCenterWithNode = default(GraphNode);
-                m_alignLeftWithNode = default(GraphNode);
-                m_alignTopWithNode = default(GraphNode);
-                m_alignRightWithNode = default(GraphNode);
-                m_alignBottomWithNode = default(GraphNode);
+                _element = element;
+                _state = State.Unresolved;
+                _isHorizontalLeaf = true;
+                _isVerticalLeaf = true;
+                _constraints = Constraints.None;
+                _leftOfNode = default(GraphNode);
+                _aboveNode = default(GraphNode);
+                _rightOfNode = default(GraphNode);
+                _belowNode = default(GraphNode);
+                _alignHorizontalCenterWithNode = default(GraphNode);
+                _alignVerticalCenterWithNode = default(GraphNode);
+                _alignLeftWithNode = default(GraphNode);
+                _alignTopWithNode = default(GraphNode);
+                _alignRightWithNode = default(GraphNode);
+                _alignBottomWithNode = default(GraphNode);
             }
 
 
@@ -74,271 +76,270 @@ namespace EleCho.WpfSuite
                     || (IsAlignVerticalCenterWith() && !IsAlignTopWithPanel() && !IsAlignBottomWithPanel() && !IsAlignTopWith() && !IsAlignBottomWith()));
 
             // RPState flag checks.
-            public bool IsUnresolved() { return m_state == State.Unresolved; }
-            public bool IsPending() { return (m_state & State.Pending) == State.Pending; }
-            public bool IsMeasured() { return (m_state & State.Measured) == State.Measured; }
-            public bool IsArrangedHorizontally() { return (m_state & State.ArrangedHorizontally) == State.ArrangedHorizontally; }
-            public bool IsArrangedVertically() { return (m_state & State.ArrangedVertically) == State.ArrangedVertically; }
-            public bool IsArranged() { return (m_state & State.Arranged) == State.Arranged; }
+            public bool IsUnresolved() { return _state == State.Unresolved; }
+            public bool IsPending() { return (_state & State.Pending) == State.Pending; }
+            public bool IsMeasured() { return (_state & State.Measured) == State.Measured; }
+            public bool IsArrangedHorizontally() { return (_state & State.ArrangedHorizontally) == State.ArrangedHorizontally; }
+            public bool IsArrangedVertically() { return (_state & State.ArrangedVertically) == State.ArrangedVertically; }
+            public bool IsArranged() { return (_state & State.Arranged) == State.Arranged; }
 
             public void SetPending(bool value)
             {
                 if (value)
                 {
-                    m_state |= State.Pending;
+                    _state |= State.Pending;
                 }
                 else
                 {
-                    m_state &= ~State.Pending;
+                    _state &= ~State.Pending;
                 }
             }
             public void SetMeasured(bool value)
             {
                 if (value)
                 {
-                    m_state |= State.Measured;
+                    _state |= State.Measured;
                 }
                 else
                 {
-                    m_state &= ~State.Measured;
+                    _state &= ~State.Measured;
                 }
             }
             public void SetArrangedHorizontally(bool value)
             {
                 if (value)
                 {
-                    m_state |= State.ArrangedHorizontally;
+                    _state |= State.ArrangedHorizontally;
                 }
                 else
                 {
-                    m_state &= ~State.ArrangedHorizontally;
+                    _state &= ~State.ArrangedHorizontally;
                 }
             }
             public void SetArrangedVertically(bool value)
             {
                 if (value)
                 {
-                    m_state |= State.ArrangedVertically;
+                    _state |= State.ArrangedVertically;
                 }
                 else
                 {
-                    m_state &= ~State.ArrangedVertically;
+                    _state &= ~State.ArrangedVertically;
                 }
             }
 
             // RPEdge flag checks.
-
-            public bool IsLeftOf() { return (m_constraints & Constraints.LeftOf) == Constraints.LeftOf; }
-            public bool IsAbove() { return (m_constraints & Constraints.Above) == Constraints.Above; }
-            public bool IsRightOf() { return (m_constraints & Constraints.RightOf) == Constraints.RightOf; }
-            public bool IsBelow() { return (m_constraints & Constraints.Below) == Constraints.Below; }
-            public bool IsAlignHorizontalCenterWith() { return (m_constraints & Constraints.AlignHorizontalCenterWith) == Constraints.AlignHorizontalCenterWith; }
-            public bool IsAlignVerticalCenterWith() { return (m_constraints & Constraints.AlignVerticalCenterWith) == Constraints.AlignVerticalCenterWith; }
-            public bool IsAlignLeftWith() { return (m_constraints & Constraints.AlignLeftWith) == Constraints.AlignLeftWith; }
-            public bool IsAlignTopWith() { return (m_constraints & Constraints.AlignTopWith) == Constraints.AlignTopWith; }
-            public bool IsAlignRightWith() { return (m_constraints & Constraints.AlignRightWith) == Constraints.AlignRightWith; }
-            public bool IsAlignBottomWith() { return (m_constraints & Constraints.AlignBottomWith) == Constraints.AlignBottomWith; }
-            public bool IsAlignLeftWithPanel() { return (m_constraints & Constraints.AlignLeftWithPanel) == Constraints.AlignLeftWithPanel; }
-            public bool IsAlignTopWithPanel() { return (m_constraints & Constraints.AlignTopWithPanel) == Constraints.AlignTopWithPanel; }
-            public bool IsAlignRightWithPanel() { return (m_constraints & Constraints.AlignRightWithPanel) == Constraints.AlignRightWithPanel; }
-            public bool IsAlignBottomWithPanel() { return (m_constraints & Constraints.AlignBottomWithPanel) == Constraints.AlignBottomWithPanel; }
-            public bool IsAlignHorizontalCenterWithPanel() { return (m_constraints & Constraints.AlignHorizontalCenterWithPanel) == Constraints.AlignHorizontalCenterWithPanel; }
-            public bool IsAlignVerticalCenterWithPanel() { return (m_constraints & Constraints.AlignVerticalCenterWithPanel) == Constraints.AlignVerticalCenterWithPanel; }
+            public bool IsLeftOf() { return (_constraints & Constraints.LeftOf) == Constraints.LeftOf; }
+            public bool IsAbove() { return (_constraints & Constraints.Above) == Constraints.Above; }
+            public bool IsRightOf() { return (_constraints & Constraints.RightOf) == Constraints.RightOf; }
+            public bool IsBelow() { return (_constraints & Constraints.Below) == Constraints.Below; }
+            public bool IsAlignHorizontalCenterWith() { return (_constraints & Constraints.AlignHorizontalCenterWith) == Constraints.AlignHorizontalCenterWith; }
+            public bool IsAlignVerticalCenterWith() { return (_constraints & Constraints.AlignVerticalCenterWith) == Constraints.AlignVerticalCenterWith; }
+            public bool IsAlignLeftWith() { return (_constraints & Constraints.AlignLeftWith) == Constraints.AlignLeftWith; }
+            public bool IsAlignTopWith() { return (_constraints & Constraints.AlignTopWith) == Constraints.AlignTopWith; }
+            public bool IsAlignRightWith() { return (_constraints & Constraints.AlignRightWith) == Constraints.AlignRightWith; }
+            public bool IsAlignBottomWith() { return (_constraints & Constraints.AlignBottomWith) == Constraints.AlignBottomWith; }
+            public bool IsAlignLeftWithPanel() { return (_constraints & Constraints.AlignLeftWithPanel) == Constraints.AlignLeftWithPanel; }
+            public bool IsAlignTopWithPanel() { return (_constraints & Constraints.AlignTopWithPanel) == Constraints.AlignTopWithPanel; }
+            public bool IsAlignRightWithPanel() { return (_constraints & Constraints.AlignRightWithPanel) == Constraints.AlignRightWithPanel; }
+            public bool IsAlignBottomWithPanel() { return (_constraints & Constraints.AlignBottomWithPanel) == Constraints.AlignBottomWithPanel; }
+            public bool IsAlignHorizontalCenterWithPanel() { return (_constraints & Constraints.AlignHorizontalCenterWithPanel) == Constraints.AlignHorizontalCenterWithPanel; }
+            public bool IsAlignVerticalCenterWithPanel() { return (_constraints & Constraints.AlignVerticalCenterWithPanel) == Constraints.AlignVerticalCenterWithPanel; }
 
             public void SetLeftOfConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_leftOfNode = neighbor;
-                    m_constraints |= Constraints.LeftOf;
+                    _leftOfNode = neighbor;
+                    _constraints |= Constraints.LeftOf;
                 }
                 else
                 {
-                    m_leftOfNode = null;
-                    m_constraints &= ~Constraints.LeftOf;
+                    _leftOfNode = null;
+                    _constraints &= ~Constraints.LeftOf;
                 }
             }
             public void SetAboveConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_aboveNode = neighbor;
-                    m_constraints |= Constraints.Above;
+                    _aboveNode = neighbor;
+                    _constraints |= Constraints.Above;
                 }
                 else
                 {
-                    m_aboveNode = null;
-                    m_constraints &= ~Constraints.Above;
+                    _aboveNode = null;
+                    _constraints &= ~Constraints.Above;
                 }
             }
             public void SetRightOfConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_rightOfNode = neighbor;
-                    m_constraints |= Constraints.RightOf;
+                    _rightOfNode = neighbor;
+                    _constraints |= Constraints.RightOf;
                 }
                 else
                 {
-                    m_rightOfNode = null;
-                    m_constraints &= ~Constraints.RightOf;
+                    _rightOfNode = null;
+                    _constraints &= ~Constraints.RightOf;
                 }
             }
             public void SetBelowConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_belowNode = neighbor;
-                    m_constraints |= Constraints.Below;
+                    _belowNode = neighbor;
+                    _constraints |= Constraints.Below;
                 }
                 else
                 {
-                    m_belowNode = null;
-                    m_constraints &= ~Constraints.Below;
+                    _belowNode = null;
+                    _constraints &= ~Constraints.Below;
                 }
             }
             public void SetAlignHorizontalCenterWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignHorizontalCenterWithNode = neighbor;
-                    m_constraints |= Constraints.AlignHorizontalCenterWith;
+                    _alignHorizontalCenterWithNode = neighbor;
+                    _constraints |= Constraints.AlignHorizontalCenterWith;
                 }
                 else
                 {
-                    m_alignHorizontalCenterWithNode = null;
-                    m_constraints &= ~Constraints.AlignHorizontalCenterWith;
+                    _alignHorizontalCenterWithNode = null;
+                    _constraints &= ~Constraints.AlignHorizontalCenterWith;
                 }
             }
             public void SetAlignVerticalCenterWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignVerticalCenterWithNode = neighbor;
-                    m_constraints |= Constraints.AlignVerticalCenterWith;
+                    _alignVerticalCenterWithNode = neighbor;
+                    _constraints |= Constraints.AlignVerticalCenterWith;
                 }
                 else
                 {
-                    m_alignVerticalCenterWithNode = null;
-                    m_constraints &= ~Constraints.AlignVerticalCenterWith;
+                    _alignVerticalCenterWithNode = null;
+                    _constraints &= ~Constraints.AlignVerticalCenterWith;
                 }
             }
             public void SetAlignLeftWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignLeftWithNode = neighbor;
-                    m_constraints |= Constraints.AlignLeftWith;
+                    _alignLeftWithNode = neighbor;
+                    _constraints |= Constraints.AlignLeftWith;
                 }
                 else
                 {
-                    m_alignLeftWithNode = null;
-                    m_constraints &= ~Constraints.AlignLeftWith;
+                    _alignLeftWithNode = null;
+                    _constraints &= ~Constraints.AlignLeftWith;
                 }
             }
             public void SetAlignTopWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignTopWithNode = neighbor;
-                    m_constraints |= Constraints.AlignTopWith;
+                    _alignTopWithNode = neighbor;
+                    _constraints |= Constraints.AlignTopWith;
                 }
                 else
                 {
-                    m_alignTopWithNode = null;
-                    m_constraints &= ~Constraints.AlignTopWith;
+                    _alignTopWithNode = null;
+                    _constraints &= ~Constraints.AlignTopWith;
                 }
             }
             public void SetAlignRightWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignRightWithNode = neighbor;
-                    m_constraints |= Constraints.AlignRightWith;
+                    _alignRightWithNode = neighbor;
+                    _constraints |= Constraints.AlignRightWith;
                 }
                 else
                 {
-                    m_alignRightWithNode = null;
-                    m_constraints &= ~Constraints.AlignRightWith;
+                    _alignRightWithNode = null;
+                    _constraints &= ~Constraints.AlignRightWith;
                 }
             }
             public void SetAlignBottomWithConstraint(GraphNode? neighbor)
             {
                 if (neighbor is not null)
                 {
-                    m_alignBottomWithNode = neighbor;
-                    m_constraints |= Constraints.AlignBottomWith;
+                    _alignBottomWithNode = neighbor;
+                    _constraints |= Constraints.AlignBottomWith;
                 }
                 else
                 {
-                    m_alignBottomWithNode = null;
-                    m_constraints &= ~Constraints.AlignBottomWith;
+                    _alignBottomWithNode = null;
+                    _constraints &= ~Constraints.AlignBottomWith;
                 }
             }
             public void SetAlignLeftWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignLeftWithPanel;
+                    _constraints |= Constraints.AlignLeftWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignLeftWithPanel;
+                    _constraints &= ~Constraints.AlignLeftWithPanel;
                 }
             }
             public void SetAlignTopWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignTopWithPanel;
+                    _constraints |= Constraints.AlignTopWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignTopWithPanel;
+                    _constraints &= ~Constraints.AlignTopWithPanel;
                 }
             }
             public void SetAlignRightWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignRightWithPanel;
+                    _constraints |= Constraints.AlignRightWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignRightWithPanel;
+                    _constraints &= ~Constraints.AlignRightWithPanel;
                 }
             }
             public void SetAlignBottomWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignBottomWithPanel;
+                    _constraints |= Constraints.AlignBottomWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignBottomWithPanel;
+                    _constraints &= ~Constraints.AlignBottomWithPanel;
                 }
             }
             public void SetAlignHorizontalCenterWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignHorizontalCenterWithPanel;
+                    _constraints |= Constraints.AlignHorizontalCenterWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignHorizontalCenterWithPanel;
+                    _constraints &= ~Constraints.AlignHorizontalCenterWithPanel;
                 }
             }
             public void SetAlignVerticalCenterWithPanelConstraint(bool value)
             {
                 if (value)
                 {
-                    m_constraints |= Constraints.AlignVerticalCenterWithPanel;
+                    _constraints |= Constraints.AlignVerticalCenterWithPanel;
                 }
                 else
                 {
-                    m_constraints &= ~Constraints.AlignVerticalCenterWithPanel;
+                    _constraints &= ~Constraints.AlignVerticalCenterWithPanel;
                 }
             }
 
@@ -353,7 +354,7 @@ namespace EleCho.WpfSuite
                 {
                     if (IsAlignLeftWith())
                     {
-                        m_alignLeftWithNode!.m_isHorizontalLeaf = false;
+                        _alignLeftWithNode!._isHorizontalLeaf = false;
                     }
                     else if (IsAlignHorizontalCenterWith())
                     {
@@ -361,7 +362,7 @@ namespace EleCho.WpfSuite
                     }
                     else if (IsRightOf())
                     {
-                        m_rightOfNode!.m_isHorizontalLeaf = false;
+                        _rightOfNode!._isHorizontalLeaf = false;
                     }
                 }
 
@@ -369,7 +370,7 @@ namespace EleCho.WpfSuite
                 {
                     if (IsAlignTopWith())
                     {
-                        m_alignTopWithNode!.m_isVerticalLeaf = false;
+                        _alignTopWithNode!._isVerticalLeaf = false;
                     }
                     else if (IsAlignVerticalCenterWith())
                     {
@@ -377,7 +378,7 @@ namespace EleCho.WpfSuite
                     }
                     else if (IsBelow())
                     {
-                        m_belowNode!.m_isVerticalLeaf = false;
+                        _belowNode!._isVerticalLeaf = false;
                     }
                 }
 
@@ -385,7 +386,7 @@ namespace EleCho.WpfSuite
                 {
                     if (IsAlignRightWith())
                     {
-                        m_alignRightWithNode!.m_isHorizontalLeaf = false;
+                        _alignRightWithNode!._isHorizontalLeaf = false;
                     }
                     else if (IsAlignHorizontalCenterWith())
                     {
@@ -393,7 +394,7 @@ namespace EleCho.WpfSuite
                     }
                     else if (IsLeftOf())
                     {
-                        m_leftOfNode!.m_isHorizontalLeaf = false;
+                        _leftOfNode!._isHorizontalLeaf = false;
                     }
                 }
 
@@ -401,7 +402,7 @@ namespace EleCho.WpfSuite
                 {
                     if (IsAlignBottomWith())
                     {
-                        m_alignBottomWithNode!.m_isVerticalLeaf = false;
+                        _alignBottomWithNode!._isVerticalLeaf = false;
                     }
                     else if (IsAlignVerticalCenterWith())
                     {
@@ -409,18 +410,18 @@ namespace EleCho.WpfSuite
                     }
                     else if (IsAbove())
                     {
-                        m_aboveNode!.m_isVerticalLeaf = false;
+                        _aboveNode!._isVerticalLeaf = false;
                     }
                 }
 
                 if (isHorizontallyCenteredFromLeft && isHorizontallyCenteredFromRight)
                 {
-                    m_alignHorizontalCenterWithNode!.m_isHorizontalLeaf = false;
+                    _alignHorizontalCenterWithNode!._isHorizontalLeaf = false;
                 }
 
                 if (isVerticallyCenteredFromTop && isVerticallyCenteredFromBottom)
                 {
-                    m_alignVerticalCenterWithNode!.m_isVerticalLeaf = false;
+                    _alignVerticalCenterWithNode!._isVerticalLeaf = false;
                 }
             }
 
