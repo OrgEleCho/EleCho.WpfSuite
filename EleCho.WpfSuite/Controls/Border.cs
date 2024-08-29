@@ -53,7 +53,6 @@ namespace EleCho.WpfSuite
 
                 contentGeometry.Freeze();
                 return contentGeometry;
-
             }
             else
             {
@@ -62,10 +61,36 @@ namespace EleCho.WpfSuite
         }
 
         /// <inheritdoc/>
-        protected override void OnRender(DrawingContext dc)
+        protected override Size ArrangeOverride(Size finalSize)
         {
             SetValue(ContentClipPropertyKey, CalculateContentClip());
-            base.OnRender(dc);
+
+            return base.ArrangeOverride(finalSize);
+        }
+
+        /// <inheritdoc/>
+        protected override Geometry GetLayoutClip(Size layoutSlotSize)
+        {
+            var borderThickness = BorderThickness;
+            var cornerRadius = CornerRadius;
+            var renderSize = RenderSize;
+
+            if (renderSize.Width > 0 && renderSize.Height > 0)
+            {
+                var rect = new Rect(0, 0, renderSize.Width, renderSize.Height);
+                var radii = new Radii(cornerRadius, borderThickness, true);
+
+                var layoutGeometry = new StreamGeometry();
+                using StreamGeometryContext ctx = layoutGeometry.Open();
+                GenerateGeometry(ctx, rect, radii);
+
+                layoutGeometry.Freeze();
+                return layoutGeometry;
+            }
+            else
+            {
+                return base.GetLayoutClip(layoutSlotSize);
+            }
         }
 
         /// <summary>
@@ -200,10 +225,10 @@ namespace EleCho.WpfSuite
         {
             internal Radii(CornerRadius radii, Thickness borders, bool outer)
             {
-                double left     = 0.5 * borders.Left;
-                double top      = 0.5 * borders.Top;
-                double right    = 0.5 * borders.Right;
-                double bottom   = 0.5 * borders.Bottom;
+                double left = 0.5 * borders.Left;
+                double top = 0.5 * borders.Top;
+                double right = 0.5 * borders.Right;
+                double bottom = 0.5 * borders.Bottom;
 
                 if (outer)
                 {
