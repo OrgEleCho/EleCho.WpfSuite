@@ -266,5 +266,19 @@ namespace EleCho.WpfSuite
             internal double BottomLeft;
             internal double LeftBottom;
         }
+
+        /// <inheritdoc/>
+        protected override Geometry GetLayoutClip(Size layoutSlotSize)
+        {
+            if (ClipToBounds)
+            {
+                var radius = CornerRadius.TopLeft;
+                var rect = new RectangleGeometry(new Rect(layoutSlotSize), radius, radius);
+                rect.Freeze();
+                return rect;
+            }
+
+            return base.GetLayoutClip(layoutSlotSize);
+        }
     }
 }
