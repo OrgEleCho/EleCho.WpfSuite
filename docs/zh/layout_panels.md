@@ -112,6 +112,70 @@ WPF Suite 中的布局面板, 如与 WPF 原有面板名称一致, 则使用方�
 
 ![UniformGrid 示例效果](/images/uniformgrid-example.png)
 
+## RelativePanel
+
+使元素能够相对面板或者其他元素的位置进行布局
+
+附加属性
+{: .fw-300}
+
+| 属性 | 类型 | 说明 |
+| --- | --- | --- |
+| AlignLeftWithPanel | bool | 是否将左侧与面板对齐 |
+| AlignTopWithPanel | bool | 是否将上方与面板对齐 |
+| AlignRightWithPanel | bool | 是否将右侧与面板对齐 |
+| AlignBottomWithPanel | bool | 是否将底部与面板对齐 |
+| AlignLeftWith | UIElement | 要与之对齐左侧的目标元素 |
+| AlignTopWith | UIElement | 要与之对齐上方的目标元素 |
+| AlignRightWith | UIElement | 要与之对齐右侧的目标元素 |
+| AlignBottomWith | UIElement | 要与之对齐底部的目标元素 |
+| LeftOf | UIElement | 将当前元素置于哪个元素的左侧(此元素的右侧与目标元素的左侧对齐) |
+| Above | UIElement | 将当前元素置于哪个元素的上方(此元素的底部与目标元素的上方对齐) |
+| RightOf | UIElement | 将当前元素置于哪个元素的右侧(此元素的左侧与目标元素的右侧对齐) |
+| Below | UIElement | 将当前元素置于哪个元素的下方(此元素的上方与目标元素的底部对齐) |
+
+使用上述附加属性, 确定某个元素的横向位置与纵向位置, 即可对齐进行布局. 如果同时制定了单个维度的两个方向, 例如左和右, 那么该元素会按照指定的要求进行拉伸.
+
+示例
+{: .fw-300}
+
+```xml
+<ws:RelativePanel VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+    <Border x:Name="firstBD"
+            ws:RelativePanel.AlignHorizontalCenterWithPanel="True"
+            BorderBrush="Red"
+            BorderThickness="2"
+            Width="50"
+            Height="50"/>
+    <Border x:Name="secondBD"
+            ws:RelativePanel.RightOf="firstBD"
+            BorderBrush="Green"
+            BorderThickness="2"
+            Width="50"
+            Height="30"/>
+    <Border x:Name="thirdBD" ws:RelativePanel.RightOf="secondBD"
+            BorderBrush="#00a2ea"
+            BorderThickness="2"
+            Width="50"
+            Height="60"/>
+    <Border x:Name="forthBD"
+            ws:RelativePanel.Below="firstBD"
+            BorderBrush="#9c4e9a"
+            BorderThickness="2"
+            Width="60"
+            Height="55"/>
+    <Border ws:RelativePanel.RightOf="forthBD"
+            ws:RelativePanel.Below="thirdBD"
+            BorderBrush="#ffca0a"
+            BorderThickness="2"
+            Width="76"
+            Height="55"/>
+</ws:RelativePanel>
+```
+
+![RelativePanel 示例效果1](/images/relativepanel-example1.png)
+
 ## FlexPanel
 
 弹性面板, 可以理解为增强的 WrapPanel, 可以指定元素的空间分布与对齐方式.

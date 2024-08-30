@@ -112,6 +112,70 @@ Example
 
 ![UniformGrid Example](/images/uniformgrid-example.png)
 
+## RelativePanel
+
+Enables elements to be laid out relative to the position of the panel or other elements.
+
+Attached properties
+{: .fw-300}
+
+| Property | Type | Description |
+| --- | --- | --- |
+| AlignLeftWithPanel | bool | Whether to align the left side with the panel. |
+| AlignTopWithPanel | bool | Whether to align the top with the panel. |
+| AlignRightWithPanel | bool | Whether to align the right side with the panel. |
+| AlignBottomWithPanel | bool | Whether to align the bottom with the panel. |
+| AlignLeftWith | UIElement | The target element to align the left side with. |
+| AlignTopWith | UIElement | The target element to align the top with. |
+| AlignRightWith | UIElement | The target element to align the right side with. |
+| AlignBottomWith | UIElement | The target element to align the bottom with. |
+| LeftOf | UIElement | Which element to place the current element to the left of (the right side of this element is aligned with the left side of the target element). |
+| Above | UIElement | Which element to place the current element above (the bottom of this element is aligned with the top of the target element). |
+| RightOf | UIElement | Which element to place the current element to the right of (the left side of this element is aligned with the right side of the target element). |
+| Below | UIElement | Which element to place the current element below (the top of this element is aligned with the bottom of the target element). |
+
+Using the above attached properties to determine the horizontal and vertical positions of an element allows for alignment and layout. If two directions of a single dimension are specified simultaneously, such as left and right, then the element will be stretched according to the specified requirements.
+
+Example
+{: .fw-300}
+
+```xml
+<ws:RelativePanel VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+    <Border x:Name="firstBD"
+            ws:RelativePanel.AlignHorizontalCenterWithPanel="True"
+            BorderBrush="Red"
+            BorderThickness="2"
+            Width="50"
+            Height="50"/>
+    <Border x:Name="secondBD"
+            ws:RelativePanel.RightOf="firstBD"
+            BorderBrush="Green"
+            BorderThickness="2"
+            Width="50"
+            Height="30"/>
+    <Border x:Name="thirdBD" ws:RelativePanel.RightOf="secondBD"
+            BorderBrush="#00a2ea"
+            BorderThickness="2"
+            Width="50"
+            Height="60"/>
+    <Border x:Name="forthBD"
+            ws:RelativePanel.Below="firstBD"
+            BorderBrush="#9c4e9a"
+            BorderThickness="2"
+            Width="60"
+            Height="55"/>
+    <Border ws:RelativePanel.RightOf="forthBD"
+            ws:RelativePanel.Below="thirdBD"
+            BorderBrush="#ffca0a"
+            BorderThickness="2"
+            Width="76"
+            Height="55"/>
+</ws:RelativePanel>
+```
+
+![RelativePanel example effect 1](/images/relativepanel-example1.png)
+
 ## FlexPanel
 
 Flexible panels, which can be thought of as an enhanced WrapPanel, allow you to specify the spatial distribution and alignment of elements.
