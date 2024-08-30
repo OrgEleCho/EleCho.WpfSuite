@@ -13,6 +13,7 @@
         Icon="Assets/logo.png"
         Loaded="Window_Loaded"
         ws:WindowOption.IsCaptionMenuVisible="False"
+        ws:WindowOption.Corner="RoundSmall"
         d:Background="White"
         d:DataContext="{d:DesignInstance Type=local:MainWindow}">
 
@@ -138,7 +139,7 @@
                         </ws:ComboBox>
                     </StackPanel>
                     <ws:ListBox Name="AppNavigations"
-                            Background="#33FFFFFF"
+                            Background="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"
                             Grid.Column="0"
                             BorderThickness="0 0 0 0"
                             ItemsSource="{Binding NavigationItems}"
@@ -152,9 +153,9 @@
                                 <Setter Property="Margin" Value="2 1"/>
                                 <Setter Property="CornerRadius" Value="5"/>
                                 <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="HoverBackground" Value="#0F444444"/>
-                                <Setter Property="SelectedBackground" Value="#0F222222"/>
-                                <Setter Property="SelectedActiveBackground" Value="#0F000000"/>
+                                <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
+                                <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
+                                <Setter Property="SelectedActiveBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
                             </Style>
                         </ws:ListBox.ItemContainerStyle>
                         <ws:ListBox.ItemTemplate>

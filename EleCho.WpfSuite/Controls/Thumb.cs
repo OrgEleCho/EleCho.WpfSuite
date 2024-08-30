@@ -21,16 +21,34 @@ namespace EleCho.WpfSuite
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        public Brush HoverBorderBrush
+        {
+            get { return (Brush)GetValue(HoverBorderBrushProperty); }
+            set { SetValue(HoverBorderBrushProperty, value); }
+        }
+
+        public Brush DraggingBorderBrush
+        {
+            get { return (Brush)GetValue(DraggingBorderBrushProperty); }
+            set { SetValue(DraggingBorderBrushProperty, value); }
+        }
+
+        public Brush DisabledBorderBrush
+        {
+            get { return (Brush)GetValue(DisabledBorderBrushProperty); }
+            set { SetValue(DisabledBorderBrushProperty, value); }
+        }
+
         public Brush HoverBackground
         {
             get { return (Brush)GetValue(HoverBackgroundProperty); }
             set { SetValue(HoverBackgroundProperty, value); }
         }
 
-        public Brush PressedBackground
+        public Brush DraggingBackground
         {
-            get { return (Brush)GetValue(PressedBackgroundProperty); }
-            set { SetValue(PressedBackgroundProperty, value); }
+            get { return (Brush)GetValue(DraggingBackgroundProperty); }
+            set { SetValue(DraggingBackgroundProperty, value); }
         }
 
         public Brush DisabledBackground
@@ -46,10 +64,19 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty HoverBackgroundProperty =
             DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty PressedBackgroundProperty =
-            DependencyProperty.Register(nameof(PressedBackground), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty DraggingBackgroundProperty =
+            DependencyProperty.Register(nameof(DraggingBackground), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledBackgroundProperty =
             DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty HoverBorderBrushProperty =
+            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty DraggingBorderBrushProperty =
+            DependencyProperty.Register(nameof(DraggingBorderBrush), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty DisabledBorderBrushProperty =
+            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(Thumb), new FrameworkPropertyMetadata(null));
     }
 }

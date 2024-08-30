@@ -1,74 +1,172 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:wsd="clr-namespace:EleCho.WpfSuite.FluentDesign">
+    
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextFillColorPrimaryBrush}">#E4000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextFillColorSecondaryBrush}">#9E000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextFillColorTertiaryBrush}">#72000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextFillColorDisabledBrush}">#5C000000</SolidColorBrush>
 
-    <Color x:Key="{x:Static wsd:FluentResource.TextColor}">Black</Color>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentTextFillColorPrimaryBrush}">#FF003E92</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentTextFillColorSecondaryBrush}">#FF001A68</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentTextFillColorTertiaryBrush}">#FF0067C0</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentTextFillColorDisabledBrush}">#5C000000</SolidColorBrush>
 
-    <Color x:Key="{x:Static wsd:FluentResource.ControlBackgroundColor}">#EEFFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentResource.ControlHoverBackgroundColor}">#88FFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentResource.ControlPressedBackgroundColor}">#44FFFFFF</Color>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextOnAccentFillColorPrimaryBrush}">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextOnAccentFillColorSecondaryBrush}">#B3FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextOnAccentFillColorDisabledBrush}">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextOnAccentFillColorSelectedTextBrush}">#FFFFFFFF</SolidColorBrush>
 
-    <Color x:Key="{x:Static wsd:FluentResource.TextControlBackgroundColor}">#AAFFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentResource.TextControlHoverBackgroundColor}">#66FFFFFF</Color>
-    <Color x:Key="{x:Static wsd:FluentResource.TextControlFocusedBackgroundColor}">White</Color>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorDefaultBrush}">#B3FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}">#80F9F9F9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}">#4DF9F9F9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorDisabledBrush}">#4DF9F9F9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorTransparentBrush}">#00FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlFillColorInputActiveBrush}">#FFFFFFFF</SolidColorBrush>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.TextColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlAltFillColorTransparentBrush}">#00FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlAltFillColorSecondaryBrush}">#06000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlAltFillColorTertiaryBrush}">#0F000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlAltFillColorQuarternaryBrush}">#18000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlAltFillColorDisabledBrush}">#00FFFFFF</SolidColorBrush>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.ControlBackgroundColor}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlHoverBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.ControlHoverBackgroundColor}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlPressedBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.ControlPressedBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlSolidFillColorDefaultBrush}">#FFFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrongFillColorDefaultBrush}">#72000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrongFillColorDisabledBrush}">#51000000</SolidColorBrush>
 
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextControlBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.TextControlBackgroundColor}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextControlHoverBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.TextControlHoverBackgroundColor}}"/>
-    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.TextControlFocusedBackgroundBrush}"
-                     Color="{DynamicResource {x:Static wsd:FluentResource.TextControlFocusedBackgroundColor}}"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SubtleFillColorTransparentBrush}">#00FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}">#09000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SubtleFillColorTertiaryBrush}">#06000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SubtleFillColorDisabledBrush}">#00FFFFFF</SolidColorBrush>
 
-    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.ControlBorderBrush}"
-                         StartPoint="0,0" EndPoint="0,3"
-                         MappingMode="Absolute"
-                         SpreadMethod="Pad">
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlOnImageFillColorDefaultBrush}">#C9FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlOnImageFillColorSecondaryBrush}">#FFF3F3F3</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlOnImageFillColorTertiaryBrush}">#FFEBEBEB</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlOnImageFillColorDisabledBrush}">#00FFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentFillColorDefaultBrush}">#FF0067C0</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentFillColorSecondaryBrush}" Opacity="0.8999999761581421" Color="#FF0067C0"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentFillColorTertiaryBrush}" Opacity="0.800000011920929" Color="#FF0067C0"/>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentFillColorDisabledBrush}">#37000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.AccentFillColorSelectedTextBackgroundBrush}">#FF0078D4</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.CardStrokeColorDefaultBrush}">#0F000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.CardStrokeColorDefaultSolidBrush}">#FFEBEBEB</SolidColorBrush>
+
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.ControlElevationBorderBrush}" EndPoint="0,3" MappingMode="Absolute">
         <LinearGradientBrush.RelativeTransform>
-            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
+            <ScaleTransform CenterX="0" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
         </LinearGradientBrush.RelativeTransform>
-        <GradientStop Color="#29000000" Offset="0.3"/>
-        <GradientStop Color="#0f000000" Offset="1"/>
+        <LinearGradientBrush.Transform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#29000000" Offset="0.33000001311302185"/>
+        <GradientStop Color="#0F000000" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.CircleElevationBorderBrush}" EndPoint="0,1">
+        <LinearGradientBrush.RelativeTransform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.RelativeTransform>
+        <LinearGradientBrush.Transform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#0F000000" Offset="0.5"/>
+        <GradientStop Color="#29000000" Offset="0.699999988079071"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.TextControlElevationBorderBrush}" EndPoint="0,2" MappingMode="Absolute">
+        <LinearGradientBrush.RelativeTransform>
+            <ScaleTransform CenterX="0" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
+        </LinearGradientBrush.RelativeTransform>
+        <LinearGradientBrush.Transform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#72000000" Offset="0.5"/>
+        <GradientStop Color="#0F000000" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.TextControlElevationBorderFocusedBrush}" EndPoint="0,2" MappingMode="Absolute">
+        <LinearGradientBrush.RelativeTransform>
+            <ScaleTransform CenterX="0" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
+        </LinearGradientBrush.RelativeTransform>
+        <LinearGradientBrush.Transform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#FF0067C0" Offset="1"/>
+        <GradientStop Color="#0F000000" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.AccentControlElevationBorderBrush}" EndPoint="0,3" MappingMode="Absolute">
+        <LinearGradientBrush.RelativeTransform>
+            <ScaleTransform CenterX="0" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
+        </LinearGradientBrush.RelativeTransform>
+        <LinearGradientBrush.Transform>
+            <MatrixTransform Matrix="Identity"/>
+        </LinearGradientBrush.Transform>
+        <GradientStop Color="#66000000" Offset="0.33000001311302185"/>
+        <GradientStop Color="#14FFFFFF" Offset="1"/>
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="{x:Static wsd:FluentResource.TextControlBorderBrush}"
-                         StartPoint="0,0" EndPoint="0,2"
-                         MappingMode="Absolute"
-                         SpreadMethod="Pad">
-        <LinearGradientBrush.RelativeTransform>
-            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
-        </LinearGradientBrush.RelativeTransform>
-        <GradientStop Color="#72000000" Offset="0.3"/>
-        <GradientStop Color="#0f000000" Offset="1"/>
-    </LinearGradientBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}">#0F000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorSecondaryBrush}">#29000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorOnAccentDefaultBrush}">#14FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorOnAccentSecondaryBrush}">#66000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorOnAccentTertiaryBrush}">#37000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorOnAccentDisabledBrush}">#0F000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrokeColorForStrongFillWhenOnImageBrush}">#59FFFFFF</SolidColorBrush>
 
-    <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#1a1a1a</SolidColorBrush>
-    <SolidColorBrush x:Key="TextFillColorSecondaryBrush">#5c5c5c</SolidColorBrush>
-    <SolidColorBrush x:Key="TextFillColorTertiaryBrush">#868686</SolidColorBrush>
-    <SolidColorBrush x:Key="TextFillColorDisabledBrush">#9b9b9b</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrongStrokeColorDefaultBrush}">#72000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.ControlStrongStrokeColorDisabledBrush}">#37000000</SolidColorBrush>
 
-    <SolidColorBrush x:Key="AccentTextFillColorPrimaryBrush">#003e92</SolidColorBrush>
-    <SolidColorBrush x:Key="AccentTextFillColorSecondaryBrush">#001a68</SolidColorBrush>
-    <SolidColorBrush x:Key="AccentTextFillColorTertiaryBrush">#0067c0</SolidColorBrush>
-    <SolidColorBrush x:Key="AccentTextFillColorDisabledBrush">#9b9b9b</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SurfaceStrokeColorDefaultBrush}">#66757575</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SurfaceStrokeColorFlyoutBrush}">#0F000000</SolidColorBrush>
 
-    <SolidColorBrush x:Key="TextOnAccentFillColorPrimaryBrush">#ffffff</SolidColorBrush>
-    <SolidColorBrush x:Key="TextOnAccentFillColorSecondaryBrush">#fbfbfb</SolidColorBrush>
-    <SolidColorBrush x:Key="TextOnAccentFillColorDisabledBrush">#ffffff</SolidColorBrush>
-    <SolidColorBrush x:Key="TextOnAccentFillColorSelectedTextBrush">#ffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.DividerStrokeColorDefaultBrush}">#0F000000</SolidColorBrush>
 
-    <SolidColorBrush x:Key="ControlFillColorDefaultBrush"></SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.FocusStrokeColorOuterBrush}">#E4000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.FocusStrokeColorInnerBrush}">#B3FFFFFF</SolidColorBrush>
 
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}">#B3FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.CardBackgroundFillColorSecondaryBrush}">#80F6F6F6</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SmokeFillColorDefaultBrush}">#4D000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerFillColorDefaultBrush}">#80FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerFillColorAltBrush}">#FFFFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerOnAcrylicFillColorDefaultBrush}">#40FFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerOnMicaBaseAltFillColorDefaultBrush}">#B3FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerOnMicaBaseAltFillColorTertiaryBrush}">#FFF9F9F9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerOnMicaBaseAltFillColorTransparentBrush}">#00000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.LayerOnMicaBaseAltFillColorSecondaryBrush}">#0A000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SolidBackgroundFillColorBaseBrush}">#FFF3F3F3</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SolidBackgroundFillColorBaseAltBrush}">#FFDADADA</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SolidBackgroundFillColorSecondaryBrush}">#FFEEEEEE</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SolidBackgroundFillColorTertiaryBrush}">#FFF9F9F9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SolidBackgroundFillColorQuarternaryBrush}">#FFFFFFFF</SolidColorBrush>
+
+
+
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorSuccessBrush}">#FF0F7B0F</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorCautionBrush}">#FF9D5D00</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorCriticalBrush}">#FFC42B1C</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorSuccessBackgroundBrush}">#FFDFF6DD</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorCautionBackgroundBrush}">#FFFFF4CE</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorCriticalBackgroundBrush}">#FFFDE7E9</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorAttentionBrush}">#FF0078D4</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorNeutralBrush}">#72000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorSolidNeutralBrush}">#FF8A8A8A</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorAttentionBackgroundBrush}">#80F6F6F6</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorNeutralBackgroundBrush}">#06000000</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorSolidNeutralBackgroundBrush}">#FFF3F3F3</SolidColorBrush>
+    <SolidColorBrush x:Key="{x:Static wsd:FluentResource.SystemFillColorSolidAttentionBackgroundBrush}">#FFF7F7F7</SolidColorBrush>
+
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorWindowTextColor}">#FF000000</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorHighlightTextColor}">#FFFFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorButtonTextColor}">#FF000000</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorHotlightColor}">#FF0066CC</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorWindowColor}">#FFFFFFFF</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorHighlightColor}">#FF0078D7</Color>
+    <Color x:Key="{x:Static wsd:FluentResource.SystemColorButtonFaceColor}">#FFF0F0F0</Color>
 
 
 </ResourceDictionary>

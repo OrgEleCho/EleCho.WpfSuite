@@ -260,6 +260,14 @@
                 <Image Source="/Assets/TestImage2.jpg"/>
             </ws:Border>
 
+            <ws:Border Width="200" Height="50"
+                       BorderBrush="{DynamicResource {x:Static wsd:FluentResource.TextControlElevationBorderFocusedBrush}}"
+                       BorderThickness="3">
+
+            </ws:Border>
+
+            <ws:Button Content="Toggle Theme"
+                       Click="ToggleThemeButton_Click"/>
         </ws:StackPanel>
     </ws:ScrollViewer>
 </Page>

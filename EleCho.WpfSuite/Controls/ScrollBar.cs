@@ -126,10 +126,10 @@ namespace EleCho.WpfSuite
             set { SetValue(PressedBorderBrushProperty, value); }
         }
 
-        public Brush PressedThumbBrush
+        public Brush DraggingThumbBrush
         {
-            get { return (Brush)GetValue(PressedThumbBrushProperty); }
-            set { SetValue(PressedThumbBrushProperty, value); }
+            get { return (Brush)GetValue(DraggingThumbBrushProperty); }
+            set { SetValue(DraggingThumbBrushProperty, value); }
         }
 
         public Brush PressedGlyphBrush
@@ -213,8 +213,8 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty PressedBorderBrushProperty =
             DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush), typeof(ScrollBar), new FrameworkPropertyMetadata(null));
 
-        public static readonly DependencyProperty PressedThumbBrushProperty =
-            DependencyProperty.Register(nameof(PressedThumbBrush), typeof(Brush), typeof(ScrollBar), new FrameworkPropertyMetadata(null));
+        public static readonly DependencyProperty DraggingThumbBrushProperty =
+            DependencyProperty.Register(nameof(DraggingThumbBrush), typeof(Brush), typeof(ScrollBar), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PressedGlyphBrushProperty =
             DependencyProperty.Register(nameof(PressedGlyphBrush), typeof(Brush), typeof(ScrollBar), new FrameworkPropertyMetadata(null));

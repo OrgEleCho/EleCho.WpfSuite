@@ -7,13 +7,13 @@
         <Setter Property="Padding" Value="4 6"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.TextControlBackgroundBrush}}"/>
-        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.TextControlHoverBackgroundBrush}}"/>
-        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentResource.TextControlFocusedBackgroundBrush}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextBrush}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextControlBorderBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
+        <Setter Property="FocusedBackground" Value="{DynamicResource ResourceKey={x:Static wsd:FluentResource.ControlFillColorInputActiveBrush}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextControlElevationBorderBrush}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
-        <Setter Property="FocusedBorderBrush" Value="{x:Null}"/>
+        <Setter Property="FocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextControlElevationBorderFocusedBrush}}"/>
         <Setter Property="DisabledBorderBrush" Value="#d0d1d4"/>
 
         <Setter Property="BorderThickness" Value="1"/>
@@ -32,17 +32,17 @@
                                    BorderBrush="{TemplateBinding BorderBrush}"
                                    BorderThickness="{TemplateBinding BorderThickness}"
                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                   SnapsToDevicePixels="True">
-
-                            <ws:BoxPanel x:Name="PART_ContentContainer">
-                                <ws:ScrollViewer x:Name="PART_ContentHost"
+                                   SnapsToDevicePixels="True"/>
+                        <ws:BoxPanel x:Name="PART_ContentContainer"
+                                     Margin="{TemplateBinding BorderThickness}">
+                            <ws:ScrollViewer x:Name="PART_ContentHost"
                                                  Focusable="false"
                                                  HorizontalScrollBarVisibility="Hidden"
                                                  VerticalScrollBarVisibility="Hidden"
                                                  TextElement.FontSize="26"
                                                  TextElement.Foreground="Red"/>
-                                <Border Padding="{TemplateBinding Padding}" >
-                                    <TextBlock x:Name="PART_Placeholder"
+                            <Border Padding="{TemplateBinding Padding}" >
+                                <TextBlock x:Name="PART_Placeholder"
                                                Text="{TemplateBinding Placeholder}"
                                                TextWrapping="{TemplateBinding TextWrapping}"
                                                Foreground="{TemplateBinding PlaceholderBrush}"
@@ -51,14 +51,8 @@
                                                Margin="2 0 2 0"
                                                Visibility="Hidden"
                                                IsEnabled="False"/>
-                                </Border>
-                            </ws:BoxPanel>
-                        </ws:Border>
-                        <Border x:Name="focusBorder"
-                                BorderBrush="{DynamicResource ResourceKey={x:Static wsd:FluentResource.PrimaryBrush}}"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                BorderThickness="0 0 0 2"
-                                Visibility="Hidden"/>
+                            </Border>
+                        </ws:BoxPanel>
                     </ws:BoxPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipToBounds" Value="True">
@@ -110,8 +104,8 @@
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="focusBorder"
-                                    Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="border"
+                                    Property="BorderThickness" Value="1 1 1 3"/>
                         </Trigger>
 
                         <!--Disabled styles bellow-->

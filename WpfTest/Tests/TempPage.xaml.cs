@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EleCho.WpfSuite;
+using EleCho.WpfSuite.FluentDesign;
 
 namespace WpfTest.Tests
 {
@@ -38,6 +40,21 @@ namespace WpfTest.Tests
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             buttonContentControl.Content = System.IO.Path.GetRandomFileName();
+        }
+
+        private void ToggleThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var resources = App.Current.Resources.MergedDictionaries
+                .OfType<FluentResources>()
+                .FirstOrDefault();
+            var window = Window.GetWindow(this);
+
+            if (resources is not null &&
+                window is not null)
+            {
+                resources.IsDarkMode ^= true;
+                WindowOption.SetIsDarkMode(window, !WindowOption.GetIsDarkMode(window));
+            }
         }
     }
 }

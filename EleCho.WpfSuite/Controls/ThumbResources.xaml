@@ -15,9 +15,17 @@
                                BorderThickness="{TemplateBinding BorderThickness}"
                                CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid x:Name="PART_Content">
-                            <Border Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" BorderThickness="0,0,1,1"/>
-                            <Border Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="0,0,1,1" Margin="1"/>
-                            <Border Background="{TemplateBinding Background}" Margin="2"/>
+                            <Border Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" 
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" 
+                                    BorderThickness="0,0,1,1"/>
+                            <Border Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" 
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" 
+                                    BorderThickness="0,0,1,1" Margin="1"/>
+                            <Border Background="{TemplateBinding Background}" 
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Margin="2"/>
                         </Grid>
                     </ws:Border>
                     <ControlTemplate.Triggers>
@@ -26,6 +34,73 @@
                                     Property="Clip"
                                     Value="{Binding ElementName=PART_Border,Path=ContentClip}"/>
                         </Trigger>
+
+                        <!--Hover styles bellow-->
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <!--Dragging styles bellow-->
+
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DraggingBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DraggingBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <!--Disabled styles bellow-->
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="PART_Border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
