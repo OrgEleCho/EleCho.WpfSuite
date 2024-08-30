@@ -42,28 +42,32 @@ namespace EleCho.WpfSuite
         }
 
         /// <inheritdoc/>
-        protected override Geometry GetLayoutClip(Size layoutSlotSize)
+        protected override Geometry? GetLayoutClip(Size layoutSlotSize)
         {
+            if (!ClipToBounds)
+            {
+                return null;
+            }
+
             var borderThickness = BorderThickness;
             var cornerRadius = CornerRadius;
             var renderSize = RenderSize;
 
-            if (renderSize.Width > 0 && renderSize.Height > 0)
+            if (renderSize.Width <= 0 ||
+                renderSize.Height <= 0)
             {
-                var rect = new Rect(0, 0, renderSize.Width, renderSize.Height);
-                var radii = new Radii(cornerRadius, borderThickness, true);
-
-                var layoutGeometry = new StreamGeometry();
-                using StreamGeometryContext ctx = layoutGeometry.Open();
-                GenerateGeometry(ctx, rect, radii);
-
-                layoutGeometry.Freeze();
-                return layoutGeometry;
+                return null;
             }
-            else
-            {
-                return base.GetLayoutClip(layoutSlotSize);
-            }
+
+            var rect = new Rect(0, 0, renderSize.Width, renderSize.Height);
+            var radii = new Radii(cornerRadius, borderThickness, true);
+
+            var layoutGeometry = new StreamGeometry();
+            using StreamGeometryContext ctx = layoutGeometry.Open();
+            GenerateGeometry(ctx, rect, radii);
+
+            layoutGeometry.Freeze();
+            return layoutGeometry;
         }
 
         private static Geometry? CalculateContentClip(System.Windows.Controls.Border border)
