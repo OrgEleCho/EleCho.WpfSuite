@@ -83,31 +83,58 @@ TextBox 和 PasswordBox 现在可以通过 Placeholder 属性来设置占位符.
 
 ## 圆角裁剪
 
-通过绑定 Clip 到 Border 的 ContentClip 属性, 可以自动裁剪超出圆角的部分.
+将 `Border` 的 `ClipToBounds` 设为 `true`, 即可裁剪掉超出 `Border` 范围的部分.
 
 使用实例:
 {: .fw-300}
 
 ```xml
-<ws:StackPanel Orientation="Horizontal" 
-               Spacing="4">
-    <Border Width="100" Height="100"
-            BorderThickness="1"
-            BorderBrush="Gray"
-            CornerRadius="15">
-        <TextBlock Text="Hello"/>
-    </Border>
-    <ws:Border Width="100" Height="100"
-               BorderThickness="1"
-               BorderBrush="Gray"
-               CornerRadius="15">
-        <TextBlock Text="Hello"
-                   Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
-    </ws:Border>
-</ws:StackPanel>
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           Width="200">
+    <Image Source="/Assets/TestImage2.jpg"/>
+</ws:Border>
 ```
 
-![圆角裁剪示例效果](/images/borderclip-example.png)
+![圆角裁剪示例效果1](/images/borderclip-example1.png)
+
+但如果 `Border` 带有边框, 其内容仍然会遮盖住边框部分:
+
+![圆角裁剪示例效果2](/images/borderclip-example2.png)
+
+此时, 我们可以借助 `BorderContentAdapter` 来帮助裁剪超出边框内边缘的部分:
+
+```xml
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           BorderBrush="Firebrick"
+           BorderThickness="5"
+           Width="200">
+    <ws:BorderContentAdapter>
+        <Image Source="/Assets/TestImage2.jpg"/>
+    </ws:BorderContentAdapter>
+</ws:Border>
+```
+
+![圆角裁剪示例效果3](/images/borderclip-example3.png)
+
+或者通过绑定内容的 `Clip` 到 `Border` 的 `ContentClip` 属性, 也可以自动裁剪超出边框内边缘的部分. 效果是完全一致的.
+
+```xml
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           BorderBrush="Firebrick"
+           BorderThickness="5"
+           Width="200">
+    <Image Source="/Assets/TestImage2.jpg"
+           Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
+</ws:Border>
+```
+
+![圆角裁剪示例效果](/images/borderclip-example3.png)
+
+{: .tip }
+> `BorderContentAdapter` 不仅可以在 EleCho.WpfSuite 的 `Border` 中使用, 也可以在 WPF 内置的 `Border` 中使用, 都可以将内容正确裁剪调.
 
 ## 平滑滚动
 

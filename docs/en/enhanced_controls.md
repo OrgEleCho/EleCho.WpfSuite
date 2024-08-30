@@ -84,31 +84,58 @@ Example
 
 ## Rounding Corners Clipping
 
-By binding the Clip property to the Border's ContentClip property, you can automatically clip the portion that extends beyond the rounded corners.
+Set `ClipToBounds` of `Border` to `true` to clip off the parts that exceed the range of `Border`.
 
 Example:
 {: .fw-300}
 
 ```xml
-<ws:StackPanel Orientation="Horizontal" 
-               Spacing="4">
-    <Border Width="100" Height="100"
-            BorderThickness="1"
-            BorderBrush="Gray"
-            CornerRadius="15">
-        <TextBlock Text="Hello"/>
-    </Border>
-    <ws:Border Width="100" Height="100"
-               BorderThickness="1"
-               BorderBrush="Gray"
-               CornerRadius="15">
-        <TextBlock Text="Hello"
-                   Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
-    </ws:Border>
-</ws:StackPanel>
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           Width="200">
+    <Image Source="/Assets/TestImage2.jpg"/>
+</ws:Border>
 ```
 
-![Rounding corners clipping example](/images/borderclip-example.png)
+![Border clip example effect 1](/images/borderclip-example1.png)
+
+However, if `Border` has a border, its content will still cover the border part:
+
+![Border clip example effect 2](/images/borderclip-example2.png)
+
+At this time, we can use `BorderContentAdapter` to help clip off the parts that exceed the inner edge of the border:
+
+```xml
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           BorderBrush="Firebrick"
+           BorderThickness="5"
+           Width="200">
+    <ws:BorderContentAdapter>
+        <Image Source="/Assets/TestImage2.jpg"/>
+    </ws:BorderContentAdapter>
+</ws:Border>
+```
+
+![Border clip example effect 3](/images/borderclip-example3.png)
+
+Or by binding the `Clip` of the content to the `ContentClip` property of `Border`, the parts that exceed the inner edge of the border can also be automatically clipped. The effect is exactly the same.
+
+```xml
+<ws:Border ClipToBounds="True" 
+           CornerRadius="40 30 20 10"
+           BorderBrush="Firebrick"
+           BorderThickness="5"
+           Width="200">
+    <Image Source="/Assets/TestImage2.jpg"
+           Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
+</ws:Border>
+```
+
+![Border clip example effect](/images/borderclip-example3.png)
+
+{: .tip }
+> `BorderContentAdapter` can be used not only in the `Border` of EleCho.WpfSuite but also in the built-in `Border` of WPF. In both cases, the content can be correctly clipped.
 
 ## Smooth Scrolling
 

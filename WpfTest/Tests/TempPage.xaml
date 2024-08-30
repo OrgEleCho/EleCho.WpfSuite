@@ -46,7 +46,7 @@
                     <ws:Button Click="Button_Click"
                                ClipToBounds="True">
                         <ws:ContentControl Name="buttonContentControl"
-                                                        Content="Test">
+                                           Content="Test">
                             <ws:ContentControl.Transition>
                                 <ws:SlideFadeTransition Orientation="Vertical"/>
                             </ws:ContentControl.Transition>
@@ -251,16 +251,14 @@
 
             <RepeatButton Content="QWQ"/>
 
-            <Border ClipToBounds="True"
-                       CornerRadius="5 10 15 20"
-                       BorderThickness="3"
-                       BorderBrush="Red"
-                       MaxWidth="200"
-                       Name="testClip">
-                <ws:BorderContentAdapter>
-                    <Image Source="/Assets/TestImage2.jpg"/>
-                </ws:BorderContentAdapter>
-            </Border>
+            <ws:Border ClipToBounds="True" 
+                       CornerRadius="40 30 20 10"
+                       BorderBrush="Firebrick"
+                       BorderThickness="5"
+                       Width="200">
+                <Image Source="/Assets/TestImage2.jpg"
+                       Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
+            </ws:Border>
 
             <ws:Border Width="200" Height="50"
                        BorderBrush="{DynamicResource {x:Static wsd:FluentResource.TextControlElevationBorderFocusedBrush}}"
