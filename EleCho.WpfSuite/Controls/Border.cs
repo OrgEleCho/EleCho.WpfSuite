@@ -12,7 +12,7 @@ namespace EleCho.WpfSuite
         /// <summary>
         /// A geometry to clip the content of this border correctly
         /// </summary>
-        public Geometry ContentClip
+        public Geometry? ContentClip
         {
             get { return (Geometry)GetValue(ContentClipProperty); }
             set { SetValue(ContentClipProperty, value); }
@@ -33,37 +33,10 @@ namespace EleCho.WpfSuite
         public static readonly DependencyProperty ContentClipProperty =
             ContentClipPropertyKey.DependencyProperty;
 
-        private Geometry? CalculateContentClip()
-        {
-            var borderThickness = BorderThickness;
-            var cornerRadius = CornerRadius;
-            var renderSize = RenderSize;
-
-            var contentWidth = renderSize.Width - borderThickness.Left - borderThickness.Right;
-            var contentHeight = renderSize.Height - borderThickness.Top - borderThickness.Bottom;
-
-            if (contentWidth > 0 && contentHeight > 0)
-            {
-                var rect = new Rect(0, 0, contentWidth, contentHeight);
-                var radii = new Radii(cornerRadius, borderThickness, false);
-
-                var contentGeometry = new StreamGeometry();
-                using StreamGeometryContext ctx = contentGeometry.Open();
-                GenerateGeometry(ctx, rect, radii);
-
-                contentGeometry.Freeze();
-                return contentGeometry;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
-            SetValue(ContentClipPropertyKey, CalculateContentClip());
+            SetValue(ContentClipPropertyKey, CalculateContentClip(this));
 
             return base.ArrangeOverride(finalSize);
         }
@@ -93,6 +66,33 @@ namespace EleCho.WpfSuite
             }
         }
 
+        private static Geometry? CalculateContentClip(System.Windows.Controls.Border border)
+        {
+            var borderThickness = border.BorderThickness;
+            var cornerRadius = border.CornerRadius;
+            var renderSize = border.RenderSize;
+
+            var contentWidth = renderSize.Width - borderThickness.Left - borderThickness.Right;
+            var contentHeight = renderSize.Height - borderThickness.Top - borderThickness.Bottom;
+
+            if (contentWidth > 0 && contentHeight > 0)
+            {
+                var rect = new Rect(0, 0, contentWidth, contentHeight);
+                var radii = new Radii(cornerRadius, borderThickness, false);
+
+                var contentGeometry = new StreamGeometry();
+                using StreamGeometryContext ctx = contentGeometry.Open();
+                GenerateGeometry(ctx, rect, radii);
+
+                contentGeometry.Freeze();
+                return contentGeometry;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Generates a StreamGeometry.
         /// </summary>
@@ -100,7 +100,7 @@ namespace EleCho.WpfSuite
         /// <param name="rect">Rectangle for geometry conversion.</param>
         /// <param name="radii">Corner radii.</param>
         /// <returns>Result geometry.</returns>
-        private static void GenerateGeometry(StreamGeometryContext ctx, Rect rect, Radii radii)
+        internal static void GenerateGeometry(StreamGeometryContext ctx, Rect rect, Radii radii)
         {
             //
             //  compute the coordinates of the key points
@@ -221,7 +221,7 @@ namespace EleCho.WpfSuite
         }
 
 
-        private struct Radii
+        internal struct Radii
         {
             internal Radii(CornerRadius radii, Thickness borders, bool outer)
             {

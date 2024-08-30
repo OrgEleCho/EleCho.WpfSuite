@@ -251,14 +251,16 @@
 
             <RepeatButton Content="QWQ"/>
 
-            <ws:Border ClipToBounds="True"
+            <Border ClipToBounds="True"
                        CornerRadius="5 10 15 20"
                        BorderThickness="3"
                        BorderBrush="Red"
                        MaxWidth="200"
                        Name="testClip">
-                <Image Source="/Assets/TestImage2.jpg"/>
-            </ws:Border>
+                <ws:BorderContentAdapter>
+                    <Image Source="/Assets/TestImage2.jpg"/>
+                </ws:BorderContentAdapter>
+            </Border>
 
             <ws:Border Width="200" Height="50"
                        BorderBrush="{DynamicResource {x:Static wsd:FluentResource.TextControlElevationBorderFocusedBrush}}"
