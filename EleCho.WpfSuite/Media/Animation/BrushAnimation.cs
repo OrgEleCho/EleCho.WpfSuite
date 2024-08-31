@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Animation
 {
     /// <summary>
     /// Brush to Brush animation

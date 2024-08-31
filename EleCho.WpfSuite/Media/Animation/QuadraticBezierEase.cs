@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Animation
 {
     /// <summary>
     /// Quadratic bezier curve easing function

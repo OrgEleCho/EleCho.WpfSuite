@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media.Animation;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Animation
 {
     /// <summary>
     /// Cubic bezier curve easing function

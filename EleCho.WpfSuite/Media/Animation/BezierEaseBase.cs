@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Animation;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Animation
 {
     /// <summary>
     /// Base class of bezier curve easing function
