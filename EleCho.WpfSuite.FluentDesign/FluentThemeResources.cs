@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
@@ -7,30 +8,118 @@ namespace EleCho.WpfSuite.FluentDesign
     {
         private readonly ResourceDictionary _lightThemeResources = new();
         private readonly ResourceDictionary _darkThemeResources = new();
+        private ApplicationTheme? _applicationTheme;
 
         public FluentThemeResources()
         {
             _lightThemeResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Themes/Light.xaml") };
             _darkThemeResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Themes/Dark.xaml") };
 
-            MergedDictionaries.Add(_lightThemeResources);
+            Theme = ApplicationTheme.Auto;
         }
 
-        public bool IsDarkMode
+        public ApplicationTheme Theme
         {
-            get => MergedDictionaries.Contains(_darkThemeResources);
-            set
+            get
             {
-                MergedDictionaries.Clear();
-
-                if (value)
+                if (_applicationTheme is not null)
                 {
-                    MergedDictionaries.Add(_darkThemeResources);
+                    return _applicationTheme.Value;
+                }
+
+                if (MergedDictionaries.Contains(_lightThemeResources))
+                {
+                    return ApplicationTheme.Light;
+                }
+                else if (MergedDictionaries.Contains(_darkThemeResources))
+                {
+                    return ApplicationTheme.Dark;
                 }
                 else
                 {
-                    MergedDictionaries.Add(_lightThemeResources);
+                    return ApplicationTheme.Unknown;
                 }
+            }
+            set
+            {
+                if (_applicationTheme == value)
+                {
+                    return;
+                }
+
+                if (_applicationTheme == ApplicationTheme.Auto)
+                {
+                    SystemEvents.UserPreferenceChanged -= SystemEvents_UserPreferenceChanged;
+                }
+
+                MergedDictionaries.Clear();
+
+                switch (value)
+                {
+                    case ApplicationTheme.Light:
+                    {
+                        MergedDictionaries.Add(_lightThemeResources);
+                        break;
+                    }
+                    case ApplicationTheme.Dark:
+                    {
+                        MergedDictionaries.Add(_darkThemeResources);
+                        break;
+                    }
+                    case ApplicationTheme.Auto:
+                    {
+                        ApplyAutoTheme();
+                        SystemEvents.UserPreferenceChanged += SystemEvents_UserPreferenceChanged;
+                        break;
+                    }
+                    default:
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+                    }
+                }
+
+                _applicationTheme = value;
+            }
+        }
+
+        public ApplicationTheme ActualTheme
+        {
+            get
+            {
+                if (MergedDictionaries.Contains(_lightThemeResources))
+                {
+                    return ApplicationTheme.Light;
+                }
+                else if (MergedDictionaries.Contains(_darkThemeResources))
+                {
+                    return ApplicationTheme.Dark;
+                }
+                else
+                {
+                    return ApplicationTheme.Unknown;
+                }
+            }
+        }
+
+        private void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            if (_applicationTheme != ApplicationTheme.Auto)
+            {
+                return;
+            }
+
+            ApplyAutoTheme();
+        }
+
+        private void ApplyAutoTheme()
+        {
+            if (!InternalUtilities.IsDarkTheme())
+            {
+                MergedDictionaries.Add(_lightThemeResources);
+            }
+            else
+            {
+                MergedDictionaries.Add(_darkThemeResources);
             }
         }
     }

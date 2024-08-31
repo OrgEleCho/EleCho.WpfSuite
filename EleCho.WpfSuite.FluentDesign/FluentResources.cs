@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
@@ -8,21 +10,23 @@ namespace EleCho.WpfSuite.FluentDesign
     public class FluentResources : ResourceDictionary
     {
         FluentThemeResources _themeResource;
-        ResourceDictionary _overviewResources;
+        ResourceDictionary _commonResources;
 
         public FluentResources()
         {
             _themeResource = new FluentThemeResources();
-            _overviewResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/OverviewResources.xaml") };
+            _commonResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/CommonResources.xaml") };
 
             MergedDictionaries.Add(_themeResource);
-            MergedDictionaries.Add(_overviewResources);
+            MergedDictionaries.Add(_commonResources);
         }
 
-        public bool IsDarkMode 
+        public ApplicationTheme Theme 
         { 
-            get => _themeResource.IsDarkMode;  
-            set => _themeResource.IsDarkMode = value; 
+            get => _themeResource.Theme;  
+            set => _themeResource.Theme = value; 
         }
+
+        public ApplicationTheme ActualTheme => _themeResource.ActualTheme;
     }
 }
