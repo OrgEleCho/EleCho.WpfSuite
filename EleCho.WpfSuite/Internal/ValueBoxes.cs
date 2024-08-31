@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace EleCho.WpfSuite
 {
+
     internal static class ValueBoxes
     {
         internal static object TrueBox = true;
