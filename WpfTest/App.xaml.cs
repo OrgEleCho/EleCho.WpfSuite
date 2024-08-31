@@ -19,27 +19,6 @@ namespace WpfTest
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            var stringWriter = new StringWriter();
-            var xmlWriter = XmlWriter.Create(stringWriter);
-
-            XamlWriter.Save(FindResource(typeof(ToolTip)), xmlWriter);
-            var output = stringWriter.ToString();
-
-            FontFamily fontFamily = new FontFamily("Segoe Fluent Icons");
-            var typefaces = fontFamily.GetTypefaces();
-
-            foreach (var typeface in typefaces)
-            {
-                if (!typeface.TryGetGlyphTypeface(out var glyphTypeface))
-                    continue;
-
-                
-            }
-
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             ApplicationThemeUtilities.SetApplicationTheme(ApplicationTheme.Auto);

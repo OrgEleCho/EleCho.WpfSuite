@@ -2,6 +2,8 @@
 
 WPF layout panels, controls, value converters, markup extensions, transitions and utilities
 
+> For full documentation, see [wpfsuite.elecho.dev](https://wpfsuite.elecho.dev)
+
 ## Usage
 
 Add XML namespace to your XAML file:

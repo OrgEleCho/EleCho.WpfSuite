@@ -14,11 +14,22 @@
     <Copyright>Copyright © 2024 EleCho</Copyright>
     <PackageProjectUrl>https://github.com/OrgEleCho/EleCho.WpfSuite</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
-    <PackageTags>WPF;MVVM;Toolkit;Controls;Converters;BindingProxy</PackageTags>
-    <Description>WPF layout panels, controls, value converters, utilities suite</Description>
+    <PackageTags>WPF;MVVM;Toolkit;Controls;Converters;BindingProxy;FluentDesign</PackageTags>
+    <Description>FluentDesign for WPF Suite</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\logo.png" Link="logo.png">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+    <None Include=".\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EleCho.WpfSuite\EleCho.WpfSuite.csproj" />
