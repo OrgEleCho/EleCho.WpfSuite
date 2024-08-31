@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Win32;
@@ -36,15 +37,61 @@ namespace EleCho.WpfSuite.FluentDesign
             return null;
         }
 
+        private static void ApplyThemeForWindow(Window window, ApplicationTheme actualApplicationTheme)
+        {
+            WindowOption.SetIsDarkMode(window, actualApplicationTheme == ApplicationTheme.Dark);
+        }
+
         private static void ApplyThemeForAllWindows(ApplicationTheme actualApplicationTheme)
         {
             foreach (Window window in Application.Current.Windows)
             {
-                WindowOption.SetIsDarkMode(window, actualApplicationTheme == ApplicationTheme.Dark);
+                ApplyThemeForWindow(window, actualApplicationTheme);
             }
         }
 
         public static ApplicationTheme GetApplicationTheme()
+        {
+            var applicationFluentResources = FindApplicationFluentResources();
+
+            if (applicationFluentResources is not null)
+            {
+                if (_isWatchingSystemTheme)
+                {
+                    return applicationFluentResources.Theme;
+                }
+                else
+                {
+                    return applicationFluentResources.ActualTheme;
+                }
+            }
+
+            int lightWindowCount = 0;
+            int darkWindowCount = 0;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (WindowOption.GetIsDarkMode(window))
+                {
+                    darkWindowCount++;
+                }
+                else
+                {
+                    lightWindowCount++;
+                }
+            }
+
+            if (lightWindowCount >= darkWindowCount)
+            {
+                return ApplicationTheme.Light;
+            }
+            else
+            {
+                return ApplicationTheme.Dark;
+            }
+        }
+
+        public static ApplicationTheme GetApplicationActualTheme()
         {
             var applicationFluentResources = FindApplicationFluentResources();
 
@@ -107,6 +154,13 @@ namespace EleCho.WpfSuite.FluentDesign
             }
 
             ApplyThemeForAllWindows(actualTheme);
+        }
+
+        public static void EnsureWindowTheme(Window window)
+        {
+            var actualTheme = GetApplicationActualTheme();
+
+            ApplyThemeForWindow(window, actualTheme);
         }
 
         private static void SystemEvents_UserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)

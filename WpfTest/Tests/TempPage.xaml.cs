@@ -52,8 +52,15 @@ namespace WpfTest.Tests
             if (resources is not null &&
                 window is not null)
             {
-                resources.IsDarkMode ^= true;
-                WindowOption.SetIsDarkMode(window, !WindowOption.GetIsDarkMode(window));
+                var theme = resources.ActualTheme;
+                theme = theme switch
+                {
+                    ApplicationTheme.Light => ApplicationTheme.Dark,
+                    ApplicationTheme.Dark => ApplicationTheme.Light,
+                    _ => ApplicationTheme.Light
+                };
+
+                ApplicationThemeUtilities.SetApplicationTheme(theme);
             }
         }
     }

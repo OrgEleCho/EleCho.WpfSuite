@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EleCho.WpfSuite.FluentDesign;
 using WpfTest.Models;
 using WpfTest.Tests;
 
@@ -35,6 +36,8 @@ namespace WpfTest
                 Background = Brushes.Transparent;
                 EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Mica);
             }
+
+            ApplicationThemeUtilities.EnsureWindowTheme(this);
         }
 
         [ObservableProperty]
