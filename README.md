@@ -93,9 +93,15 @@ you just need to set the corresponding properties.
 When using the default Border in WPF, it allows the content to exceed the bounds of the Border. 
 Even if you set a CornerRadius and ClipToBounds, it won't be able to clip the content to fit within the rounded corners. 
 However, when using the Border provided by the WPF Suite, 
-you can achieve automatic clipping by binding the content's Clip property to the Border's ContentClip property.
+you can achieve automatic clipping by using BorderContentAdapter or binding the content's Clip property to the Border's ContentClip property.
 
 ```xml
+<Border CornerRadius="5" Width="50" Height="50">
+    <ws:BorderContentAdapter>
+        <Rectangle Fill="Pink"/>
+    </ws:BorderContentAdapter>
+</Border>
+
 <ws:Border CornerRadius="5" Width="50" Height="50">
     <Rectangle Fill="Pink"
                Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}"/>
