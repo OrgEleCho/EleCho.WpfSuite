@@ -13,7 +13,13 @@ namespace EleCho.WpfSuite
         /// <inheritdoc/>
         public override float Convert(Color value, Type targetType, object? parameter, CultureInfo culture)
         {
-            var brightness = value.ScR * 0.3f + value.ScG * 0.59f + value.ScB * 0.11f;
+            var brightness = ColorUtils.GetBrightness(value.ScR, value.ScG, value.ScB);
+
+            if (brightness < 0)
+            {
+                brightness = 0;
+            }
+
             if (brightness > 1)
             {
                 brightness = 1;
