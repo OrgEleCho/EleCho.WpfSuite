@@ -28,46 +28,46 @@
     <ws:WindowContentAdapter>
         <DockPanel>
             <Grid Height="30"
-              Background="#10000000"
-              DockPanel.Dock="Top"
-              MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
-              Visibility="Visible">
+                  Background="#10000000"
+                  DockPanel.Dock="Top"
+                  MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
+                  Visibility="Visible">
                 <ws:StackPanel Orientation="Horizontal"
-                           HorizontalAlignment="Left">
+                               HorizontalAlignment="Left">
                     <Border Padding="8 0">
                         <Image Source="/Assets/logo.png"
-                           Width="18"
-                           Height="18"/>
+                               Width="18"
+                               Height="18"/>
                     </Border>
                     <Border>
                         <TextBlock Text="EleCho.WpfSuite"
-                               FontSize="14"
-                               VerticalAlignment="Center"/>
+                                   FontSize="14"
+                                   VerticalAlignment="Center"/>
                     </Border>
                 </ws:StackPanel>
                 <ws:StackPanel Orientation="Horizontal"
-                           HorizontalAlignment="Right">
+                               HorizontalAlignment="Right">
                     <ws:Button Content="&#xE921;"
-                           FontFamily="Segoe Fluent Icons"
-                           FontSize="10"
-                           Width="46"
-                           Background="Transparent"
-                           HoverBackground="#e9e9e9"
-                           PressedBackground="#ededed"
-                           BorderThickness="0"
-                           CornerRadius="0"
-                           ws:WindowOption.IsMinimumButton="True"
-                           Command="{Binding MinimumSelfCommand}"/>
+                               FontFamily="Segoe Fluent Icons"
+                               FontSize="10"
+                               Width="46"
+                               Background="Transparent"
+                               HoverBackground="#e9e9e9"
+                               PressedBackground="#ededed"
+                               BorderThickness="0"
+                               CornerRadius="0"
+                               ws:WindowOption.IsMinimumButton="True"
+                               Command="{Binding MinimumSelfCommand}"/>
                     <ws:Button FontFamily="Segoe Fluent Icons"
-                           FontSize="10"
-                           Width="46"
-                           Background="Transparent"
-                           HoverBackground="#e9e9e9"
-                           PressedBackground="#ededed"
-                           BorderThickness="0"
-                           CornerRadius="0"
-                           ws:WindowOption.IsMaximumButton="True"
-                           Command="{Binding MaximumSelfCommand}">
+                               FontSize="10"
+                               Width="46"
+                               Background="Transparent"
+                               HoverBackground="#e9e9e9"
+                               PressedBackground="#ededed"
+                               BorderThickness="0"
+                               CornerRadius="0"
+                               ws:WindowOption.IsMaximumButton="True"
+                               Command="{Binding MaximumSelfCommand}">
                         <ws:ConditionalControl Condition="{Binding WindowState,Converter={x:Static ws:NotEqualConverter.Instance},ConverterParameter={x:Static WindowState.Maximized}}">
                             <ws:ConditionalControl.ContentWhenTrue>
                                 <TextBlock Text="&#xE922;"/>
@@ -78,17 +78,17 @@
                         </ws:ConditionalControl>
                     </ws:Button>
                     <ws:Button Content="&#xE8BB;"
-                           FontFamily="Segoe Fluent Icons"
-                           FontSize="10"
-                           Width="46"
-                           Background="Transparent"
-                           HoverBackground="#c42b1c"
-                           PressedBackground="#c73c31"
-                           HoverForeground="White"
-                           BorderThickness="0"
-                           CornerRadius="0"
-                           ws:WindowOption.IsCloseButton="True"
-                           Command="{Binding CloseSelfCommand}"/>
+                               FontFamily="Segoe Fluent Icons"
+                               FontSize="10"
+                               Width="46"
+                               Background="Transparent"
+                               HoverBackground="#c42b1c"
+                               PressedBackground="#c73c31"
+                               HoverForeground="White"
+                               BorderThickness="0"
+                               CornerRadius="0"
+                               ws:WindowOption.IsCloseButton="True"
+                               Command="{Binding CloseSelfCommand}"/>
                 </ws:StackPanel>
             </Grid>
 
@@ -99,10 +99,10 @@
                 </Grid.ColumnDefinitions>
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Bottom"
-                            Margin="5">
+                                Margin="5">
                         <TextBlock Text="Transition:"/>
                         <ws:ComboBox x:Name="TransitionSelector"
-                                 SelectedIndex="0">
+                                     SelectedIndex="0">
                             <ws:ComboBox.ToolTip>
                                 <ToolTip>
 
@@ -111,51 +111,67 @@
                             <ws:ComboBoxItem Content="Fluent" >
                                 <ws:ComboBoxItem.Tag>
                                     <wsd:FluentTransition Duration="0:0:0.400"
-                                                      Distance="100"/>
+                                                          Distance="100"/>
                                 </ws:ComboBoxItem.Tag>
                             </ws:ComboBoxItem>
                             <ws:ComboBoxItem Content="SlideFade">
                                 <ws:ComboBoxItem.Tag>
                                     <ws:SlideFadeTransition Orientation="Vertical"
-                                                        Distance="50"
-                                                        Duration="0:0:0.200"
-                                                        Reverse="{Binding AppFrameTransitionReverse}"/>
+                                                            Distance="50"
+                                                            Duration="0:0:0.200"
+                                                            Reverse="{Binding AppFrameTransitionReverse}"/>
                                 </ws:ComboBoxItem.Tag>
                             </ws:ComboBoxItem>
                             <ws:ComboBoxItem Content="ScaleFade" >
                                 <ws:ComboBoxItem.Tag>
                                     <ws:ScaleFadeTransition Duration="0:0:0.200"
-                                                        Reverse="{Binding AppFrameTransitionReverse}"/>
+                                                            Reverse="{Binding AppFrameTransitionReverse}"/>
                                 </ws:ComboBoxItem.Tag>
                             </ws:ComboBoxItem>
                             <ws:ComboBoxItem Content="RotateFade" >
                                 <ws:ComboBoxItem.Tag>
                                     <ws:RotateFadeTransition Duration="0:0:0.200"
-                                                         Angle="30"
-                                                         Reverse="{Binding AppFrameTransitionReverse}"/>
+                                                             Angle="30"
+                                                             Reverse="{Binding AppFrameTransitionReverse}"/>
                                 </ws:ComboBoxItem.Tag>
                             </ws:ComboBoxItem>
                             <ws:ComboBoxItem Content="None"/>
                         </ws:ComboBox>
                     </StackPanel>
                     <ws:ListBox Name="AppNavigations"
-                            Background="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"
-                            Grid.Column="0"
-                            BorderThickness="0 0 0 0"
-                            ItemsSource="{Binding NavigationItems}"
-                            d:ItemsSource="{d:SampleData ItemCount=3}"
-                            SelectionChanged="ListBox_SelectionChanged"
-                            VirtualizingPanel.ScrollUnit="Pixel"
-                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                            ws:StylusTouchDevice.Simulate="True">
+                                Background="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"
+                                Grid.Column="0"
+                                BorderThickness="0 0 0 0"
+                                ItemsSource="{Binding NavigationItems}"
+                                d:ItemsSource="{d:SampleData ItemCount=3}"
+                                SelectionChanged="ListBox_SelectionChanged"
+                                VirtualizingPanel.ScrollUnit="Pixel"
+                                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                ws:StylusTouchDevice.Simulate="True">
+                        <!--<ws:ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ws:ListBox.ItemsPanel>-->
+                        <ws:ListBox.OpacityMask>
+                            <LinearGradientBrush StartPoint="0,0" 
+                                                 EndPoint="0,50"
+                                                 MappingMode="Absolute">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <ScaleTransform CenterX="0" CenterY="0.5" ScaleX="1" ScaleY="-1"/>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="Transparent" Offset="0"/>
+                                <GradientStop Color="Black" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ws:ListBox.OpacityMask>
                         <ws:ListBox.ItemContainerStyle>
                             <Style TargetType="ws:ListBoxItem">
                                 <Setter Property="Margin" Value="2 1"/>
                                 <Setter Property="CornerRadius" Value="5"/>
                                 <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
-                                <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
-                                <Setter Property="SelectedActiveBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
+                                <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SolidBackgroundFillColorBaseBrush}}"/>
+                                <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SolidBackgroundFillColorTertiaryBrush}}"/>
+                                <Setter Property="SelectedActiveBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SolidBackgroundFillColorSecondaryBrush}}"/>
                             </Style>
                         </ws:ListBox.ItemContainerStyle>
                         <ws:ListBox.ItemTemplate>
@@ -164,12 +180,12 @@
                                     <StackPanel.ContextMenu>
                                         <ws:ContextMenu>
                                             <ws:MenuItem Header="Remove"
-                                                     Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
-                                                     CommandParameter="{Binding}"/>
+                                                         Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
+                                                         CommandParameter="{Binding}"/>
                                         </ws:ContextMenu>
                                     </StackPanel.ContextMenu>
                                     <TextBlock Text="{Binding Title}"
-                                           FontSize="14"/>
+                                               FontSize="14"/>
                                     <TextBlock Text="{Binding Description}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -177,19 +193,19 @@
                     </ws:ListBox>
                 </DockPanel>
                 <GridSplitter Grid.Column="0"
-                          HorizontalAlignment="Right"
-                          VerticalAlignment="Stretch"
-                          Background="Transparent"
-                          Width="3"/>
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Stretch"
+                              Background="Transparent"
+                              Width="3"/>
                 <ws:Frame Name="AppFrame"
-                      Transition="{Binding ElementName=TransitionSelector,Path=SelectedItem.Tag}"
-                      BorderBrush="Gray"
-                      BorderThickness="1 0 0 0"
-                      CornerRadius="0 0 0 15"
-                      Grid.Column="1"
-                      NavigationUIVisibility="Hidden"
-                      ClipToBounds="True"
-                      d:Content="Page content">
+                          Transition="{Binding ElementName=TransitionSelector,Path=SelectedItem.Tag}"
+                          BorderBrush="Gray"
+                          BorderThickness="1 0 0 0"
+                          CornerRadius="0 0 0 15"
+                          Grid.Column="1"
+                          NavigationUIVisibility="Hidden"
+                          ClipToBounds="True"
+                          d:Content="Page content">
                 </ws:Frame>
             </Grid>
         </DockPanel>

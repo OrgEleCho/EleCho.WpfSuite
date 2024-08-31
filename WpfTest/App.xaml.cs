@@ -10,6 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Xml;
+using EleCho.WpfSuite.FluentDesign;
 
 namespace WpfTest
 {
@@ -37,6 +38,13 @@ namespace WpfTest
                 
             }
 
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            ApplicationThemeUtilities.SetApplicationTheme(ApplicationTheme.Auto);
+
+            base.OnStartup(e);
         }
     }
 
