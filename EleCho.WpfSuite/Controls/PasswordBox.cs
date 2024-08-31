@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <summary>
     /// PasswordBox

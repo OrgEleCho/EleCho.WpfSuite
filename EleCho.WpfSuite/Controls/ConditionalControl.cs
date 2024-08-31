@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <summary>
     /// Show content depends on specified condition

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <inheritdoc/>
     public class Border : System.Windows.Controls.Border

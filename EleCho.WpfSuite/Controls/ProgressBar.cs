@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class ProgressBar : System.Windows.Controls.ProgressBar
     {

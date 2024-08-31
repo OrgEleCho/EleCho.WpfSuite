@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class Tooltip : System.Windows.Controls.ToolTip
     {

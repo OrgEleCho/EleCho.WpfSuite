@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shell;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <summary>
     /// If you're using <see cref="WindowChrome"/> to extend the interface to non-client area, then you can add this container to the content of <see cref="Window"/> in order to have the internal content automatically populate the client area section.

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <inheritdoc/>
     public class ListView : System.Windows.Controls.ListView

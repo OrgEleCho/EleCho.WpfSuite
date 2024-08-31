@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class ToggleButton : System.Windows.Controls.Primitives.ToggleButton
     {

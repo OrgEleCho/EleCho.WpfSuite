@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class ListViewItem : System.Windows.Controls.ListViewItem
     {

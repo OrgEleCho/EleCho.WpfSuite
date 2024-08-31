@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class Menu : System.Windows.Controls.Menu
     {

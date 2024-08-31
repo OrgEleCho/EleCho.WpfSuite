@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     public class GroupBox : System.Windows.Controls.GroupBox
     {

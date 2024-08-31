@@ -83,7 +83,7 @@ namespace EleCho.WpfSuite
                 itemControl = VisualTreeHelper.GetChild(itemContentPresenter, 0);
             }
 
-            if (itemControl is ContentControl itemTransitioningContentControl)
+            if (itemControl is EleCho.WpfSuite.Controls.ContentControl itemTransitioningContentControl)
             {
                 itemTransitioningContentControl.SetContent(null, forwardTransition);
                 await itemTransitioningContentControl.WaitForTransitionAsync();

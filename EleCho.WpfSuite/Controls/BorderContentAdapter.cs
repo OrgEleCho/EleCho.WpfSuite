@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Controls
 {
     /// <summary>
     /// Auto clip content depends on the parent border
@@ -38,7 +38,7 @@ namespace EleCho.WpfSuite
         {
             var renderSize = RenderSize;
 
-            if (Parent is EleCho.WpfSuite.Border border &&
+            if (Parent is EleCho.WpfSuite.Controls.Border border &&
                 CalculateBorderContentClip(border, renderSize) is { } borderContentClip)
             {
                 return borderContentClip;
