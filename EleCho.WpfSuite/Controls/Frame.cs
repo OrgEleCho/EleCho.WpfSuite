@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
 {

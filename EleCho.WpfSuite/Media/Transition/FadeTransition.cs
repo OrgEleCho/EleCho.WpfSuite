@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Transition
 {
     /// <summary>
     /// Fade transition

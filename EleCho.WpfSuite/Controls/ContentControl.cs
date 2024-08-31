@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
+using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
 {

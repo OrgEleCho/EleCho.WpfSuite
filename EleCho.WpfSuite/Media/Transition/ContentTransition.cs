@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Media.Transition
 {
     /// <summary>
     /// ContentTransition
@@ -133,6 +133,6 @@ namespace EleCho.WpfSuite
         /// The DependencyProperty of <see cref="EasingFunction"/> property
         /// </summary>
         public static readonly DependencyProperty EasingFunctionProperty =
-            DependencyProperty.Register(nameof(EasingFunction), typeof(IEasingFunction), typeof(ContentTransition), new PropertyMetadata(new CircleEase(){ EasingMode = EasingMode.EaseOut }));
+            DependencyProperty.Register(nameof(EasingFunction), typeof(IEasingFunction), typeof(ContentTransition), new PropertyMetadata(new CircleEase() { EasingMode = EasingMode.EaseOut }));
     }
 }

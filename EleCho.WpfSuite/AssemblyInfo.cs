@@ -6,6 +6,7 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("https://schemas.elecho.dev/wpfsuite", "EleCho.WpfSuite.Markup")]
 [assembly: XmlnsDefinition("https://schemas.elecho.dev/wpfsuite", "EleCho.WpfSuite.Controls")]
 [assembly: XmlnsDefinition("https://schemas.elecho.dev/wpfsuite", "EleCho.WpfSuite.Media.Animation")]
+[assembly: XmlnsDefinition("https://schemas.elecho.dev/wpfsuite", "EleCho.WpfSuite.Media.Transition")]
 
 #if DEBUG
 [assembly: InternalsVisibleTo("WpfTest")]
