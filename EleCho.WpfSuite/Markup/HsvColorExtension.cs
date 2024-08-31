@@ -13,7 +13,7 @@ namespace EleCho.WpfSuite.Markup
     /// Provide a value of <see cref="Color"/>
     /// </summary>
     [MarkupExtensionReturnType(typeof(Color))]
-    public class HsvColor : MarkupExtension
+    public class HsvColorExtension : MarkupExtension
     {
         /// <summary>
         /// Hue

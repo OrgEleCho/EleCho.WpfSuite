@@ -4,30 +4,29 @@ using System.Windows.Markup;
 namespace EleCho.WpfSuite.Markup
 {
     /// <summary>
-    /// Provide a value of <see cref="Char"/>
+    /// Provide a value of <see cref="Byte"/>
     /// </summary>
-    [MarkupExtensionReturnType(typeof(char))]
-    public class Char : MarkupExtension
+    [MarkupExtensionReturnType(typeof(byte))]
+    public class ByteExtension : MarkupExtension
     {
         /// <summary>
         /// Create an instance of this markup extension
         /// </summary>
-        public Char() { }
+        public ByteExtension() { }
 
         /// <summary>
         /// Create an instance of this markup extension with specified value
         /// </summary>
         /// <param name="value">Value</param>
-        public Char(char value)
+        public ByteExtension(byte value)
         {
             Value = value;
         }
 
-
         /// <summary>
         /// Value
         /// </summary>
-        public char Value { get; set; } = '\0';
+        public byte Value { get; set; } = 0;
 
         /// <inheritdoc/>
         public override object ProvideValue(IServiceProvider serviceProvider)

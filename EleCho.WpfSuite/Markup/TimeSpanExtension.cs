@@ -4,21 +4,21 @@ using System.Windows.Markup;
 namespace EleCho.WpfSuite.Markup
 {
     /// <summary>
-    /// Provide a value of <see cref="Byte"/>
+    /// Provide a value of <see cref="TimeSpan"/>
     /// </summary>
-    [MarkupExtensionReturnType(typeof(byte))]
-    public class Byte : MarkupExtension
+    [MarkupExtensionReturnType(typeof(System.TimeSpan))]
+    public class TimeSpanExtension : MarkupExtension
     {
         /// <summary>
         /// Create an instance of this markup extension
         /// </summary>
-        public Byte() { }
+        public TimeSpanExtension() { }
 
         /// <summary>
         /// Create an instance of this markup extension with specified value
         /// </summary>
         /// <param name="value">Value</param>
-        public Byte(byte value)
+        public TimeSpanExtension(System.TimeSpan value)
         {
             Value = value;
         }
@@ -26,7 +26,7 @@ namespace EleCho.WpfSuite.Markup
         /// <summary>
         /// Value
         /// </summary>
-        public byte Value { get; set; } = 0;
+        public System.TimeSpan Value { get; set; } = System.TimeSpan.Zero;
 
         /// <inheritdoc/>
         public override object ProvideValue(IServiceProvider serviceProvider)

@@ -4,21 +4,21 @@ using System.Windows.Markup;
 namespace EleCho.WpfSuite.Markup
 {
     /// <summary>
-    /// Provide a value of <see cref="Int32"/>
+    /// Provide a value of <see cref="String"/>
     /// </summary>
-    [MarkupExtensionReturnType(typeof(int))]
-    public class Int32 : MarkupExtension
+    [MarkupExtensionReturnType(typeof(string))]
+    public class StringExtension : MarkupExtension
     {
         /// <summary>
         /// Create an instance of this markup extension
         /// </summary>
-        public Int32() { }
+        public StringExtension() { }
 
         /// <summary>
         /// Create an instance of this markup extension with specified value
         /// </summary>
         /// <param name="value">Value</param>
-        public Int32(int value)
+        public StringExtension(string value)
         {
             Value = value;
         }
@@ -26,7 +26,7 @@ namespace EleCho.WpfSuite.Markup
         /// <summary>
         /// Value
         /// </summary>
-        public int Value { get; set; } = 0;
+        public string Value { get; set; } = string.Empty;
 
         /// <inheritdoc/>
         public override object ProvideValue(IServiceProvider serviceProvider)

@@ -7,18 +7,18 @@ namespace EleCho.WpfSuite.Markup
     /// Provide a value of <see cref="Single"/>
     /// </summary>
     [MarkupExtensionReturnType(typeof(float))]
-    public class Single : MarkupExtension
+    public class SingleExtension : MarkupExtension
     {
         /// <summary>
         /// Create an instance of this markup extension
         /// </summary>
-        public Single() { }
+        public SingleExtension() { }
 
         /// <summary>
         /// Create an instance of this markup extension with specified value
         /// </summary>
         /// <param name="value">Value</param>
-        public Single(float value)
+        public SingleExtension(float value)
         {
             Value = value;
         }
