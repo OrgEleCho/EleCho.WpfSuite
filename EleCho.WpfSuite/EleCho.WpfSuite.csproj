@@ -98,4 +98,28 @@
     <Resource Include="Controls\ContentControlResources.xaml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Properties\StringResources.zh-Hans.Designer.cs">
+      <DependentUpon>StringResources.zh-Hans.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\StringResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StringResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\StringResources.zh-Hans.resx">
+      <LastGenOutput>StringResources.zh-Hans.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\StringResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

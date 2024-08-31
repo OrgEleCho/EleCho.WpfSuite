@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shell;
 using System.Xml.Linq;
+using EleCho.WpfSuite.Properties;
 using static EleCho.WpfSuite.WindowOption.NativeDefinition;
 
 namespace EleCho.WpfSuite
@@ -461,7 +462,7 @@ namespace EleCho.WpfSuite
                 GetBackdrop(d) is not WindowBackdrop.Auto &&
                 GetBackdrop(d) is not WindowBackdrop.None)
             {
-                throw new InvalidOperationException("Backdrop and AccentState can't both be set");
+                throw new InvalidOperationException(StringResources.BackdropAndAccentCannotBothBeSet);
             }
 
             if (d is Window window)
@@ -637,7 +638,7 @@ namespace EleCho.WpfSuite
                 GetBackdrop(d) is not WindowBackdrop.Auto &&
                 GetBackdrop(d) is not WindowBackdrop.None)
             {
-                throw new InvalidOperationException("Backdrop and AccentState can't both be set");
+                throw new InvalidOperationException(StringResources.BackdropAndAccentCannotBothBeSet);
             }
 
             if (d is Window window)
@@ -1251,7 +1252,32 @@ namespace EleCho.WpfSuite
             if (s_versionCurrentWindows < s_versionWindows11_22621)
                 return;
 
+            var debugMode = InternalUtilities.IsApplicationInDebugMode();
             var handle = hwndSource.Handle;
+
+            if (debugMode && window is not null)
+            {
+                if (window.Background is SolidColorBrush solidColorBackground &&
+                    solidColorBackground.Color.A == 255)
+                {
+                    throw new InvalidOperationException(
+                        $"""
+                        {StringResources.YouCanOnlySeeTheEffectOfTheBackdropSettingWhenTheBackgroundIsSetToATransparentBrush} ({StringResources.ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode})
+                        """);
+                }
+
+                if (WindowChrome.GetWindowChrome(window) is { } windowChrome &&
+                    windowChrome.GlassFrameThickness.Left == 0 &&
+                    windowChrome.GlassFrameThickness.Right == 0 &&
+                    windowChrome.GlassFrameThickness.Top == 0 &&
+                    windowChrome.GlassFrameThickness.Bottom == 0)
+                {
+                    throw new InvalidOperationException(
+                        $"""
+                        {StringResources.IfYouSetTheBackdropInTheCaseOfUsingWindowChromeYouWillOnlySeeTheEffectWhenGlassFrameThicknessIsANonZeroValueGenerallyItShouldBeSetToNegativeOne} ({StringResources.ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode})
+                        """);
+                }
+            }
 
             // prepare composition background
             if (backdrop != WindowBackdrop.None &&
@@ -1347,6 +1373,20 @@ namespace EleCho.WpfSuite
         private static unsafe void ApplyAccent(Window? window, HwndSource hwndSource, WindowAccentState accentState, Color gradientColor, bool addBorder)
         {
             var handle = hwndSource.Handle;
+
+            var debugMode = InternalUtilities.IsApplicationInDebugMode();
+
+            if (debugMode && window is not null)
+            {
+                if (WindowChrome.GetWindowChrome(window) is { } windowChrome &&
+                    windowChrome.GlassFrameThickness != default)
+                {
+                    throw new InvalidOperationException(
+                        $"""
+                        {StringResources.IfYouSetTheAccentWhileUsingWindowChromeYouCanOnlySeeTheEffectWhenTheGlassFrameThicknessIsSetToZero} ({StringResources.ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode})
+                        """);
+                }
+            }
 
             var accentPolicy = new AccentPolicy()
             {
@@ -1452,7 +1492,7 @@ namespace EleCho.WpfSuite
 
                 if (s_maximumButtons.ContainsKey(windowHandle))
                 {
-                    throw new InvalidOperationException("MaximumButton is already set to another Visual");
+                    throw new InvalidOperationException(StringResources.MaximumButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_maximumButtons[windowHandle] = visual;
@@ -1499,7 +1539,7 @@ namespace EleCho.WpfSuite
 
                 if (s_minimumButtons.ContainsKey(windowHandle))
                 {
-                    throw new InvalidOperationException("MinimumButton is already set to another Visual");
+                    throw new InvalidOperationException(StringResources.MinimumButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_minimumButtons[windowHandle] = visual;
@@ -1546,7 +1586,7 @@ namespace EleCho.WpfSuite
 
                 if (s_closeButtons.ContainsKey(windowHandle))
                 {
-                    throw new InvalidOperationException("MinimumButton is already set to another Visual");
+                    throw new InvalidOperationException(StringResources.CloseButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_closeButtons[windowHandle] = visual;
