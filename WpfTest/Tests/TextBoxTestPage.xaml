@@ -25,7 +25,15 @@
             <StackPanel>
                 <TextBlock Text="Password:"/>
                 <ws:PasswordBox CornerRadius="3"
+                                Text="{Binding ElementName=syncBox,Path=Text,Mode=TwoWay}"
                                 Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Text="Sync with password box:"/>
+                <ws:TextBox Name="syncBox"
+                            CornerRadius="3"
+                            Placeholder="{Binding ElementName=PlaceHolderBox,Path=Text}"/>
             </StackPanel>
 
             <ws:GroupBox Header="Options"

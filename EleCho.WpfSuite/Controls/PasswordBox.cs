@@ -20,6 +20,7 @@ namespace EleCho.WpfSuite.Controls
         static PasswordBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(PasswordBox), new FrameworkPropertyMetadata(typeof(PasswordBox)));
+
             InputMethod.IsInputMethodEnabledProperty.OverrideMetadata(typeof(PasswordBox),
                 new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits, null, new CoerceValueCallback(ForceToFalse)));
         }
@@ -41,18 +42,9 @@ namespace EleCho.WpfSuite.Controls
 
             _maskTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1) };
             _maskTimer.Tick += (sender, args) => MaskAllDisplayText();
+
         }
 
-
-
-        /// <summary>
-        /// Mask text
-        /// </summary>
-        public string Mask
-        {
-            get { return (string)GetValue(MaskProperty); }
-            set { SetValue(MaskProperty, value); }
-        }
 
         /// <summary>
         /// Password
@@ -61,6 +53,15 @@ namespace EleCho.WpfSuite.Controls
         {
             get => (string)GetValue(PasswordProperty);
             set => SetValue(PasswordProperty, value);
+        }
+
+        /// <summary>
+        /// Mask text
+        /// </summary>
+        public char Mask
+        {
+            get { return (char)GetValue(MaskProperty); }
+            set { SetValue(MaskProperty, value); }
         }
 
         /// <summary>
@@ -77,22 +78,32 @@ namespace EleCho.WpfSuite.Controls
 
 
         /// <summary>
-        /// The DependencyProperty of <see cref="Mask"/> property
-        /// </summary>
-        public static readonly DependencyProperty MaskProperty =
-            DependencyProperty.Register(nameof(Mask), typeof(string), typeof(PasswordBox), new PropertyMetadata("*"));
-
-        /// <summary>
         /// The DependencyProperty of <see cref="Password"/> property
         /// </summary>
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register(nameof(Password), typeof(string), typeof(PasswordBox), new UIPropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(Password), typeof(string), typeof(PasswordBox), new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnPasswordChanged));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="Mask"/> property
+        /// </summary>
+        public static readonly DependencyProperty MaskProperty =
+            DependencyProperty.Register(nameof(Mask), typeof(char), typeof(PasswordBox), new PropertyMetadata('*'));
 
         /// <summary>
         /// The DependencyProperty of <see cref="AlwaysMask"/> property
         /// </summary>
         public static readonly DependencyProperty AlwaysMaskProperty =
             DependencyProperty.Register(nameof(AlwaysMask), typeof(bool), typeof(PasswordBox), new PropertyMetadata(true));
+
+        private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not PasswordBox pwdBox)
+            {
+                return;
+            }
+
+            pwdBox.SetPassword(pwdBox.Password);
+        }
 
 
         /// <summary>
@@ -117,6 +128,13 @@ namespace EleCho.WpfSuite.Controls
         /// <param name="textCompositionEventArgs">Event Text Arguments</param>
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs textCompositionEventArgs)
         {
+            if (CaretIndex > _passwordBuilder.Length)
+            {
+                // error 
+                Text = Text.Substring(0, _passwordBuilder.Length);
+                CaretIndex = Text.Length;
+            }
+
             AddToSecureString(textCompositionEventArgs.Text);
 
             if (AlwaysMask)
@@ -199,7 +217,7 @@ namespace EleCho.WpfSuite.Controls
                 }
                 else
                 {
-                    Text = Text.Insert(caretIndex++, Mask);
+                    Text = Text.Insert(caretIndex++, Mask.ToString());
                 }
 
                 CaretIndex = caretIndex;
@@ -229,9 +247,25 @@ namespace EleCho.WpfSuite.Controls
             int caretIndex = CaretIndex;
 
             _maskTextBuilder.Clear();
-            _maskTextBuilder.Insert(0, Mask, Text.Length);
+            _maskTextBuilder.Append(Mask, Text.Length);
 
             Text = _maskTextBuilder.ToString();
+            CaretIndex = caretIndex;
+        }
+
+        private void SetPassword(string password)
+        {
+            _maskTimer.Stop();
+            int caretIndex = CaretIndex;
+
+            _maskTextBuilder.Clear();
+            _maskTextBuilder.Append(Mask, password.Length);
+
+            _passwordBuilder.Clear();
+            _passwordBuilder.Append(password);
+
+            Text = _maskTextBuilder.ToString();
+            Password = password;
             CaretIndex = caretIndex;
         }
     }
