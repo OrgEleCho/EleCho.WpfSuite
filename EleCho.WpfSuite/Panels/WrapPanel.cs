@@ -10,8 +10,6 @@ namespace EleCho.WpfSuite
     /// </summary>
     public class WrapPanel : Panel
     {
-        private List<UIElement> _layoutHelperList = new();
-
         /// <summary>
         /// Layout orientation
         /// </summary>
@@ -356,7 +354,6 @@ namespace EleCho.WpfSuite
             }
         }
 
-
         /// <summary>
         /// Dependency property of Orientation property
         /// </summary>
@@ -386,7 +383,5 @@ namespace EleCho.WpfSuite
         /// </summary>
         public static readonly DependencyProperty HorizontalSpacingProperty =
             DependencyProperty.Register(nameof(HorizontalSpacing), typeof(double), typeof(WrapPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
-
-
     }
 }
