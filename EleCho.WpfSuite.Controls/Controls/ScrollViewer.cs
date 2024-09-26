@@ -27,17 +27,10 @@ namespace EleCho.WpfSuite.Controls
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ScrollViewer), new FrameworkPropertyMetadata(typeof(ScrollViewer)));
 
-#if NETCOREAPP
-            _propertyHandlesMouseWheelScrollingGetter = typeof(ScrollViewer)
-                .GetProperty("HandlesMouseWheelScrolling", BindingFlags.Instance | BindingFlags.NonPublic)!
-                .GetGetMethod(true)!
-                .CreateDelegate<GetBool>();
-#else
             _propertyHandlesMouseWheelScrollingGetter = (GetBool)typeof(ScrollViewer)
                 .GetProperty("HandlesMouseWheelScrolling", BindingFlags.Instance | BindingFlags.NonPublic)!
                 .GetGetMethod(true)!
                 .CreateDelegate(typeof(GetBool));
-#endif
         }
 
         private delegate bool GetBool(ScrollViewer scrollViewer);
@@ -46,6 +39,10 @@ namespace EleCho.WpfSuite.Controls
         private const long _millisecondsBetweenTouchpadScrolling = 100;
 
         private bool _animationRunning = false;
+
+        // 上次的滚动 delta, 不管是水平还是垂直, 都会保存下来
+        // 用于判断是否是触摸板滚动
+
         private int _lastScrollDelta = 0;
         private int _lastVerticalScrollingDelta = 0;
         private int _lastHorizontalScrollingDelta = 0;

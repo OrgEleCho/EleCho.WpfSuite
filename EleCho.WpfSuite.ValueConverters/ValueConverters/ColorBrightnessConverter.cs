@@ -10,10 +10,26 @@ namespace EleCho.WpfSuite
     /// </summary>
     public class ColorBrightnessConverter : ValueConverterBase<ColorBrightnessConverter, Color, float>
     {
+        /// <summary>
+        /// Get brightness of a color
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static float GetBrightness(float r, float g, float b)
+        {
+            // 将 RGB 值转换为 YUV 值
+            float y = 0.299f * r + 0.587f * g + 0.114f * b;
+
+            // 计算亮度值
+            return y;
+        }
+
         /// <inheritdoc/>
         public override float Convert(Color value, Type targetType, object? parameter, CultureInfo culture)
         {
-            var brightness = ColorUtils.GetBrightness(value.ScR, value.ScG, value.ScB);
+            var brightness = GetBrightness(value.ScR, value.ScG, value.ScB);
 
             if (brightness < 0)
             {

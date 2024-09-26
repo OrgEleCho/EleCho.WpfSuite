@@ -50,7 +50,7 @@ namespace EleCho.WpfSuite.Media.Animation
             if (animationClock.CurrentProgress.Value == 1)
                 return defaultDestinationValue;
 
-            var workingBrush = _workingBrush ??= new VisualBrush(new BoxPanel()
+            var workingBrush = _workingBrush ??= new VisualBrush(new Grid()
             {
                 Width = 1,
                 Height = 1,
@@ -67,7 +67,7 @@ namespace EleCho.WpfSuite.Media.Animation
                 }
             });
 
-            var workingBrushPanel = (BoxPanel)workingBrush.Visual;
+            var workingBrushPanel = (Grid)workingBrush.Visual;
             var fromBrushBorder = workingBrushPanel.Children[0];
             var toBrushBorder = workingBrushPanel.Children[1];
 

@@ -8,7 +8,7 @@ namespace EleCho.WpfSuite
     /// <summary>
     /// ScrollViewer Utilities
     /// </summary>
-    public static class ScrollViewerUtils
+    internal static class ScrollViewerUtils
     {
         /// <summary>
         /// Get value of VerticalOffset property

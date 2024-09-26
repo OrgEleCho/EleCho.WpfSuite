@@ -1,10 +1,39 @@
-﻿namespace EleCho.WpfSuite
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Markup;
+using System.Windows.Media;
+
+namespace EleCho.WpfSuite.Markup
 {
     /// <summary>
-    /// Color utilities
+    /// Provide a value of <see cref="Color"/>
     /// </summary>
-    public static class ColorUtils
+    [MarkupExtensionReturnType(typeof(Color))]
+    public class HsvColorExtension : MarkupExtension
     {
+        /// <summary>
+        /// Hue
+        /// </summary>
+        public float H { get; set; }
+
+        /// <summary>
+        /// Situation
+        /// </summary>
+        public float S { get; set; }
+
+        /// <summary>
+        /// Value
+        /// </summary>
+        public float V { get; set; }
+
+        /// <summary>
+        /// Opacity
+        /// </summary>
+        public float Opacity { get; set; } = 1;
         /// <summary>
         /// Convert HSV color to RGB color
         /// </summary>
@@ -68,20 +97,12 @@
             }
         }
 
-        /// <summary>
-        /// Get brightness of a color
-        /// </summary>
-        /// <param name="r"></param>
-        /// <param name="g"></param>
-        /// <param name="b"></param>
-        /// <returns></returns>
-        public static float GetBrightness(float r, float g, float b)
+        /// <inheritdoc/>
+        public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            // 将 RGB 值转换为 YUV 值
-            float y = 0.299f * r + 0.587f * g + 0.114f * b;
+            HSV2RGB(H, S, V, out var r, out var g, out var b);
 
-            // 计算亮度值
-            return y;
+            return Color.FromScRgb(Opacity, r, g, b);
         }
     }
 }

@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../Package.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\EleCho.WpfSuite.Common\EleCho.WpfSuite.Common.csproj" />
+  </ItemGroup>
+
+</Project>

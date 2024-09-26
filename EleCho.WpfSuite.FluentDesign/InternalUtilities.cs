@@ -5,10 +5,27 @@ namespace EleCho.WpfSuite.FluentDesign
 {
     internal static class InternalUtilities
     {
+
+        /// <summary>
+        /// Get brightness of a color
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static float GetBrightness(float r, float g, float b)
+        {
+            // 将 RGB 值转换为 YUV 值
+            float y = 0.299f * r + 0.587f * g + 0.114f * b;
+
+            // 计算亮度值
+            return y;
+        }
+
         private static bool IsDarkThemeDependOnColor()
         {
             var themeColor = SystemParameters.WindowGlassColor;
-            var brightness = ColorUtils.GetBrightness(themeColor.ScR, themeColor.ScG, themeColor.ScB);
+            var brightness = GetBrightness(themeColor.ScR, themeColor.ScG, themeColor.ScB);
 
             return brightness < 0.3;
         }

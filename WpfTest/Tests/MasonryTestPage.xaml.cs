@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EleCho.WpfSuite;
+using EleCho.WpfSuite.Markup;
 using WpfTest.Models;
 
 namespace WpfTest.Tests
@@ -37,7 +38,7 @@ namespace WpfTest.Tests
             var h = Random.Shared.NextSingle();
             var s = 1f;
             var v = 0.7f;
-            EleCho.WpfSuite.ColorUtils.HSV2RGB(h, s, v, out var r, out var g, out var b);
+            HsvColorExtension.HSV2RGB(h, s, v, out var r, out var g, out var b);
 
             var newItem = new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), Random.Shared.Next(30, 80));
             MasonryItems.Add(newItem);
