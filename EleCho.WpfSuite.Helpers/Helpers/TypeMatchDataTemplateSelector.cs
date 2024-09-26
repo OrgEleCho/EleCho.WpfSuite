@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// DataTemplate selector based on the type of data

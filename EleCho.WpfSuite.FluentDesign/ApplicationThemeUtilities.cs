@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
+using EleCho.WpfSuite.Helpers;
 using Microsoft.Win32;
 
 namespace EleCho.WpfSuite.FluentDesign

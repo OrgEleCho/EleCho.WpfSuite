@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EleCho.WpfSuite.FluentDesign;
+using EleCho.WpfSuite.Helpers;
 using WpfTest.Models;
 using WpfTest.Tests;
 
@@ -31,10 +32,10 @@ namespace WpfTest
             DataContext = this;
             InitializeComponent();
 
-            if (EleCho.WpfSuite.WindowOption.CanSetBackdrop)
+            if (WindowOption.CanSetBackdrop)
             {
                 Background = Brushes.Transparent;
-                EleCho.WpfSuite.WindowOption.SetBackdrop(this, EleCho.WpfSuite.WindowBackdrop.Mica);
+                WindowOption.SetBackdrop(this, WindowBackdrop.Mica);
             }
 
             ApplicationThemeUtilities.EnsureWindowTheme(this);

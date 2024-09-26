@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Layouts
 {
     /// <summary>
     /// Box. <br/>

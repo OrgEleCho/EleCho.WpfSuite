@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Fallback between multiple values, return the first non-null value

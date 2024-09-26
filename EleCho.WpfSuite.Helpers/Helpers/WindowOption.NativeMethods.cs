@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     public partial class WindowOption
     {

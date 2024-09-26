@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-                    xmlns:ws="https://schemas.elecho.dev/wpfsuite">
+                    xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+                    xmlns:i="clr-namespace:EleCho.WpfSuite.Internal"
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+
     <SolidColorBrush x:Key="Menu.Static.Foreground" Color="#FF212121"/>
     <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
     <Geometry x:Key="DownArrow">M 0,0 L 3.5,4 L 7,0 Z</Geometry>
@@ -153,16 +156,16 @@
         <GradientStop Color="#E9ECFA" Offset="1.0"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="CurrentEntryBackground" Color="{StaticResource {x:Static SystemColors.HighlightColorKey}}" Opacity="0.25"/>
-    <Style x:Key="NavigationWindowNavigationButtonJournalEntryStyle" TargetType="{x:Type MenuItem}">
+    <Style x:Key="NavigationWindowNavigationButtonJournalEntryStyle" TargetType="{x:Type local:MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="Header" Value="{Binding (JournalEntry.Name)}"/>
         <Setter Property="Command" Value="NavigationCommands.NavigateJournal"/>
-        <Setter Property="CommandTarget" Value="{Binding TemplatedParent, RelativeSource={RelativeSource AncestorType={x:Type Menu}}}"/>
+        <Setter Property="CommandTarget" Value="{Binding TemplatedParent, RelativeSource={RelativeSource AncestorType={x:Type local:Menu}}}"/>
         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
         <Setter Property="JournalEntryUnifiedViewConverter.JournalEntryPosition" Value="{Binding (JournalEntryUnifiedViewConverter.JournalEntryPosition)}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuItem}">
+                <ControlTemplate TargetType="{x:Type local:MenuItem}">
                     <Grid x:Name="Panel" Background="Transparent" SnapsToDevicePixels="true">
                         <Path x:Name="Glyph" HorizontalAlignment="Left" Height="10" Margin="7,5" Stroke="{TemplateBinding Foreground}" StrokeStartLineCap="Triangle" SnapsToDevicePixels="false" StrokeThickness="2" StrokeEndLineCap="Triangle" Width="10"/>
                         <ContentPresenter ContentSource="Header" Margin="24,5,21,5"/>
@@ -199,16 +202,16 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="NavigationWindowMenuItem" TargetType="{x:Type MenuItem}">
+    <Style x:Key="NavigationWindowMenuItem" TargetType="{x:Type local:MenuItem}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type MenuItem}">
+                <ControlTemplate TargetType="{x:Type local:MenuItem}">
                     <Grid>
                         <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding (MenuItem.IsSubmenuOpen), RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="2">
-                            <theme:SystemDropShadowChrome x:Name="Shdw" Color="Transparent">
+                            <i:SystemDropShadowChrome x:Name="Shdw" Color="Transparent">
                                 <Border x:Name="SubMenuBorder" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" BorderThickness="1">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled">
@@ -219,7 +222,7 @@
                                         </Grid>
                                     </ScrollViewer>
                                 </Border>
-                            </theme:SystemDropShadowChrome>
+                            </i:SystemDropShadowChrome>
                         </Popup>
                         <Grid x:Name="Panel" Background="Transparent" HorizontalAlignment="Right" Width="26">
                             <Border x:Name="HighlightBorder" BorderBrush="#B0B5BACE" BorderThickness="1,1,1,1" CornerRadius="2" SnapsToDevicePixels="True" Visibility="Hidden">
@@ -255,7 +258,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="NavigationWindowMenu" TargetType="{x:Type Menu}">
+    <Style x:Key="NavigationWindowMenu" TargetType="{x:Type local:Menu}">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -268,7 +271,7 @@
         <Setter Property="IsMainMenu" Value="false"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Menu}">
+                <ControlTemplate TargetType="{x:Type local:Menu}">
                     <ItemsPresenter/>
                 </ControlTemplate>
             </Setter.Value>
@@ -336,7 +339,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <ControlTemplate x:Key="FrameNavChromeTemplateKey" TargetType="{x:Type ws:Frame}">
+    <ControlTemplate x:Key="FrameNavChromeTemplateKey" TargetType="{x:Type local:Frame}">
         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
             <DockPanel>
                 <Grid Background="{StaticResource NavigationWindowNavigationChromeBackground}" DockPanel.Dock="Top" Height="22">
@@ -392,8 +395,8 @@
                         </Button.LayoutTransform>
                     </Button>
                 </Grid>
-                <ws:ContentControl x:Name="PART_ContentControl"
-                                   Transition="{TemplateBinding Transition}"/>
+                <local:ContentControl x:Name="PART_ContentControl"
+                                      Transition="{TemplateBinding Transition}"/>
             </DockPanel>
         </Border>
         <ControlTemplate.Triggers>
@@ -406,20 +409,20 @@
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style TargetType="{x:Type ws:Frame}">
+    <Style TargetType="{x:Type local:Frame}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ws:Frame}">
-                    <ws:Border x:Name="PART_BD"
-                               Background="{TemplateBinding Background}"
-                               BorderBrush="{TemplateBinding BorderBrush}"
-                               BorderThickness="{TemplateBinding BorderThickness}"
-                               CornerRadius="{TemplateBinding CornerRadius}"
-                               Padding="{TemplateBinding Padding}">
-                        <ws:ContentControl x:Name="PART_ContentControl"
-                                           Transition="{TemplateBinding Transition}"
-                                           Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
-                    </ws:Border>
+                <ControlTemplate TargetType="{x:Type local:Frame}">
+                    <local:Border x:Name="PART_BD"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  Padding="{TemplateBinding Padding}">
+                        <local:ContentControl x:Name="PART_ContentControl"
+                                              Transition="{TemplateBinding Transition}"
+                                              Clip="{Binding ElementName=PART_BD,Path=ContentClip}"/>
+                    </local:Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipToBounds" Value="True">
                             <Setter TargetName="PART_ContentControl"

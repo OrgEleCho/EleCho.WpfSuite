@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite"
-                    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+                    xmlns:i="clr-namespace:EleCho.WpfSuite.Internal"
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -29,17 +30,17 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ws:ToggleButton}">
+    <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type local:ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="IsTabStop" Value="false"/>
         <Setter Property="Focusable" Value="false"/>
         <Setter Property="ClickMode" Value="Press"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ws:ToggleButton}">
+                <ControlTemplate TargetType="{x:Type local:ToggleButton}">
                     <Border x:Name="templateRoot"
-                            Background="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=Background}"
-                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=BorderBrush}"
+                            Background="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=Background}"
+                            BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             SnapsToDevicePixels="true">
@@ -52,29 +53,29 @@
                                 SnapsToDevicePixels="true"
                                 Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
-                                  Fill="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=GlyphBrush}"
+                                  Fill="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=GlyphBrush}"
                                   HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="true"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="true"/>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="false"/>
                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Mode=Self}}" Value="false"/>
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=EditableBackground}"/>
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=EditableBorderBrush}"/>
-                            <Setter Property="Background" TargetName="splitBorder" Value="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=EditableButtonBackground}"/>
-                            <Setter Property="BorderBrush" TargetName="splitBorder" Value="{Binding RelativeSource={RelativeSource AncestorType=ws:ComboBox},Path=EditableButtonBorderBrush}"/>
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableBorderBrush}"/>
+                            <Setter Property="Background" TargetName="splitBorder" Value="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonBackground}"/>
+                            <Setter Property="BorderBrush" TargetName="splitBorder" Value="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonBorderBrush}"/>
                         </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Fill" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="HoverGlyphBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="GlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="HoverGlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="GlyphBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -82,21 +83,21 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="false"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="false"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="HoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="HoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -104,41 +105,41 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="true"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableHoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="HoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableHoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableHoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="HoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableHoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="Background" TargetName="splitBorder">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonHoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonHoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBackground"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="splitBorder" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonHoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonHoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -147,8 +148,8 @@
                             <Setter Property="Fill" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="PressedGlyphBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="GlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="PressedGlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="GlyphBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -156,21 +157,21 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="false"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="false"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="PressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="PressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="PressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="PressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -178,41 +179,41 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="true"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditablePressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="PressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditablePressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="PressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditablePressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="PressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditablePressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="PressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="Background" TargetName="splitBorder">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonPressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonPressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBackground"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="splitBorder" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonPressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonPressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -221,8 +222,8 @@
                             <Setter Property="Fill" TargetName="arrow" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="DisabledGlyphBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="GlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="DisabledGlyphBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="GlyphBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -230,21 +231,21 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="false"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="false"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -252,41 +253,41 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Mode=Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ws:ComboBox}}}" Value="true"/>
+                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type local:ComboBox}}}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableDisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="Background"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableDisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="templateRoot">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableDisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="BorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableDisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="BorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="Background" TargetName="splitBorder">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonDisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonDisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBackground"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="splitBorder" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonDisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource AncestorType=ws:ComboBox}" Path="EditableButtonBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonDisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=local:ComboBox}" Path="EditableButtonBorderBrush"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
@@ -296,7 +297,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type ws:ComboBox}">
+    <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type local:ComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -308,12 +309,12 @@
                    IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                    Placement="Bottom"
                    PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <theme:SystemDropShadowChrome x:Name="shadow"
+                <i:SystemDropShadowChrome x:Name="shadow"
                                               Color="Transparent"
                                               CornerRadius="{TemplateBinding PopupCornerRadius}"
                                               MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
                                               MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <ws:Border x:Name="dropDownBorder"
+                    <local:Border x:Name="dropDownBorder"
                                Background="{TemplateBinding PopupBackground}"
                                BorderThickness="{TemplateBinding PopupBorderThickness}"
                                BorderBrush="{TemplateBinding PopupBorderBrush}"
@@ -330,10 +331,10 @@
                                 <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Grid>
                         </ScrollViewer>
-                    </ws:Border>
-                </theme:SystemDropShadowChrome>
+                    </local:Border>
+                </i:SystemDropShadowChrome>
             </Popup>
-            <ws:ToggleButton x:Name="toggleButton"
+            <local:ToggleButton x:Name="toggleButton"
                              Background="{TemplateBinding Background}"
                              BorderBrush="{TemplateBinding BorderBrush}"
                              BorderThickness="{TemplateBinding BorderThickness}"
@@ -342,12 +343,12 @@
                              Grid.ColumnSpan="2"
                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                              Style="{StaticResource ComboBoxToggleButton}"/>
-            <ws:Border x:Name="border"
+            <local:Border x:Name="border"
                        Background="{TemplateBinding TextBoxBackground}"
                        CornerRadius="{TemplateBinding CornerRadius}"
                        Margin="{TemplateBinding BorderThickness}">
                 <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </ws:Border>
+            </local:Border>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="ClipToBounds" Value="True">
@@ -417,24 +418,24 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ws:ComboBox}">
+    <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type local:ComboBox}">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
             </Grid.ColumnDefinitions>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <theme:SystemDropShadowChrome x:Name="shadow"
+                <i:SystemDropShadowChrome x:Name="shadow"
                                               Color="Transparent"
                                               CornerRadius="{TemplateBinding PopupCornerRadius}"
                                               MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
                                               MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <ws:Border x:Name="dropDownBorder"
+                    <local:Border x:Name="dropDownBorder"
                                Background="{TemplateBinding PopupBackground}"
                                BorderThickness="{TemplateBinding PopupBorderThickness}"
                                BorderBrush="{TemplateBinding PopupBorderBrush}"
                                CornerRadius="{TemplateBinding PopupCornerRadius}">
-                        <ws:ScrollViewer x:Name="DropDownScrollViewer">
+                        <local:ScrollViewer x:Name="DropDownScrollViewer">
                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                 <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
                                     <Border x:Name="opaqueRect"
@@ -447,11 +448,11 @@
                                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </Grid>
-                        </ws:ScrollViewer>
-                    </ws:Border>
-                </theme:SystemDropShadowChrome>
+                        </local:ScrollViewer>
+                    </local:Border>
+                </i:SystemDropShadowChrome>
             </Popup>
-            <ws:ToggleButton x:Name="toggleButton"
+            <local:ToggleButton x:Name="toggleButton"
                              Background="{TemplateBinding Background}"
                              BorderBrush="{TemplateBinding BorderBrush}"
                              BorderThickness="{TemplateBinding BorderThickness}"
@@ -460,8 +461,8 @@
                              Grid.ColumnSpan="2"
                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                              Style="{StaticResource ComboBoxToggleButton}">
-            </ws:ToggleButton>
-            <ws:Border x:Name="PART_Border"
+            </local:ToggleButton>
+            <local:Border x:Name="PART_Border"
                        BorderThickness="{TemplateBinding BorderThickness}"
                        CornerRadius="{TemplateBinding CornerRadius}">
                 <ContentPresenter x:Name="contentPresenter"
@@ -474,7 +475,7 @@
                                   IsHitTestVisible="false"
                                   Margin="{TemplateBinding Padding}"
                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-            </ws:Border>
+            </local:Border>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="ClipToBounds" Value="True">
@@ -538,7 +539,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style TargetType="{x:Type ws:ComboBox}">
+    <Style TargetType="{x:Type local:ComboBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
         <Setter Property="PopupBorderThickness" Value="1"/>

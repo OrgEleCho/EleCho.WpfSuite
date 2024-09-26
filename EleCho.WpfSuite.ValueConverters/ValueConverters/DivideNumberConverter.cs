@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Divide by the specified value and the parameter value

@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Convert value with specified value converters

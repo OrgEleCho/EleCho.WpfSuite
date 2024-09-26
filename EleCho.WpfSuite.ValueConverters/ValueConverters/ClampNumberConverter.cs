@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Clamp number between specified minimum value and maximum value

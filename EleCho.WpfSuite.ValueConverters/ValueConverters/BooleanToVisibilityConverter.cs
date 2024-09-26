@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Convert boolean to visibility

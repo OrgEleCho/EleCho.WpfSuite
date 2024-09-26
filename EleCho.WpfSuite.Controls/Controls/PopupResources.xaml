@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:ws="https://schemas.elecho.dev/wpfsuite">
-    <Style x:Key="{x:Type ws:Popup}">
+                    xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+    <Style x:Key="{x:Type local:Popup}">
         <!--Nothing to change-->
     </Style>
 </ResourceDictionary>

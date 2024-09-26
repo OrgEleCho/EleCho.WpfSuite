@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Layouts
 {
     /// <summary>
     /// Masonry layout panel

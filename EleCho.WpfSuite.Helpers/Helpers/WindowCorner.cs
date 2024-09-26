@@ -1,4 +1,4 @@
-﻿namespace EleCho.WpfSuite
+﻿namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// Window corner

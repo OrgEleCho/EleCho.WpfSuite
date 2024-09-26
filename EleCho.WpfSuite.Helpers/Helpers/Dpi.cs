@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// DPI

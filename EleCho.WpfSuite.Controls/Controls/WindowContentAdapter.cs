@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Shell;
+using EleCho.WpfSuite.Helpers;
 
 namespace EleCho.WpfSuite.Controls
 {

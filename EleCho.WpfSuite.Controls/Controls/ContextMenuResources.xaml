@@ -2,8 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite"
                     xmlns:s="clr-namespace:System;assembly=mscorlib"
-                    xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" >
-    <Style TargetType="{x:Type ws:ContextMenu}">
+                    xmlns:i="clr-namespace:EleCho.WpfSuite.Internal"
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+    <Style TargetType="{x:Type local:ContextMenu}">
         <Style.Resources>
             <ResourceDictionary />
         </Style.Resources>
@@ -23,14 +24,14 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Control.Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ws:ContextMenu}">
-                    <mwt:SystemDropShadowChrome Color="#00FFFFFF" Name="Shdw" SnapsToDevicePixels="True">
+                <ControlTemplate TargetType="{x:Type local:ContextMenu}">
+                    <i:SystemDropShadowChrome Color="#00FFFFFF" Name="Shdw" SnapsToDevicePixels="True">
                         <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 Background="{TemplateBinding Panel.Background}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 Name="ContextMenuBorder">
-                            <ws:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
+                            <local:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
                                 <Grid RenderOptions.ClearTypeHint="Enabled">
                                     <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Rectangle Fill="{x:Null}" Name="OpaqueRect" Width="Auto" Height="Auto" />
@@ -40,9 +41,9 @@
                                     <Rectangle Fill="#FFFFFFFF" Width="1" Margin="30,2,0,2" HorizontalAlignment="Left" />
                                     <ItemsPresenter Name="ItemsPresenter" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Cycle" />
                                 </Grid>
-                            </ws:ScrollViewer>
+                            </local:ScrollViewer>
                         </Border>
-                    </mwt:SystemDropShadowChrome>
+                    </i:SystemDropShadowChrome>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ContextMenuService.HasDropShadow"
                                  Value="True">
@@ -51,7 +52,7 @@
                                     <Thickness>0,0,5,5</Thickness>
                                 </Setter.Value>
                             </Setter>
-                            <Setter Property="mwt:SystemDropShadowChrome.Color" TargetName="Shdw">
+                            <Setter Property="i:SystemDropShadowChrome.Color" TargetName="Shdw">
                                 <Setter.Value>
                                     <Color>#71000000</Color>
                                 </Setter.Value>

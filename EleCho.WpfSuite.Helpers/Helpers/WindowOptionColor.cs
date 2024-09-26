@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Media;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// Color for WindowOption

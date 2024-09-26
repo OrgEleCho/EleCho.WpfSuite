@@ -1,4 +1,4 @@
-﻿namespace EleCho.WpfSuite
+﻿namespace EleCho.WpfSuite.Layouts
 {
     /// <summary>
     /// Flex wrap mode

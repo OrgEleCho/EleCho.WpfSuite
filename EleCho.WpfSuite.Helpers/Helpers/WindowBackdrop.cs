@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-
-namespace EleCho.WpfSuite
+﻿namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// Window backdrop

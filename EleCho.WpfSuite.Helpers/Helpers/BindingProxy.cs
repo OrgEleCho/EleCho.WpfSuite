@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// Proxy for binding

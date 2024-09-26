@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Returns a Boolean value that indicates that the value is not null

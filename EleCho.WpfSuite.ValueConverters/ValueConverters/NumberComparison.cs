@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Number comparison rule

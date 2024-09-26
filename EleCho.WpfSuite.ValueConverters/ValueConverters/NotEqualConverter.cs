@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Value converter that returns a boolean value that indicates that the value not equals parameter

@@ -13,7 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Layouts
 {
     /// <summary>
     /// Defines an area within which you can position and align child objects in relation to each other or the parent panel.

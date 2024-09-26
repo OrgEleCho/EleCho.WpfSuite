@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Value converter that returns a Boolean value that indicates that the string is null or empty

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Layouts
 {
     /// <summary>
     /// Provides a way to arrange content in a grid where all the cells in the grid have the same size.

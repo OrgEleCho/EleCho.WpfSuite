@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media.Media3D;
 using System.Xml.Linq;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Layouts
 {
     public partial class RelativePanel
     {

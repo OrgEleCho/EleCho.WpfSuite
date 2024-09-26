@@ -7,11 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite", "EleCho.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfTest", "WpfTest\WpfTest.csproj", "{8F0B4AE1-61E7-44A7-9FDA-C17D37EECC7A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{BB41F20A-3DDC-4964-A99E-C84B13C7AA69}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.SimpleDesign", "EleCho.WpfSuite.SimpleDesign\EleCho.WpfSuite.SimpleDesign.csproj", "{EAD122E7-549D-4057-83C4-DCD2A04E4481}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.FluentDesign", "EleCho.WpfSuite.FluentDesign\EleCho.WpfSuite.FluentDesign.csproj", "{B1568882-49D8-4D6A-8DC9-8BFFC0D46104}"

@@ -14,9 +14,9 @@ using System.Windows.Media;
 using System.Windows.Shell;
 using System.Xml.Linq;
 using EleCho.WpfSuite.Properties;
-using static EleCho.WpfSuite.WindowOption.NativeDefinition;
+using static EleCho.WpfSuite.Helpers.WindowOption.NativeDefinition;
 
-namespace EleCho.WpfSuite
+namespace EleCho.WpfSuite.Helpers
 {
     /// <summary>
     /// Window options

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EleCho.WpfSuite;
+using EleCho.WpfSuite.Helpers;
 
 namespace WpfTest.Tests
 {

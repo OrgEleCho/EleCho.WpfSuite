@@ -1,4 +1,4 @@
-﻿namespace EleCho.WpfSuite
+﻿namespace EleCho.WpfSuite.ValueConverters
 {
     /// <summary>
     /// Base class of singleton multi value converter
