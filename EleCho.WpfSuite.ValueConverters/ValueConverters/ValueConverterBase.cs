@@ -57,7 +57,7 @@ namespace EleCho.WpfSuite.ValueConverters
         /// <param name="parameter">Parameter</param>
         /// <param name="culture">Culture info</param>
         /// <returns></returns>
-        public abstract TTargetValue? Convert(TSourceValue? value, Type targetType, object? parameter, CultureInfo culture);
+        public abstract TTargetValue? Convert(TSourceValue value, Type targetType, object? parameter, CultureInfo culture);
 
         /// <summary>
         /// Convert target value back to source value
@@ -68,7 +68,7 @@ namespace EleCho.WpfSuite.ValueConverters
         /// <param name="culture">Culture info</param>
         /// <returns></returns>
         /// <exception cref="NotSupportedException">Conversion is not supported</exception>
-        public virtual TSourceValue? ConvertBack(TTargetValue? value, Type targetType, object? parameter, CultureInfo culture)
+        public virtual TSourceValue? ConvertBack(TTargetValue value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }
