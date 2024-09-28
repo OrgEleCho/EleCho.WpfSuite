@@ -26,13 +26,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25FD5AAC-4EC9-49C1-9A5E-25482449FFD9}"
 	ProjectSection(SolutionItems) = preProject
 		Package.props = Package.props
+		Packages.md = Packages.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.Helpers", "EleCho.WpfSuite.Helpers\EleCho.WpfSuite.Helpers.csproj", "{969147B2-504D-4510-A4BB-55A84B05D10D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.Input", "EleCho.WpfSuite.Input\EleCho.WpfSuite.Input.csproj", "{E545D64E-834D-4CBB-899C-C1F440E2278E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EleCho.WpfSuite.Markup", "EleCho.WpfSuite.Markup\EleCho.WpfSuite.Markup.csproj", "{612554DD-1C4C-4AD7-A21C-64736CD577D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.Markup", "EleCho.WpfSuite.Markup\EleCho.WpfSuite.Markup.csproj", "{612554DD-1C4C-4AD7-A21C-64736CD577D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

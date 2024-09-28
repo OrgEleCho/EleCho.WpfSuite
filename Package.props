@@ -9,8 +9,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <Version>0.9.0</Version>
-
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>
     <PackageProjectUrl>https://wpfsuite.elecho.dev</PackageProjectUrl>

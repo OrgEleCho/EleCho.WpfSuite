@@ -2,6 +2,10 @@
 
   <Import Project="../Package.props" />
 
+  <PropertyGroup>
+    <Version>0.9.0</Version>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Update="Properties\StringResources.Designer.cs">
       <DependentUpon>StringResources.resx</DependentUpon>

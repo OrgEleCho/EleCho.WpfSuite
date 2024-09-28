@@ -2,6 +2,10 @@
 
   <Import Project="../Package.props" />
 
+  <PropertyGroup>
+    <Version>0.9.0</Version>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\EleCho.WpfSuite.Helpers\EleCho.WpfSuite.Helpers.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Media\EleCho.WpfSuite.Media.csproj" />
