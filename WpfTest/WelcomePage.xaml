@@ -61,6 +61,7 @@
 
             <WindowsFormsHost Background="White" 
                               HorizontalAlignment="Stretch"
+                              LayoutError="OnLayoutError"
                               Height="500">
                 <winforms:Panel>
                     <winforms:Panel.Controls>
