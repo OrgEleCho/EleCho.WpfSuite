@@ -112,7 +112,7 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(TextBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledTextOpacityProperty =
-            DependencyProperty.Register(nameof(DisabledTextOpacity), typeof(double), typeof(TextBox), new PropertyMetadata(0.56));
+            DependencyProperty.Register(nameof(DisabledTextOpacity), typeof(double), typeof(TextBox), new FrameworkPropertyMetadata(0.56));
 
         public static readonly DependencyProperty PlaceholderProperty =
             DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox), new FrameworkPropertyMetadata(string.Empty));

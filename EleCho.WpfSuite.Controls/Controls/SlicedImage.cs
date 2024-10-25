@@ -205,50 +205,50 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(ImageMargin), typeof(Thickness), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty TileModeProperty =
-            DependencyProperty.Register(nameof(TileMode), typeof(TileMode), typeof(SlicedImage), new PropertyMetadata(default));
+            DependencyProperty.Register(nameof(TileMode), typeof(TileMode), typeof(SlicedImage), new FrameworkPropertyMetadata(default));
 
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(SlicedImage));
 
 
         public static readonly DependencyPropertyKey LeftTopTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(LeftTopTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(LeftTopTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey RightTopTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(RightTopTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(RightTopTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey LeftBottomTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(LeftBottomTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(LeftBottomTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey RightBottomTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(RightBottomTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(RightBottomTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey LeftTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(LeftTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(LeftTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey RightTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(RightTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(RightTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey TopTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(TopTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(TopTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey BottomTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(BottomTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(BottomTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey CenterTileBrushPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(CenterTileBrush), typeof(Brush), typeof(SlicedImage), new PropertyMetadata(default(Brush)));
+            DependencyProperty.RegisterReadOnly(nameof(CenterTileBrush), typeof(Brush), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Brush)));
 
         public static readonly DependencyPropertyKey ImageMarginLeftPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ImageMarginLeft), typeof(GridLength), typeof(SlicedImage), new PropertyMetadata(GridLength.Auto));
+            DependencyProperty.RegisterReadOnly(nameof(ImageMarginLeft), typeof(GridLength), typeof(SlicedImage), new FrameworkPropertyMetadata(GridLength.Auto));
 
         public static readonly DependencyPropertyKey ImageMarginRightPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ImageMarginRight), typeof(GridLength), typeof(SlicedImage), new PropertyMetadata(GridLength.Auto));
+            DependencyProperty.RegisterReadOnly(nameof(ImageMarginRight), typeof(GridLength), typeof(SlicedImage), new FrameworkPropertyMetadata(GridLength.Auto));
 
         public static readonly DependencyPropertyKey ImageMarginTopPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ImageMarginTop), typeof(GridLength), typeof(SlicedImage), new PropertyMetadata(GridLength.Auto));
+            DependencyProperty.RegisterReadOnly(nameof(ImageMarginTop), typeof(GridLength), typeof(SlicedImage), new FrameworkPropertyMetadata(GridLength.Auto));
 
         public static readonly DependencyPropertyKey ImageMarginBottomPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ImageMarginBottom), typeof(GridLength), typeof(SlicedImage), new PropertyMetadata(GridLength.Auto));
+            DependencyProperty.RegisterReadOnly(nameof(ImageMarginBottom), typeof(GridLength), typeof(SlicedImage), new FrameworkPropertyMetadata(GridLength.Auto));
 
         public static readonly DependencyProperty LeftTopTileBrushProperty = LeftTopTileBrushPropertyKey.DependencyProperty;
         public static readonly DependencyProperty RightTopTileBrushProperty = RightTopTileBrushPropertyKey.DependencyProperty;

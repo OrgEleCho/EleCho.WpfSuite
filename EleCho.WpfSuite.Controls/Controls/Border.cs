@@ -23,7 +23,7 @@ namespace EleCho.WpfSuite.Controls
         /// The key needed set a read-only property
         /// </summary>
         public static readonly DependencyPropertyKey ContentClipPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Border), new PropertyMetadata(default(Geometry)));
+            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Border), new FrameworkPropertyMetadata(default(Geometry)));
 
         /// <summary>
         /// The DependencyProperty for the ContentClip property. <br/>

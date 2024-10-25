@@ -87,13 +87,13 @@ namespace EleCho.WpfSuite.Controls
         /// The DependencyProperty of <see cref="Mask"/> property
         /// </summary>
         public static readonly DependencyProperty MaskProperty =
-            DependencyProperty.Register(nameof(Mask), typeof(char), typeof(PasswordBox), new PropertyMetadata('*'));
+            DependencyProperty.Register(nameof(Mask), typeof(char), typeof(PasswordBox), new FrameworkPropertyMetadata('*'));
 
         /// <summary>
         /// The DependencyProperty of <see cref="AlwaysMask"/> property
         /// </summary>
         public static readonly DependencyProperty AlwaysMaskProperty =
-            DependencyProperty.Register(nameof(AlwaysMask), typeof(bool), typeof(PasswordBox), new PropertyMetadata(true));
+            DependencyProperty.Register(nameof(AlwaysMask), typeof(bool), typeof(PasswordBox), new FrameworkPropertyMetadata(true));
 
         private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

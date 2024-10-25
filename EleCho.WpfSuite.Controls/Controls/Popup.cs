@@ -54,7 +54,7 @@ namespace EleCho.WpfSuite.Controls
         /// The DependencyProperty of <see cref="AutoReposition"/> property
         /// </summary>
         public static readonly DependencyProperty AutoRepositionProperty =
-            DependencyProperty.Register(nameof(AutoReposition), typeof(bool), typeof(Popup), new PropertyMetadata(true));
+            DependencyProperty.Register(nameof(AutoReposition), typeof(bool), typeof(Popup), new FrameworkPropertyMetadata(true));
 
         private static void PlacementTargetChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
