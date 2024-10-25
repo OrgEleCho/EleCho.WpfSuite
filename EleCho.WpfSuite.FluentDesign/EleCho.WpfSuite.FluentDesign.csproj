@@ -8,7 +8,7 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <RootNamespace>EleCho.WpfSuite.FluentDesign</RootNamespace>
 
-    <Version>0.0.1</Version>
+    <Version>0.0.1.1</Version>
 
     <Authors>EleCho</Authors>
     <Copyright>Copyright © 2024 EleCho</Copyright>

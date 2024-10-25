@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Shapes;
 using EleCho.WpfSuite;
+using EleCho.WpfSuite.Layouts;
 
 namespace UnitTests
 {
