@@ -24,6 +24,8 @@ namespace WpfTest.Tests
     [ObservableObject]
     public partial class MasonryTestPage : Page
     {
+        private readonly Random _random = new();
+
         public MasonryTestPage()
         {
             DataContext = this;
@@ -35,12 +37,12 @@ namespace WpfTest.Tests
         [RelayCommand]
         public Task AddItem()
         {
-            var h = Random.Shared.NextSingle();
+            var h = (float)_random.NextDouble();
             var s = 1f;
             var v = 0.7f;
             HsvColorExtension.HSV2RGB(h, s, v, out var r, out var g, out var b);
 
-            var newItem = new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), Random.Shared.Next(30, 80));
+            var newItem = new MasonryItem(new SolidColorBrush(Color.FromScRgb(1, r, g, b)), _random.Next(30, 80));
             MasonryItems.Add(newItem);
 
             return Task.CompletedTask;

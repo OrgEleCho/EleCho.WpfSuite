@@ -67,7 +67,7 @@
 
             <ws:GroupBox Header="Options"
                          Padding="8">
-                <ws:FlexPanel Direction="Column"
+                <ws:FlexPanel Orientation="Vertical"
                               MainSpacing="8"
                               ItemsAlignment="Start">
                     <ws:ToggleButton x:Name="ConditionButton"
