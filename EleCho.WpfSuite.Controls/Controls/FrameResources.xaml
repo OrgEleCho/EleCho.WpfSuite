@@ -349,16 +349,16 @@
                         <ColumnDefinition Width="16"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Menu x:Name="NavMenu" Grid.ColumnSpan="3" Height="16" Margin="1,0,0,0" Style="{StaticResource NavigationWindowMenu}" VerticalAlignment="Center">
-                        <MenuItem ItemContainerStyle="{StaticResource NavigationWindowNavigationButtonJournalEntryStyle}" IsSubmenuOpen="{Binding (MenuItem.IsSubmenuOpen), Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Padding="0,2,4,0" Style="{StaticResource NavigationWindowMenuItem}">
-                            <MenuItem.ItemsSource>
+                    <local:Menu x:Name="NavMenu" Grid.ColumnSpan="3" Height="16" Margin="1,0,0,0" Style="{StaticResource NavigationWindowMenu}" VerticalAlignment="Center">
+                        <local:MenuItem ItemContainerStyle="{StaticResource NavigationWindowNavigationButtonJournalEntryStyle}" IsSubmenuOpen="{Binding (MenuItem.IsSubmenuOpen), Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Padding="0,2,4,0" Style="{StaticResource NavigationWindowMenuItem}">
+                            <local:MenuItem.ItemsSource>
                                 <MultiBinding Converter="{StaticResource JournalEntryUnifiedViewConverter}">
                                     <Binding Path="BackStack" RelativeSource="{RelativeSource Mode=TemplatedParent}"/>
                                     <Binding Path="ForwardStack" RelativeSource="{RelativeSource Mode=TemplatedParent}"/>
                                 </MultiBinding>
-                            </MenuItem.ItemsSource>
-                        </MenuItem>
-                    </Menu>
+                            </local:MenuItem.ItemsSource>
+                        </local:MenuItem>
+                    </local:Menu>
                     <Path Grid.Column="0" Grid.ColumnSpan="3" Data="M22.5767,21.035 Q27,19.37 31.424,21.035 A12.5,12.5,0,0,0,53.5,13 A12.5,12.5,0,0,0,37.765,0.926 Q27,4.93 16.235,0.926 A12.5,12.5,0,0,0,0.5,13 A12.5,12.5,0,0,0,22.5767,21.035 z" HorizontalAlignment="Left" IsHitTestVisible="false" Margin="2,0,0,0" SnapsToDevicePixels="false" StrokeThickness="1" VerticalAlignment="Center">
                         <Path.Fill>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
