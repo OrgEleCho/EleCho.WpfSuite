@@ -37,14 +37,22 @@ namespace EleCho.WpfSuite.Media.Transition
             set { SetValue(ReverseProperty, value); }
         }
 
-        private double GetDistance(UIElement container)
+        private double GetDistance(UIElement container, UIElement self)
         {
             var distance = 10.0;
-            if (container is FrameworkElement frameworkElement)
+            if (container is FrameworkElement containerFrameworkElement)
             {
                 distance = Orientation == Orientation.Horizontal ?
-                    frameworkElement.ActualWidth :
-                    frameworkElement.ActualHeight;
+                    containerFrameworkElement.ActualWidth :
+                    containerFrameworkElement.ActualHeight;
+            }
+
+            if (self is FrameworkElement selfFrameworkElement &&
+                (double.IsNaN(distance) || distance == 0))
+            {
+                distance = Orientation == Orientation.Horizontal ?
+                    selfFrameworkElement.ActualWidth :
+                    selfFrameworkElement.ActualHeight;
             }
 
             if (Distance is double customDistance &&
@@ -65,7 +73,7 @@ namespace EleCho.WpfSuite.Media.Transition
             if (newContent.RenderTransform is not TranslateTransform)
                 newContent.RenderTransform = new TranslateTransform();
 
-            var distance = GetDistance(container);
+            var distance = GetDistance(container, newContent);
             DoubleAnimation translateAnimation = new()
             {
                 EasingFunction = EasingFunction,
@@ -115,7 +123,7 @@ namespace EleCho.WpfSuite.Media.Transition
             if (oldContent.RenderTransform is not TranslateTransform)
                 oldContent.RenderTransform = new TranslateTransform();
 
-            var distance = GetDistance(container);
+            var distance = GetDistance(container, oldContent);
             DoubleAnimation translateAnimation = new()
             {
                 EasingFunction = EasingFunction,
