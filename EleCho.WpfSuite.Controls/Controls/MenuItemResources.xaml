@@ -3,17 +3,8 @@
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite"
                     xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
 
-    <SolidColorBrush x:Key="Menu.Static.Background" Color="#FFF0F0F0"/>
     <SolidColorBrush x:Key="Menu.Static.Border" Color="#FF999999"/>
     <SolidColorBrush x:Key="Menu.Static.Foreground" Color="#FF212121"/>
-    <SolidColorBrush x:Key="Menu.Static.Separator" Color="#FFD7D7D7"/>
-    <SolidColorBrush x:Key="Menu.Disabled.Foreground" Color="#FF707070"/>
-    <SolidColorBrush x:Key="MenuItem.Selected.Background" Color="#3D26A0DA"/>
-    <SolidColorBrush x:Key="MenuItem.Selected.Border" Color="#FF26A0DA"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Background" Color="#3D26A0DA"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Border" Color="#FF26A0DA"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Background" Color="#0A000000"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Border" Color="#21000000"/>
     <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
     <Geometry x:Key="DownArrow">M 0,0 L 3.5,4 L 7,0 Z</Geometry>
     <Geometry x:Key="UpArrow">M 0,4 L 3.5,0 L 7,4 Z</Geometry>
@@ -84,7 +75,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Height="16" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
+                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
                 <Path x:Name="GlyphPanel" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Fill="{StaticResource Menu.Static.Foreground}" Margin="3" VerticalAlignment="Center" Visibility="Collapsed"/>
                 <ContentPresenter ContentSource="Header" Grid.Column="1" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
             </Grid>
@@ -101,22 +92,155 @@
             <Trigger Property="IsChecked" Value="true">
                 <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{StaticResource Menu.Disabled.Foreground}"/>
-                <Setter Property="Fill" TargetName="GlyphPanel" Value="{StaticResource Menu.Disabled.Foreground}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Fill" TargetName="GlyphPanel">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsHighlighted" Value="True"/>
                     <Condition Property="IsEnabled" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Disabled.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Disabled.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -128,22 +252,25 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Height="16" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
+                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
                 <Path x:Name="GlyphPanel" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Fill="{TemplateBinding Foreground}" Margin="3" VerticalAlignment="Center" Visibility="Collapsed"/>
                 <ContentPresenter ContentSource="Header" Grid.Column="1" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" PlacementTarget="{Binding ElementName=templateRoot}">
-                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderBrush="{StaticResource Menu.Static.Border}" BorderThickness="1" Padding="2">
-                        <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                            <Grid RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
-                                </Canvas>
-                                <Rectangle Fill="{StaticResource Menu.Static.Separator}" HorizontalAlignment="Left" Margin="29,2,0,2" Width="1"/>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </Popup>
+                <local:Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" PlacementTarget="{Binding ElementName=templateRoot}">
+                    <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
+                                          TransitionMode="{TemplateBinding PopupContentTransitionMode}">
+                        <Border x:Name="SubMenuBorder" Background="{TemplateBinding PopupBackground}" BorderBrush="{TemplateBinding PopupBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding PopupCornerRadius}" Padding="2">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
+                                    </Canvas>
+                                    <Rectangle HorizontalAlignment="Left" Margin="29,2,0,2" Width="1" Fill="{TemplateBinding SeparatorBrush}"/>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </local:ContentControl>
+                </local:Popup>
             </Grid>
         </local:Border>
         <ControlTemplate.Triggers>
@@ -161,14 +288,122 @@
             <Trigger Property="IsChecked" Value="true">
                 <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{StaticResource Menu.Disabled.Foreground}"/>
-                <Setter Property="Fill" TargetName="GlyphPanel" Value="{StaticResource Menu.Disabled.Foreground}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Fill" TargetName="GlyphPanel">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="ScrollViewer.CanContentScroll" SourceName="SubMenuScrollViewer" Value="false">
                 <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
@@ -177,7 +412,12 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}" TargetType="{x:Type local:MenuItem}">
-        <local:Border x:Name="templateRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Height="22" SnapsToDevicePixels="true">
+        <local:Border x:Name="templateRoot"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      CornerRadius="{TemplateBinding CornerRadius}"
+                      SnapsToDevicePixels="true">
             <Grid Name="PART_ContentContainer" Margin="-1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition MinWidth="22" SharedSizeGroup="MenuItemIconColumnGroup" Width="Auto"/>
@@ -187,8 +427,32 @@
                     <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Height="16" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
-                <Border x:Name="GlyphPanel" Background="{StaticResource MenuItem.Selected.Background}" BorderBrush="{StaticResource MenuItem.Selected.Border}" BorderThickness="1" ClipToBounds="False" HorizontalAlignment="Center" Height="22" Margin="-1,0,0,0" VerticalAlignment="Center" Visibility="Hidden" Width="22">
+                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
+                <Border x:Name="GlyphPanel"
+                        BorderThickness="1"
+                        ClipToBounds="False"
+                        HorizontalAlignment="Center"
+                        Margin="-1,0,0,0"
+                        VerticalAlignment="Center"
+                        Visibility="Hidden" Width="22">
+                    <TextElement.Foreground>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </TextElement.Foreground>
+                    <Border.Background>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="SelectedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Border.BorderBrush>
                     <Path x:Name="Glyph" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Fill="{StaticResource Menu.Static.Foreground}" Height="11" Width="10"/>
                 </Border>
                 <ContentPresenter x:Name="menuHeaderContainer" ContentSource="Header" Grid.Column="2" HorizontalAlignment="Left" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
@@ -207,27 +471,160 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{StaticResource Menu.Disabled.Foreground}"/>
-                <Setter Property="Fill" TargetName="Glyph" Value="{StaticResource Menu.Disabled.Foreground}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Fill" TargetName="Glyph">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsHighlighted" Value="True"/>
                     <Condition Property="IsEnabled" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Disabled.Background}"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Disabled.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedDisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}" TargetType="{x:Type local:MenuItem}">
-        <local:Border x:Name="templateRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Height="22" SnapsToDevicePixels="true">
+        <local:Border x:Name="templateRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" SnapsToDevicePixels="true">
             <Grid x:Name="PART_ContentContainer"
                   Margin="-1">
                 <Grid.ColumnDefinitions>
@@ -238,26 +635,47 @@
                     <ColumnDefinition SharedSizeGroup="MenuItemIGTColumnGroup" Width="Auto"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Height="16" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
-                <Border x:Name="GlyphPanel" Background="{StaticResource MenuItem.Highlight.Background}" BorderBrush="{StaticResource MenuItem.Highlight.Border}" BorderThickness="1" Height="22" Margin="-1,0,0,0" VerticalAlignment="Center" Visibility="Hidden" Width="22">
+                <ContentPresenter x:Name="Icon" ContentSource="Icon" HorizontalAlignment="Center" Margin="3" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Width="16"/>
+                <Border x:Name="GlyphPanel" BorderThickness="1" Margin="-1,0,0,0" VerticalAlignment="Center" Visibility="Hidden" Width="22">
+                    <TextElement.Foreground>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </TextElement.Foreground>
+                    <Border.Background>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Border.Background>
+                    <Border.BorderBrush>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Border.BorderBrush>
                     <Path x:Name="Glyph" Data="{DynamicResource Checkmark}" FlowDirection="LeftToRight" Fill="{StaticResource Menu.Static.Foreground}" Height="11" Width="9"/>
                 </Border>
                 <ContentPresenter ContentSource="Header" Grid.Column="2" HorizontalAlignment="Left" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="4" Margin="{TemplateBinding Padding}" Opacity="0.7" Text="{TemplateBinding InputGestureText}" VerticalAlignment="Center"/>
                 <Path x:Name="RightArrow" Grid.Column="5" Data="{StaticResource RightArrow}" Fill="{StaticResource Menu.Static.Foreground}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3">
-                    <Border x:Name="SubMenuBorder" Background="{StaticResource Menu.Static.Background}" BorderBrush="{StaticResource Menu.Static.Border}" BorderThickness="1" Padding="2">
-                        <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
-                            <Grid RenderOptions.ClearTypeHint="Enabled">
-                                <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                    <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
-                                </Canvas>
-                                <Rectangle Fill="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" HorizontalAlignment="Left" Margin="29,2,0,2" Width="1"/>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
-                            </Grid>
-                        </ScrollViewer>
-                    </Border>
-                </Popup>
+                <local:Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3">
+                    <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
+                                          TransitionMode="{TemplateBinding PopupContentTransitionMode}">
+                        <Border x:Name="SubMenuBorder" Background="{TemplateBinding PopupBackground}" BorderBrush="{TemplateBinding PopupBorderBrush}" BorderThickness="1" CornerRadius="{TemplateBinding PopupCornerRadius}" Padding="2">
+                            <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                        <Rectangle x:Name="OpaqueRect" Fill="{Binding Background, ElementName=SubMenuBorder}" Height="{Binding ActualHeight, ElementName=SubMenuBorder}" Width="{Binding ActualWidth, ElementName=SubMenuBorder}"/>
+                                    </Canvas>
+                                    <Rectangle Fill="{TemplateBinding SeparatorBrush}" HorizontalAlignment="Left" Margin="29,2,0,2" Width="1"/>
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </local:ContentControl>
+                </local:Popup>
             </Grid>
         </local:Border>
         <ControlTemplate.Triggers>
@@ -275,15 +693,130 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Visibility" TargetName="GlyphPanel" Value="Visible"/>
                 <Setter Property="Visibility" TargetName="Icon" Value="Collapsed"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsHighlighted" Value="True">
-                <Setter Property="Background" TargetName="templateRoot" Value="Transparent"/>
-                <Setter Property="BorderBrush" TargetName="templateRoot" Value="{StaticResource MenuItem.Highlight.Border}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{StaticResource Menu.Disabled.Foreground}"/>
-                <Setter Property="Fill" TargetName="Glyph" Value="{StaticResource Menu.Disabled.Foreground}"/>
-                <Setter Property="Fill" TargetName="RightArrow" Value="{StaticResource Menu.Disabled.Foreground}"/>
+                <Setter Property="TextElement.Foreground" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderBrush" TargetName="templateRoot">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Fill" TargetName="Glyph">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Fill" TargetName="RightArrow">
+                    <Setter.Value>
+                        <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                            <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="ScrollViewer.CanContentScroll" SourceName="SubMenuScrollViewer" Value="false">
                 <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding VerticalOffset, ElementName=SubMenuScrollViewer}"/>
@@ -294,28 +827,40 @@
     <Style TargetType="{x:Type local:MenuItem}">
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="SeparatorBrush" Value="#FFD7D7D7"/>
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="SelectedBackground" Value="#3D26A0DA"/>
+        <Setter Property="SelectedBorderBrush" Value="#FF26A0DA"/>
+        <Setter Property="HighlightedBackground" Value="#3D26A0DA"/>
+        <Setter Property="HighlightedBorderBrush" Value="#FF26A0DA"/>
+        <Setter Property="HighlightedDisabledBackground" Value="#0A000000"/>
+        <Setter Property="HighlightedDisabledBorderBrush" Value="#21000000"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="PopupBackground" Value="#FFF0F0F0"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="MinHeight" Value="22"/>
         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}}"/>
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="MinHeight" Value="16"/>
                 <Setter Property="Background" Value="Transparent"/>
                 <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{StaticResource Menu.Static.Foreground}"/>
+                <Setter Property="Foreground" Value="#FF212121"/>
                 <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelHeaderTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}}"/>
                 <Setter Property="Padding" Value="6,0"/>
             </Trigger>
             <Trigger Property="Role" Value="TopLevelItem">
-                <Setter Property="Background" Value="{StaticResource Menu.Static.Background}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource Menu.Static.Border}"/>
-                <Setter Property="Foreground" Value="{StaticResource Menu.Static.Foreground}"/>
+                <Setter Property="MinHeight" Value="16"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#FF212121"/>
                 <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelItemTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}}"/>
                 <Setter Property="Padding" Value="6,0"/>
             </Trigger>
             <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="MinHeight" Value="22"/>
                 <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type local:MenuItem}}}"/>
             </Trigger>
         </Style.Triggers>

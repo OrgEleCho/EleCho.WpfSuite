@@ -41,7 +41,7 @@ namespace EleCho.WpfSuite.Internal
 
         private static object _resourceAccess = new object();
 
-        private Brush?[]? _brushes;
+        private Brush[]? _brushes;
 
         public Color Color
         {
@@ -291,7 +291,7 @@ namespace EleCho.WpfSuite.Internal
             return array;
         }
 
-        private Brush?[] GetBrushes(Color c, CornerRadius cornerRadius)
+        private Brush[] GetBrushes(Color c, CornerRadius cornerRadius)
         {
             if (_commonBrushes == null)
             {

@@ -15,9 +15,39 @@
     <ws:ScrollViewer VerticalScrollBarVisibility="Auto">
         <ws:StackPanel Margin="12"
                        Spacing="8">
+            <ws:Menu>
+                <ws:MenuItem Header="QWQ">
+                    <ws:MenuItem Header="awa">
+                        <ws:MenuItem Header="qaq"/>
+                        <ws:MenuItem Header="qaq"/>
+                    </ws:MenuItem>
+                    <ws:MenuItem Header="awa"/>
+                    <ws:MenuItem Header="awa"/>
+                </ws:MenuItem>
+                <ws:MenuItem Header="qwq"/>
+                <ws:MenuItem Header="qwq"/>
+                <ws:MenuItem Header="qwq"/>
+            </ws:Menu>
+
+            <Menu>
+                <MenuItem Header="qwq">
+                    <MenuItem Header="awa">
+                        <MenuItem Header="qaq"/>
+                        <MenuItem Header="qaq"/>
+                    </MenuItem>
+                    <MenuItem Header="awa"/>
+                    <MenuItem Header="awa"/>
+                </MenuItem>
+                <MenuItem Header="qwq"/>
+                <MenuItem Header="qwq"/>
+                <MenuItem Header="qwq"/>
+            </Menu>
+
             <ws:StackPanel Spacing="8"
                            Orientation="Horizontal">
-                <ws:Button Content="QWQ" PressedBackground="Red"/>
+                <ws:Button Content="QWQ" PressedBackground="Red"
+                           Foreground="Green"
+                           PressedForeground="Blue"/>
                 <ws:Button>
                     <ws:StackPanel Orientation="Horizontal"
                                    Spacing="4">
@@ -27,7 +57,7 @@
                     </ws:StackPanel>
                 </ws:Button>
                 <ws:Button Content="QWQ"/>
-                <ws:Button Content="QWQ"/>
+                <ws:Button Content="QWQ" wsd:Theme.IsPrimary="True"/>
                 <ws:ToggleButton Content="QWQ"/>
                 <ws:ContentControl ContentDelay="0:0:1">
                     <ws:ContentControl.Transition>
@@ -57,9 +87,13 @@
 
             <ws:ComboBox IsEditable="False">
                 <ws:ComboBox.Items>
-                    <ComboBoxItem Content="QWQ"/>
+                    <ws:ComboBoxItem Content="QWQ"/>
                 </ws:ComboBox.Items>
             </ws:ComboBox>
+
+            <ws:StackPanel>
+                <ws:ComboBoxItem Content="QWQ"/>
+            </ws:StackPanel>
 
             <ws:TextBox AcceptsReturn="True"
                         MaxHeight="300"
@@ -251,7 +285,7 @@
 
             <RepeatButton Content="QWQ"/>
 
-            <ws:Border ClipToBounds="True" 
+            <ws:Border ClipToBounds="True"
                        CornerRadius="40 30 20 10"
                        BorderBrush="Firebrick"
                        BorderThickness="5"

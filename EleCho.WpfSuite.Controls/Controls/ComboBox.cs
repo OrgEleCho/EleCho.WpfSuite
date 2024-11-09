@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
 {
@@ -54,6 +55,20 @@ namespace EleCho.WpfSuite.Controls
             get { return (Brush)GetValue(PopupBorderBrushProperty); }
             set { SetValue(PopupBorderBrushProperty, value); }
         }
+
+        public IContentTransition PopupContentTransition
+        {
+            get { return (IContentTransition)GetValue(PopupContentTransitionProperty); }
+            set { SetValue(PopupContentTransitionProperty, value); }
+        }
+        public ContentTransitionMode PopupContentTransitionMode
+        {
+            get { return (ContentTransitionMode)GetValue(PopupContentTransitionModeProperty); }
+            set { SetValue(PopupContentTransitionModeProperty, value); }
+        }
+
+
+
 
 
 
@@ -297,104 +312,104 @@ namespace EleCho.WpfSuite.Controls
         // extra properties
 
         public static readonly DependencyProperty GlyphBrushProperty =
-            DependencyProperty.Register(nameof(GlyphBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(GlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty TextBoxBackgroundProperty =
-            DependencyProperty.Register(nameof(TextBoxBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(TextBoxBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
 
 
         // hover state
 
         public static readonly DependencyProperty HoverForegroundProperty =
-            DependencyProperty.Register(nameof(HoverForeground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty HoverBackgroundProperty =
-            DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty HoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty HoverGlyphBrushProperty =
-            DependencyProperty.Register(nameof(HoverGlyphBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(HoverGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableHoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableHoverBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableHoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableHoverBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableHoverBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableHoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonHoverBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonHoverBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonHoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonHoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonHoverBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonHoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
 
         // pressed state
 
         public static readonly DependencyProperty PressedForegroundProperty =
-            DependencyProperty.Register(nameof(PressedForeground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(PressedForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PressedBackgroundProperty =
-            DependencyProperty.Register(nameof(PressedBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(PressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty PressedGlyphBrushProperty =
-            DependencyProperty.Register(nameof(PressedGlyphBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(PressedGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditablePressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditablePressedBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditablePressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditablePressedBackgroundProperty =
-            DependencyProperty.Register(nameof(EditablePressedBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditablePressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonPressedBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonPressedBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonPressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonPressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonPressedBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonPressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
 
         // disabled state
 
         public static readonly DependencyProperty DisabledForegroundProperty =
-            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledGlyphBrushProperty =
-            DependencyProperty.Register(nameof(DisabledGlyphBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(DisabledGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableDisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableDisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableDisabledBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableDisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonDisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonDisabledBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonDisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty EditableButtonDisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(EditableButtonDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
 
 
 
@@ -403,16 +418,22 @@ namespace EleCho.WpfSuite.Controls
             Border.CornerRadiusProperty.AddOwner(typeof(ComboBox));
 
         public static readonly DependencyProperty PopupBackgroundProperty =
-            DependencyProperty.Register(nameof(PopupBackground), typeof(Brush), typeof(ComboBox), new PropertyMetadata(SystemColors.WindowBrush));
+            DependencyProperty.Register(nameof(PopupBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(SystemColors.WindowBrush));
 
         public static readonly DependencyProperty PopupCornerRadiusProperty =
-            DependencyProperty.Register(nameof(PopupCornerRadius), typeof(CornerRadius), typeof(ComboBox), new PropertyMetadata(default(CornerRadius)));
+            DependencyProperty.Register(nameof(PopupCornerRadius), typeof(CornerRadius), typeof(ComboBox), new FrameworkPropertyMetadata(default(CornerRadius)));
 
         public static readonly DependencyProperty PopupBorderThicknessProperty =
-            DependencyProperty.Register(nameof(PopupBorderThickness), typeof(Thickness), typeof(ComboBox), new PropertyMetadata(default(Thickness)));
+            DependencyProperty.Register(nameof(PopupBorderThickness), typeof(Thickness), typeof(ComboBox), new FrameworkPropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty PopupBorderBrushProperty =
-            DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof(ComboBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty PopupContentTransitionProperty =
+            DependencyProperty.Register(nameof(PopupContentTransition), typeof(IContentTransition), typeof(ComboBox), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty PopupContentTransitionModeProperty =
+            DependencyProperty.Register(nameof(PopupContentTransitionMode), typeof(ContentTransitionMode), typeof(ComboBox), new PropertyMetadata(ContentTransitionMode.ChangedOrLoaded));
 
         #endregion
     }

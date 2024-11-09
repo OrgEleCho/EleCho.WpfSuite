@@ -31,13 +31,13 @@ namespace EleCho.WpfSuite.Layouts
         /// DependencyProperty of <see cref="ColumnDefinitions"/>
         /// </summary>
         public static readonly DependencyProperty ColumnDefinitionsProperty = DependencyProperty.Register(
-                  nameof(ColumnDefinitions), typeof(ColumnDefinitionCollection), typeof(Grid), new PropertyMetadata(null, OnColumnDefinitionsChanged));
+                  nameof(ColumnDefinitions), typeof(ColumnDefinitionCollection), typeof(Grid), new FrameworkPropertyMetadata(null, OnColumnDefinitionsChanged));
 
         /// <summary>
         /// DependencyProperty of <see cref="RowDefinitions"/>
         /// </summary>
         public static readonly DependencyProperty RowDefinitionsProperty = DependencyProperty.Register(
-                  nameof(RowDefinitions), typeof(RowDefinitionCollection), typeof(Grid), new PropertyMetadata(null, OnRowDefinitionsChanged));
+                  nameof(RowDefinitions), typeof(RowDefinitionCollection), typeof(Grid), new FrameworkPropertyMetadata(null, OnRowDefinitionsChanged));
 
         private static void OnColumnDefinitionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

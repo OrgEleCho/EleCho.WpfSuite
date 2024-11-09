@@ -108,6 +108,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "Popup",
+                Description = "",
+                PageType = typeof(PopupTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "Palette",
                 Description = "",
                 PageType = typeof(PaletteTestPage)

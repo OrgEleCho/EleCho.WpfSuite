@@ -25,13 +25,13 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ContextMenu}">
-                    <i:SystemDropShadowChrome Color="#00FFFFFF" Name="Shdw" SnapsToDevicePixels="True">
+                    <i:SystemDropShadowChrome Color="#00FFFFFF" x:Name="Shdw" SnapsToDevicePixels="True">
                         <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
                                 BorderBrush="{TemplateBinding Border.BorderBrush}"
                                 Background="{TemplateBinding Panel.Background}"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 Name="ContextMenuBorder">
-                            <local:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
+                            <local:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" x:Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
                                 <Grid RenderOptions.ClearTypeHint="Enabled">
                                     <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
                                         <Rectangle Fill="{x:Null}" Name="OpaqueRect" Width="Auto" Height="Auto" />

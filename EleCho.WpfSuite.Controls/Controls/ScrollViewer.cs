@@ -304,13 +304,13 @@ namespace EleCho.WpfSuite.Controls
         /// The key needed set a read-only property
         /// </summary>
         public static readonly DependencyPropertyKey HorizontalOffsetTargetPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(HorizontalOffsetTarget), typeof(double), typeof(ScrollViewer), new PropertyMetadata(0.0));
+            DependencyProperty.RegisterReadOnly(nameof(HorizontalOffsetTarget), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(0.0));
 
         /// <summary>
         /// The key needed set a read-only property
         /// </summary>
         public static readonly DependencyPropertyKey VerticalOffsetTargetPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(VerticalOffsetTarget), typeof(double), typeof(ScrollViewer), new PropertyMetadata(0.0));
+            DependencyProperty.RegisterReadOnly(nameof(VerticalOffsetTarget), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(0.0));
 
         /// <summary>
         /// The key needed set a read-only property
@@ -439,13 +439,13 @@ namespace EleCho.WpfSuite.Controls
         /// The DependencyProperty of <see cref="MouseScrollDeltaFactor"/> property
         /// </summary>
         public static readonly DependencyProperty MouseScrollDeltaFactorProperty =
-            DependencyProperty.Register(nameof(MouseScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new PropertyMetadata(1.0));
+            DependencyProperty.Register(nameof(MouseScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(1.0));
 
         /// <summary>
         /// The DependencyProperty of <see cref="TouchpadScrollDeltaFactor"/> property
         /// </summary>
         public static readonly DependencyProperty TouchpadScrollDeltaFactorProperty =
-            DependencyProperty.Register(nameof(TouchpadScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new PropertyMetadata(1.0));
+            DependencyProperty.Register(nameof(TouchpadScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(1.0));
 
         private static bool ValidateScrollingAnimationDuration(object value)
             => value is Duration duration && duration.HasTimeSpan;

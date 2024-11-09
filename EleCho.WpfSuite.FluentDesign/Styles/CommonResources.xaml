@@ -9,10 +9,6 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Styles/PasswordBoxResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type TextBlock}">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
-    </Style>
-
     <Style TargetType="{x:Type ws:Button}"
            BasedOn="{StaticResource {x:Type ws:Button}}">
         <Setter Property="CornerRadius" Value="4"/>
@@ -25,16 +21,34 @@
         <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
         <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
         <Setter Property="DisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDisabledBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+
+        <Style.Triggers>
+            <Trigger Property="wsd:Theme.IsPrimary" Value="True">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
+                <Setter Property="PressedBorderBrush" Value="{x:Null}"/>
+                <Setter Property="DisabledBorderBrush" Value="{x:Null}"/>
+                <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
+                <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorSecondaryBrush}}"/>
+                <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorTertiaryBrush}}"/>
+                <Setter Property="DisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDisabledBrush}}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextOnAccentFillColorPrimaryBrush}}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type ws:ToggleButton}"
            BasedOn="{StaticResource {x:Type ws:ToggleButton}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="8 6"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
         <Setter Property="CheckedForeground" Value="{DynamicResource {x:Static wsd:FluentResource.TextOnAccentFillColorPrimaryBrush}}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlElevationBorderBrush}}"/>
         <Setter Property="HoverBorderBrush" Value="{x:Null}"/>
         <Setter Property="PressedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
+        <Setter Property="CheckedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
         <Setter Property="DisabledBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
         <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
@@ -57,8 +71,10 @@
         <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
         <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
         <Setter Property="DisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDisabledBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
         
         <!--Popup-->
+        <Setter Property="PopupBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlSolidFillColorDefaultBrush}}"/>
         <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
     </Style>
 
@@ -68,30 +84,36 @@
         <Setter Property="Padding" Value="8 6"/>
         <Setter Property="CornerRadius" Value="2"/>
         <Setter Property="BorderThickness" Value="2 0 0 0"/>
-        <Setter Property="HoverBackground" Value="#11000000"/>
-        <Setter Property="HoverBorderBrush" Value="#11000000"/>
+        <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
 
-        <Setter Property="SelectedBackground" Value="#11000000"/>
+        <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
 
-        <Setter Property="HoverFocusedBackground" Value="#11000000"/>
-        <Setter Property="HoverFocusedBorderBrush" Value="#11000000"/>
+        <Setter Property="HoverFocusedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="HoverFocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         
-        <Setter Property="SelectedFocusedBackground" Value="#11000000"/>
-        <Setter Property="HoverSelectedBackground" Value="#11000000"/>
+        <Setter Property="SelectedFocusedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="SelectedFocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
+        
+        <Setter Property="HoverSelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
         <Setter Property="FocusedBorderBrush" Value="Transparent"/>
+
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:CheckBox}"
            BasedOn="{StaticResource {x:Type ws:CheckBox}}">
         <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ListBox}"
            BasedOn="{StaticResource {x:Type ws:ListBox}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ListBoxItem}"
@@ -100,12 +122,14 @@
         <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
         <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedActiveBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ListView}"
            BasedOn="{StaticResource {x:Type ws:ListView}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ListViewItem}"
@@ -114,35 +138,92 @@
         <Setter Property="HoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDefaultBrush}}"/>
         <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedActiveBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:TabControl}"
            BasedOn="{StaticResource {x:Type ws:TabControl}}">
         <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:TabItem}"
            BasedOn="{StaticResource {x:Type ws:TabItem}}">
         <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ContextMenu}"
            BasedOn="{StaticResource {x:Type ws:ContextMenu}}">
         <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:Menu}"
            BasedOn="{StaticResource {x:Type ws:Menu}}">
-        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.CardBackgroundFillColorDefaultBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:MenuItem}"
            BasedOn="{StaticResource {x:Type ws:MenuItem}}">
-        <Setter Property="CornerRadius" Value="2"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+        <Setter Property="MinHeight" Value="28"/>
+        <Setter Property="SeparatorBrush" Value="Transparent"/>
+
+        <Setter Property="SelectedBackground" Value="Transparent"/>
+        <Setter Property="SelectedBorderBrush" Value="Transparent"/>
+
+        <Setter Property="HighlightedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="HighlightedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+
+        <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorTertiaryBrush}}"/>
+        <Setter Property="PressedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorTertiaryBrush}}"/>
+
+        <Setter Property="DisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorDisabledBrush}}"/>
+        <Setter Property="DisabledBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorDisabledBrush}}"/>
+
+        <Setter Property="HighlightedDisabledBackground" Value="{x:Null}"/>
+        <Setter Property="HighlightedDisabledBorderBrush" Value="{x:Null}"/>
+
+        <!--Popup-->
+        <Setter Property="PopupBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlSolidFillColorDefaultBrush}}"/>
+        <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
+        <Setter Property="PopupCornerRadius" Value="6"/>
+        <Setter Property="PopupContentTransition">
+            <Setter.Value>
+                <ws:SlideFadeTransition Duration="0:0:0.200"
+                                        Orientation="Vertical"
+                                        Reverse="True"
+                                        Distance="30"/>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="MinHeight" Value="32"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+                <Setter Property="Padding" Value="12,0"/>
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="MinHeight" Value="32"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+                <Setter Property="Padding" Value="12,0"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="MinHeight" Value="28"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type ws:GroupBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.DividerStrokeColorDefaultBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
     </Style>
 
     <Style TargetType="{x:Type ws:ScrollBar}"
@@ -162,6 +243,8 @@
         <Setter Property="PressedBackground" Value="{x:Null}"/>
         <Setter Property="DisabledBackground" Value="{x:Null}"/>
 
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+        
         <Setter Property="ThumbBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrongStrokeColorDefaultBrush}}"/>
         <Setter Property="HoverThumbBrush" Value="{x:Null}"/>
         <Setter Property="DraggingThumbBrush" Value="{x:Null}"/>

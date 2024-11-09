@@ -113,6 +113,6 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(TabItem), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty DisabledOpacityProperty =
-            DependencyProperty.Register(nameof(DisabledOpacity), typeof(double), typeof(TabItem), new PropertyMetadata(0.56));
+            DependencyProperty.Register(nameof(DisabledOpacity), typeof(double), typeof(TabItem), new FrameworkPropertyMetadata(0.56));
     }
 }

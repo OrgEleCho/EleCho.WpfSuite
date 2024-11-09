@@ -27,19 +27,7 @@ namespace EleCho.WpfSuite.Controls
         private CancellationTokenSource? _lastTaskCancellation;
         private object? _pendingNewContent;
         private bool _backward;
-
-        /// <inheritdoc/>
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            _contentsPanel = (Panel)GetTemplateChild("PART_Contents");
-
-            if (_pendingNewContent is not null)
-            {
-                _lastTask = this.ApplyContentChangeAsync(null, _pendingNewContent);
-            }
-        }
+        private bool _lastTaskIsLoadedTransition;
 
         /// <summary>
         /// Content of this <see cref="ContentControl"/>
@@ -78,7 +66,7 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <summary>
-        /// Transition of content switching
+        /// Transition of content
         /// </summary>
         public IContentTransition? Transition
         {
@@ -87,14 +75,28 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <summary>
-        /// Corner radius of 
+        /// When will the content have a transition
+        /// </summary>
+        public ContentTransitionMode TransitionMode
+        {
+            get { return (ContentTransitionMode)GetValue(TransitionModeProperty); }
+            set { SetValue(TransitionModeProperty, value); }
+        }
+
+        /// <summary>
+        /// Corner radius
         /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
+        public ContentControl()
+        {
+            Loaded += ContentControlLoaded;
+        }
+
         /// <summary>
         /// Set content of the <see cref="ContentControl"/>
         /// </summary>
@@ -128,6 +130,29 @@ namespace EleCho.WpfSuite.Controls
 #endif
         }
 
+        private void ContentControlLoaded(object sender, RoutedEventArgs e)
+        {
+            if (TransitionMode == ContentTransitionMode.ChangedOrLoaded)
+            {
+                _lastTask = this.TransionCurrentAsync(true);
+                _lastTaskIsLoadedTransition = true;
+            }
+        }
+
+        /// <inheritdoc/>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _contentsPanel = (Panel)GetTemplateChild("PART_Contents");
+
+            if (_pendingNewContent is not null)
+            {
+                _lastTask = this.ApplyContentChangeAsync(null, _pendingNewContent);
+                _lastTaskIsLoadedTransition = false;
+            }
+        }
+
 
         /// <summary>
         /// The DependencyProperty of <see cref="Content"/> property
@@ -154,6 +179,12 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
+        /// The DependencyProperty of <see cref="TransitionModeProperty"/> property
+        /// </summary>
+        public static readonly DependencyProperty TransitionModeProperty =
+            DependencyProperty.Register(nameof(TransitionMode), typeof(ContentTransitionMode), typeof(ContentControl), new PropertyMetadata(ContentTransitionMode.Standard));
+
+        /// <summary>
         /// The DependencyProperty of <see cref="Transition"/> property
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
@@ -170,6 +201,7 @@ namespace EleCho.WpfSuite.Controls
             if (d is ContentControl transitioningContentControl)
             {
                 transitioningContentControl._lastTask = transitioningContentControl.ApplyContentChangeAsync(e.OldValue, e.NewValue);
+                transitioningContentControl._lastTaskIsLoadedTransition = false;
             }
         }
 
@@ -184,20 +216,59 @@ namespace EleCho.WpfSuite.Controls
             return baseValue;
         }
 
+        private async Task TransionCurrentAsync(bool avoidOther)
+        {
+            if (_contentsPanel is null)
+            {
+                return;
+            }
+
+            if (avoidOther && 
+                !_lastTaskIsLoadedTransition &&
+                _lastTask != null &&
+                !_lastTask.IsCompleted)
+            {
+                return;
+            }
+
+            var delay = ContentDelay;
+
+            if (delay != default &&
+                delay.TimeSpan != default)
+            {
+                await Task.Delay(delay.TimeSpan);
+            }
+
+            if (_contentsPanel.Children.Count == 0)
+            {
+                return;
+            }
+
+            FrameworkElement? elementToTransition = 
+                _contentsPanel.Children[_contentsPanel.Children.Count - 1] as FrameworkElement;
+
+            if (Transition is IContentTransition transition &&
+                elementToTransition is not null)
+            {
+                _lastTaskCancellation = new();
+                await transition.Run(this, null, elementToTransition, true, _lastTaskCancellation.Token);
+            }
+        }
+
         private async Task ApplyContentChangeAsync(object? oldContent, object? newContent)
         {
+            if (_contentsPanel is null)
+            {
+                _pendingNewContent = newContent;
+                return;
+            }
+
             var delay = ContentDelay;
 
             if (delay != default && 
                 delay.TimeSpan != default)
             {
                 await Task.Delay(delay.TimeSpan);
-            }
-
-            if (_contentsPanel is null)
-            {
-                _pendingNewContent = newContent;
-                return;
             }
 
             if (_lastOldControl is not null)
