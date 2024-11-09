@@ -122,25 +122,37 @@ namespace EleCho.WpfSuite.Controls
                 var imageMarginRight = (int)imageMargin.Right;
                 var imageMarginTop = (int)imageMargin.Top;
                 var imageMarginBottom = (int)imageMargin.Bottom;
-                var imageCenterTileWidth = (int)(imageSource.Width - (int)imageMargin.Left - (int)imageMargin.Right);
-                var imageCenterTileHeight = (int)(imageSource.Height - (int)imageMargin.Top - (int)imageMargin.Bottom);
+                var imageCenterTileWidth = (int)(imageSource.PixelWidth - (int)imageMargin.Left - (int)imageMargin.Right);
+                var imageCenterTileHeight = (int)(imageSource.PixelHeight - (int)imageMargin.Top - (int)imageMargin.Bottom);
 
                 SetValue(ImageMarginLeftPropertyKey, new GridLength(imageMarginLeft));
                 SetValue(ImageMarginRightPropertyKey, new GridLength(imageMarginRight));
                 SetValue(ImageMarginTopPropertyKey, new GridLength(imageMarginTop));
                 SetValue(ImageMarginBottomPropertyKey, new GridLength(imageMarginBottom));
 
-                SetValue(LeftTopTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(0, 0, imageMarginLeft, imageMarginTop))) { TileMode = tileMode });
-                SetValue(TopTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, 0, imageCenterTileWidth, imageMarginTop))) { TileMode = tileMode });
-                SetValue(RightTopTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, 0, imageMarginRight, imageMarginTop))) { TileMode = tileMode });
+                CroppedBitmap leftTopImage = new CroppedBitmap(imageSource, new Int32Rect(0, 0, imageMarginLeft, imageMarginTop));
+                CroppedBitmap topImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, 0, imageCenterTileWidth, imageMarginTop));
+                CroppedBitmap rightTopImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, 0, imageMarginRight, imageMarginTop));
 
-                SetValue(LeftTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(0, imageMarginTop, imageMarginLeft, imageCenterTileHeight))) { TileMode = tileMode });
-                SetValue(CenterTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, imageMarginTop, imageCenterTileWidth, imageCenterTileHeight))) { TileMode = tileMode });
-                SetValue(RightTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, imageMarginTop, imageMarginRight, imageCenterTileHeight))) { TileMode = tileMode });
+                CroppedBitmap leftImage = new CroppedBitmap(imageSource, new Int32Rect(0, imageMarginTop, imageMarginLeft, imageCenterTileHeight));
+                CroppedBitmap centerImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, imageMarginTop, imageCenterTileWidth, imageCenterTileHeight));
+                CroppedBitmap rightImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, imageMarginTop, imageMarginRight, imageCenterTileHeight));
 
-                SetValue(LeftBottomTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(0, imageMarginTop + imageCenterTileHeight, imageMarginLeft, imageMarginBottom))) { TileMode = tileMode });
-                SetValue(BottomTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, imageMarginTop + imageCenterTileHeight, imageCenterTileWidth, imageMarginBottom))) { TileMode = tileMode });
-                SetValue(RightBottomTileBrushPropertyKey, new ImageBrush(new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, imageMarginTop + imageCenterTileHeight, imageMarginRight, imageMarginBottom))) { TileMode = tileMode });
+                CroppedBitmap leftBottomImage = new CroppedBitmap(imageSource, new Int32Rect(0, imageMarginTop + imageCenterTileHeight, imageMarginLeft, imageMarginBottom));
+                CroppedBitmap bottomImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft, imageMarginTop + imageCenterTileHeight, imageCenterTileWidth, imageMarginBottom));
+                CroppedBitmap rightBottomImage = new CroppedBitmap(imageSource, new Int32Rect(imageMarginLeft + imageCenterTileWidth, imageMarginTop + imageCenterTileHeight, imageMarginRight, imageMarginBottom));
+
+                SetValue(LeftTopTileBrushPropertyKey, new ImageBrush(leftTopImage) { TileMode = tileMode });
+                SetValue(TopTileBrushPropertyKey, new ImageBrush(topImage) { TileMode = tileMode });
+                SetValue(RightTopTileBrushPropertyKey, new ImageBrush(rightTopImage) { TileMode = tileMode });
+
+                SetValue(LeftTileBrushPropertyKey, new ImageBrush(leftImage) { TileMode = tileMode });
+                SetValue(CenterTileBrushPropertyKey, new ImageBrush(centerImage) { TileMode = tileMode });
+                SetValue(RightTileBrushPropertyKey, new ImageBrush(rightImage) { TileMode = tileMode });
+
+                SetValue(LeftBottomTileBrushPropertyKey, new ImageBrush(leftBottomImage) { TileMode = tileMode });
+                SetValue(BottomTileBrushPropertyKey, new ImageBrush(bottomImage) { TileMode = tileMode });
+                SetValue(RightBottomTileBrushPropertyKey, new ImageBrush(rightBottomImage) { TileMode = tileMode });
 
                 var borderThickness = BorderThickness;
 
@@ -205,7 +217,7 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(ImageMargin), typeof(Thickness), typeof(SlicedImage), new FrameworkPropertyMetadata(default(Thickness), FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty TileModeProperty =
-            DependencyProperty.Register(nameof(TileMode), typeof(TileMode), typeof(SlicedImage), new FrameworkPropertyMetadata(default));
+            DependencyProperty.Register(nameof(TileMode), typeof(TileMode), typeof(SlicedImage), new FrameworkPropertyMetadata(TileMode.Tile));
 
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(SlicedImage));
