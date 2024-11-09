@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
 {
@@ -54,6 +55,20 @@ namespace EleCho.WpfSuite.Controls
             get { return (Brush)GetValue(PopupBorderBrushProperty); }
             set { SetValue(PopupBorderBrushProperty, value); }
         }
+
+        public IContentTransition PopupContentTransition
+        {
+            get { return (IContentTransition)GetValue(PopupContentTransitionProperty); }
+            set { SetValue(PopupContentTransitionProperty, value); }
+        }
+        public ContentTransitionMode PopupContentTransitionMode
+        {
+            get { return (ContentTransitionMode)GetValue(PopupContentTransitionModeProperty); }
+            set { SetValue(PopupContentTransitionModeProperty, value); }
+        }
+
+
+
 
 
 
@@ -413,6 +428,12 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty PopupBorderBrushProperty =
             DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty PopupContentTransitionProperty =
+            DependencyProperty.Register(nameof(PopupContentTransition), typeof(IContentTransition), typeof(ComboBox), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty PopupContentTransitionModeProperty =
+            DependencyProperty.Register(nameof(PopupContentTransitionMode), typeof(ContentTransitionMode), typeof(ComboBox), new PropertyMetadata(ContentTransitionMode.ChangedOrLoaded));
 
         #endregion
     }

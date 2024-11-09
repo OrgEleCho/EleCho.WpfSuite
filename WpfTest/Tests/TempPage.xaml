@@ -16,7 +16,7 @@
         <ws:StackPanel Margin="12"
                        Spacing="8">
             <ws:Menu>
-                <ws:MenuItem Header="qwq">
+                <ws:MenuItem Header="QWQ">
                     <ws:MenuItem Header="awa">
                         <ws:MenuItem Header="qaq"/>
                         <ws:MenuItem Header="qaq"/>
