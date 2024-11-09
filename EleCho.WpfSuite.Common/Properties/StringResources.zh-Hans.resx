@@ -141,4 +141,7 @@
   <data name="BackdropAndAccentCannotBothBeSet" xml:space="preserve">
     <value>Backdrop 和 Accent 不能都被设置</value>
   </data>
+  <data name="DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialog" xml:space="preserve">
+    <value>找不到 DialogLayer. 请考虑放置 DialogLayer 作为此 Dialog 的上级节点</value>
+  </data>
 </root>

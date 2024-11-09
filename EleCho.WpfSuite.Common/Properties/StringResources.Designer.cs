@@ -79,6 +79,16 @@ namespace EleCho.WpfSuite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DialogLayer could not be found. Consider placing a DialogLayer as the ancestor node of this Dialog..
+        /// </summary>
+        internal static string DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialog {
+            get {
+                return ResourceManager.GetString("DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialo" +
+                        "g", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you set the Accent while using WindowChrome, you can only see the effect when the GlassFrameThickness is set to 0..
         /// </summary>
         internal static string IfYouSetTheAccentWhileUsingWindowChromeYouCanOnlySeeTheEffectWhenTheGlassFrameThicknessIsSetToZero {

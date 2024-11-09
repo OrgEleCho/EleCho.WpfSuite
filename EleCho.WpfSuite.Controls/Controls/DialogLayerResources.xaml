@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+    <Style TargetType="{x:Type local:DialogLayer}">
+        <Setter Property="Mask" Value="#80000000"/>
+        <Setter Property="MaskTransition">
+            <Setter.Value>
+                <ws:FadeTransition Duration="0:0:0.100"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DialogTransition">
+            <Setter.Value>
+                <ws:SlideFadeTransition Duration="0:0:0.200"
+                                        Orientation="Vertical"
+                                        Distance="50"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DialogLayer}">
+                    <local:Border Background="{TemplateBinding Background}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
+                            <ContentPresenter />
+                            <local:ConditionalControl Condition="{TemplateBinding IsShowingDialog}">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Mask}"/>
+                                    <Border Padding="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                        <local:ContentControl Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
+                                                          BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                          Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
+                                                          ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
+                                                          ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
+                                                          Transition="{TemplateBinding DialogTransition}"/>
+                                    </Border>
+                                </Grid>
+                            </local:ConditionalControl>
+                        </Grid>
+                    </local:Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

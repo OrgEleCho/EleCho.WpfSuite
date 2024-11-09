@@ -1,6 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/DialogLayerResources.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/DialogResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/ComboBoxResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/ComboBoxItemResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/ConditionalControlResources.xaml"/>

@@ -141,4 +141,7 @@
   <data name="BackdropAndAccentCannotBothBeSet" xml:space="preserve">
     <value>Backdrop and accent cannot both be set.</value>
   </data>
+  <data name="DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialog" xml:space="preserve">
+    <value>DialogLayer could not be found. Consider placing a DialogLayer as the ancestor node of this Dialog.</value>
+  </data>
 </root>

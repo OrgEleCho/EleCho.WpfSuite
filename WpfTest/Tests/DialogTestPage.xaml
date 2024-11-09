@@ -1,0 +1,47 @@
+﻿<Page x:Class="WpfTest.Tests.DialogTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+      xmlns:local="clr-namespace:WpfTest.Tests"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DialogTestPage"
+      d:DataContext="{d:DesignInstance Type=local:DialogTestPage}">
+
+    <Page.Resources>
+        <ws:BindingProxy x:Key="DataProxy"
+                         Data="{Binding}"/>
+    </Page.Resources>
+
+    <ws:ScrollViewer>
+        <ws:StackPanel Margin="28 12 28 28"
+                       Spacing="12">
+            <TextBlock Text="Palette Test"
+                       FontSize="26"
+                       Margin="0 0 0 12"/>
+
+            <ws:CheckBox Content="IsDialogOpen" 
+                         IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"/>
+
+            <ws:Dialog IsOpen="{Binding IsDialogOpen,Mode=TwoWay}">
+                <Border Background="White"
+                        CornerRadius="20"
+                        MaxWidth="500"
+                        Padding="24">
+                    <ws:StackPanel Spacing="4">
+                        <TextBlock Text="This is some Dialog"
+                                   FontSize="22"
+                                   Margin="0 0 0 14"/>
+                        <TextBlock Text="Brow a to whilome apart a vast below long heralds along for hope or none one this loved to in"
+                                   TextWrapping="Wrap"/>
+
+                        <ws:Button Content="Close"
+                                   Click="Button_Click"/>
+                    </ws:StackPanel>
+                </Border>
+            </ws:Dialog>
+        </ws:StackPanel>
+    </ws:ScrollViewer>
+</Page>

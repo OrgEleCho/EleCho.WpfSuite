@@ -114,6 +114,12 @@ namespace WpfTest
             },
             new NavigationItem()
             {
+                Title = "Dialog",
+                Description = "",
+                PageType = typeof(DialogTestPage)
+            },
+            new NavigationItem()
+            {
                 Title = "Palette",
                 Description = "",
                 PageType = typeof(PaletteTestPage)
