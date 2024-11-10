@@ -20,7 +20,7 @@ namespace EleCho.WpfSuite.Controls
         }
 
         public static readonly DependencyProperty IsOpenProperty =
-            DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(Dialog), new FrameworkPropertyMetadata(false, propertyChangedCallback: OnIsOpenChanged));
+            DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(Dialog), new FrameworkPropertyMetadata(false, flags: FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, propertyChangedCallback: OnIsOpenChanged));
 
         private static void OnIsOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
