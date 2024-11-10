@@ -37,7 +37,8 @@
                         <TextBlock Text="Brow a to whilome apart a vast below long heralds along for hope or none one this loved to in"
                                    TextWrapping="Wrap"/>
 
-                        <ws:CheckBox IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"/>
+                        <ws:CheckBox IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"
+                                     Content="Show Dialog"/>
                     </ws:StackPanel>
                 </Border>
             </ws:Dialog>
