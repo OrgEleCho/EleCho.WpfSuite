@@ -128,7 +128,7 @@ namespace EleCho.WpfSuite.Controls
             var childrenCount = VisualTreeHelper.GetChildrenCount(dependencyObject);
             for (int i = 0; i < childrenCount; i++)
             {
-                var child = VisualTreeHelper.GetChild(dependencyObject, childrenCount);
+                var child = VisualTreeHelper.GetChild(dependencyObject, i);
 
                 if (child is DialogLayer layer)
                 {
@@ -138,7 +138,7 @@ namespace EleCho.WpfSuite.Controls
 
             for (int i = 0; i < childrenCount; i++)
             {
-                var child = VisualTreeHelper.GetChild(dependencyObject, childrenCount);
+                var child = VisualTreeHelper.GetChild(dependencyObject, i);
 
                 if (FindDialogLayerFromChildren(child) is DialogLayer layerInChild)
                 {
