@@ -93,6 +93,14 @@
             </Grid>
 
             <ws:DialogLayer>
+                <ws:DialogLayer.MaskTransition>
+                    <ws:FadeTransition Duration="0:0:0.300"/>
+                </ws:DialogLayer.MaskTransition>
+                <ws:DialogLayer.DialogTransition>
+                    <ws:SlideFadeTransition Duration="0:0:0.500"
+                                            Orientation="Vertical"
+                                            Distance="30"/>
+                </ws:DialogLayer.DialogTransition>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>

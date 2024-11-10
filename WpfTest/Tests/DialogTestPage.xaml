@@ -27,7 +27,7 @@
 
             <ws:Dialog IsOpen="{Binding IsDialogOpen,Mode=TwoWay}">
                 <Border Background="White"
-                        CornerRadius="20"
+                        CornerRadius="10"
                         MaxWidth="500"
                         Padding="24">
                     <ws:StackPanel Spacing="4">
@@ -37,8 +37,7 @@
                         <TextBlock Text="Brow a to whilome apart a vast below long heralds along for hope or none one this loved to in"
                                    TextWrapping="Wrap"/>
 
-                        <ws:Button Content="Close"
-                                   Click="Button_Click"/>
+                        <ws:CheckBox IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"/>
                     </ws:StackPanel>
                 </Border>
             </ws:Dialog>

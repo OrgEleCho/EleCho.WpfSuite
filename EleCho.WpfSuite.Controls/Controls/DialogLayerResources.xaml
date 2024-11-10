@@ -4,18 +4,6 @@
                     xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
     <Style TargetType="{x:Type local:DialogLayer}">
         <Setter Property="Mask" Value="#80000000"/>
-        <Setter Property="MaskTransition">
-            <Setter.Value>
-                <ws:FadeTransition Duration="0:0:0.100"/>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="DialogTransition">
-            <Setter.Value>
-                <ws:SlideFadeTransition Duration="0:0:0.200"
-                                        Orientation="Vertical"
-                                        Distance="50"/>
-            </Setter.Value>
-        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:DialogLayer}">
@@ -24,24 +12,32 @@
                                   BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <ContentPresenter />
-                            <local:ConditionalControl Condition="{TemplateBinding IsShowingDialog}">
-                                <Grid>
-                                    <Border Background="{TemplateBinding Mask}"/>
-                                    <Border Padding="{TemplateBinding Padding}"
+                            <local:ContentControl x:Name="MaskContainer"
+                                               Transition="{TemplateBinding MaskTransition}">
+                                <Border Background="{TemplateBinding Mask}"/>
+                            </local:ContentControl>
+                            <local:ContentControl x:Name="DialogContentContainer"
+                                               Transition="{TemplateBinding DialogTransition}">
+                                <Border Padding="{TemplateBinding Padding}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
-                                        <local:ContentControl Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
-                                                          BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                          Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
-                                                          ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
-                                                          ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
-                                                          Transition="{TemplateBinding DialogTransition}"/>
-                                    </Border>
-                                </Grid>
-                            </local:ConditionalControl>
+                                    <ContentControl Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                    BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
+                                                    BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
+                                                    ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
+                                                    ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
+                                                    DataContext="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.DataContext}"/>
+                                </Border>
+                            </local:ContentControl>
                         </Grid>
                     </local:Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsShowingDialog" Value="False">
+                            <Setter TargetName="MaskContainer" Property="Content" Value="{x:Null}"/>
+                            <Setter TargetName="DialogContentContainer" Property="Content" Value="{x:Null}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
