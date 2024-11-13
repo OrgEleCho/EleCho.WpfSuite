@@ -144,4 +144,7 @@
   <data name="DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialog" xml:space="preserve">
     <value>找不到 DialogLayer. 请考虑放置 DialogLayer 作为此 Dialog 的上级节点</value>
   </data>
+  <data name="CanNotFindTemplateChildTempDialogs" xml:space="preserve">
+    <value>无法找到模板子级 'TempDialogs'</value>
+  </data>
 </root>

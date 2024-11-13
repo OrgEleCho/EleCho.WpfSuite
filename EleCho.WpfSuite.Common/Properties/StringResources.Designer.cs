@@ -70,6 +70,15 @@ namespace EleCho.WpfSuite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can not find template child &apos;TempDialogs&apos;.
+        /// </summary>
+        internal static string CanNotFindTemplateChildTempDialogs {
+            get {
+                return ResourceManager.GetString("CanNotFindTemplateChildTempDialogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close button is already set to another Visual..
         /// </summary>
         internal static string CloseButtonIsAlreadySetToAnotherVisual {

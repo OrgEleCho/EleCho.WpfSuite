@@ -12,6 +12,8 @@
                                   BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <ContentPresenter />
+                            <Grid x:Name="TempDialogs" 
+                                  Visibility="Collapsed"/>
                             <local:ContentControl x:Name="MaskContainer"
                                                Transition="{TemplateBinding MaskTransition}">
                                 <Border Background="{TemplateBinding Mask}"/>

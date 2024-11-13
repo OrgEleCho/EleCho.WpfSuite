@@ -25,21 +25,32 @@
             <ws:CheckBox Content="IsDialogOpen" 
                          IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"/>
 
+            <ws:StackPanel Spacing="4"
+                           Orientation="Horizontal">
+                <ws:Button Content="Show Custom Message :"
+                           Command="{Binding ShowCustomMessageCommand}"/>
+                <ws:TextBox Placeholder="Custom message"
+                            MinWidth="200"
+                            Text="{Binding CustomMessage}"/>
+            </ws:StackPanel>
+
             <ws:Dialog IsOpen="{Binding IsDialogOpen,Mode=TwoWay}">
                 <Border Background="White"
                         CornerRadius="10"
                         MaxWidth="500"
                         Padding="24">
-                    <ws:StackPanel Spacing="4">
+                    <StackPanel>
                         <TextBlock Text="This is some Dialog"
                                    FontSize="22"
                                    Margin="0 0 0 14"/>
                         <TextBlock Text="Brow a to whilome apart a vast below long heralds along for hope or none one this loved to in"
-                                   TextWrapping="Wrap"/>
+                                   TextWrapping="Wrap"
+                                   Margin="0 4 0 0"/>
 
                         <ws:CheckBox IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"
-                                     Content="Show Dialog"/>
-                    </ws:StackPanel>
+                                     Content="Show Dialog"
+                                     Margin="0 14 0 0"/>
+                    </StackPanel>
                 </Border>
             </ws:Dialog>
         </ws:StackPanel>

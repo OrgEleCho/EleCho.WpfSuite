@@ -144,4 +144,7 @@
   <data name="DialogLayerCouldNotBeFoundConsiderPlacingADialogLayerAsTheAncestorNodeOfThisDialog" xml:space="preserve">
     <value>DialogLayer could not be found. Consider placing a DialogLayer as the ancestor node of this Dialog.</value>
   </data>
+  <data name="CanNotFindTemplateChildTempDialogs" xml:space="preserve">
+    <value>Can not find template child 'TempDialogs'</value>
+  </data>
 </root>

@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using EleCho.WpfSuite.Controls;
+using WpfTest.Controls;
 
 namespace WpfTest.Tests
 {
@@ -26,11 +28,35 @@ namespace WpfTest.Tests
         [ObservableProperty]
         private bool _isDialogOpen;
 
+        [ObservableProperty]
+        private string _customMessage = string.Empty;
+
 
         public DialogTestPage()
         {
             DataContext = this;
             InitializeComponent();
+        }
+
+        [RelayCommand]
+        public void ShowCustomMessage()
+        {
+            var dialogLayer = DialogLayer.GetDialogLayer(this);
+
+            if (dialogLayer is null)
+            {
+                MessageBox.Show("Can not find dialog layer");
+                return;
+            }
+
+            dialogLayer.Push(new Dialog()
+            {
+                Content = new SimpleMessageToast()
+                {
+                    Title = "Some Titme",
+                    Message = CustomMessage,
+                }
+            });
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

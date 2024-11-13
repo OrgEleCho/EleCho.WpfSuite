@@ -43,27 +43,5 @@ namespace EleCho.WpfSuite.Controls
                 layer.Remove(dialog);
             }
         }
-
-        public static Dialog? GetDialog(DependencyObject dependencyObject)
-        {
-            while (true)
-            {
-                var parent = VisualTreeHelper.GetParent(dependencyObject);
-
-                if (parent is Dialog layer)
-                {
-                    return layer;
-                }
-
-                if (parent is null)
-                {
-                    break;
-                }
-
-                dependencyObject = parent;
-            }
-
-            return null;
-        }
     }
 }

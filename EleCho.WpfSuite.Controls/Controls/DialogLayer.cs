@@ -7,9 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using EleCho.WpfSuite.Media.Transition;
+using EleCho.WpfSuite.Properties;
 
 namespace EleCho.WpfSuite.Controls
 {
+    [TemplatePart(Name = "TempDialogs", Type = typeof(Panel))]
     public class DialogLayer : System.Windows.Controls.ContentControl
     {
         private readonly List<Dialog> _dialogStack = new();
@@ -19,7 +21,8 @@ namespace EleCho.WpfSuite.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(DialogLayer), new FrameworkPropertyMetadata(typeof(DialogLayer)));
         }
 
-
+        private Panel? _tempDialogs;
+        private Panel? TempDialogs => _tempDialogs ??= GetTemplateChild("TempDialogs") as Panel;
 
         public Brush Mask
         {
@@ -71,6 +74,16 @@ namespace EleCho.WpfSuite.Controls
         {
             _dialogStack.Add(dialog);
 
+            if (dialog.Parent is null)
+            {
+                if (TempDialogs is not Panel tempDialogs)
+                {
+                    throw new InvalidOperationException(StringResources.CanNotFindTemplateChildTempDialogs);
+                }
+
+                tempDialogs.Children.Add(dialog);
+            }
+
             dialog.IsOpen = true;
             SetValue(ShowingDialogPropertyKey, dialog);
             SetValue(IsShowingDialogPropertyKey, true);
@@ -86,6 +99,13 @@ namespace EleCho.WpfSuite.Controls
             }
 
             dialog.IsOpen = false;
+
+            if (TempDialogs is Panel tempDialogs &&
+                dialog.Parent == tempDialogs)
+            {
+                tempDialogs.Children.Remove(dialog);
+            }
+
             if (_dialogStack.Count > 0)
             {
                 SetValue(ShowingDialogPropertyKey, _dialogStack[_dialogStack.Count - 1]);
@@ -109,17 +129,8 @@ namespace EleCho.WpfSuite.Controls
             var topDialog = _dialogStack[topIndex];
             _dialogStack.RemoveAt(topIndex);
 
+            // this will call remove method
             topDialog.IsOpen = false;
-            if (_dialogStack.Count > 0)
-            {
-                SetValue(ShowingDialogPropertyKey, _dialogStack[_dialogStack.Count - 1]);
-                SetValue(IsShowingDialogPropertyKey, true);
-            }
-            else
-            {
-                SetValue(IsShowingDialogPropertyKey, false);
-                SetValue(ShowingDialogPropertyKey, null);
-            }
         }
 
 

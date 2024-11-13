@@ -3,17 +3,12 @@
   <Import Project="../Package.props" />
 
   <PropertyGroup>
-    <Version>0.9.2</Version>
+    <Version>0.9.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Update="Properties\StringResources.Designer.cs">
       <DependentUpon>StringResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Properties\StringResources.zh-Hans.Designer.cs">
-      <DependentUpon>StringResources.zh-Hans.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -25,8 +20,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\StringResources.zh-Hans.resx">
-      <LastGenOutput>StringResources.zh-Hans.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
 
