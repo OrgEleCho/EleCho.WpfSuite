@@ -162,6 +162,13 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(DisabledGlyphBrushProperty, value); }
         }
 
+        public bool IsButtonVisible
+        {
+            get { return (bool)GetValue(IsButtonVisibleProperty); }
+            set { SetValue(IsButtonVisibleProperty, value); }
+        }
+
+
 
 
 
@@ -230,5 +237,8 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty DisabledGlyphBrushProperty =
             DependencyProperty.Register(nameof(DisabledGlyphBrush), typeof(Brush), typeof(ScrollBar), new FrameworkPropertyMetadata(s_disabledGlyphBrush));
+
+        public static readonly DependencyProperty IsButtonVisibleProperty =
+            DependencyProperty.Register(nameof(IsButtonVisible), typeof(bool), typeof(ScrollBar), new FrameworkPropertyMetadata(true));
     }
 }

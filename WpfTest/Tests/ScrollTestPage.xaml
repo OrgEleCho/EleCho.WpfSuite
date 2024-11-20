@@ -10,120 +10,145 @@
       Title="ScrollTestPage"
       d:Background="White">
 
-    <Grid Margin="28 12 28 28">
-        <Grid.Resources>
+    <ws:ScrollViewer>
+        <ws:StackPanel Margin="28 12 28 28"
+                       Spacing="8">
+            <ws:StackPanel Grid.ColumnSpan="3"
+                           Spacing="8"
+                           Margin="0 0 0 24">
+                <TextBlock Text="Scroll Test"
+                           FontSize="26"/>
+                <TextBlock TextWrapping="Wrap"
+                           Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen. And if you use mouse scroll the right panel, operation is reversed." />
+            </ws:StackPanel>
 
-        </Grid.Resources>
+            <ws:FlexPanel UniformGrow="1"
+                          MainSpacing="8"
+                          Height="300">
+                <ws:Border Grid.Row="1"
+                           Grid.Column="0"
+                           BorderBrush="Gray"
+                           BorderThickness="1"
+                           CornerRadius="3">
+                    <ws:ScrollViewer PanningMode="Both"
+                                     ws:MouseTouchDevice.Simulate="True"
+                                     ScrollingAnimationDuration="0:0:0.5"
+                                     MouseScrollDeltaFactor="2"
+                                     TouchpadScrollDeltaFactor="3"
+                                     Padding="14"
+                                     Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
+                        <ws:StackPanel Spacing="8">
+                            <ws:Button Content="Test1" Click="Button_Click"/>
+                            <ws:Button Content="Test2" Click="Button_Click"/>
+                            <ws:Button Content="Test3" Click="Button_Click"/>
+                            <ws:Button Content="Test4" Click="Button_Click"/>
+                            <ws:Button Content="Test5" Click="Button_Click"/>
+                            <ws:Button Content="Test6" Click="Button_Click"/>
+                            <ws:Button Content="Test7" Click="Button_Click"/>
+                            <ws:Button Content="Test8" Click="Button_Click"/>
+                            <ws:Button Content="Test9" Click="Button_Click"/>
+                            <ws:Button Content="Test10" Click="Button_Click"/>
+                            <ws:Button Content="Test11" Click="Button_Click"/>
+                            <ws:Button Content="Test12" Click="Button_Click"/>
+                            <ws:Button Content="Test13" Click="Button_Click"/>
+                            <ws:Button Content="Test14" Click="Button_Click"/>
+                            <ws:Button Content="Test15" Click="Button_Click"/>
+                            <ws:Button Content="Test16" Click="Button_Click"/>
+                            <ws:Button Content="Test17" Click="Button_Click"/>
+                            <ws:Button Content="Test18" Click="Button_Click"/>
+                            <ws:Button Content="Test19" Click="Button_Click"/>
+                            <ws:Button Content="Test20" Click="Button_Click"/>
+                            <ws:Button Content="Test21" Click="Button_Click"/>
+                            <ws:Button Content="Test22" Click="Button_Click"/>
+                            <ws:Button Content="Test23" Click="Button_Click"/>
+                            <ws:Button Content="Test24" Click="Button_Click"/>
+                            <ws:Button Content="Test25" Click="Button_Click"/>
+                            <ws:Button Content="Test26" Click="Button_Click"/>
+                            <ws:Button Content="Test27" Click="Button_Click"/>
+                            <ws:Button Content="Test28" Click="Button_Click"/>
+                            <ws:Button Content="Test29" Click="Button_Click"/>
+                            <ws:Button Content="Test30" Click="Button_Click"/>
+                        </ws:StackPanel>
+                    </ws:ScrollViewer>
+                </ws:Border>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+                <ws:Border Grid.Row="1"
+                           Grid.Column="2"
+                           BorderBrush="Gray"
+                           BorderThickness="1"
+                           CornerRadius="3">
+                    <ws:ScrollViewer ws:StylusTouchDevice.Simulate="True"
+                                     PanningMode="Both"
+                                     Padding="14"
+                                     MouseScrollDeltaFactor="-1"
+                                     Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
+                        <ws:StackPanel Spacing="8">
+                            <ws:Button Content="Test1" Click="Button_Click"/>
+                            <ws:Button Content="Test2" Click="Button_Click"/>
+                            <ws:Button Content="Test3" Click="Button_Click"/>
+                            <ws:Button Content="Test4" Click="Button_Click"/>
+                            <ws:Button Content="Test5" Click="Button_Click"/>
+                            <ws:Button Content="Test6" Click="Button_Click"/>
+                            <ws:Button Content="Test7" Click="Button_Click"/>
+                            <ws:Button Content="Test8" Click="Button_Click"/>
+                            <ws:Button Content="Test9" Click="Button_Click"/>
+                            <ws:Button Content="Test10" Click="Button_Click"/>
+                            <ws:Button Content="Test11" Click="Button_Click"/>
+                            <ws:Button Content="Test12" Click="Button_Click"/>
+                            <ws:Button Content="Test13" Click="Button_Click"/>
+                            <ws:Button Content="Test14" Click="Button_Click"/>
+                            <ws:Button Content="Test15" Click="Button_Click"/>
+                            <ws:Button Content="Test16" Click="Button_Click"/>
+                            <ws:Button Content="Test17" Click="Button_Click"/>
+                            <ws:Button Content="Test18" Click="Button_Click"/>
+                            <ws:Button Content="Test19" Click="Button_Click"/>
+                            <ws:Button Content="Test20" Click="Button_Click"/>
+                            <ws:Button Content="Test21" Click="Button_Click"/>
+                            <ws:Button Content="Test22" Click="Button_Click"/>
+                            <ws:Button Content="Test23" Click="Button_Click"/>
+                            <ws:Button Content="Test24" Click="Button_Click"/>
+                            <ws:Button Content="Test25" Click="Button_Click"/>
+                            <ws:Button Content="Test26" Click="Button_Click"/>
+                            <ws:Button Content="Test27" Click="Button_Click"/>
+                            <ws:Button Content="Test28" Click="Button_Click"/>
+                            <ws:Button Content="Test29" Click="Button_Click"/>
+                            <ws:Button Content="Test30" Click="Button_Click"/>
+                        </ws:StackPanel>
+                    </ws:ScrollViewer>
+                </ws:Border>
+            </ws:FlexPanel>
 
-        <ws:StackPanel Grid.ColumnSpan="3"
-                       Spacing="8"
-                       Margin="0 0 0 24">
-            <TextBlock Text="Scroll Test"
-                       FontSize="26"/>
-            <TextBlock TextWrapping="Wrap"
-                       Text="The content on the left can be scrolled by dragging with the mouse, and the content on the right can be scrolled by dragging with the pen. And if you use mouse scroll the right panel, operation is reversed." />
+            <Border Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Margin="0 8 0 0"
+                    BorderThickness="1"
+                    BorderBrush="Gray"
+                    CornerRadius="4"
+                    Padding="4">
+                <ws:ScrollViewer VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto">
+                    <TextBlock Text="Mia iri per helpo ke povis mia liberulo povus tero velojn velojn gxin kiam savi de virojn ke ni por trovis sentadis venos terbordon gxi ke al ili al mia la ili farmilaro iris ne marbordo sxnuregon ni mi nun li dum iris ili boaton mi li decidi ke egalan"/>
+                </ws:ScrollViewer>
+            </Border>
+
+            <Border Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Margin="0 8 0 0"
+                    BorderThickness="1"
+                    BorderBrush="Gray"
+                    CornerRadius="4"
+                    Padding="4"
+                    Width="200"
+                    Height="200">
+                <ws:ScrollViewer VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto">
+                    <TextBlock Width="300"
+                               Height="300"  
+                               TextWrapping="Wrap"
+                               Text="Mia iri per helpo ke povis mia liberulo povus tero velojn velojn gxin kiam savi de virojn ke ni por trovis sentadis venos terbordon gxi ke al ili al mia la ili farmilaro iris ne marbordo sxnuregon ni mi nun li dum iris ili boaton mi li decidi ke egalan"/>
+                </ws:ScrollViewer>
+            </Border>
         </ws:StackPanel>
 
-        <ws:Border Grid.Row="1"
-                   Grid.Column="0"
-                   BorderBrush="Gray"
-                   BorderThickness="1"
-                   CornerRadius="3">
-            <ws:ScrollViewer PanningMode="Both"
-                             ws:MouseTouchDevice.Simulate="True"
-                             ScrollingAnimationDuration="0:0:0.5"
-                             MouseScrollDeltaFactor="2"
-                             TouchpadScrollDeltaFactor="3"
-                             Padding="14"
-                             Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
-                <ws:StackPanel Spacing="8">
-                    <ws:Button Content="Test1" Click="Button_Click"/>
-                    <ws:Button Content="Test2" Click="Button_Click"/>
-                    <ws:Button Content="Test3" Click="Button_Click"/>
-                    <ws:Button Content="Test4" Click="Button_Click"/>
-                    <ws:Button Content="Test5" Click="Button_Click"/>
-                    <ws:Button Content="Test6" Click="Button_Click"/>
-                    <ws:Button Content="Test7" Click="Button_Click"/>
-                    <ws:Button Content="Test8" Click="Button_Click"/>
-                    <ws:Button Content="Test9" Click="Button_Click"/>
-                    <ws:Button Content="Test10" Click="Button_Click"/>
-                    <ws:Button Content="Test11" Click="Button_Click"/>
-                    <ws:Button Content="Test12" Click="Button_Click"/>
-                    <ws:Button Content="Test13" Click="Button_Click"/>
-                    <ws:Button Content="Test14" Click="Button_Click"/>
-                    <ws:Button Content="Test15" Click="Button_Click"/>
-                    <ws:Button Content="Test16" Click="Button_Click"/>
-                    <ws:Button Content="Test17" Click="Button_Click"/>
-                    <ws:Button Content="Test18" Click="Button_Click"/>
-                    <ws:Button Content="Test19" Click="Button_Click"/>
-                    <ws:Button Content="Test20" Click="Button_Click"/>
-                    <ws:Button Content="Test21" Click="Button_Click"/>
-                    <ws:Button Content="Test22" Click="Button_Click"/>
-                    <ws:Button Content="Test23" Click="Button_Click"/>
-                    <ws:Button Content="Test24" Click="Button_Click"/>
-                    <ws:Button Content="Test25" Click="Button_Click"/>
-                    <ws:Button Content="Test26" Click="Button_Click"/>
-                    <ws:Button Content="Test27" Click="Button_Click"/>
-                    <ws:Button Content="Test28" Click="Button_Click"/>
-                    <ws:Button Content="Test29" Click="Button_Click"/>
-                    <ws:Button Content="Test30" Click="Button_Click"/>
-                </ws:StackPanel>
-            </ws:ScrollViewer>
-        </ws:Border>
-
-        <ws:Border Grid.Row="1"
-                   Grid.Column="2"
-                   BorderBrush="Gray"
-                   BorderThickness="1"
-                   CornerRadius="3">
-            <ws:ScrollViewer ws:StylusTouchDevice.Simulate="True"
-                             PanningMode="Both"
-                             Padding="14"
-                             MouseScrollDeltaFactor="-1"
-                             Clip="{Binding RelativeSource={RelativeSource AncestorType=ws:Border},Path=ContentClip}">
-                <ws:StackPanel Spacing="8">
-                    <ws:Button Content="Test1" Click="Button_Click"/>
-                    <ws:Button Content="Test2" Click="Button_Click"/>
-                    <ws:Button Content="Test3" Click="Button_Click"/>
-                    <ws:Button Content="Test4" Click="Button_Click"/>
-                    <ws:Button Content="Test5" Click="Button_Click"/>
-                    <ws:Button Content="Test6" Click="Button_Click"/>
-                    <ws:Button Content="Test7" Click="Button_Click"/>
-                    <ws:Button Content="Test8" Click="Button_Click"/>
-                    <ws:Button Content="Test9" Click="Button_Click"/>
-                    <ws:Button Content="Test10" Click="Button_Click"/>
-                    <ws:Button Content="Test11" Click="Button_Click"/>
-                    <ws:Button Content="Test12" Click="Button_Click"/>
-                    <ws:Button Content="Test13" Click="Button_Click"/>
-                    <ws:Button Content="Test14" Click="Button_Click"/>
-                    <ws:Button Content="Test15" Click="Button_Click"/>
-                    <ws:Button Content="Test16" Click="Button_Click"/>
-                    <ws:Button Content="Test17" Click="Button_Click"/>
-                    <ws:Button Content="Test18" Click="Button_Click"/>
-                    <ws:Button Content="Test19" Click="Button_Click"/>
-                    <ws:Button Content="Test20" Click="Button_Click"/>
-                    <ws:Button Content="Test21" Click="Button_Click"/>
-                    <ws:Button Content="Test22" Click="Button_Click"/>
-                    <ws:Button Content="Test23" Click="Button_Click"/>
-                    <ws:Button Content="Test24" Click="Button_Click"/>
-                    <ws:Button Content="Test25" Click="Button_Click"/>
-                    <ws:Button Content="Test26" Click="Button_Click"/>
-                    <ws:Button Content="Test27" Click="Button_Click"/>
-                    <ws:Button Content="Test28" Click="Button_Click"/>
-                    <ws:Button Content="Test29" Click="Button_Click"/>
-                    <ws:Button Content="Test30" Click="Button_Click"/>
-                </ws:StackPanel>
-            </ws:ScrollViewer>
-        </ws:Border>
-    </Grid>
+    </ws:ScrollViewer>
 </Page>

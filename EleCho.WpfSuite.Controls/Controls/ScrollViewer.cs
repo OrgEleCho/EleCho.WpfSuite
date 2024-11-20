@@ -58,6 +58,98 @@ namespace EleCho.WpfSuite.Controls
             _scrollContentPresenter = GetTemplateChild("PART_ScrollContentPresenter") as FrameworkElement;
         }
 
+        public bool CanScrollVertical
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.ExtentHeight - scrollInfo.ViewportHeight > 0;
+                }
+
+                return ExtentHeight > ViewportHeight;
+            }
+        }
+
+        public bool CanScrollHorizontal
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.ExtentWidth - scrollInfo.ViewportWidth > 0;
+                }
+
+                return ExtentWidth - ViewportWidth > 0;
+            }
+        }
+
+        public bool CanScrollUp
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.VerticalOffset > 0;
+                }
+
+                return VerticalOffset > 0;
+            }
+        }
+
+        public bool CanScrollDown
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.VerticalOffset + scrollInfo.ViewportHeight < scrollInfo.ExtentHeight;
+                }
+
+                return VerticalOffset + ViewportHeight < ExtentHeight;
+            }
+        }
+
+        public bool CanScrollLeft
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.HorizontalOffset > 0;
+                }
+
+                return HorizontalOffset > 0;
+            }
+        }
+
+        public bool CanScrollRight
+        {
+            get
+            {
+                if (ScrollInfo is IScrollInfo scrollInfo)
+                {
+                    return scrollInfo.HorizontalOffset + scrollInfo.ViewportWidth < scrollInfo.ExtentWidth;
+                }
+
+                return HorizontalOffset + ViewportWidth < ExtentWidth;
+            }
+        }
+
+        public bool AllowTogglePreferedScrollOrientationByShiftKey
+        {
+            get { return (bool)GetValue(AllowTogglePreferedScrollOrientationByShiftKeyProperty); }
+            set { SetValue(AllowTogglePreferedScrollOrientationByShiftKeyProperty, value); }
+        }
+
+        public Orientation PreferedScrollOrientation
+        {
+            get { return (Orientation)GetValue(PreferedScrollOrientationProperty); }
+            set { SetValue(PreferedScrollOrientationProperty, value); }
+        }
+
+
+
         private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
         {
             if (e.Handled)
@@ -65,14 +157,26 @@ namespace EleCho.WpfSuite.Controls
                 return;
             }
 
-            if (!AlwaysHandleMouseWheelScrolling && 
+            if (!AlwaysHandleMouseWheelScrolling &&
                 !_propertyHandlesMouseWheelScrollingGetter.Invoke(this))
             {
                 return;
             }
 
-            bool vertical = ExtentHeight > 0;
-            bool horizontal = ExtentWidth > 0;
+            var preferedScrollOrientation = PreferedScrollOrientation;
+            if (AllowTogglePreferedScrollOrientationByShiftKey && Keyboard.Modifiers == ModifierKeys.Shift)
+            {
+                preferedScrollOrientation = preferedScrollOrientation switch
+                {
+                    Orientation.Horizontal => Orientation.Vertical,
+                    Orientation.Vertical => Orientation.Horizontal,
+                    _ => Orientation.Vertical
+                };
+            }
+
+            bool canScrollVertical = CanScrollVertical;
+            bool canScrollHorizontal = CanScrollHorizontal;
+            bool canScrollHorizontalAndPreferHorizontal = canScrollHorizontal && preferedScrollOrientation == Orientation.Horizontal;
 
             var tickCount = Environment.TickCount;
             var isTouchpadScrolling =
@@ -94,8 +198,17 @@ namespace EleCho.WpfSuite.Controls
                 scrollDelta *= MouseScrollDeltaFactor;
             }
 
-            if (vertical)
+            if (canScrollVertical && !canScrollHorizontalAndPreferHorizontal)
             {
+                if (scrollDelta > 0 && !CanScrollUp)
+                {
+                    return;
+                }
+                else if (scrollDelta < 0 && !CanScrollDown)
+                {
+                    return;
+                }
+
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -144,8 +257,17 @@ namespace EleCho.WpfSuite.Controls
 
                 _lastVerticalScrollingDelta = e.Delta;
             }
-            else if (horizontal)
+            else if (canScrollHorizontal)
             {
+                if (scrollDelta > 0 && !CanScrollLeft)
+                {
+                    return;
+                }
+                else if (scrollDelta < 0 && !CanScrollRight)
+                {
+                    return;
+                }
+
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
                     // 考虑到 VirtualizingPanel 可能是虚拟的大小, 所以这里需要校正 Delta
@@ -446,6 +568,18 @@ namespace EleCho.WpfSuite.Controls
         /// </summary>
         public static readonly DependencyProperty TouchpadScrollDeltaFactorProperty =
             DependencyProperty.Register(nameof(TouchpadScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(1.0));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="AllowTogglePreferedScrollOrientationByShiftKey"/> property
+        /// </summary>
+        public static readonly DependencyProperty AllowTogglePreferedScrollOrientationByShiftKeyProperty =
+            DependencyProperty.Register(nameof(AllowTogglePreferedScrollOrientationByShiftKey), typeof(bool), typeof(ScrollViewer), new FrameworkPropertyMetadata(true));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="PreferedScrollOrientationProperty"/> property
+        /// </summary>
+        public static readonly DependencyProperty PreferedScrollOrientationProperty =
+            DependencyProperty.Register(nameof(PreferedScrollOrientation), typeof(Orientation), typeof(ScrollViewer), new FrameworkPropertyMetadata(Orientation.Vertical));
 
         private static bool ValidateScrollingAnimationDuration(object value)
             => value is Duration duration && duration.HasTimeSpan;

@@ -36,11 +36,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RepeatButton}">
                     <local:Border x:Name="border"
-                               Background="{TemplateBinding Background}"
-                               BorderBrush="{TemplateBinding BorderBrush}"
-                               BorderThickness="{TemplateBinding BorderThickness}"
-                               CornerRadius="{TemplateBinding CornerRadius}"
-                               SnapsToDevicePixels="true">
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </local:Border>
                     <ControlTemplate.Triggers>
@@ -344,10 +344,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ScrollBar}">
                     <local:Border x:Name="PART_Border"
-                               Background="{TemplateBinding Background}"
-                               BorderBrush="{TemplateBinding BorderBrush}"
-                               BorderThickness="{TemplateBinding BorderThickness}"
-                               CornerRadius="{TemplateBinding CornerRadius}">
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid x:Name="Bg" SnapsToDevicePixels="true">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -355,19 +355,20 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <local:RepeatButton x:Name="PART_LineUpButton"
-                                             Command="{x:Static ScrollBar.LineUpCommand}"
-                                             IsEnabled="{TemplateBinding IsMouseOver}"
-                                             Style="{StaticResource ScrollBarButton}"
-                                             Background="{TemplateBinding Background}"
-                                             HoverBackground="{TemplateBinding HoverBackground}"
-                                             PressedBackground="{TemplateBinding PressedBackground}"
-                                             DisabledBackground="{TemplateBinding DisabledBackground}"
-                                             BorderBrush="{TemplateBinding BorderBrush}"
-                                             HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
-                                             PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
-                                             DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
-                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                             CornerRadius="{TemplateBinding ButtonCornerRadius}">
+                                                Command="{x:Static ScrollBar.LineUpCommand}"
+                                                IsEnabled="{TemplateBinding IsMouseOver}"
+                                                Style="{StaticResource ScrollBarButton}"
+                                                Background="{TemplateBinding Background}"
+                                                HoverBackground="{TemplateBinding HoverBackground}"
+                                                PressedBackground="{TemplateBinding PressedBackground}"
+                                                DisabledBackground="{TemplateBinding DisabledBackground}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
+                                                PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
+                                                DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="{TemplateBinding ButtonCornerRadius}"
+                                                Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=IsButtonVisible,Converter={x:Static ws:BooleanToVisibilityConverter.Instance}}">
                                 <Path x:Name="ArrowTop"
                                       Data="{TemplateBinding ArrowUpGlyph}"
                                       Fill="{TemplateBinding GlyphBrush}"
@@ -385,28 +386,29 @@
                                 </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
                                     <local:Thumb Style="{StaticResource ScrollBarThumbVertical}"
-                                              Background="{TemplateBinding ThumbBrush}"
-                                              HoverBackground="{TemplateBinding HoverThumbBrush}"
-                                              DraggingBackground="{TemplateBinding DraggingThumbBrush}"
-                                              DisabledBackground="{TemplateBinding DisabledThumbBrush}"
-                                              CornerRadius="{TemplateBinding ThumbCornerRadius}"/>
+                                                 Background="{TemplateBinding ThumbBrush}"
+                                                 HoverBackground="{TemplateBinding HoverThumbBrush}"
+                                                 DraggingBackground="{TemplateBinding DraggingThumbBrush}"
+                                                 DisabledBackground="{TemplateBinding DisabledThumbBrush}"
+                                                 CornerRadius="{TemplateBinding ThumbCornerRadius}"/>
                                 </Track.Thumb>
                             </Track>
                             <local:RepeatButton x:Name="PART_LineDownButton"
-                                             Command="{x:Static ScrollBar.LineDownCommand}"
-                                             IsEnabled="{TemplateBinding IsMouseOver}"
-                                             Grid.Row="2"
-                                             Style="{StaticResource ScrollBarButton}"
-                                             Background="{TemplateBinding Background}"
-                                             HoverBackground="{TemplateBinding HoverBackground}"
-                                             PressedBackground="{TemplateBinding PressedBackground}"
-                                             DisabledBackground="{TemplateBinding DisabledBackground}"
-                                             BorderBrush="{TemplateBinding BorderBrush}"
-                                             HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
-                                             PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
-                                             DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
-                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                             CornerRadius="{TemplateBinding ButtonCornerRadius}">
+                                                Command="{x:Static ScrollBar.LineDownCommand}"
+                                                IsEnabled="{TemplateBinding IsMouseOver}"
+                                                Grid.Row="2"
+                                                Style="{StaticResource ScrollBarButton}"
+                                                Background="{TemplateBinding Background}"
+                                                HoverBackground="{TemplateBinding HoverBackground}"
+                                                PressedBackground="{TemplateBinding PressedBackground}"
+                                                DisabledBackground="{TemplateBinding DisabledBackground}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
+                                                PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
+                                                DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="{TemplateBinding ButtonCornerRadius}"
+                                                Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=IsButtonVisible,Converter={x:Static ws:BooleanToVisibilityConverter.Instance}}">
                                 <Path x:Name="ArrowBottom" Data="{TemplateBinding ArrowDownGlyph}"
                                       Fill="{TemplateBinding GlyphBrush}"
                                       Margin="{TemplateBinding GlyphMargin}"
@@ -495,10 +497,10 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:ScrollBar}">
                             <local:Border x:Name="PART_Border"
-                                       Background="{TemplateBinding Background}"
-                                       BorderBrush="{TemplateBinding BorderBrush}"
-                                       BorderThickness="{TemplateBinding BorderThickness}"
-                                       CornerRadius="{TemplateBinding CornerRadius}">
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          CornerRadius="{TemplateBinding CornerRadius}">
                                 <Grid x:Name="Bg" SnapsToDevicePixels="true">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -506,19 +508,20 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <local:RepeatButton x:Name="PART_LineLeftButton"
-                                                     Command="{x:Static ScrollBar.LineLeftCommand}"
-                                                     IsEnabled="{TemplateBinding IsMouseOver}"
-                                                     Style="{StaticResource ScrollBarButton}"
-                                                     Background="{TemplateBinding Background}"
-                                                     HoverBackground="{TemplateBinding HoverBackground}"
-                                                     PressedBackground="{TemplateBinding PressedBackground}"
-                                                     DisabledBackground="{TemplateBinding DisabledBackground}"
-                                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                                     HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
-                                                     PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
-                                                     DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
-                                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                                     CornerRadius="{TemplateBinding ButtonCornerRadius}">
+                                                        Command="{x:Static ScrollBar.LineLeftCommand}"
+                                                        IsEnabled="{TemplateBinding IsMouseOver}"
+                                                        Style="{StaticResource ScrollBarButton}"
+                                                        Background="{TemplateBinding Background}"
+                                                        HoverBackground="{TemplateBinding HoverBackground}"
+                                                        PressedBackground="{TemplateBinding PressedBackground}"
+                                                        DisabledBackground="{TemplateBinding DisabledBackground}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
+                                                        PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
+                                                        DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="{TemplateBinding ButtonCornerRadius}"
+                                                        Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=IsButtonVisible,Converter={x:Static ws:BooleanToVisibilityConverter.Instance}}">
                                         <Path x:Name="ArrowLeft"
                                               Data="{TemplateBinding ArrowLeftGlyph}"
                                               Fill="{TemplateBinding GlyphBrush}"
@@ -536,28 +539,29 @@
                                         </Track.IncreaseRepeatButton>
                                         <Track.Thumb>
                                             <local:Thumb Style="{StaticResource ScrollBarThumbHorizontal}"
-                                                      Background="{TemplateBinding ThumbBrush}"
-                                                      HoverBackground="{TemplateBinding HoverThumbBrush}"
-                                                      DraggingBackground="{TemplateBinding DraggingThumbBrush}"
-                                                      DisabledBackground="{TemplateBinding DisabledThumbBrush}"
-                                                      CornerRadius="{TemplateBinding ThumbCornerRadius}"/>
+                                                         Background="{TemplateBinding ThumbBrush}"
+                                                         HoverBackground="{TemplateBinding HoverThumbBrush}"
+                                                         DraggingBackground="{TemplateBinding DraggingThumbBrush}"
+                                                         DisabledBackground="{TemplateBinding DisabledThumbBrush}"
+                                                         CornerRadius="{TemplateBinding ThumbCornerRadius}"/>
                                         </Track.Thumb>
                                     </Track>
                                     <local:RepeatButton x:Name="PART_LineRightButton"
-                                                     Command="{x:Static ScrollBar.LineRightCommand}"
-                                                     Grid.Column="2"
-                                                     IsEnabled="{TemplateBinding IsMouseOver}"
-                                                     Style="{StaticResource ScrollBarButton}"
-                                                     Background="{TemplateBinding Background}"
-                                                     HoverBackground="{TemplateBinding HoverBackground}"
-                                                     PressedBackground="{TemplateBinding PressedBackground}"
-                                                     DisabledBackground="{TemplateBinding DisabledBackground}"
-                                                     BorderBrush="{TemplateBinding BorderBrush}"
-                                                     HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
-                                                     PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
-                                                     DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
-                                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                                     CornerRadius="{TemplateBinding ButtonCornerRadius}">
+                                                        Command="{x:Static ScrollBar.LineRightCommand}"
+                                                        Grid.Column="2"
+                                                        IsEnabled="{TemplateBinding IsMouseOver}"
+                                                        Style="{StaticResource ScrollBarButton}"
+                                                        Background="{TemplateBinding Background}"
+                                                        HoverBackground="{TemplateBinding HoverBackground}"
+                                                        PressedBackground="{TemplateBinding PressedBackground}"
+                                                        DisabledBackground="{TemplateBinding DisabledBackground}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        HoverBorderBrush="{TemplateBinding HoverBorderBrush}"
+                                                        PressedBorderBrush="{TemplateBinding PressedBorderBrush}"
+                                                        DisabledBorderBrush="{TemplateBinding DisabledBorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="{TemplateBinding ButtonCornerRadius}"
+                                                        Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=IsButtonVisible,Converter={x:Static ws:BooleanToVisibilityConverter.Instance}}">
                                         <Path x:Name="ArrowRight"
                                               Data="{TemplateBinding ArrowRightGlyph}"
                                               Fill="{TemplateBinding GlyphBrush}"
