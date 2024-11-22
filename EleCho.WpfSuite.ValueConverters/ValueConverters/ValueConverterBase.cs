@@ -34,12 +34,12 @@ namespace EleCho.WpfSuite.ValueConverters
         /// <summary>
         /// Return value while trying to convert null value
         /// </summary>
-        public virtual TTargetValue DefaultTargetValue => throw new InvalidOperationException();
+        public virtual TTargetValue? DefaultTargetValue => throw new InvalidOperationException();
 
         /// <summary>
         /// Return value while trying to convert null value back
         /// </summary>
-        public virtual TSourceValue DefaultSourceValue => throw new InvalidOperationException();
+        public virtual TSourceValue? DefaultSourceValue => throw new InvalidOperationException();
 
         /// <inheritdoc/>
         public sealed override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
