@@ -316,6 +316,11 @@ namespace EleCho.WpfSuite.Controls
 
                 _lastHorizontalScrollingDelta = e.Delta;
             }
+            else
+            {
+                // no scroll
+                return;
+            }
 
             _lastScrollingTick = tickCount;
             _lastScrollDelta = e.Delta;
