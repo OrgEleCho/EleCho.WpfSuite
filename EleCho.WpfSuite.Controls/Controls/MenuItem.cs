@@ -169,8 +169,17 @@ namespace EleCho.WpfSuite.Controls
         }
 
 
+        /// <inheritdoc/>
+        protected override DependencyObject GetContainerForItemOverride()
+        {
+            return new MenuItem();
+        }
 
-
+        /// <inheritdoc/>
+        protected override bool IsItemItsOwnContainerOverride(object item)
+        {
+            return item is MenuItem;
+        }
 
         public static readonly DependencyProperty CornerRadiusProperty =
             Border.CornerRadiusProperty.AddOwner(typeof(MenuItem));

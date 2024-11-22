@@ -192,7 +192,11 @@
                                                              Icon="Fuck"
                                                              HighlightedBackground="#88FF0000"
                                                              Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
-                                                             CommandParameter="{Binding}"/>
+                                                             CommandParameter="{Binding}">
+                                                    <MenuItem Header="QAQ"/>
+                                                    <MenuItem Header="QAQ"/>
+                                                    <MenuItem Header="QAQ"/>
+                                                </ws:MenuItem>
                                             </ws:ContextMenu>
                                         </StackPanel.ContextMenu>
                                         <TextBlock Text="{Binding Title}"
