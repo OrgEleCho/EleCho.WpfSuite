@@ -31,11 +31,28 @@ namespace EleCho.WpfSuite.ValueConverters
     public abstract class ValueConverterBase<TSelf, TSourceValue, TTargetValue> : ValueConverterBase<TSelf>
         where TSelf : ValueConverterBase<TSelf, TSourceValue, TTargetValue>
     {
+        /// <summary>
+        /// Return value while trying to convert null value
+        /// </summary>
+        public virtual TTargetValue DefaultTargetValue => throw new InvalidOperationException();
+
+        /// <summary>
+        /// Return value while trying to convert null value back
+        /// </summary>
+        public virtual TSourceValue DefaultSourceValue => throw new InvalidOperationException();
+
         /// <inheritdoc/>
         public sealed override object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not TSourceValue sourceValue)
-                throw new ArgumentException("Invalid type of value", nameof(value));
+            {
+                if (typeof(TSourceValue).IsValueType)
+                {
+                    throw new ArgumentException("Invalid type of value", nameof(value));
+                }
+
+                return DefaultTargetValue;
+            }
 
             return Convert(sourceValue, targetType, parameter, culture);
         }
@@ -44,7 +61,14 @@ namespace EleCho.WpfSuite.ValueConverters
         public sealed override object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value is not TTargetValue targetValue)
-                throw new ArgumentException("Invalid type of value", nameof(value));
+            {
+                if (typeof(TTargetValue).IsValueType)
+                {
+                    throw new ArgumentException("Invalid type of value", nameof(value));
+                }
+
+                return DefaultSourceValue;
+            }
 
             return ConvertBack(targetValue, targetType, parameter, culture);
         }
