@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Package.props = Package.props
 		Packages.md = Packages.md
+		ProjectDependency.md = ProjectDependency.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.WpfSuite.Helpers", "EleCho.WpfSuite.Helpers\EleCho.WpfSuite.Helpers.csproj", "{969147B2-504D-4510-A4BB-55A84B05D10D}"
