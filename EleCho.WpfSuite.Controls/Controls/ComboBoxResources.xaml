@@ -24,7 +24,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    <local:ScrollViewer x:Name="PART_ContentHost" Background="Transparent" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -350,7 +350,12 @@
                           Background="{TemplateBinding TextBoxBackground}"
                           CornerRadius="{TemplateBinding CornerRadius}"
                           Margin="{TemplateBinding BorderThickness}">
-                <TextBox x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBox}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <local:TextBox x:Name="PART_EditableTextBox"
+                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                               Margin="{TemplateBinding Padding}"
+                               Style="{StaticResource ComboBoxEditableTextBox}"
+                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </local:Border>
         </Grid>
         <ControlTemplate.Triggers>
@@ -566,7 +571,7 @@
         <Setter Property="EditableBackground" Value="#FFFFFFFF"/>
         <Setter Property="EditableBorderBrush" Value="#FFABADB3"/>
         <Setter Property="EditableButtonBackground" Value="Transparent"/>
-        <Setter Property="EditableBorderBrush" Value="Transparent"/>
+        <Setter Property="EditableButtonBorderBrush" Value="Transparent"/>
 
         <!--HoverState-->
         <Setter Property="HoverBackground">

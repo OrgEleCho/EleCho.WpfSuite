@@ -85,11 +85,18 @@
                 </ws:WrapPanel>
             </Grid>
 
-            <ws:ComboBox IsEditable="False">
+            <ws:ComboBox IsEditable="True">
                 <ws:ComboBox.Items>
                     <ws:ComboBoxItem Content="QWQ"/>
                 </ws:ComboBox.Items>
             </ws:ComboBox>
+
+
+            <ComboBox IsEditable="True">
+                <ComboBox.Items>
+                    <ComboBoxItem Content="QWQ"/>
+                </ComboBox.Items>
+            </ComboBox>
 
             <ws:StackPanel>
                 <ws:ComboBoxItem Content="QWQ"/>
