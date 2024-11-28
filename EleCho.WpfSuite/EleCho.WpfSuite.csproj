@@ -3,7 +3,7 @@
   <Import Project="../Package.props" />
 
   <PropertyGroup>
-    <Version>0.9.10.1</Version>
+    <Version>0.9.11</Version>
   </PropertyGroup>
 
   <ItemGroup>
