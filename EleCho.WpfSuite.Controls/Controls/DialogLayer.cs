@@ -12,6 +12,7 @@ using EleCho.WpfSuite.Properties;
 namespace EleCho.WpfSuite.Controls
 {
     [TemplatePart(Name = "TempDialogs", Type = typeof(Panel))]
+    [TemplatePart(Name = "MarkButton", Type = typeof(Button))]
     public class DialogLayer : System.Windows.Controls.ContentControl
     {
         private readonly List<Dialog> _dialogStack = new();
@@ -22,7 +23,16 @@ namespace EleCho.WpfSuite.Controls
         }
 
         private Panel? _tempDialogs;
+        private Button? _oldMaskButton;
+
         private Panel? TempDialogs => _tempDialogs ??= GetTemplateChild("TempDialogs") as Panel;
+
+
+        public DialogLayerMode Mode
+        {
+            get { return (DialogLayerMode)GetValue(ModeProperty); }
+            set { SetValue(ModeProperty, value); }
+        }
 
         public Brush Mask
         {
@@ -42,10 +52,20 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(DialogTransitionProperty, value); }
         }
 
+        public bool ClickMaskToCloseDialog
+        {
+            get { return (bool)GetValue(ClickMaskToCloseDialogProperty); }
+            set { SetValue(ClickMaskToCloseDialogProperty, value); }
+        }
+
+
         public Dialog? ShowingDialog => (Dialog)GetValue(ShowingDialogProperty);
 
         public bool IsShowingDialog => (bool)GetValue(IsShowingDialogProperty);
 
+
+        public static readonly DependencyProperty ModeProperty =
+            DependencyProperty.Register(nameof(Mode), typeof(DialogLayerMode), typeof(DialogLayer), new FrameworkPropertyMetadata(default(DialogLayerMode)));
 
         public static readonly DependencyProperty MaskProperty =
             DependencyProperty.Register(nameof(Mask), typeof(Brush), typeof(DialogLayer), new FrameworkPropertyMetadata(null));
@@ -55,6 +75,10 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty DialogTransitionProperty =
             DependencyProperty.Register(nameof(DialogTransition), typeof(IContentTransition), typeof(DialogLayer), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty ClickMaskToCloseDialogProperty =
+            DependencyProperty.Register(nameof(ClickMaskToCloseDialog), typeof(bool), typeof(DialogLayer), new FrameworkPropertyMetadata(false));
+
 
 
         public static readonly DependencyPropertyKey ShowingDialogPropertyKey =
@@ -67,6 +91,15 @@ namespace EleCho.WpfSuite.Controls
         public static readonly DependencyProperty IsShowingDialogProperty = IsShowingDialogPropertyKey.DependencyProperty;
 
 
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            if (GetTemplateChild("MaskButton") is Button maskButton)
+            {
+                
+            }
+        }
 
         public int DialogCount => _dialogStack.Count;
 
