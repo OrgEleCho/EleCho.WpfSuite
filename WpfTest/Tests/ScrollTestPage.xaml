@@ -145,6 +145,8 @@
                     <TextBlock Width="300"
                                Height="300"  
                                TextWrapping="Wrap"
+                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                                Text="Mia iri per helpo ke povis mia liberulo povus tero velojn velojn gxin kiam savi de virojn ke ni por trovis sentadis venos terbordon gxi ke al ili al mia la ili farmilaro iris ne marbordo sxnuregon ni mi nun li dum iris ili boaton mi li decidi ke egalan"/>
                 </ws:ScrollViewer>
             </Border>

@@ -244,6 +244,7 @@
                 <ControlTemplate TargetType="{x:Type local:Thumb}">
                     <Border x:Name="rectangle"
                             Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
                             Height="{TemplateBinding Height}"
                             SnapsToDevicePixels="True"
                             Width="{TemplateBinding Width}"/>
