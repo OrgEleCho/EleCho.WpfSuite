@@ -16,7 +16,7 @@
         ws:WindowOption.Corner="RoundSmall"
         d:Background="White"
         d:DataContext="{d:DesignInstance Type=local:MainWindow}"
-        ws:Mouse.ScrollingSupport="True">
+        ws:Mouse.WheelSupport="True">
 
     <Window.Resources>
         <ws:BindingProxy x:Key="DataProxy" Data="{Binding}"/>

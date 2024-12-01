@@ -21,6 +21,8 @@ namespace EleCho.WpfSuite.Input
         private static int _currentScrollingDeltaX = 0;
         private static int _currentScrollingDeltaY = 0;
 
+        private static readonly HashSet<IntPtr> _hookWindowHandles = new HashSet<IntPtr>();
+
         /// <summary>
         /// 
         /// </summary>
@@ -35,6 +37,14 @@ namespace EleCho.WpfSuite.Input
         {
             WheelEvent.AddOwner(typeof(UIElement));
             WheelEvent.AddOwner(typeof(UIElement3D));
+        }
+
+        private static bool IsElementThatHasHwndSource(DependencyObject dependencyObject)
+        {
+            return
+                dependencyObject is Window ||
+                dependencyObject is Popup ||
+                dependencyObject is ToolTip;
         }
 
         private static HwndSource? GetWindowHwndSource(DependencyObject dependencyObject)
@@ -60,6 +70,19 @@ namespace EleCho.WpfSuite.Input
             }
 
             return null;
+        }
+
+        private static void DoAfterElementLoaded(FrameworkElement element, Action action)
+        {
+            var eventHandler = default(RoutedEventHandler);
+
+            eventHandler = (s, e) =>
+            {
+                action?.Invoke();
+                element.Loaded -= eventHandler;
+            };
+
+            element.Loaded += eventHandler;
         }
 
         private static void DoAfterHandleOk(DependencyObject dependencyObject, Action<DependencyObject, HwndSource> action)
@@ -118,9 +141,19 @@ namespace EleCho.WpfSuite.Input
 
                 tooltip.Opened += eventHandler;
             }
+            else if (dependencyObject is FrameworkElement frameworkElement)
+            {
+                DoAfterElementLoaded(frameworkElement, () =>
+                {
+                    if (GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                    {
+                        action?.Invoke(dependencyObject, hwndSource);
+                    }
+                });
+            }
             else
             {
-                throw new NotSupportedException("Invalid dependency object");
+                throw new InvalidOperationException("Invalid DependencyObject");
             }
         }
         
@@ -141,40 +174,53 @@ namespace EleCho.WpfSuite.Input
             }
         }
 
-        public static bool GetScrollingSupport(DependencyObject obj)
+        public static bool GetWheelSupport(DependencyObject obj)
         {
-            return (bool)obj.GetValue(ScrollingSupportProperty);
+            return (bool)obj.GetValue(WheelSupportProperty);
         }
 
-        public static void SetScrollingSupport(DependencyObject obj, bool value)
+        public static void SetWheelSupport(DependencyObject obj, bool value)
         {
-            obj.SetValue(ScrollingSupportProperty, value);
+            obj.SetValue(WheelSupportProperty, value);
         }
 
-        public static readonly DependencyProperty ScrollingSupportProperty =
-            DependencyProperty.RegisterAttached("ScrollingSupport", typeof(bool), typeof(Mouse), new PropertyMetadata(false, propertyChangedCallback: OnScrollingSupportChanged));
+        public static readonly DependencyProperty WheelSupportProperty =
+            DependencyProperty.RegisterAttached("WheelSupport", typeof(bool), typeof(Mouse), new FrameworkPropertyMetadata(false, flags: FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.OverridesInheritanceBehavior, propertyChangedCallback: OnWheelSupportChanged));
 
         public static readonly RoutedEvent WheelEvent = 
             EventManager.RegisterRoutedEvent("Wheel", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Mouse));
 
-        private static void OnScrollingSupportChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnWheelSupportChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (d is not FrameworkElement)
+            {
+                return;
+            }
+
             bool newValue = (bool)e.NewValue;
 
-            DoAfterHandleOk(d, (d, hwndSource) =>
+            if (newValue)
             {
-                if (newValue)
+                DoAfterHandleOk(d, (d, hwndSource) =>
                 {
-                    hwndSource.AddHook(WindowMessageHookForScrolling);
-                }
-                else
+                    if (!_hookWindowHandles.Contains(hwndSource.Handle))
+                    {
+                        hwndSource.AddHook(WindowMessageHookForWheel);
+                        _hookWindowHandles.Add(hwndSource.Handle);
+                    }
+                });
+            }
+            else
+            {
+                if (GetWindowHwndSource(d) is HwndSource hwndSource)
                 {
-                    hwndSource.RemoveHook(WindowMessageHookForScrolling);
+                    hwndSource.RemoveHook(WindowMessageHookForWheel);
+                    _hookWindowHandles.Remove(hwndSource.Handle);
                 }
-            });
+            }
         }
 
-        private static nint WindowMessageHookForScrolling(nint hwnd, int msg, nint wParam, nint lParam, ref bool handled)
+        private static nint WindowMessageHookForWheel(nint hwnd, int msg, nint wParam, nint lParam, ref bool handled)
         {
             const int WM_MOUSEWHEEL = 0x020A;
             const int WM_MOUSEHWHEEL = 0x020E;
@@ -203,9 +249,31 @@ namespace EleCho.WpfSuite.Input
             return 0;
         }
 
+        private static FrameworkElement? FindFrameworkElement(DependencyObject dependencyObject)
+        {
+            while (true)
+            {
+                if (dependencyObject is FrameworkElement frameworkElement)
+                {
+                    return frameworkElement;
+                }
+
+                var parent = VisualTreeHelper.GetParent(dependencyObject);
+
+                if (parent is null)
+                {
+                    return null;
+                }
+
+                dependencyObject = parent;
+            }
+        }
+
         private static void RaiseWheelEvent()
         {
-            if (System.Windows.Input.Mouse.DirectlyOver is UIElement element)
+            if (System.Windows.Input.Mouse.DirectlyOver is UIElement element &&
+                FindFrameworkElement(element) is FrameworkElement frameworkElement &&
+                GetWheelSupport(frameworkElement))
             {
                 element.RaiseEvent(new RoutedEventArgs(WheelEvent));
             }

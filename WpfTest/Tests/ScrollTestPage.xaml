@@ -124,7 +124,8 @@
                     BorderThickness="1"
                     BorderBrush="Gray"
                     CornerRadius="4"
-                    Padding="4">
+                    Padding="4"
+                    ws:Mouse.WheelSupport="False">
                 <ws:ScrollViewer VerticalScrollBarVisibility="Auto"
                                  HorizontalScrollBarVisibility="Auto">
                     <TextBlock Text="Mia iri per helpo ke povis mia liberulo povus tero velojn velojn gxin kiam savi de virojn ke ni por trovis sentadis venos terbordon gxi ke al ili al mia la ili farmilaro iris ne marbordo sxnuregon ni mi nun li dum iris ili boaton mi li decidi ke egalan"/>
