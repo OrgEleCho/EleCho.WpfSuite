@@ -51,6 +51,12 @@ namespace EleCho.WpfSuite.Controls
         private FrameworkElement? _scrollContentPresenter;
 
         /// <inheritdoc/>
+        public ScrollViewer()
+        {
+            AddHandler(EleCho.WpfSuite.Input.Mouse.WheelEvent, (RoutedEventHandler)OnSuiteMouseWheel);
+        }
+
+        /// <inheritdoc/>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -150,17 +156,12 @@ namespace EleCho.WpfSuite.Controls
 
 
 
-        private void CoreScrollWithWheelDelta(MouseWheelEventArgs e)
+        private bool CoreScrollWithWheelDelta(int deltaX, int deltaY)
         {
-            if (e.Handled)
-            {
-                return;
-            }
-
             if (!AlwaysHandleMouseWheelScrolling &&
                 !_propertyHandlesMouseWheelScrollingGetter.Invoke(this))
             {
-                return;
+                return false;
             }
 
             var preferedScrollOrientation = PreferedScrollOrientation;
@@ -176,14 +177,25 @@ namespace EleCho.WpfSuite.Controls
 
             bool canScrollVertical = CanScrollVertical;
             bool canScrollHorizontal = CanScrollHorizontal;
-            bool canScrollHorizontalAndPreferHorizontal = canScrollHorizontal && preferedScrollOrientation == Orientation.Horizontal;
+
+            double scrollDelta = deltaY;
+            if (deltaX != 0)
+            {
+                scrollDelta = -deltaX;
+                preferedScrollOrientation = Orientation.Horizontal;
+
+                if (!canScrollHorizontal)
+                {
+                    return false;
+                }
+            }
 
             var tickCount = Environment.TickCount;
             var isTouchpadScrolling =
-                    e.Delta % Mouse.MouseWheelDeltaForOneLine != 0 ||
+                    scrollDelta % Mouse.MouseWheelDeltaForOneLine != 0 ||
                     (tickCount - _lastScrollingTick < _millisecondsBetweenTouchpadScrolling && _lastScrollDelta % Mouse.MouseWheelDeltaForOneLine != 0);
 
-            double scrollDelta = e.Delta;
+            bool canScrollHorizontalAndPreferHorizontal = canScrollHorizontal && preferedScrollOrientation == Orientation.Horizontal;
 
             if (isTouchpadScrolling)
             {
@@ -202,11 +214,11 @@ namespace EleCho.WpfSuite.Controls
             {
                 if (scrollDelta > 0 && !CanScrollUp)
                 {
-                    return;
+                    return false;
                 }
                 else if (scrollDelta < 0 && !CanScrollDown)
                 {
-                    return;
+                    return false;
                 }
 
                 if (ScrollInfo is IScrollInfo scrollInfo)
@@ -215,7 +227,7 @@ namespace EleCho.WpfSuite.Controls
                     scrollDelta *= scrollInfo.ViewportHeight / (_scrollContentPresenter?.ActualHeight ?? ActualHeight);
                 }
 
-                var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastVerticalScrollingDelta);
+                var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastVerticalScrollingDelta);
                 var nowOffset = sameDirectionAsLast && _animationRunning ? VerticalOffsetTarget : VerticalOffset;
                 var newOffset = nowOffset - scrollDelta;
 
@@ -255,17 +267,17 @@ namespace EleCho.WpfSuite.Controls
                     BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
 
-                _lastVerticalScrollingDelta = e.Delta;
+                _lastVerticalScrollingDelta = deltaY;
             }
             else if (canScrollHorizontal)
             {
                 if (scrollDelta > 0 && !CanScrollLeft)
                 {
-                    return;
+                    return false;
                 }
                 else if (scrollDelta < 0 && !CanScrollRight)
                 {
-                    return;
+                    return false;
                 }
 
                 if (ScrollInfo is IScrollInfo scrollInfo)
@@ -274,7 +286,7 @@ namespace EleCho.WpfSuite.Controls
                     scrollDelta *= scrollInfo.ViewportWidth / (_scrollContentPresenter?.ActualWidth ?? ActualWidth);
                 }
 
-                var sameDirectionAsLast = Math.Sign(e.Delta) == Math.Sign(_lastHorizontalScrollingDelta);
+                var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastHorizontalScrollingDelta);
                 var nowOffset = sameDirectionAsLast && _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
                 var newOffset = nowOffset - scrollDelta;
 
@@ -314,18 +326,18 @@ namespace EleCho.WpfSuite.Controls
                     BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
                 }
 
-                _lastHorizontalScrollingDelta = e.Delta;
+                _lastHorizontalScrollingDelta = deltaY;
             }
             else
             {
                 // no scroll
-                return;
+                return false;
             }
 
             _lastScrollingTick = tickCount;
-            _lastScrollDelta = e.Delta;
+            _lastScrollDelta = deltaY;
 
-            e.Handled = true;
+            return true;
         }
 
         private void DoubleAnimation_Completed(object? sender, EventArgs e)
@@ -340,11 +352,21 @@ namespace EleCho.WpfSuite.Controls
             {
                 base.OnMouseWheel(e);
             }
-            else
+            else if (!e.Handled)
             {
                 Debug.WriteLine(e.Delta);
 
-                CoreScrollWithWheelDelta(e);
+                var handled = CoreScrollWithWheelDelta(0, e.Delta);
+                e.Handled = handled;
+            }
+        }
+
+        private void OnSuiteMouseWheel(object? sender, RoutedEventArgs e)
+        {
+            if (EleCho.WpfSuite.Input.Mouse.CurrentWheelDeltaX != 0)
+            {
+                var handled = CoreScrollWithWheelDelta(EleCho.WpfSuite.Input.Mouse.CurrentWheelDeltaX, 0);
+                e.Handled = handled;
             }
         }
 

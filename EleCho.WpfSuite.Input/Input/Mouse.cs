@@ -18,18 +18,24 @@ namespace EleCho.WpfSuite.Input
     /// </summary>
     public class Mouse
     {
-        private static double _currentScrollingDeltaX = 0;
-        private static double _currentScrollingDeltaY = 0;
+        private static int _currentScrollingDeltaX = 0;
+        private static int _currentScrollingDeltaY = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        public static double CurrentWheelDeltaX = _currentScrollingDeltaX;
+        public static int CurrentWheelDeltaX => _currentScrollingDeltaX;
 
         /// <summary>
         /// 
         /// </summary>
-        public static double CurrentWhellDeltaY = _currentScrollingDeltaY;
+        public static int CurrentWheelDeltaY => _currentScrollingDeltaY;
+
+        static Mouse()
+        {
+            WheelEvent.AddOwner(typeof(UIElement));
+            WheelEvent.AddOwner(typeof(UIElement3D));
+        }
 
         private static HwndSource? GetWindowHwndSource(DependencyObject dependencyObject)
         {
@@ -148,6 +154,9 @@ namespace EleCho.WpfSuite.Input
         public static readonly DependencyProperty ScrollingSupportProperty =
             DependencyProperty.RegisterAttached("ScrollingSupport", typeof(bool), typeof(Mouse), new PropertyMetadata(false, propertyChangedCallback: OnScrollingSupportChanged));
 
+        public static readonly RoutedEvent WheelEvent = 
+            EventManager.RegisterRoutedEvent("Wheel", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Mouse));
+
         private static void OnScrollingSupportChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             bool newValue = (bool)e.NewValue;
@@ -175,19 +184,31 @@ namespace EleCho.WpfSuite.Input
                 case WM_MOUSEWHEEL:
                 {
                     int deltaY = HIWORD(wParam);
+                    _currentScrollingDeltaX = 0;
                     _currentScrollingDeltaY = deltaY;
+                    RaiseWheelEvent();
                     break;
                 }
                 case WM_MOUSEHWHEEL:
                 {
                     int deltaX = HIWORD(wParam);
                     _currentScrollingDeltaX = deltaX;
+                    _currentScrollingDeltaY = 0;
                     Debug.WriteLine($"Horizontal Scroll: {deltaX}");
+                    RaiseWheelEvent();
                     break;
                 }
             }
 
             return 0;
+        }
+
+        private static void RaiseWheelEvent()
+        {
+            if (System.Windows.Input.Mouse.DirectlyOver is UIElement element)
+            {
+                element.RaiseEvent(new RoutedEventArgs(WheelEvent));
+            }
         }
     }
 }
