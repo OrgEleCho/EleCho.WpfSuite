@@ -142,7 +142,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
@@ -227,7 +227,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
                                 </Setter.Value>
@@ -326,7 +326,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
@@ -411,7 +411,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
                                 </Setter.Value>
@@ -511,7 +511,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
@@ -596,7 +596,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
                                 </Setter.Value>
@@ -695,7 +695,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
@@ -780,7 +780,7 @@
                             <Setter Property="Stroke" TargetName="arrow">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowCircle"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
                                         <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
                                     </MultiBinding>
                                 </Setter.Value>
