@@ -17,30 +17,59 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}">
+                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid Background="Transparent" SnapsToDevicePixels="False">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Ellipse x:Name="circle" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleFill}" HorizontalAlignment="Center" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"
                                      Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
                             <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
-                            <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
                         </Grid>
-                    </Border>
+                    </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Data" TargetName="arrow" >
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
+                                     Value="{x:Static local:ExpanderHeaderIconPosition.End}">
+                            <Setter Property="Grid.Column" TargetName="circle" Value="2"/>
+                            <Setter Property="Grid.Column" TargetName="arrow" Value="2"/>
+                        </DataTrigger>
+                        <Trigger Property="ClipToBounds" Value="True">
+                            <Setter TargetName="contentPresenter"
+                                    Property="Clip"
+                                    Value="{Binding ElementName=border,Path=ContentClip}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="Background">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -67,6 +96,30 @@
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
@@ -96,7 +149,65 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Data" TargetName="arrow" >
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -131,11 +242,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}">
+                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid Background="Transparent" SnapsToDevicePixels="False">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid>
                                 <Grid.LayoutTransform>
@@ -151,20 +267,16 @@
                                          Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
                                 <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
                             </Grid>
-                            <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
                         </Grid>
-                    </Border>
+                    </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Data" TargetName="arrow" >
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
+                                     Value="{x:Static local:ExpanderHeaderIconPosition.End}">
+                            <Setter Property="Grid.Column" TargetName="circle" Value="2"/>
+                            <Setter Property="Grid.Column" TargetName="arrow" Value="2"/>
+                        </DataTrigger>
+
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
@@ -221,7 +333,65 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Data" TargetName="arrow" >
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -256,11 +426,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}">
+                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid Background="Transparent" SnapsToDevicePixels="False">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid>
                                 <Grid.LayoutTransform>
@@ -276,21 +451,18 @@
                                          Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
                                 <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
                             </Grid>
-                            <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
                         </Grid>
-                    </Border>
+                    </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Data" TargetName="arrow" >
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
+                                     Value="{x:Static local:ExpanderHeaderIconPosition.End}">
+                            <Setter Property="Grid.Row" TargetName="circle" Value="2"/>
+                            <Setter Property="Grid.Row" TargetName="arrow" Value="2"/>
+                        </DataTrigger>
+
                         <Trigger Property="IsMouseOver" Value="true">
+
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -346,7 +518,65 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Data" TargetName="arrow" >
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -381,11 +611,16 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <Border Padding="{TemplateBinding Padding}">
+                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
                         <Grid Background="Transparent" SnapsToDevicePixels="False">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid>
                                 <Grid.LayoutTransform>
@@ -401,20 +636,16 @@
                                          Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
                                 <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
                             </Grid>
-                            <ContentPresenter HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
                         </Grid>
-                    </Border>
+                    </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Data" TargetName="arrow" >
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
+                                     Value="{x:Static local:ExpanderHeaderIconPosition.End}">
+                            <Setter Property="Grid.Row" TargetName="circle" Value="2"/>
+                            <Setter Property="Grid.Row" TargetName="arrow" Value="2"/>
+                        </DataTrigger>
+
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
@@ -471,7 +702,65 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Data" TargetName="arrow" >
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="BorderBrush">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Stroke" TargetName="circle">
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
@@ -516,6 +805,7 @@
         <Setter Property="DisabledCircleFill" Value="#FFE6E6E6"/>
         <Setter Property="DisabledArrowStroke" Value="#FF707070"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HeaderForeground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="CircleDiameter" Value="19"/>
         <Setter Property="ArrowGeometry" Value="M 1,1.5 L 4.5,5 L 8,1.5"/>
@@ -526,6 +816,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HeaderMargin" Value="1"/>
         <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="HeaderCornerRadius" Value="3"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Expander}">
@@ -541,7 +832,6 @@
                                                 ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
                                                 DockPanel.Dock="Top"
                                                 FontStretch="{TemplateBinding FontStretch}"
-                                                Foreground="{TemplateBinding Foreground}"
                                                 FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}"
                                                 FontStyle="{TemplateBinding FontStyle}"
                                                 FontFamily="{TemplateBinding FontFamily}"
@@ -553,6 +843,23 @@
                                                 Padding="{TemplateBinding HeaderPadding}"
                                                 MinWidth="0" MinHeight="0"
                                                 Style="{StaticResource ExpanderDownHeaderStyle}"
+                                                Foreground="{TemplateBinding HeaderForeground}"
+                                                Background="{TemplateBinding HeaderBackground}"
+                                                BorderBrush="{TemplateBinding HeaderBorderBrush}"
+                                                HoverForeground="{TemplateBinding HeaderHoverForeground}"
+                                                HoverBackground="{TemplateBinding HeaderHoverBackground}"
+                                                HoverBorderBrush="{TemplateBinding HeaderHoverBorderBrush}"
+                                                PressedForeground="{TemplateBinding HeaderPressedForeground}"
+                                                PressedBackground="{TemplateBinding HeaderPressedBackground}"
+                                                PressedBorderBrush="{TemplateBinding HeaderPressedBorderBrush}"
+                                                CheckedForeground="{TemplateBinding HeaderCheckedForeground}"
+                                                CheckedBackground="{TemplateBinding HeaderCheckedBackground}"
+                                                CheckedBorderBrush="{TemplateBinding HeaderCheckedBorderBrush}"
+                                                DisabledForeground="{TemplateBinding HeaderDisabledForeground}"
+                                                DisabledBackground="{TemplateBinding HeaderDisabledBackground}"
+                                                DisabledBorderBrush="{TemplateBinding HeaderDisabledBorderBrush}"
+                                                BorderThickness="{TemplateBinding HeaderBorderThickness}"
+                                                CornerRadius="{TemplateBinding HeaderCornerRadius}"
                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed"/>

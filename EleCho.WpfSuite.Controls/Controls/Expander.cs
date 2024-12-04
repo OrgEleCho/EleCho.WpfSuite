@@ -24,12 +24,6 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public Brush HeaderBorderBrush
-        {
-            get { return (Brush)GetValue(HeaderBorderBrushProperty); }
-            set { SetValue(HeaderBorderBrushProperty, value); }
-        }
-
         public Thickness HeaderBorderThickness
         {
             get { return (Thickness)GetValue(HeaderBorderThicknessProperty); }
@@ -54,6 +48,104 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(HeaderPaddingProperty, value); }
         }
 
+        public ExpanderHeaderIconPosition HeaderIconPosition
+        {
+            get { return (ExpanderHeaderIconPosition)GetValue(HeaderIconPositionProperty); }
+            set { SetValue(HeaderIconPositionProperty, value); }
+        }
+
+
+
+        public Brush HeaderForeground
+        {
+            get { return (Brush)GetValue(HeaderForegroundProperty); }
+            set { SetValue(HeaderForegroundProperty, value); }
+        }
+
+        public Brush HeaderBackground
+        {
+            get { return (Brush)GetValue(HeaderBackgroundProperty); }
+            set { SetValue(HeaderBackgroundProperty, value); }
+        }
+
+        public Brush HeaderBorderBrush
+        {
+            get { return (Brush)GetValue(HeaderBorderBrushProperty); }
+            set { SetValue(HeaderBorderBrushProperty, value); }
+        }
+
+        public Brush HeaderHoverForeground
+        {
+            get { return (Brush)GetValue(HeaderHoverForegroundProperty); }
+            set { SetValue(HeaderHoverForegroundProperty, value); }
+        }
+
+        public Brush HeaderHoverBackground
+        {
+            get { return (Brush)GetValue(HeaderHoverBackgroundProperty); }
+            set { SetValue(HeaderHoverBackgroundProperty, value); }
+        }
+
+        public Brush HeaderHoverBorderBrush
+        {
+            get { return (Brush)GetValue(HeaderHoverBorderBrushProperty); }
+            set { SetValue(HeaderHoverBorderBrushProperty, value); }
+        }
+
+        public Brush HeaderPressedForeground
+        {
+            get { return (Brush)GetValue(HeaderPressedForegroundProperty); }
+            set { SetValue(HeaderPressedForegroundProperty, value); }
+        }
+
+        public Brush HeaderPressedBackground
+        {
+            get { return (Brush)GetValue(HeaderPressedBackgroundProperty); }
+            set { SetValue(HeaderPressedBackgroundProperty, value); }
+        }
+
+        public Brush HeaderPressedBorderBrush
+        {
+            get { return (Brush)GetValue(HeaderPressedBorderBrushProperty); }
+            set { SetValue(HeaderPressedBorderBrushProperty, value); }
+        }
+
+        public Brush HeaderCheckedForeground
+        {
+            get { return (Brush)GetValue(HeaderCheckedForegroundProperty); }
+            set { SetValue(HeaderCheckedForegroundProperty, value); }
+        }
+
+        public Brush HeaderCheckedBackground
+        {
+            get { return (Brush)GetValue(HeaderCheckedBackgroundProperty); }
+            set { SetValue(HeaderCheckedBackgroundProperty, value); }
+        }
+
+        public Brush HeaderCheckedBorderBrush
+        {
+            get { return (Brush)GetValue(HeaderCheckedBorderBrushProperty); }
+            set { SetValue(HeaderCheckedBorderBrushProperty, value); }
+        }
+
+        public Brush HeaderDisabledForeground
+        {
+            get { return (Brush)GetValue(HeaderDisabledForegroundProperty); }
+            set { SetValue(HeaderDisabledForegroundProperty, value); }
+        }
+
+        public Brush HeaderDisabledBackground
+        {
+            get { return (Brush)GetValue(HeaderDisabledBackgroundProperty); }
+            set { SetValue(HeaderDisabledBackgroundProperty, value); }
+        }
+
+        public Brush HeaderDisabledBorderBrush
+        {
+            get { return (Brush)GetValue(HeaderDisabledBorderBrushProperty); }
+            set { SetValue(HeaderDisabledBorderBrushProperty, value); }
+        }
+
 
         public double CircleDiameter
         {
@@ -72,8 +164,6 @@ namespace EleCho.WpfSuite.Controls
             get { return (Geometry)GetValue(ExpandedArrowGeometryProperty); }
             set { SetValue(ExpandedArrowGeometryProperty, value); }
         }
-
-
 
 
         public Brush CircleStroke
@@ -155,9 +245,6 @@ namespace EleCho.WpfSuite.Controls
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(Expander), new FrameworkPropertyMetadata(default(CornerRadius)));
 
-        public static readonly DependencyProperty HeaderBorderBrushProperty =
-            DependencyProperty.Register(nameof(HeaderBorderBrush), typeof(Brush), typeof(Expander), new FrameworkPropertyMetadata(null));
-
         public static readonly DependencyProperty HeaderBorderThicknessProperty =
             DependencyProperty.Register(nameof(HeaderBorderThickness), typeof(Thickness), typeof(Expander), new FrameworkPropertyMetadata(null));
 
@@ -169,6 +256,54 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty HeaderPaddingProperty =
             DependencyProperty.Register(nameof(HeaderPadding), typeof(Thickness), typeof(Expander), new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty HeaderIconPositionProperty =
+            DependencyProperty.Register(nameof(HeaderIconPosition), typeof(ExpanderHeaderIconPosition), typeof(Expander), new PropertyMetadata(ExpanderHeaderIconPosition.Start));
+
+        public static readonly DependencyProperty HeaderForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderForeground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderBackground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderBorderBrushProperty =
+            DependencyProperty.Register(nameof(HeaderBorderBrush), typeof(Brush), typeof(Expander), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderHoverForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderHoverForeground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderHoverBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderHoverBackground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderHoverBorderBrushProperty =
+            DependencyProperty.Register(nameof(HeaderHoverBorderBrush), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderPressedForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderPressedForeground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderPressedBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderPressedBackground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderPressedBorderBrushProperty =
+            DependencyProperty.Register(nameof(HeaderPressedBorderBrush), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderCheckedForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderCheckedForeground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderCheckedBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderCheckedBackground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderCheckedBorderBrushProperty =
+            DependencyProperty.Register(nameof(HeaderCheckedBorderBrush), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderDisabledForegroundProperty =
+            DependencyProperty.Register(nameof(HeaderDisabledForeground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderDisabledBackgroundProperty =
+            DependencyProperty.Register(nameof(HeaderDisabledBackground), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty HeaderDisabledBorderBrushProperty =
+            DependencyProperty.Register(nameof(HeaderDisabledBorderBrush), typeof(Brush), typeof(Expander), new PropertyMetadata(null));
 
         public static readonly DependencyProperty CircleDiameterProperty =
             DependencyProperty.Register(nameof(CircleDiameter), typeof(double), typeof(Expander), new FrameworkPropertyMetadata(0.0));

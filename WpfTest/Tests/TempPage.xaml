@@ -43,7 +43,12 @@
                 <MenuItem Header="qwq"/>
             </Menu>
 
-            <ws:Expander Header="Fuck you world">
+            <ws:Expander Header="Fuck you world"
+                         HeaderIconPosition="End"
+                         HeaderBackground="White"
+                         HeaderBorderThickness="1"
+                         HeaderBorderBrush="Gray"
+                         HeaderPadding="8">
                 ofiwjefio
             </ws:Expander>
 

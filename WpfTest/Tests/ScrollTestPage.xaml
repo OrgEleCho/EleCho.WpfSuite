@@ -6,13 +6,14 @@
       xmlns:local="clr-namespace:WpfTest.Tests"
       xmlns:ws="https://schemas.elecho.dev/wpfsuite"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="800"
       Title="ScrollTestPage"
       d:Background="White">
 
     <ws:ScrollViewer>
         <ws:StackPanel Margin="28 12 28 28"
-                       Spacing="8">
+                       Spacing="8"
+                       Background="Transparent">
             <ws:StackPanel Grid.ColumnSpan="3"
                            Spacing="8"
                            Margin="0 0 0 24">
@@ -142,12 +143,14 @@
                     Width="200"
                     Height="200">
                 <ws:ScrollViewer VerticalScrollBarVisibility="Auto"
-                                 HorizontalScrollBarVisibility="Auto">
+                                 HorizontalScrollBarVisibility="Auto"
+                                 ws:MouseTouchDevice.Simulate="True">
                     <TextBlock Width="300"
                                Height="300"  
                                TextWrapping="Wrap"
                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                               Background="Transparent"
                                Text="Mia iri per helpo ke povis mia liberulo povus tero velojn velojn gxin kiam savi de virojn ke ni por trovis sentadis venos terbordon gxi ke al ili al mia la ili farmilaro iris ne marbordo sxnuregon ni mi nun li dum iris ili boaton mi li decidi ke egalan"/>
                 </ws:ScrollViewer>
             </Border>
