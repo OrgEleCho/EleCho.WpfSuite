@@ -43,6 +43,10 @@
                 <MenuItem Header="qwq"/>
             </Menu>
 
+            <ws:Expander Header="Fuck you world">
+                ofiwjefio
+            </ws:Expander>
+
             <ws:StackPanel Spacing="8"
                            Orientation="Horizontal">
                 <ws:Button Content="QWQ" PressedBackground="Red"
