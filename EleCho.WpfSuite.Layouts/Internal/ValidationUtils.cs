@@ -1,4 +1,6 @@
-﻿namespace EleCho.WpfSuite
+﻿using System.Collections.Generic;
+
+namespace EleCho.WpfSuite
 {
     /// <summary>
     /// Validation Utilities

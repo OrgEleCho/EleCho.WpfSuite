@@ -26,6 +26,6 @@ namespace WpfTest.Tests
             InitializeComponent();
         }
 
-        public Stretch[] StretchModes { get; } = Enum.GetValues<Stretch>();
+        public Stretch[] StretchModes { get; } = (Stretch[])Enum.GetValues(typeof(Stretch));
     }
 }

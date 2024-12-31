@@ -1,38 +1,7 @@
-﻿namespace EleCho.WpfSuite.Layouts
-{
-    /// <summary>
-    /// Flex main alignment
-    /// </summary>
-    public enum FlexMainAlignment
-    {
-        /// <summary>
-        /// Align to start
-        /// </summary>
-        Start, 
-        
-        /// <summary>
-        /// Align to end
-        /// </summary>
-        End, 
-        
-        /// <summary>
-        /// Align to center
-        /// </summary>
-        Center,
+﻿namespace EleCho.WpfSuite.Layouts;
 
-        /// <summary>
-        /// Align space between
-        /// </summary>
-        SpaceBetween, 
-        
-        /// <summary>
-        /// Align space around
-        /// </summary>
-        SpaceAround, 
-        
-        /// <summary>
-        /// Align space evenly
-        /// </summary>
-        SpaceEvenly,
-    }
+public enum FlexMainAlignment
+{
+    Start, Center, End,
+    SpaceBetween, SpaceAround, SpaceEvenly
 }

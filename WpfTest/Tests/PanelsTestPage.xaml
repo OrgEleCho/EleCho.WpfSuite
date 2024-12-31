@@ -125,7 +125,7 @@
                          Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
-                              Wrap="Wrap">
+                              Wrap="True">
                     <i:Interaction.Behaviors>
                         <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
                     </i:Interaction.Behaviors>
@@ -153,7 +153,7 @@
                          Padding="8">
                 <ws:FlexPanel MainSpacing="8"
                               CrossSpacing="8"
-                              Wrap="Wrap"
+                              Wrap="True"
                               UniformGrow="1">
                     <i:Interaction.Behaviors>
                         <i:FluidMoveBehavior Duration="0:0:0.1" AppliesTo="Children"/>
