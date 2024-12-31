@@ -266,6 +266,11 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="{x:Type ws:Popup}">
+        <Setter Property="ws:WindowOption.AccentState" Value="AcrylicBlurBehind"/>
+        <Setter Property="ws:WindowOption.Corner" Value="RoundSmall"/>
+    </Style>
+
     <Style TargetType="{x:Type ws:Tooltip}"
            BasedOn="{StaticResource {x:Type ws:Tooltip}}">
         <!--nothing-->

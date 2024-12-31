@@ -31,9 +31,18 @@
                 </Border>
             </Popup>
             <ws:Popup IsOpen="{Binding ElementName=suitePopupToggle,Path=IsChecked}"
-                      PlacementTarget="{Binding ElementName=suitePopupToggle}">
-                <Border Background="White" BorderThickness="1" BorderBrush="Gray" Padding="14">
-                    <TextBlock Text="WPF Suite Popup"/>
+                      PlacementTarget="{Binding ElementName=suitePopupToggle}"
+                      AllowsTransparency="False"
+                      NoActivate="False"
+                      ws:WindowOption.AccentState="None"
+                      ws:WindowOption.BorderColor="Red"
+                      ws:WindowOption.Backdrop="Acrylic"
+                      ws:WindowOption.Corner="RoundSmall">
+                <Border Background="Transparent" BorderThickness="0" BorderBrush="Gray" Padding="14">
+                    <ws:StackPanel Spacing="4">
+                        <TextBlock Text="WPF Suite Popup"/>
+                        <ws:TextBox Placeholder="Test TextBox"/>
+                    </ws:StackPanel>
                 </Border>
             </ws:Popup>
         </ws:StackPanel>
