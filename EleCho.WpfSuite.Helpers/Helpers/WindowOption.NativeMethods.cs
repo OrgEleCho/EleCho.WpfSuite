@@ -44,10 +44,23 @@ namespace EleCho.WpfSuite.Helpers
             public static extern bool UpdateWindow(nint hwnd);
 
             [DllImport("User32")]
-            public extern static nint GetWindowLongPtr(nint hwnd, int index);
+            private extern static nint GetWindowLongW(nint hwnd, int index);
 
             [DllImport("User32")]
-            public extern static nint SetWindowLongPtr(nint hwnd, int index, nint newLong);
+            private extern static nint SetWindowLongW(nint hwnd, int index, nint newLong);
+
+            [DllImport("User32")]
+            private extern static nint GetWindowLongPtr(nint hwnd, int index);
+
+            [DllImport("User32")]
+            private extern static nint SetWindowLongPtr(nint hwnd, int index, nint newLong);
+
+            private static Func<nint, int, nint> _procGetWindowLong = IntPtr.Size == 8 ? GetWindowLongPtr : GetWindowLongW;
+
+            private static Func<nint, int, nint, nint> _procSetWindowLong = IntPtr.Size == 8 ? SetWindowLongPtr : SetWindowLongW;
+
+            public static nint GetWindowLong(nint hwnd, int index) => _procGetWindowLong.Invoke(hwnd, index);
+            public static nint SetWindowLong(nint hwnd, int index, nint newLong) => _procSetWindowLong.Invoke(hwnd, index, newLong);
 
 
             [StructLayout(LayoutKind.Sequential)]

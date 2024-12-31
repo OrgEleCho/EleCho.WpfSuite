@@ -1441,12 +1441,12 @@ namespace EleCho.WpfSuite.Helpers
         {
             var handle = hwndSource.Handle;
 
-            var oldPtr = NativeDefinition.GetWindowLongPtr(handle, NativeDefinition.GWL_STYLE);
+            var oldPtr = NativeDefinition.GetWindowLong(handle, NativeDefinition.GWL_STYLE);
             var newPtr = isCaptionVisible ?
                 oldPtr | NativeDefinition.WS_CAPTION :
                 oldPtr & ~NativeDefinition.WS_CAPTION;
 
-            NativeDefinition.SetWindowLongPtr(handle, NativeDefinition.GWL_STYLE, newPtr);
+            NativeDefinition.SetWindowLong(handle, NativeDefinition.GWL_STYLE, newPtr);
 
             // refresh
             SetWindowPos(
@@ -1458,12 +1458,12 @@ namespace EleCho.WpfSuite.Helpers
         {
             var handle = hwndSource.Handle;
 
-            var oldPtr = NativeDefinition.GetWindowLongPtr(handle, NativeDefinition.GWL_STYLE);
+            var oldPtr = NativeDefinition.GetWindowLong(handle, NativeDefinition.GWL_STYLE);
             var newPtr = isCaptionMenuVisible ?
                 oldPtr | NativeDefinition.WS_SYSMENU :
                 oldPtr & ~NativeDefinition.WS_SYSMENU;
 
-            NativeDefinition.SetWindowLongPtr(handle, NativeDefinition.GWL_STYLE, newPtr);
+            NativeDefinition.SetWindowLong(handle, NativeDefinition.GWL_STYLE, newPtr);
 
             // refresh
             SetWindowPos(
