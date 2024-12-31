@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -51,10 +53,26 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <summary>
+        /// WS_EX_NOACTIVATE
+        /// </summary>
+        public bool NoActivate
+        {
+            get { return (bool)GetValue(NoActivateProperty); }
+            set { SetValue(NoActivateProperty, value); }
+        }
+
+
+        /// <summary>
         /// The DependencyProperty of <see cref="AutoReposition"/> property
         /// </summary>
         public static readonly DependencyProperty AutoRepositionProperty =
             DependencyProperty.Register(nameof(AutoReposition), typeof(bool), typeof(Popup), new FrameworkPropertyMetadata(true));
+
+        /// <summary>
+        /// The DependencyProperty of <see cref="NoActivate"/> property
+        /// </summary>
+        public static readonly DependencyProperty NoActivateProperty =
+            DependencyProperty.Register(nameof(NoActivate), typeof(bool), typeof(Popup), new FrameworkPropertyMetadata(true));
 
         private static void PlacementTargetChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -87,6 +105,17 @@ namespace EleCho.WpfSuite.Controls
                 placementTargetWindow.LocationChanged += OnPlacementTargetLocationChanged;
                 _placementTargetWindow = placementTargetWindow;
             }
+
+            if (Child is not null &&
+                PresentationSource.FromVisual(Child) is HwndSource hwndSource)
+            {
+                if (!NoActivate)
+                {
+                    var exStyle = GetWindowLongPtrW(hwndSource.Handle, GWL_EXSTYLE);
+                    var newExStyle = exStyle & ~WS_EX_NOACTIVATE;
+                    SetWindowLongPtrW(hwndSource.Handle, GWL_EXSTYLE, newExStyle);
+                }
+            }
         }
 
         /// <inheritdoc/>
@@ -108,5 +137,14 @@ namespace EleCho.WpfSuite.Controls
                 s_baseRepositionMethod.Invoke(this);
             }
         }
+
+        const int GWL_EXSTYLE = -20;
+        const ulong WS_EX_NOACTIVATE = 0x08000000L;
+
+        [DllImport("User32", EntryPoint = "GetWindowLongPtrW", ExactSpelling = true)]
+        static extern ulong GetWindowLongPtrW(nint hwnd, int index);
+
+        [DllImport("User32", EntryPoint = "SetWindowLongPtrW", ExactSpelling = true)]
+        static extern nint SetWindowLongPtrW(nint hwnd, int index, ulong newLong);
     }
 }
