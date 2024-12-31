@@ -1485,17 +1485,17 @@ namespace EleCho.WpfSuite.Helpers
                     s_maximumButtons = new();
                 }
 
-                if (HasWindowCaptionButton(windowHandle))
-                {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
-                }
-
                 if (s_maximumButtons.ContainsKey(windowHandle))
                 {
                     throw new InvalidOperationException(StringResources.MaximumButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_maximumButtons[windowHandle] = visual;
+
+                if (HasWindowCaptionButton(windowHandle))
+                {
+                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                }
             }
             else
             {
@@ -1532,17 +1532,17 @@ namespace EleCho.WpfSuite.Helpers
                     s_minimumButtons = new();
                 }
 
-                if (HasWindowCaptionButton(windowHandle))
-                {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
-                }
-
                 if (s_minimumButtons.ContainsKey(windowHandle))
                 {
                     throw new InvalidOperationException(StringResources.MinimumButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_minimumButtons[windowHandle] = visual;
+
+                if (HasWindowCaptionButton(windowHandle))
+                {
+                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                }
             }
             else
             {
@@ -1579,17 +1579,17 @@ namespace EleCho.WpfSuite.Helpers
                     s_closeButtons = new();
                 }
 
-                if (HasWindowCaptionButton(windowHandle))
-                {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
-                }
-
                 if (s_closeButtons.ContainsKey(windowHandle))
                 {
                     throw new InvalidOperationException(StringResources.CloseButtonIsAlreadySetToAnotherVisual);
                 }
 
                 s_closeButtons[windowHandle] = visual;
+
+                if (HasWindowCaptionButton(windowHandle))
+                {
+                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                }
             }
             else
             {
