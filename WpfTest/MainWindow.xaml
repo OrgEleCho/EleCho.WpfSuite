@@ -57,7 +57,7 @@
                                PressedBackground="#ededed"
                                BorderThickness="0"
                                CornerRadius="0"
-                               ws:WindowOption.IsMinimumButton="False"
+                               ws:WindowOption.IsMinimumButton="True"
                                Command="{Binding MinimumSelfCommand}"/>
                     <ws:Button FontFamily="Segoe Fluent Icons"
                                FontSize="10"
@@ -88,7 +88,7 @@
                                HoverForeground="White"
                                BorderThickness="0"
                                CornerRadius="0"
-                               ws:WindowOption.IsCloseButton="False"
+                               ws:WindowOption.IsCloseButton="True"
                                Command="{Binding CloseSelfCommand}"/>
                 </ws:StackPanel>
             </Grid>
