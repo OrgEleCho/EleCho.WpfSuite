@@ -147,4 +147,16 @@
   <data name="CanNotFindTemplateChildTempDialogs" xml:space="preserve">
     <value>Can not find template child 'TempDialogs'</value>
   </data>
+  <data name="CanNotGetHwndSourceOfVisual" xml:space="preserve">
+    <value>Can not get HwndSource of Visual</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowCloseButton" xml:space="preserve">
+    <value>This Visual is already a window close button</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowMaximumButton" xml:space="preserve">
+    <value>This Visual is already a window maximum button</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowMinimumButton" xml:space="preserve">
+    <value>This Visual is already a window minimum button</value>
+  </data>
 </root>

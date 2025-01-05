@@ -59,25 +59,54 @@
                                CornerRadius="0"
                                ws:WindowOption.IsMinimumButton="True"
                                Command="{Binding MinimumSelfCommand}"/>
-                    <ws:Button FontFamily="Segoe Fluent Icons"
-                               FontSize="10"
-                               Width="46"
-                               Background="Transparent"
-                               HoverBackground="#e9e9e9"
-                               PressedBackground="#ededed"
-                               BorderThickness="0"
-                               CornerRadius="0"
-                               ws:WindowOption.IsMaximumButton="True"
-                               Command="{Binding MaximumSelfCommand}">
-                        <ws:ConditionalControl Condition="{Binding WindowState,Converter={x:Static ws:NotEqualConverter.Instance},ConverterParameter={x:Static WindowState.Maximized}}">
-                            <ws:ConditionalControl.ContentWhenTrue>
-                                <TextBlock Text="&#xE922;"/>
-                            </ws:ConditionalControl.ContentWhenTrue>
-                            <ws:ConditionalControl.ContentWhenFalse>
-                                <TextBlock Text="&#xE923;"/>
-                            </ws:ConditionalControl.ContentWhenFalse>
-                        </ws:ConditionalControl>
-                    </ws:Button>
+
+                    <ws:ConditionalControl Condition="{Binding WindowState,Converter={x:Static ws:NotEqualConverter.Instance},ConverterParameter={x:Static WindowState.Maximized}}">
+                        <ws:ConditionalControl.ContentWhenTrue>
+                            <ws:Button FontFamily="Segoe Fluent Icons"
+                                       FontSize="10"
+                                       Width="46"
+                                       Background="Transparent"
+                                       HoverBackground="#e9e9e9"
+                                       PressedBackground="#ededed"
+                                       BorderThickness="0"
+                                       CornerRadius="0"
+                                       ws:WindowOption.IsMaximumButton="True"
+                                       Command="{Binding MaximumSelfCommand}"
+                                       Content="&#xE922;"/>
+                        </ws:ConditionalControl.ContentWhenTrue>
+                        <ws:ConditionalControl.ContentWhenFalse>
+                            <ws:Button FontFamily="Segoe Fluent Icons"
+                                       FontSize="10"
+                                       Width="46"
+                                       Background="Transparent"
+                                       HoverBackground="#e9e9e9"
+                                       PressedBackground="#ededed"
+                                       BorderThickness="0"
+                                       CornerRadius="0"
+                                       ws:WindowOption.IsMaximumButton="True"
+                                       Command="{Binding MaximumSelfCommand}"
+                                       Content="&#xE923;"/>
+                        </ws:ConditionalControl.ContentWhenFalse>
+                    </ws:ConditionalControl>
+                    <!--<ws:Button FontFamily="Segoe Fluent Icons"
+                    FontSize="10"
+                    Width="46"
+                    Background="Transparent"
+                    HoverBackground="#e9e9e9"
+                    PressedBackground="#ededed"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    ws:WindowOption.IsMaximumButton="True"
+                    Command="{Binding MaximumSelfCommand}">
+                    <ws:ConditionalControl Condition="{Binding WindowState,Converter={x:Static ws:NotEqualConverter.Instance},ConverterParameter={x:Static WindowState.Maximized}}">
+                    <ws:ConditionalControl.ContentWhenTrue>
+                    <TextBlock Text="&#xE922;"/>
+                    </ws:ConditionalControl.ContentWhenTrue>
+                    <ws:ConditionalControl.ContentWhenFalse>
+                    <TextBlock Text="&#xE923;"/>
+                    </ws:ConditionalControl.ContentWhenFalse>
+                    </ws:ConditionalControl>
+                    </ws:Button>-->
                     <ws:Button Content="&#xE8BB;"
                                FontFamily="Segoe Fluent Icons"
                                FontSize="10"

@@ -147,4 +147,16 @@
   <data name="CanNotFindTemplateChildTempDialogs" xml:space="preserve">
     <value>无法找到模板子级 'TempDialogs'</value>
   </data>
+  <data name="CanNotGetHwndSourceOfVisual" xml:space="preserve">
+    <value>无法获取 Visual 的 HwndSource</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowCloseButton" xml:space="preserve">
+    <value>此 Visual 已经是窗口的关闭按钮了</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowMaximumButton" xml:space="preserve">
+    <value>此 Visual 已经是窗口的最大化按钮了</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowMinimumButton" xml:space="preserve">
+    <value>此 Visual 已经是窗口的最小化按钮了</value>
+  </data>
 </root>

@@ -314,23 +314,36 @@ namespace EleCho.WpfSuite.Controls
             
             var forward = !_backward;
 
-            if (newContentElement is not null)
-            {
-                _contentsPanel.Children.Add(newContentElement);
-            }
-
-            _lastOldControl = oldContentElement;
-            _pendingNewContent = null;
-            _backward = false;
             if (Transition is IContentTransition transition)
             {
+                if (newContentElement is not null)
+                {
+                    _contentsPanel.Children.Add(newContentElement);
+                }
+
+                _lastOldControl = oldContentElement;
+                _pendingNewContent = null;
+                _backward = false;
+
                 _lastTaskCancellation = new();
                 await transition.Run(this, oldContentElement as FrameworkElement, newContentElement as FrameworkElement, forward, _lastTaskCancellation.Token);
-            }
 
-            if (oldContentElement is not null)
+                if (oldContentElement is not null)
+                {
+                    _contentsPanel.Children.Remove(oldContentElement);
+                }
+            }
+            else
             {
-                _contentsPanel.Children.Remove(oldContentElement);
+                if (oldContentElement is not null)
+                {
+                    _contentsPanel.Children.Remove(oldContentElement);
+                }
+
+                if (newContentElement is not null)
+                {
+                    _contentsPanel.Children.Add(newContentElement);
+                }
             }
         }
     }

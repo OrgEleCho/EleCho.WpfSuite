@@ -45,6 +45,7 @@ namespace EleCho.WpfSuite.Helpers
         static Dictionary<nint, Visual>? s_maximumButtons;
         static Dictionary<nint, Visual>? s_minimumButtons;
         static Dictionary<nint, Visual>? s_closeButtons;
+        static Dictionary<Visual, nint>? s_buttonWindows;
 
         static DependencyPropertyKey s_uiElementIsMouseOverPropertyKey =
             (DependencyPropertyKey)typeof(UIElement).GetField("IsMouseOverPropertyKey", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
@@ -724,113 +725,84 @@ namespace EleCho.WpfSuite.Helpers
             return IntPtr.Zero;
         }
 
-        private static void UpdateIsMinimumButton(FrameworkElement frameworkElement, bool value)
+        #region Event Handlers
+
+        private static void OnMinimumButtonLoaded(object sender, RoutedEventArgs e)
         {
-            if (Window.GetWindow(frameworkElement) is Window window)
+            if (sender is not FrameworkElement frameworkElement)
             {
-                if (GetWindowHwndSource(window) is { } hwndSource &&
-                    hwndSource.Handle != IntPtr.Zero)
-                {
-                    ApplyIsMinimumButton(window, frameworkElement, value);
-                }
-                else
-                {
-                    DoAfterWindowSourceInitialized(window, () =>
-                    {
-                        ApplyIsMinimumButton(window, frameworkElement, value);
-                    });
-                }
+                return;
             }
-            else
+
+            if (GetWindowHwndSource(frameworkElement) is not HwndSource hwndSource)
             {
-                DoAfterElementLoaded(frameworkElement, () =>
-                {
-                    if (Window.GetWindow(frameworkElement) is Window loadedWindow)
-                    {
-                        DoAfterWindowSourceInitialized(loadedWindow, () =>
-                        {
-                            ApplyIsMinimumButton(loadedWindow, frameworkElement, value);
-                        });
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Cannot find Window of Visual");
-                    }
-                });
+                throw new InvalidOperationException(StringResources.CanNotGetHwndSourceOfVisual);
             }
+
+            ApplyWindowMinimumButton(hwndSource, frameworkElement, true);
         }
 
-        private static void UpdateIsMaximumButton(FrameworkElement frameworkElement, bool value)
+        private static void OnMinimumButtonUnloaded(object sender, RoutedEventArgs e)
         {
-            if (Window.GetWindow(frameworkElement) is Window window)
+            if (sender is not FrameworkElement frameworkElement)
             {
-                if (GetWindowHwndSource(window) is { } hwndSource &&
-                    hwndSource.Handle != IntPtr.Zero)
-                {
-                    ApplyIsMaximumButton(window, frameworkElement, value);
-                }
-                else
-                {
-                    DoAfterWindowSourceInitialized(window, () =>
-                    {
-                        ApplyIsMaximumButton(window, frameworkElement, value);
-                    });
-                }
+                return;
             }
-            else
-            {
-                DoAfterElementLoaded(frameworkElement, () =>
-                {
-                    if (Window.GetWindow(frameworkElement) is Window loadedWindow)
-                    {
-                        DoAfterWindowSourceInitialized(loadedWindow, () =>
-                        {
-                            ApplyIsMaximumButton(loadedWindow, frameworkElement, value);
-                        });
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Cannot find Window of Visual");
-                    }
-                });
-            }
+
+            ApplyWindowMinimumButton(null, frameworkElement, false);
         }
 
-        private static void UpdateIsCloseButton(FrameworkElement frameworkElement, bool value)
+        private static void OnMaximumButtonLoaded(object sender, RoutedEventArgs e)
         {
-            if (Window.GetWindow(frameworkElement) is Window window)
+            if (sender is not FrameworkElement frameworkElement)
             {
-                if (GetWindowHwndSource(window) is { } hwndSource &&
-                    hwndSource.Handle != IntPtr.Zero)
-                {
-                    ApplyIsCloseButton(window, frameworkElement, value);
-                }
-                else
-                {
-                    DoAfterWindowSourceInitialized(window, () =>
-                    {
-                        ApplyIsCloseButton(window, frameworkElement, value);
-                    });
-                }
+                return;
             }
-            else
+
+            if (GetWindowHwndSource(frameworkElement) is not HwndSource hwndSource)
             {
-                DoAfterElementLoaded(frameworkElement, () =>
-                {
-                    if (Window.GetWindow(frameworkElement) is Window loadedWindow)
-                    {
-                        DoAfterWindowSourceInitialized(loadedWindow, () =>
-                        {
-                            ApplyIsCloseButton(loadedWindow, frameworkElement, value);
-                        });
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Cannot find Window of Visual");
-                    }
-                });
+                throw new InvalidOperationException(StringResources.CanNotGetHwndSourceOfVisual);
             }
+
+            ApplyWindowMaximumButton(hwndSource, frameworkElement, true);
         }
+
+        private static void OnMaximumButtonUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not FrameworkElement frameworkElement)
+            {
+                return;
+            }
+
+            ApplyWindowMaximumButton(null, frameworkElement, false);
+        }
+
+        private static void OnCloseButtonLoaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not FrameworkElement frameworkElement)
+            {
+                return;
+            }
+
+            if (GetWindowHwndSource(frameworkElement) is not HwndSource hwndSource)
+            {
+                throw new InvalidOperationException(StringResources.CanNotGetHwndSourceOfVisual);
+            }
+
+            ApplyWindowCloseButton(hwndSource, frameworkElement, true);
+        }
+
+        private static void OnCloseButtonUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not FrameworkElement frameworkElement)
+            {
+                return;
+            }
+
+            ApplyWindowCloseButton(null, frameworkElement, false);
+        }
+
+        #endregion
 
 
         #region DependencyProperty Callbacks
@@ -1115,7 +1087,40 @@ namespace EleCho.WpfSuite.Helpers
                 return;
             }
 
-            UpdateIsMinimumButton(frameworkElement, (bool)e.NewValue);
+            var newValue = (bool)e.NewValue;
+
+            if (newValue)
+            {
+                if (GetIsMaximumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMaximumButton);
+                }
+
+                if (GetIsCloseButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCloseButton);
+                }
+
+                frameworkElement.Loaded += OnMinimumButtonLoaded;
+                frameworkElement.Unloaded += OnMinimumButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowMinimumButton(hwndSource, frameworkElement, true);
+                }
+            }
+            else
+            {
+                frameworkElement.Loaded += OnMinimumButtonLoaded;
+                frameworkElement.Unloaded += OnMinimumButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowMinimumButton(hwndSource, frameworkElement, false);
+                }
+            }
         }
 
         private static void OnIsMaximumButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -1130,7 +1135,40 @@ namespace EleCho.WpfSuite.Helpers
                 return;
             }
 
-            UpdateIsMaximumButton(frameworkElement, (bool)e.NewValue);
+            var newValue = (bool)e.NewValue;
+
+            if (newValue)
+            {
+                if (GetIsMinimumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMinimumButton);
+                }
+
+                if (GetIsCloseButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCloseButton);
+                }
+
+                frameworkElement.Loaded += OnMaximumButtonLoaded;
+                frameworkElement.Unloaded += OnMaximumButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowMaximumButton(hwndSource, frameworkElement, true);
+                }
+            }
+            else
+            {
+                frameworkElement.Loaded += OnMaximumButtonLoaded;
+                frameworkElement.Unloaded += OnMaximumButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowMaximumButton(hwndSource, frameworkElement, false);
+                }
+            }
         }
 
         private static void OnIsCloseButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -1145,7 +1183,40 @@ namespace EleCho.WpfSuite.Helpers
                 return;
             }
 
-            UpdateIsCloseButton(frameworkElement, (bool)e.NewValue);
+            var newValue = (bool)e.NewValue;
+
+            if (newValue)
+            {
+                if (GetIsMinimumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMinimumButton);
+                }
+
+                if (GetIsMaximumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMaximumButton);
+                }
+
+                frameworkElement.Loaded += OnCloseButtonLoaded;
+                frameworkElement.Unloaded += OnCloseButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowCloseButton(hwndSource, frameworkElement, true);
+                }
+            }
+            else
+            {
+                frameworkElement.Loaded += OnCloseButtonLoaded;
+                frameworkElement.Unloaded += OnCloseButtonUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowCloseButton(hwndSource, frameworkElement, false);
+                }
+            }
         }
 
         #endregion
@@ -1517,19 +1588,19 @@ namespace EleCho.WpfSuite.Helpers
                 SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOOWNERZORDER | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER);
         }
 
-        private static unsafe void ApplyIsMinimumButton(Window window, Visual visual, bool isMinimumButton)
+        private static unsafe void ApplyWindowMinimumButton(HwndSource? hwndSource, Visual visual, bool isMinimumButton)
         {
-            var windowInteropHelper = new WindowInteropHelper(window);
-            var windowHandle = windowInteropHelper.EnsureHandle();
-
-            var hwndSource = HwndSource.FromHwnd(windowHandle);
-
             if (isMinimumButton)
             {
-                if (s_minimumButtons is null)
+                if (hwndSource is null)
                 {
-                    s_minimumButtons = new();
+                    throw new ArgumentNullException(nameof(hwndSource));
                 }
+
+                var windowHandle = hwndSource.Handle;
+
+                s_minimumButtons ??= new();
+                s_buttonWindows ??= new();
 
                 if (s_minimumButtons.ContainsKey(windowHandle))
                 {
@@ -1539,6 +1610,7 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_minimumButtons[windowHandle] = visual;
+                s_buttonWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
@@ -1547,16 +1619,35 @@ namespace EleCho.WpfSuite.Helpers
             }
             else
             {
-                if (s_minimumButtons is null)
+                if (s_minimumButtons is null ||
+                    s_buttonWindows is null)
                 {
                     return;
                 }
 
+                if (hwndSource is null)
+                {
+                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    hwndSource = HwndSource.FromHwnd(handle);
+                }
+
+                var windowHandle = hwndSource.Handle;
+
                 s_minimumButtons.Remove(windowHandle);
+                s_buttonWindows.Remove(visual);
 
                 if (s_minimumButtons.Count == 0)
                 {
                     s_minimumButtons = null;
+                }
+
+                if (s_buttonWindows.Count == 0)
+                {
+                    s_buttonWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))
@@ -1566,19 +1657,19 @@ namespace EleCho.WpfSuite.Helpers
             }
         }
 
-        private static unsafe void ApplyIsMaximumButton(Window window, Visual visual, bool isMaximumButton)
+        private static unsafe void ApplyWindowMaximumButton(HwndSource? hwndSource, Visual visual, bool isMaximumButton)
         {
-            var windowInteropHelper = new WindowInteropHelper(window);
-            var windowHandle = windowInteropHelper.EnsureHandle();
-
-            var hwndSource = HwndSource.FromHwnd(windowHandle);
-
             if (isMaximumButton)
             {
-                if (s_maximumButtons is null)
+                if (hwndSource is null)
                 {
-                    s_maximumButtons = new();
+                    throw new ArgumentNullException(nameof(hwndSource));
                 }
+
+                var windowHandle = hwndSource.Handle;
+
+                s_maximumButtons ??= new();
+                s_buttonWindows ??= new();
 
                 if (s_maximumButtons.ContainsKey(windowHandle))
                 {
@@ -1588,6 +1679,7 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_maximumButtons[windowHandle] = visual;
+                s_buttonWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
@@ -1596,16 +1688,35 @@ namespace EleCho.WpfSuite.Helpers
             }
             else
             {
-                if (s_maximumButtons is null)
+                if (s_maximumButtons is null ||
+                    s_buttonWindows is null)
                 {
                     return;
                 }
 
+                if (hwndSource is null)
+                {
+                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    hwndSource = HwndSource.FromHwnd(handle);
+                }
+
+                var windowHandle = hwndSource.Handle;
+
                 s_maximumButtons.Remove(windowHandle);
+                s_buttonWindows.Remove(visual);
 
                 if (s_maximumButtons.Count == 0)
                 {
                     s_maximumButtons = null;
+                }
+
+                if (s_buttonWindows.Count == 0)
+                {
+                    s_buttonWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))
@@ -1615,19 +1726,19 @@ namespace EleCho.WpfSuite.Helpers
             }
         }
 
-        private static unsafe void ApplyIsCloseButton(Window window, Visual visual, bool isCloseButton)
+        private static unsafe void ApplyWindowCloseButton(HwndSource? hwndSource, Visual visual, bool isCloseButton)
         {
-            var windowInteropHelper = new WindowInteropHelper(window);
-            var windowHandle = windowInteropHelper.EnsureHandle();
-
-            var hwndSource = HwndSource.FromHwnd(windowHandle);
-
             if (isCloseButton)
             {
-                if (s_closeButtons is null)
+                if (hwndSource is null)
                 {
-                    s_closeButtons = new();
+                    throw new ArgumentNullException(nameof(hwndSource));
                 }
+
+                var windowHandle = hwndSource.Handle;
+
+                s_closeButtons ??= new();
+                s_buttonWindows ??= new();
 
                 if (s_closeButtons.ContainsKey(windowHandle))
                 {
@@ -1637,6 +1748,7 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_closeButtons[windowHandle] = visual;
+                s_buttonWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
@@ -1645,16 +1757,35 @@ namespace EleCho.WpfSuite.Helpers
             }
             else
             {
-                if (s_closeButtons is null)
+                if (s_closeButtons is null ||
+                    s_buttonWindows is null)
                 {
                     return;
                 }
 
+                if (hwndSource is null)
+                {
+                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    hwndSource = HwndSource.FromHwnd(handle);
+                }
+
+                var windowHandle = hwndSource.Handle;
+
                 s_closeButtons.Remove(windowHandle);
+                s_buttonWindows.Remove(visual);
 
                 if (s_closeButtons.Count == 0)
                 {
                     s_closeButtons = null;
+                }
+
+                if (s_buttonWindows.Count == 0)
+                {
+                    s_buttonWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))

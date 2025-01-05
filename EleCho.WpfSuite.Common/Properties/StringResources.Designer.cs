@@ -79,6 +79,15 @@ namespace EleCho.WpfSuite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can not get HwndSource of Visual.
+        /// </summary>
+        internal static string CanNotGetHwndSourceOfVisual {
+            get {
+                return ResourceManager.GetString("CanNotGetHwndSourceOfVisual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close button is already set to another Visual..
         /// </summary>
         internal static string CloseButtonIsAlreadySetToAnotherVisual {
@@ -141,6 +150,33 @@ namespace EleCho.WpfSuite.Properties {
         internal static string ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode {
             get {
                 return ResourceManager.GetString("ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Visual is already a window close button.
+        /// </summary>
+        internal static string ThisVisualIsAlreadyAWindowCloseButton {
+            get {
+                return ResourceManager.GetString("ThisVisualIsAlreadyAWindowCloseButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Visual is already a window maximum button.
+        /// </summary>
+        internal static string ThisVisualIsAlreadyAWindowMaximumButton {
+            get {
+                return ResourceManager.GetString("ThisVisualIsAlreadyAWindowMaximumButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Visual is already a window minimum button.
+        /// </summary>
+        internal static string ThisVisualIsAlreadyAWindowMinimumButton {
+            get {
+                return ResourceManager.GetString("ThisVisualIsAlreadyAWindowMinimumButton", resourceCulture);
             }
         }
         
