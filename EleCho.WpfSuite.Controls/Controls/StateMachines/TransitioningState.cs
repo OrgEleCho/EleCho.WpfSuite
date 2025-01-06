@@ -37,6 +37,8 @@ namespace EleCho.WpfSuite.Controls.StateMachines
 
         public Thickness Margin => (Thickness)GetValue(MarginProperty);
 
+        public Thickness BorderThickness => (Thickness)GetValue(BorderThicknessProperty);
+
         public CornerRadius CornerRadius => (CornerRadius)GetValue(CornerRadiusProperty);
 
         public TransitioningState(IState from, State to)
@@ -59,6 +61,7 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             SetValue(BorderBrushPropertyKey, from.BorderBrush);
             SetValue(PaddingPropertyKey, from.Padding);
             SetValue(MarginPropertyKey, from.Margin);
+            SetValue(BorderThicknessPropertyKey, from.BorderThickness);
             SetValue(CornerRadiusPropertyKey, from.CornerRadius);
         }
 
@@ -77,6 +80,9 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         private static readonly DependencyPropertyKey MarginPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(Margin), typeof(Thickness), typeof(TransitioningState), new PropertyMetadata(default(Thickness)));
 
+        private static readonly DependencyPropertyKey BorderThicknessPropertyKey =
+            DependencyProperty.RegisterReadOnly(nameof(BorderThickness), typeof(Thickness), typeof(TransitioningState), new PropertyMetadata(default(Thickness)));
+
         private static readonly DependencyPropertyKey CornerRadiusPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(CornerRadius), typeof(CornerRadius), typeof(TransitioningState), new PropertyMetadata(default(CornerRadius)));
 
@@ -89,6 +95,8 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         public static readonly DependencyProperty PaddingProperty = PaddingPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty MarginProperty = MarginPropertyKey.DependencyProperty;
+
+        public static readonly DependencyProperty BorderThicknessProperty = BorderThicknessPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty CornerRadiusProperty = CornerRadiusPropertyKey.DependencyProperty;
 
@@ -136,6 +144,12 @@ namespace EleCho.WpfSuite.Controls.StateMachines
                 presentationState.To.Margin,
                 MathHelper.Clamp01(timeMilliseconds / (presentationState.To.MarginTransitionDuration ?? presentationState.To.UniformTransitionDuration).TimeSpan.TotalMilliseconds),
                 presentationState.To.MarginEasingFunction ?? presentationState.To.UniformEasingFunction));
+
+            d.SetValue(BorderThicknessPropertyKey, EaseUtils.EaseThickness(
+                presentationState.From.BorderThickness,
+                presentationState.To.BorderThickness,
+                MathHelper.Clamp01(timeMilliseconds / (presentationState.To.BorderThicknessTransitionDuration ?? presentationState.To.UniformTransitionDuration).TimeSpan.TotalMilliseconds),
+                presentationState.To.BorderThicknessEasingFunction ?? presentationState.To.UniformEasingFunction));
 
             d.SetValue(CornerRadiusPropertyKey, EaseUtils.EaseCornerRadius(
                 presentationState.From.CornerRadius,

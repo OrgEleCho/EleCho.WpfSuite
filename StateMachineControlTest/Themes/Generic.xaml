@@ -2,27 +2,36 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:StateMachineControlTest.Controls"
-    xmlns:wssm="clr-namespace:EleCho.WpfSuite.Controls.StateMachines;assembly=EleCho.WpfSuite.Controls">
+    xmlns:wssm="clr-namespace:EleCho.WpfSuite.Controls.StateMachines;assembly=EleCho.WpfSuite.Controls"
+    xmlns:wssmmk="clr-namespace:EleCho.WpfSuite.Controls.StateMachines.Markup;assembly=EleCho.WpfSuite.Controls">
 
+    <SineEase x:Key="SineOut" EasingMode="EaseOut" />
 
     <Style TargetType="{x:Type local:TestControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TestControl}">
                     <Border x:Name="root"
-                            Background="Red"
-                            BorderThickness="3">
+                            Background="{wssmmk:Presentation Background}"
+                            TextElement.Foreground="{wssmmk:Presentation Foreground}"
+                            CornerRadius="{wssmmk:Presentation CornerRadius}"
+                            BorderThickness="{wssmmk:Presentation BorderThickness}">
                         <wssm:StateMachine.States>
                             <wssm:StateCollection>
-                                <wssm:State x:Name="qaq"
-                                            Background="{Binding}"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            UniformTransitionDuration="0:0:0.300"/>
+                                <wssm:State Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Background}"
+                                            Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Foreground}"
+                                            BorderThickness="8"
+                                            BorderBrush="Transparent"
+                                            UniformTransitionDuration="0:0:0.300"
+                                            UniformEasingFunction="{StaticResource SineOut}"/>
                                 <wssm:State Name="Hover"
                                             Background="Green"
                                             Foreground="Black"
                                             CornerRadius="12"
-                                            UniformTransitionDuration="0:0:0.300"/>
+                                            BorderThickness="0"
+                                            BorderBrush="Transparent"
+                                            UniformTransitionDuration="0:0:0.200"
+                                            UniformEasingFunction="{StaticResource SineOut}"/>
                             </wssm:StateCollection>
                         </wssm:StateMachine.States>
                     </Border>

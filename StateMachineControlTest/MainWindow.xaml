@@ -7,15 +7,18 @@
         xmlns:c="clr-namespace:StateMachineControlTest.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <SolidColorBrush Color="Red"/>
-    </Window.DataContext>
-    
+
     <Grid>
         <c:TestControl VerticalAlignment="Center"
                        HorizontalAlignment="Center"
-                       Background="Red"
                        Width="100"
-                       Height="100"/>
+                       Height="100">
+            <c:TestControl.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="Red"/>
+                    <GradientStop Color="Blue" Offset="1"/>
+                </LinearGradientBrush>
+            </c:TestControl.Background>
+        </c:TestControl>
     </Grid>
 </Window>

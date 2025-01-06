@@ -7,7 +7,7 @@ using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite.Controls.StateMachines
 {
-    public class State : Animatable, IState
+    public class State : Freezable, IState
     {
         public string? Name { get; set; }
 
@@ -41,6 +41,12 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         {
             get { return (Thickness)GetValue(MarginProperty); }
             set { SetValue(MarginProperty, value); }
+        }
+
+        public Thickness BorderThickness
+        {
+            get { return (Thickness)GetValue(BorderThicknessProperty); }
+            set { SetValue(BorderThicknessProperty, value); }
         }
 
         public CornerRadius CornerRadius
@@ -87,6 +93,12 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             set { SetValue(MarginTransitionDurationProperty, value); }
         }
 
+        public Duration? BorderThicknessTransitionDuration
+        {
+            get { return (Duration?)GetValue(BorderThicknessTransitionDurationProperty); }
+            set { SetValue(BorderThicknessTransitionDurationProperty, value); }
+        }
+
         public Duration? CornerRadiusTransitionDuration
         {
             get { return (Duration?)GetValue(CornerRadiusTransitionDurationProperty); }
@@ -131,6 +143,12 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             set { SetValue(MarginEasingFunctionProperty, value); }
         }
 
+        public IEasingFunction BorderThicknessEasingFunction
+        {
+            get { return (IEasingFunction)GetValue(BorderThicknessEasingFunctionProperty); }
+            set { SetValue(BorderThicknessEasingFunctionProperty, value); }
+        }
+
         public IEasingFunction CornerRadiusEasingFunction
         {
             get { return (IEasingFunction)GetValue(CornerRadiusEasingFunctionProperty); }
@@ -143,68 +161,77 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         }
 
         public static readonly DependencyProperty BackgroundProperty =
-            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(State), new UIPropertyMetadata(null));
+            DependencyProperty.Register(nameof(Background), typeof(Brush), typeof(State), new PropertyMetadata(null));
 
         public static readonly DependencyProperty ForegroundProperty =
-            DependencyProperty.Register(nameof(Foreground), typeof(Brush), typeof(State), new UIPropertyMetadata(null));
+            DependencyProperty.Register(nameof(Foreground), typeof(Brush), typeof(State), new PropertyMetadata(null));
 
         public static readonly DependencyProperty BorderBrushProperty =
-            DependencyProperty.Register(nameof(BorderBrush), typeof(Brush), typeof(State), new UIPropertyMetadata(null));
+            DependencyProperty.Register(nameof(BorderBrush), typeof(Brush), typeof(State), new PropertyMetadata(null));
 
         public static readonly DependencyProperty PaddingProperty =
-            DependencyProperty.Register(nameof(Padding), typeof(Thickness), typeof(State), new UIPropertyMetadata(default(Thickness)));
+            DependencyProperty.Register(nameof(Padding), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty MarginProperty =
-            DependencyProperty.Register(nameof(Margin), typeof(Thickness), typeof(State), new UIPropertyMetadata(default(Thickness)));
+            DependencyProperty.Register(nameof(Margin), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty BorderThicknessProperty =
+            DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(State), new UIPropertyMetadata(default(CornerRadius)));
+            DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(State), new PropertyMetadata(default(CornerRadius)));
 
 
 
         public static readonly DependencyProperty UniformTransitionDurationProperty =
-            DependencyProperty.Register(nameof(UniformTransitionDuration), typeof(Duration), typeof(State), new UIPropertyMetadata(new Duration(TimeSpan.Zero), null, coerceValueCallback: CoerceDuration));
+            DependencyProperty.Register(nameof(UniformTransitionDuration), typeof(Duration), typeof(State), new PropertyMetadata(new Duration(TimeSpan.Zero), null, coerceValueCallback: CoerceDuration));
 
         public static readonly DependencyProperty BackgroundTransitionDurationProperty =
-            DependencyProperty.Register(nameof(BackgroundTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+            DependencyProperty.Register(nameof(BackgroundTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
         public static readonly DependencyProperty ForegroundTransitionDurationProperty =
-            DependencyProperty.Register(nameof(ForegroundTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?)));
+            DependencyProperty.Register(nameof(ForegroundTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
         public static readonly DependencyProperty BorderBrushTransitionDurationProperty =
-            DependencyProperty.Register(nameof(BorderBrushTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?)));
+            DependencyProperty.Register(nameof(BorderBrushTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
         public static readonly DependencyProperty PaddingTransitionDurationProperty =
-            DependencyProperty.Register(nameof(PaddingTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?)));
+            DependencyProperty.Register(nameof(PaddingTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
         public static readonly DependencyProperty MarginTransitionDurationProperty =
-            DependencyProperty.Register(nameof(MarginTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?)));
+            DependencyProperty.Register(nameof(MarginTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
+
+        public static readonly DependencyProperty BorderThicknessTransitionDurationProperty =
+            DependencyProperty.Register(nameof(BorderThicknessTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
         public static readonly DependencyProperty CornerRadiusTransitionDurationProperty =
-            DependencyProperty.Register(nameof(CornerRadiusTransitionDuration), typeof(Duration?), typeof(State), new UIPropertyMetadata(default(Duration?)));
+            DependencyProperty.Register(nameof(CornerRadiusTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
 
 
         public static readonly DependencyProperty UniformEasingFunctionProperty =
-            DependencyProperty.Register(nameof(UniformEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(UniformEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty BackgroundEasingFunctionProperty =
-            DependencyProperty.Register(nameof(BackgroundEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(BackgroundEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty ForegroundEasingFunctionProperty =
-            DependencyProperty.Register(nameof(ForegroundEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(ForegroundEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty BorderBrushEasingFunctionProperty =
-            DependencyProperty.Register(nameof(BorderBrushEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(BorderBrushEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty PaddingEasingFunctionProperty =
-            DependencyProperty.Register(nameof(PaddingEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(PaddingEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty MarginEasingFunctionProperty =
-            DependencyProperty.Register(nameof(MarginEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(MarginEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty BorderThicknessEasingFunctionProperty =
+            DependencyProperty.Register(nameof(BorderThicknessEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty CornerRadiusEasingFunctionProperty =
-            DependencyProperty.Register(nameof(CornerRadiusEasingFunction), typeof(IEasingFunction), typeof(State), new UIPropertyMetadata(default(IEasingFunction)));
+            DependencyProperty.Register(nameof(CornerRadiusEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
 
 
