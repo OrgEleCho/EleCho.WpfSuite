@@ -16,6 +16,27 @@ namespace EleCho.WpfSuite
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             value1 == value2 || IsVerySmall(value1 - value2);
 
+
+        public static double Clamp(double value, double min, double max)
+        {
+            if (value < min)
+            {
+                return min;
+            }
+
+            if (value > max)
+            {
+                return max;
+            }
+
+            return value;
+        }
+
+        public static double Clamp01(double value)
+        {
+            return Clamp(value, 0, 1);
+        }
+
         public static double Lerp(double x, double y, double alpha) => x * (1.0 - alpha) + y * alpha;
 
         public static bool IsVerySmall(double value) => Math.Abs(value) < 1E-06;
