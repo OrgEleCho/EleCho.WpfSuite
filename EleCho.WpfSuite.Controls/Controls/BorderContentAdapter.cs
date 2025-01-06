@@ -34,22 +34,28 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <inheritdoc/>
-        protected override Geometry GetLayoutClip(Size layoutSlotSize)
+        protected override Geometry? GetLayoutClip(Size layoutSlotSize)
         {
             var renderSize = RenderSize;
 
-            if (Parent is EleCho.WpfSuite.Controls.Border border &&
-                CalculateBorderContentClip(border, renderSize) is { } borderContentClip)
+            if (!ClipToBounds)
             {
-                return borderContentClip;
+                return null;
+            }
+
+            if (Parent is EleCho.WpfSuite.Controls.Border border)
+            {
+                return border.ContentClip;
             }
             else if (Parent is System.Windows.Controls.Border nativeBorder &&
-                CalculateBorderContentClip(nativeBorder, renderSize) is { } nativeBorderContentClip)
+                CalculateBorderContentClip(nativeBorder, layoutSlotSize) is { } nativeBorderContentClip)
             {
                 return nativeBorderContentClip;
             }
 
-            return base.GetLayoutClip(layoutSlotSize);
+            RectangleGeometry rect = new RectangleGeometry(new Rect(RenderSize));
+            rect.Freeze();
+            return rect;
         }
     }
 
