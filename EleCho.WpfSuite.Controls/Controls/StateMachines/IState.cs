@@ -14,7 +14,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         public Brush BorderBrush { get; }
 
         public Thickness Padding { get; }
-        public Thickness Margin { get; }
         public Thickness BorderThickness { get; }
         public CornerRadius CornerRadius { get; }
     }

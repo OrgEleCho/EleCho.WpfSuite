@@ -7,7 +7,7 @@ using System.Windows.Media.Animation;
 
 namespace EleCho.WpfSuite.Controls.StateMachines
 {
-    public class State : Freezable, IState
+    public class State : Animatable, IState
     {
         public string? Name { get; set; }
 
@@ -35,12 +35,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         {
             get { return (Thickness)GetValue(PaddingProperty); }
             set { SetValue(PaddingProperty, value); }
-        }
-
-        public Thickness Margin
-        {
-            get { return (Thickness)GetValue(MarginProperty); }
-            set { SetValue(MarginProperty, value); }
         }
 
         public Thickness BorderThickness
@@ -87,12 +81,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             set { SetValue(PaddingTransitionDurationProperty, value); }
         }
 
-        public Duration? MarginTransitionDuration
-        {
-            get { return (Duration?)GetValue(MarginTransitionDurationProperty); }
-            set { SetValue(MarginTransitionDurationProperty, value); }
-        }
-
         public Duration? BorderThicknessTransitionDuration
         {
             get { return (Duration?)GetValue(BorderThicknessTransitionDurationProperty); }
@@ -137,12 +125,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             set { SetValue(PaddingEasingFunctionProperty, value); }
         }
 
-        public IEasingFunction MarginEasingFunction
-        {
-            get { return (IEasingFunction)GetValue(MarginEasingFunctionProperty); }
-            set { SetValue(MarginEasingFunctionProperty, value); }
-        }
-
         public IEasingFunction BorderThicknessEasingFunction
         {
             get { return (IEasingFunction)GetValue(BorderThicknessEasingFunctionProperty); }
@@ -172,9 +154,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         public static readonly DependencyProperty PaddingProperty =
             DependencyProperty.Register(nameof(Padding), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
 
-        public static readonly DependencyProperty MarginProperty =
-            DependencyProperty.Register(nameof(Margin), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
-
         public static readonly DependencyProperty BorderThicknessProperty =
             DependencyProperty.Register(nameof(BorderThickness), typeof(Thickness), typeof(State), new PropertyMetadata(default(Thickness)));
 
@@ -198,9 +177,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         public static readonly DependencyProperty PaddingTransitionDurationProperty =
             DependencyProperty.Register(nameof(PaddingTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
-        public static readonly DependencyProperty MarginTransitionDurationProperty =
-            DependencyProperty.Register(nameof(MarginTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
-
         public static readonly DependencyProperty BorderThicknessTransitionDurationProperty =
             DependencyProperty.Register(nameof(BorderThicknessTransitionDuration), typeof(Duration?), typeof(State), new PropertyMetadata(default(Duration?)));
 
@@ -223,9 +199,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
 
         public static readonly DependencyProperty PaddingEasingFunctionProperty =
             DependencyProperty.Register(nameof(PaddingEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
-
-        public static readonly DependencyProperty MarginEasingFunctionProperty =
-            DependencyProperty.Register(nameof(MarginEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty BorderThicknessEasingFunctionProperty =
             DependencyProperty.Register(nameof(BorderThicknessEasingFunction), typeof(IEasingFunction), typeof(State), new PropertyMetadata(default(IEasingFunction)));
@@ -287,11 +260,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
                 if (PaddingTransitionDuration.HasValue && PaddingTransitionDuration.Value.TimeSpan > duration)
                 {
                     duration = PaddingTransitionDuration.Value.TimeSpan;
-                }
-
-                if (MarginTransitionDuration.HasValue && MarginTransitionDuration.Value.TimeSpan > duration)
-                {
-                    duration = MarginTransitionDuration.Value.TimeSpan;
                 }
 
                 if (CornerRadiusTransitionDuration.HasValue && CornerRadiusTransitionDuration.Value.TimeSpan > duration)

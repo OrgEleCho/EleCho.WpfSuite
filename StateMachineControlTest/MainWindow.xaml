@@ -5,20 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StateMachineControlTest"
         xmlns:c="clr-namespace:StateMachineControlTest.Controls"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        <c:TestControl VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Width="100"
-                       Height="100">
-            <c:TestControl.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="Red"/>
-                    <GradientStop Color="Blue" Offset="1"/>
-                </LinearGradientBrush>
-            </c:TestControl.Background>
-        </c:TestControl>
+        <ws:StackPanel Spacing="8"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+            <c:TestControl VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Content="Test Control"
+                           CornerRadius="20"
+                           Foreground="White"
+                           Margin="5"
+                           HoverBackground="Green"
+                           HoverForeground="Black"
+                           HoverCornerRadius="10"
+                           PressedBackground="Pink"
+                           PressedCornerRadius="0"
+                           Width="100"
+                           Height="100">
+
+                <c:TestControl.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Red"/>
+                        <GradientStop Color="Blue" Offset="1"/>
+                    </LinearGradientBrush>
+                </c:TestControl.Background>
+
+            </c:TestControl>
+
+            <Button Content="GC"
+                    Margin="5"
+                    Click="Button_Click"/>
+
+            <Rectangle Height="3" Name="rect">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="Red"
+                                     Opacity="{Binding ElementName=rect,Path=Opacity}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </ws:StackPanel>
     </Grid>
 </Window>

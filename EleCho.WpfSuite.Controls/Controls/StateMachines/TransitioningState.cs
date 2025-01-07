@@ -35,8 +35,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
 
         public Thickness Padding => (Thickness)GetValue(PaddingProperty);
 
-        public Thickness Margin => (Thickness)GetValue(MarginProperty);
-
         public Thickness BorderThickness => (Thickness)GetValue(BorderThicknessProperty);
 
         public CornerRadius CornerRadius => (CornerRadius)GetValue(CornerRadiusProperty);
@@ -60,7 +58,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             SetValue(ForegroundPropertyKey, from.Foreground);
             SetValue(BorderBrushPropertyKey, from.BorderBrush);
             SetValue(PaddingPropertyKey, from.Padding);
-            SetValue(MarginPropertyKey, from.Margin);
             SetValue(BorderThicknessPropertyKey, from.BorderThickness);
             SetValue(CornerRadiusPropertyKey, from.CornerRadius);
         }
@@ -77,9 +74,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         private static readonly DependencyPropertyKey PaddingPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(Padding), typeof(Thickness), typeof(TransitioningState), new PropertyMetadata(default(Thickness)));
 
-        private static readonly DependencyPropertyKey MarginPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(Margin), typeof(Thickness), typeof(TransitioningState), new PropertyMetadata(default(Thickness)));
-
         private static readonly DependencyPropertyKey BorderThicknessPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(BorderThickness), typeof(Thickness), typeof(TransitioningState), new PropertyMetadata(default(Thickness)));
 
@@ -93,8 +87,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         public static readonly DependencyProperty BorderBrushProperty = BorderBrushPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty PaddingProperty = PaddingPropertyKey.DependencyProperty;
-
-        public static readonly DependencyProperty MarginProperty = MarginPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty BorderThicknessProperty = BorderThicknessPropertyKey.DependencyProperty;
 
@@ -138,12 +130,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
                 presentationState.To.Padding,
                 MathHelper.Clamp01(timeMilliseconds / (presentationState.To.PaddingTransitionDuration ?? presentationState.To.UniformTransitionDuration).TimeSpan.TotalMilliseconds),
                 presentationState.To.PaddingEasingFunction ?? presentationState.To.UniformEasingFunction));
-
-            d.SetValue(MarginPropertyKey, EaseUtils.EaseThickness(
-                presentationState.From.Margin,
-                presentationState.To.Margin,
-                MathHelper.Clamp01(timeMilliseconds / (presentationState.To.MarginTransitionDuration ?? presentationState.To.UniformTransitionDuration).TimeSpan.TotalMilliseconds),
-                presentationState.To.MarginEasingFunction ?? presentationState.To.UniformEasingFunction));
 
             d.SetValue(BorderThicknessPropertyKey, EaseUtils.EaseThickness(
                 presentationState.From.BorderThickness,

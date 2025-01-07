@@ -8,7 +8,6 @@ namespace EleCho.WpfSuite.Controls.StateMachines
         Foreground,
         BorderBrush,
         Padding,
-        Margin,
         BorderThickness,
         CornerRadius,
     }

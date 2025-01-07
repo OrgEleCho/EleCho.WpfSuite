@@ -70,6 +70,13 @@ namespace EleCho.WpfSuite.Controls.StateMachines
             Storyboard.SetTarget(doubleAnimation, transitioningState);
             Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(TransitioningState.TimeMillisecondsProperty));
             storyboard.Children.Add(doubleAnimation);
+
+            storyboard.Completed += (s, e) =>
+            {
+                transitioningState.TimeMilliseconds = totalTransitionDuration.TotalMilliseconds;
+                storyboard.Stop();
+            };
+
             storyboard.Begin(frameworkElement);
 
             frameworkElement.SetValue(PresentationPropertyKey, transitioningState);

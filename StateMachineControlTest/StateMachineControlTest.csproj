@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EleCho.WpfSuite.Controls\EleCho.WpfSuite.Controls.csproj" />
+    <ProjectReference Include="..\EleCho.WpfSuite.Layouts\EleCho.WpfSuite.Layouts.csproj" />
   </ItemGroup>
 
 </Project>

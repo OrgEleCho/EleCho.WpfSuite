@@ -2,42 +2,78 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:StateMachineControlTest.Controls"
+    xmlns:ws="https://schemas.elecho.dev/wpfsuite"
     xmlns:wssm="clr-namespace:EleCho.WpfSuite.Controls.StateMachines;assembly=EleCho.WpfSuite.Controls"
     xmlns:wssmmk="clr-namespace:EleCho.WpfSuite.Controls.StateMachines.Markup;assembly=EleCho.WpfSuite.Controls">
 
     <SineEase x:Key="SineOut" EasingMode="EaseOut" />
 
+
     <Style TargetType="{x:Type local:TestControl}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+        <Setter Property="HoverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
+        <Setter Property="HoverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="HoverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
+        <Setter Property="HoverPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
+        <Setter Property="HoverBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
+        <Setter Property="HoverCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
+
+        <Setter Property="PressedBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBackground}"/>
+        <Setter Property="PressedForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverForeground}"/>
+        <Setter Property="PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderBrush}"/>
+        <Setter Property="PressedPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverPadding}"/>
+        <Setter Property="PressedBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderThickness}"/>
+        <Setter Property="PressedCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverCornerRadius}"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TestControl}">
-                    <Border x:Name="root"
-                            Background="{wssmmk:Presentation Background}"
-                            TextElement.Foreground="{wssmmk:Presentation Foreground}"
-                            CornerRadius="{wssmmk:Presentation CornerRadius}"
-                            BorderThickness="{wssmmk:Presentation BorderThickness}">
-                        <wssm:StateMachine.States>
-                            <wssm:StateCollection>
-                                <wssm:State Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Background}"
-                                            Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Foreground}"
-                                            BorderThickness="8"
-                                            BorderBrush="Transparent"
-                                            UniformTransitionDuration="0:0:0.300"
-                                            UniformEasingFunction="{StaticResource SineOut}"/>
-                                <wssm:State Name="Hover"
-                                            Background="Green"
-                                            Foreground="Black"
-                                            CornerRadius="12"
-                                            BorderThickness="0"
-                                            BorderBrush="Transparent"
-                                            UniformTransitionDuration="0:0:0.200"
-                                            UniformEasingFunction="{StaticResource SineOut}"/>
-                            </wssm:StateCollection>
-                        </wssm:StateMachine.States>
-                    </Border>
+                    <Grid>
+                        <ws:StateMachineContainer x:Name="root"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
+                            <ws:StateMachineContainer.States>
+                                <wssm:StateCollection x:Name="states">
+                                    <wssm:State Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Background}"
+                                                Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Foreground}"
+                                                BorderBrush="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderBrush}"
+                                                Padding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Padding}"
+                                                BorderThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=BorderThickness}"
+                                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=CornerRadius}"
+                                                UniformTransitionDuration="0:0:0.300"
+                                                UniformEasingFunction="{StaticResource SineOut}"/>
+                                    <wssm:State Name="Hover"
+                                                Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverBackground}"
+                                                Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverForeground}"
+                                                BorderBrush="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverBorderBrush}"
+                                                Padding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverPadding}"
+                                                BorderThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverBorderThickness}"
+                                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=HoverCornerRadius}"
+                                                UniformTransitionDuration="0:0:0.200"
+                                                UniformEasingFunction="{StaticResource SineOut}"/>
+                                    <wssm:State Name="Pressed"
+                                                Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedBackground}"
+                                                Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedForeground}"
+                                                BorderBrush="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedBorderBrush}"
+                                                Padding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedPadding}"
+                                                BorderThickness="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedBorderThickness}"
+                                                CornerRadius="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=PressedCornerRadius}"
+                                                UniformEasingFunction="{StaticResource SineOut}"/>
+                                </wssm:StateCollection>
+                            </ws:StateMachineContainer.States>
+                        </ws:StateMachineContainer>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="root" Property="wssm:StateMachine.ActiveState" Value="Hover"/>
+                            <Setter TargetName="root" Property="ActiveState" Value="Hover"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="root" Property="ActiveState" Value="Pressed"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
