@@ -33,6 +33,5 @@
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/TooltipResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/PopupResources.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/ExpanderResources.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/EleCho.WpfSuite.Controls;component/Controls/StateMachineContainerResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
