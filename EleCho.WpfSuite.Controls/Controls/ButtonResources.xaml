@@ -33,12 +33,12 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
 
-        <Setter Property="wss:StateManager.NormalBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
-        <Setter Property="wss:StateManager.NormalForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
-        <Setter Property="wss:StateManager.NormalBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
-        <Setter Property="wss:StateManager.NormalPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
-        <Setter Property="wss:StateManager.NormalBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
-        <Setter Property="wss:StateManager.NormalCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
+        <Setter Property="wss:StateManager.Background" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
+        <Setter Property="wss:StateManager.Foreground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="wss:StateManager.BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
+        <Setter Property="wss:StateManager.Padding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
+        <Setter Property="wss:StateManager.BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
+        <Setter Property="wss:StateManager.CornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
 
         <Setter Property="wss:StateManager.DefaultTransitionDuration" Value="0:0:0.200"/>
         <Setter Property="wss:StateManager.HoverTransitionDuration" Value="0:0:0.100"/>

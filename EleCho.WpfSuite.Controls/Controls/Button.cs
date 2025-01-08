@@ -20,11 +20,18 @@ namespace EleCho.WpfSuite.Controls
     /// <summary>
     /// Represents the enhanced button component that inherently reacts to the Click event.
     /// </summary>
+    [GenerateStates]
+    [GenerateStatesState(State.Hover)]
+    [GenerateStatesState(State.Pressed)]
+    [GenerateStatesState(State.Highlighted)]
+    [GenerateStatesState(State.Disabled)]
+    [GenerateStatesProperty(StateProperty.Background)]
+    [GenerateStatesProperty(StateProperty.Foreground)]
+    [GenerateStatesProperty(StateProperty.BorderBrush)]
+    [GenerateStatesProperty(StateProperty.Padding)]
+    [GenerateStatesProperty(StateProperty.BorderThickness)]
+    [GenerateStatesProperty(StateProperty.CornerRadius)]
     [GenerateCornerRadiusProperty]
-    [GenerateStateProperties(State.Hover)]
-    [GenerateStateProperties(State.Pressed)]
-    [GenerateStateProperties(State.Highlighted)]
-    [GenerateStateProperties(State.Disabled)]
     public partial class Button : System.Windows.Controls.Button
     {
         static Button()

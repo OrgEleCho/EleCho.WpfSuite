@@ -18,9 +18,9 @@ using EleCho.WpfSuite.Controls.SourceGeneration;
 namespace StateMachineControlTest.Controls
 {
     [GenerateCornerRadiusProperty]
-    [GenerateStateProperties(State.Hover)]
-    [GenerateStateProperties(State.Pressed)]
-    [GenerateStateProperties(State.Disabled)]
+    [GenerateStatesState(State.Hover)]
+    [GenerateStatesState(State.Pressed)]
+    [GenerateStatesState(State.Disabled)]
     public partial class TestControl : Button
     {
         static TestControl()

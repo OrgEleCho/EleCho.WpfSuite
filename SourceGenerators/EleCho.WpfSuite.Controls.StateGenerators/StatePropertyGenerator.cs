@@ -8,14 +8,13 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
     [Generator]
     public class StatePropertyGenerator : IIncrementalGenerator
     {
-        const string TagAttributeFullName = "EleCho.WpfSuite.Controls.SourceGeneration.GenerateStatePropertiesAttribute";
+        const string TagAttributeFullName = "EleCho.WpfSuite.Controls.SourceGeneration.GenerateStatesAttribute";
+        const string TagStateAttributeFullName = "EleCho.WpfSuite.Controls.SourceGeneration.GenerateStatesStateAttribute";
+        const string TagStatePropertyAttributeFullName = "EleCho.WpfSuite.Controls.SourceGeneration.GenerateStatesPropertyAttribute";
         const string BaseType = "DependencyObject";
 
         const string TypeStateManagerFullName = "global::EleCho.WpfSuite.Controls.States.StateManager";
         const string TypeDependencyPropertyFullName = "global::System.Windows.DependencyProperty";
-        const string TypeBrushFullName = "global::System.Windows.Media.Brush";
-        const string TypeThicknessFullName = "global::System.Windows.Thickness";
-        const string TypeCornerRadiusFullName = "global::System.Windows.CornerRadius";
 
         [Flags]
         private enum StateFlags
@@ -30,56 +29,172 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Disabled       = 64,
         }
 
-        private record struct GenerationInfo(INamedTypeSymbol NamedTypeSymbol, StateFlags StateFlags);
+        [Flags]
+        private enum StatePropertyFlags
+        {
+            None                  = 0,
+            Background            = 1,
+            Foreground            = 2,
+            BorderBrush           = 4,
+            GlyphBrush            = 8,
+            Padding               = 16,
+            BorderThickness       = 32,
+            CornerRadius          = 64,
+        }
 
-        private void AddStatePropertyDefinition(StringBuilder sb, string stateName, string propertyName, string ownerTypeName, string typeName, int indent)
+        private record struct GenerationInfo(INamedTypeSymbol NamedTypeSymbol, StateFlags StateFlags, StatePropertyFlags StatePropertyFlags);
+
+        private readonly StatePropertyFlags[] DefaultStateNotBuiltInProperties = new[]
+        {
+            StatePropertyFlags.GlyphBrush,
+        };
+
+        private string GetTypeNameForStateProperty(StatePropertyFlags flag)
+        {
+            const string TypeBrushFullName = "global::System.Windows.Media.Brush";
+            const string TypeThicknessFullName = "global::System.Windows.Thickness";
+            const string TypeCornerRadiusFullName = "global::System.Windows.CornerRadius";
+
+            return flag switch
+            {
+                StatePropertyFlags.Background => TypeBrushFullName,
+                StatePropertyFlags.Foreground => TypeBrushFullName,
+                StatePropertyFlags.BorderBrush => TypeBrushFullName,
+                StatePropertyFlags.GlyphBrush => TypeBrushFullName,
+                StatePropertyFlags.Padding => TypeThicknessFullName,
+                StatePropertyFlags.BorderThickness => TypeThicknessFullName,
+                StatePropertyFlags.CornerRadius => TypeCornerRadiusFullName,
+                _ => throw new ArgumentException(),
+            };
+        }
+
+        private void AddDependencyPropertyFromStateManager(StringBuilder sb, string propertyName, string propertyTypeName, string ownerTypeName, bool addNullableTag, int indent)
         {
             string indentText = new string(' ', indent);
+            string nullableTagPlaceholder = addNullableTag ? "?" : string.Empty;
 
             sb.AppendLine(
                 $$"""
-                {{indentText}}public {{typeName}}? {{stateName}}{{propertyName}} 
+                {{indentText}}public {{propertyTypeName}}{{nullableTagPlaceholder}} {{propertyName}} 
                 {{indentText}}{
-                {{indentText}}    get => ({{typeName}}?)GetValue({{stateName}}{{propertyName}}Property);
-                {{indentText}}    set => SetValue({{stateName}}{{propertyName}}Property, value);
+                {{indentText}}    get => ({{propertyTypeName}}{{nullableTagPlaceholder}})GetValue({{propertyName}}Property);
+                {{indentText}}    set => SetValue({{propertyName}}Property, value);
                 {{indentText}}}
                 {{indentText}}
-                {{indentText}}public static readonly {{TypeDependencyPropertyFullName}} {{stateName}}{{propertyName}}Property
-                {{indentText}}    = {{TypeStateManagerFullName}}.{{stateName}}{{propertyName}}Property.AddOwner(typeof({{ownerTypeName}}));
+                {{indentText}}public static readonly {{TypeDependencyPropertyFullName}} {{propertyName}}Property
+                {{indentText}}    = {{TypeStateManagerFullName}}.{{propertyName}}Property.AddOwner(typeof({{ownerTypeName}}));
                 {{indentText}}
                 """);
         }
 
-        private string GenerateForType(string name, string typeNamespace, StateFlags flags)
+        private void AddStatePropertyDefinition(StringBuilder sb, StateFlags state, StatePropertyFlags stateProperty, string propertyTypeName, string ownerTypeName, bool addNullableTag, int indent)
+        {
+            var propertyPrefix = string.Empty;
+
+            if (state != StateFlags.None)
+            {
+                propertyPrefix = state.ToString();
+            }
+
+            AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}", propertyTypeName, ownerTypeName, addNullableTag, indent);
+        }
+
+        private void AddStatePropertyTransitionDurationDefinition(StringBuilder sb, StateFlags state, StatePropertyFlags stateProperty, string ownerTypeName, bool addNullableTag, int indent)
+        {
+            if (state == StateFlags.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(state));
+            }
+
+            const string TypeDurationFullName = "global::System.Windows.Duration";
+            var propertyPrefix = state.ToString();
+
+            AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}TransitionDuration", TypeDurationFullName, ownerTypeName, addNullableTag, indent);
+        }
+
+        private void AddStatePropertyEasingFunctionDefinition(StringBuilder sb, StateFlags state, StatePropertyFlags stateProperty, string ownerTypeName, bool addNullableTag, int indent)
+        {
+            if (state == StateFlags.None)
+            {
+                throw new ArgumentOutOfRangeException(nameof(state));
+            }
+
+            const string TypeIEasingFunctionFullName = "global::System.Windows.Media.Animation.IEasingFunction";
+            var propertyPrefix = state.ToString();
+
+            AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}EasingFunction", TypeIEasingFunctionFullName, ownerTypeName, addNullableTag, indent);
+        }
+
+        private void AddStateDefaultProperties(StringBuilder sb, StateFlags state, string ownerTypeName, int indent)
+        {
+            const string TypeDurationFullName = "global::System.Windows.Duration";
+            const string TypeIEasingFunctionFullName = "global::System.Windows.Media.Animation.IEasingFunction";
+
+            if (state == StateFlags.None)
+            {
+                AddDependencyPropertyFromStateManager(sb, $"DefaultTransitionDuration", TypeDurationFullName, ownerTypeName, false, indent);
+                AddDependencyPropertyFromStateManager(sb, $"DefaultEasingFunction", TypeIEasingFunctionFullName, ownerTypeName, true, indent);
+            }
+            else
+            {
+                AddDependencyPropertyFromStateManager(sb, $"{state}TransitionDuration", TypeDurationFullName, ownerTypeName, true, indent);
+                AddDependencyPropertyFromStateManager(sb, $"{state}EasingFunction", TypeIEasingFunctionFullName, ownerTypeName, true, indent);
+            }
+        }
+
+        private string GenerateForType(string typeName, string typeNamespace, StateFlags stateFlags, StatePropertyFlags statePropertyFlags)
         {
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(
                 $$"""
                 // <auto-generated/>
+                #progma warning disable
+                #nullable enable
 
                 namespace {{typeNamespace}}
                 {
-                    partial class {{name}}
+                    partial class {{typeName}}
                     {
                 """);
 
-            foreach (var flag in (StateFlags[])Enum.GetValues(typeof(StateFlags)))
+            AddStateDefaultProperties(sb, StateFlags.None, typeName, 8);
+
+            foreach (var property in DefaultStateNotBuiltInProperties)
             {
-                if (flag == StateFlags.None ||
-                    !flags.HasFlag(flag))
+                if (!statePropertyFlags.HasFlag(property))
                 {
                     continue;
                 }
 
-                var stateName = flag.ToString();
+                var propertyTypeName = GetTypeNameForStateProperty(property);
+                AddStatePropertyDefinition(sb, StateFlags.None, property, propertyTypeName, typeName, false, 8);
+            }
 
-                AddStatePropertyDefinition(sb, stateName, "Background", name, TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "Foreground", name, TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "BorderBrush", name, TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "Padding", name, TypeThicknessFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "BorderThickness", name, TypeThicknessFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "CornerRadius", name, TypeCornerRadiusFullName, 8);
+            foreach (var stateFlag in (StateFlags[])Enum.GetValues(typeof(StateFlags)))
+            {
+                if (stateFlag == StateFlags.None ||
+                    !stateFlags.HasFlag(stateFlag))
+                {
+                    continue;
+                }
+
+                AddStateDefaultProperties(sb, stateFlag, typeName, 8);
+
+                foreach (var statePropertyFlag in (StatePropertyFlags[])Enum.GetValues(typeof(StatePropertyFlags)))
+                {
+                    if (statePropertyFlag == StatePropertyFlags.None ||
+                        !statePropertyFlags.HasFlag(statePropertyFlag))
+                    {
+                        continue;
+                    }
+
+                    var propertyTypeName = GetTypeNameForStateProperty(statePropertyFlag);
+
+                    AddStatePropertyTransitionDurationDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
+                    AddStatePropertyEasingFunctionDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
+                    AddStatePropertyDefinition(sb, stateFlag, statePropertyFlag, propertyTypeName, typeName, true, 8);
+                }
             }
 
             sb.AppendLine(
@@ -91,9 +206,10 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             return sb.ToString();
         }
 
-        private static StateFlags GetStateFlagFromAttribute(AttributeSyntax syntaxNode)
+        private static void GetFlagsFromAttribute(AttributeSyntax syntaxNode, out StateFlags stateFlag, out StatePropertyFlags statePropertyFlag)
         {
-            var stateFlags = StateFlags.None;
+            stateFlag = StateFlags.None;
+            statePropertyFlag = StatePropertyFlags.None;
 
             if (syntaxNode.ArgumentList is not null)
             {
@@ -105,14 +221,23 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                     }
 
                     var name = memberAccessExpression.Name.Identifier.ValueText;
-                    if (Enum.TryParse<StateFlags>(name, out var stateFlag))
-                    {
-                        stateFlags |= stateFlag;
-                    }
+                    Enum.TryParse<StateFlags>(name, out stateFlag);
                 }
             }
 
-            return stateFlags;
+            if (syntaxNode.ArgumentList is not null)
+            {
+                foreach (var argument in syntaxNode.ArgumentList.Arguments)
+                {
+                    if (argument.Expression is not MemberAccessExpressionSyntax memberAccessExpression)
+                    {
+                        continue;
+                    }
+
+                    var name = memberAccessExpression.Name.Identifier.ValueText;
+                    Enum.TryParse<StatePropertyFlags>(name, out statePropertyFlag);
+                }
+            }
         }
 
         public void Initialize(IncrementalGeneratorInitializationContext context)
@@ -124,28 +249,31 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 {
                     INamedTypeSymbol typeSymbol = (INamedTypeSymbol)context.TargetSymbol;
 
-                    var flags = StateFlags.None;
+                    var stateFlags = StateFlags.None;
+                    var statePropertiesFlags = StatePropertyFlags.None;
                     var classDeclaration = (ClassDeclarationSyntax)context.TargetNode;
 
                     foreach (var attributeList in classDeclaration.AttributeLists)
                     {
                         foreach (var attribute in attributeList.ChildNodes())
                         {
-                            var flag = GetStateFlagFromAttribute((AttributeSyntax)attribute);
+                            GetFlagsFromAttribute((AttributeSyntax)attribute, out var stateFlag, out var statePropertyFlag);
 
-                            flags |= flag;
+                            stateFlags |= stateFlag;
+                            statePropertiesFlags |= statePropertyFlag;
                         }
                     }
 
-                    return new GenerationInfo(typeSymbol, flags);
+                    return new GenerationInfo(typeSymbol, stateFlags, statePropertiesFlags);
                 });
 
             context.RegisterSourceOutput(generationInfos, (context, generationInfo) =>
             {
                 var typeName = generationInfo.NamedTypeSymbol.Name;
                 var typeNamespace = generationInfo.NamedTypeSymbol.ContainingNamespace.ToString();
+                var sourceText = GenerateForType(typeName, typeNamespace, generationInfo.StateFlags, generationInfo.StatePropertyFlags);
 
-                context.AddSource($"{typeNamespace}.{typeName}.StateProperties.g.cs", GenerateForType(typeName, typeNamespace, generationInfo.StateFlags));
+                context.AddSource($"{typeNamespace}.{typeName}.StateProperties.g.cs", sourceText);
             });
         }
     }

@@ -8,10 +8,10 @@ using EleCho.WpfSuite.Controls.States;
 namespace EleCho.WpfSuite.Controls.SourceGeneration
 {
     /// <summary>
-    /// Tell source generator to generate state property definitions
+    /// Tell source generator to generate one state
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public sealed class GenerateStatePropertiesAttribute : Attribute
+    public sealed class GenerateStatesStateAttribute : Attribute
     {
         /// <summary>
         /// State to generate
@@ -22,7 +22,7 @@ namespace EleCho.WpfSuite.Controls.SourceGeneration
         /// Constructor
         /// </summary>
         /// <param name="state"></param>
-        public GenerateStatePropertiesAttribute(State state)
+        public GenerateStatesStateAttribute(State state)
         {
             State = state;
         }
