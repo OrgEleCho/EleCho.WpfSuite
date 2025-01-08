@@ -19,6 +19,9 @@ namespace EleCho.WpfSuite.Controls.States
         Selected,
         SelectedActive,
 
+        // highlighted
+        Highlighted,
+
         // disabled
         Disabled
     }

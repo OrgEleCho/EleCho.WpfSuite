@@ -187,6 +187,28 @@ namespace EleCho.WpfSuite.Controls.States
 
         #endregion
 
+        #region State Highlighted
+
+        public static Brush? GetHighlightedBackground(DependencyObject obj) => (Brush?)obj.GetValue(HighlightedBackgroundProperty);
+        public static void SetHighlightedBackground(DependencyObject obj, Brush? value) => obj.SetValue(HighlightedBackgroundProperty, value);
+
+        public static Brush? GetHighlightedForeground(DependencyObject obj) => (Brush?)obj.GetValue(HighlightedForegroundProperty);
+        public static void SetHighlightedForeground(DependencyObject obj, Brush? value) => obj.SetValue(HighlightedForegroundProperty, value);
+
+        public static Brush? GetHighlightedBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(HighlightedBorderBrushProperty);
+        public static void SetHighlightedBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(HighlightedBorderBrushProperty, value);
+
+        public static Thickness? GetHighlightedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HighlightedPaddingProperty);
+        public static void SetHighlightedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HighlightedPaddingProperty, value);
+
+        public static Thickness? GetHighlightedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(HighlightedBorderThicknessProperty);
+        public static void SetHighlightedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(HighlightedBorderThicknessProperty, value);
+
+        public static CornerRadius? GetHighlightedCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(HighlightedCornerRadiusProperty);
+        public static void SetHighlightedCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(HighlightedCornerRadiusProperty, value);
+
+        #endregion
+
         #region Showing
 
         public static Brush GetShowingBackground(DependencyObject obj) => (Brush)obj.GetValue(ShowingBackgroundProperty);
@@ -354,6 +376,31 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Duration? GetSelectedActiveCornerRadiusTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedActiveCornerRadiusTransitionDurationProperty);
         public static void SetSelectedActiveCornerRadiusTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedActiveCornerRadiusTransitionDurationProperty, value);
+
+        #endregion
+
+        #region State Highlighted
+
+        public static Duration? GetHighlightedTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedTransitionDurationProperty);
+        public static void SetHighlightedTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedBackgroundTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedBackgroundTransitionDurationProperty);
+        public static void SetHighlightedBackgroundTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedBackgroundTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedForegroundTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedForegroundTransitionDurationProperty);
+        public static void SetHighlightedForegroundTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedForegroundTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedBorderBrushTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedBorderBrushTransitionDurationProperty);
+        public static void SetHighlightedBorderBrushTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedBorderBrushTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedPaddingTransitionDurationProperty);
+        public static void SetHighlightedPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedPaddingTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedBorderThicknessTransitionDurationProperty);
+        public static void SetHighlightedBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedBorderThicknessTransitionDurationProperty, value);
+
+        public static Duration? GetHighlightedCornerRadiusTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedCornerRadiusTransitionDurationProperty);
+        public static void SetHighlightedCornerRadiusTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedCornerRadiusTransitionDurationProperty, value);
 
         #endregion
 
@@ -536,6 +583,31 @@ namespace EleCho.WpfSuite.Controls.States
 
         #endregion
 
+        #region State Highlighted
+
+        public static IEasingFunction GetHighlightedEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedEasingFunctionProperty);
+        public static void SetHighlightedEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedBackgroundEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedBackgroundEasingFunctionProperty);
+        public static void SetHighlightedBackgroundEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedBackgroundEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedForegroundEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedForegroundEasingFunctionProperty);
+        public static void SetHighlightedForegroundEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedForegroundEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedBorderBrushEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedBorderBrushEasingFunctionProperty);
+        public static void SetHighlightedBorderBrushEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedBorderBrushEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedPaddingEasingFunctionProperty);
+        public static void SetHighlightedPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedPaddingEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedBorderThicknessEasingFunctionProperty);
+        public static void SetHighlightedBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedBorderThicknessEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHighlightedCornerRadiusEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedCornerRadiusEasingFunctionProperty);
+        public static void SetHighlightedCornerRadiusEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedCornerRadiusEasingFunctionProperty, value);
+
+        #endregion
+
         #region State Disabled
 
         public static IEasingFunction GetDisabledEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(DisabledEasingFunctionProperty);
@@ -580,6 +652,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static State? GetStateSelectedActiveFallback(DependencyObject obj) => (State?)obj.GetValue(StateSelectedActiveFallbackProperty);
         public static void SetStateSelectedActiveFallback(DependencyObject obj, State? value) => obj.SetValue(StateSelectedActiveFallbackProperty, value);
+
+        public static State? GetStateHighlightedFallback(DependencyObject obj) => (State?)obj.GetValue(StateHighlightedFallbackProperty);
+        public static void SetStateHighlightedFallback(DependencyObject obj, State? value) => obj.SetValue(StateHighlightedFallbackProperty, value);
 
         public static State? GetStateDisabledFallback(DependencyObject obj) => (State?)obj.GetValue(StateDisabledFallbackProperty);
         public static void SetStateDisabledFallback(DependencyObject obj, State? value) => obj.SetValue(StateDisabledFallbackProperty, value);
@@ -726,6 +801,28 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty SelectedActiveCornerRadiusProperty =
             DependencyProperty.RegisterAttached("SelectedActiveCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+
+        #endregion
+
+        #region State Highlighted
+
+        public static readonly DependencyProperty HighlightedBackgroundProperty =
+            DependencyProperty.RegisterAttached("HighlightedBackground", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBackgroundChanged));
+
+        public static readonly DependencyProperty HighlightedForegroundProperty =
+            DependencyProperty.RegisterAttached("HighlightedForeground", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateForegroundChanged));
+
+        public static readonly DependencyProperty HighlightedBorderBrushProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
+
+        public static readonly DependencyProperty HighlightedPaddingProperty =
+            DependencyProperty.RegisterAttached("HighlightedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
+
+        public static readonly DependencyProperty HighlightedBorderThicknessProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+
+        public static readonly DependencyProperty HighlightedCornerRadiusProperty =
+            DependencyProperty.RegisterAttached("HighlightedCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -963,6 +1060,31 @@ namespace EleCho.WpfSuite.Controls.States
 
         #region State Disabled
 
+        public static readonly DependencyProperty HighlightedTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedBackgroundTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedBackgroundTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedForegroundTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedForegroundTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedBorderBrushTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderBrushTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedBorderThicknessTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HighlightedCornerRadiusTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedCornerRadiusTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        #endregion
+
+        #region State Disabled
+
         public static readonly DependencyProperty DisabledTransitionDurationProperty =
             DependencyProperty.RegisterAttached("DisabledTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
@@ -1142,6 +1264,31 @@ namespace EleCho.WpfSuite.Controls.States
 
         #region State Disabled
 
+        public static readonly DependencyProperty HighlightedEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedBackgroundEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedBackgroundEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedForegroundEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedForegroundEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedBorderBrushEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderBrushEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedBorderThicknessEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HighlightedCornerRadiusEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedCornerRadiusEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        #endregion
+
+        #region State Disabled
+
         public static readonly DependencyProperty DisabledEasingFunctionProperty =
             DependencyProperty.RegisterAttached("DisabledEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
@@ -1184,6 +1331,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty StateSelectedActiveFallbackProperty =
             DependencyProperty.RegisterAttached("StateSelectedActiveFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Selected));
+
+        public static readonly DependencyProperty StateHighlightedFallbackProperty =
+            DependencyProperty.RegisterAttached("StateHighlightedFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Normal));
 
         public static readonly DependencyProperty StateDisabledFallbackProperty =
             DependencyProperty.RegisterAttached("StateDisabledFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Normal));
@@ -1343,6 +1493,14 @@ namespace EleCho.WpfSuite.Controls.States
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
+                State.Highlighted => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(HighlightedPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(HighlightedBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(HighlightedCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
                 State.Disabled => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(DisabledPaddingProperty),
@@ -1363,6 +1521,7 @@ namespace EleCho.WpfSuite.Controls.States
                     State.Checked => GetStateCheckedFallback(d),
                     State.Selected => GetStateSelectedFallback(d),
                     State.SelectedActive => GetStateSelectedActiveFallback(d),
+                    State.Highlighted => GetStateHighlightedFallback(d),
                     State.Disabled => GetStateDisabledFallback(d),
                     _ => null,
                 };
@@ -1462,6 +1621,200 @@ namespace EleCho.WpfSuite.Controls.States
             return targetValue;
         }
 
+        private static Duration GetStatePropertyTransitionDuration(DependencyObject d, State state, StateProperty property)
+        {
+            return state switch
+            {
+                State.Normal => property switch
+                {
+                    StateProperty.Background => GetNormalBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetNormalForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetNormalBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetNormalPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetNormalBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetNormalCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Hover => property switch
+                {
+                    StateProperty.Background => GetHoverBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetHoverForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetHoverBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetHoverPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetHoverBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetHoverCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetHoverTransitionDuration(d),
+
+                State.Pressed => property switch
+                {
+                    StateProperty.Background => GetPressedBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetPressedForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetPressedBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetPressedPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetPressedBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetPressedCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetPressedTransitionDuration(d),
+
+                State.Checked => property switch
+                {
+                    StateProperty.Background => GetCheckedBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetCheckedForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetCheckedBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetCheckedPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetCheckedBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetCheckedCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetCheckedTransitionDuration(d),
+
+                State.Selected => property switch
+                {
+                    StateProperty.Background => GetSelectedBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetSelectedForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetSelectedBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetSelectedPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetSelectedBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetSelectedCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetSelectedTransitionDuration(d),
+
+                State.SelectedActive => property switch
+                {
+                    StateProperty.Background => GetSelectedActiveBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetSelectedActiveForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetSelectedActiveBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetSelectedActivePaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetSelectedActiveBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetSelectedActiveCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetSelectedActiveTransitionDuration(d),
+
+                State.Highlighted => property switch
+                {
+                    StateProperty.Background => GetHighlightedBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetHighlightedForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetHighlightedBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetHighlightedPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetHighlightedBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetHighlightedCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetHighlightedTransitionDuration(d),
+
+                State.Disabled => property switch
+                {
+                    StateProperty.Background => GetDisabledBackgroundTransitionDuration(d),
+                    StateProperty.Foreground => GetDisabledForegroundTransitionDuration(d),
+                    StateProperty.BorderBrush => GetDisabledBorderBrushTransitionDuration(d),
+                    StateProperty.Padding => GetDisabledPaddingTransitionDuration(d),
+                    StateProperty.BorderThickness => GetDisabledBorderThicknessTransitionDuration(d),
+                    StateProperty.CornerRadius => GetDisabledCornerRadiusTransitionDuration(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetDisabledTransitionDuration(d),
+
+                _ => throw new ArgumentException("Invalid state", nameof(state))
+
+            } ?? GetDefaultTransitionDuration(d);
+        }
+
+        private static IEasingFunction? GetStatePropertyEasingFunction(DependencyObject d, State state, StateProperty property)
+        {
+            return state switch
+            {
+                State.Normal => property switch
+                {
+                    StateProperty.Background => GetNormalBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetNormalForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetNormalBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetNormalPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetNormalBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetNormalCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Hover => property switch
+                {
+                    StateProperty.Background => GetHoverBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetHoverForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetHoverBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetHoverPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetHoverBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetHoverCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetHoverEasingFunction(d),
+
+                State.Pressed => property switch
+                {
+                    StateProperty.Background => GetPressedBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetPressedForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetPressedBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetPressedPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetPressedBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetPressedCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetPressedEasingFunction(d),
+
+                State.Checked => property switch
+                {
+                    StateProperty.Background => GetCheckedBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetCheckedForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetCheckedBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetCheckedPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetCheckedBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetCheckedCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetCheckedEasingFunction(d),
+
+                State.Selected => property switch
+                {
+                    StateProperty.Background => GetSelectedBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetSelectedForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetSelectedBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetSelectedPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetSelectedBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetSelectedCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetSelectedEasingFunction(d),
+
+                State.SelectedActive => property switch
+                {
+                    StateProperty.Background => GetSelectedActiveBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetSelectedActiveForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetSelectedActiveBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetSelectedActivePaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetSelectedActiveBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetSelectedActiveCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetSelectedActiveEasingFunction(d),
+
+                State.Highlighted => property switch
+                {
+                    StateProperty.Background => GetHighlightedBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetHighlightedForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetHighlightedBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetHighlightedPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetHighlightedBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetHighlightedCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetHighlightedEasingFunction(d),
+
+                State.Disabled => property switch
+                {
+                    StateProperty.Background => GetDisabledBackgroundEasingFunction(d),
+                    StateProperty.Foreground => GetDisabledForegroundEasingFunction(d),
+                    StateProperty.BorderBrush => GetDisabledBorderBrushEasingFunction(d),
+                    StateProperty.Padding => GetDisabledPaddingEasingFunction(d),
+                    StateProperty.BorderThickness => GetDisabledBorderThicknessEasingFunction(d),
+                    StateProperty.CornerRadius => GetDisabledCornerRadiusEasingFunction(d),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                } ?? GetDisabledEasingFunction(d),
+
+                _ => throw new ArgumentException("Invalid state", nameof(state))
+
+            } ?? GetDefaultEasingFunction(d);
+        }
+
         private static void ActiveStateBackground(DependencyObject d, State targetState)
         {
             var storyboardKey = new DependencyObjectAndStateProperty(d, StateProperty.Background);
@@ -1485,17 +1838,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingBackground(d);
             animatable.BeginAnimation(ShowingBackgroundProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalBackgroundTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverBackgroundTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedBackgroundTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedBackgroundTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedBackgroundTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActiveBackgroundTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledBackgroundTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.Background);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1503,17 +1846,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalBackgroundEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverBackgroundEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedBackgroundEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedBackgroundEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedBackgroundEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActiveBackgroundEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledBackgroundEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.Background);
 
             if ((nowValue is null || nowValue.CanFreeze) &&
                 (targetValue is null || targetValue.CanFreeze))
@@ -1581,17 +1914,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingForeground(d);
             animatable.BeginAnimation(ShowingForegroundProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalForegroundTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverForegroundTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedForegroundTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedForegroundTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedForegroundTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActiveForegroundTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledForegroundTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.Foreground);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1599,17 +1922,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalForegroundEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverForegroundEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedForegroundEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedForegroundEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedForegroundEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActiveForegroundEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledForegroundEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.Foreground);
 
             if ((nowValue is null || nowValue.CanFreeze) &&
                 (targetValue is null || targetValue.CanFreeze))
@@ -1677,17 +1990,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingBorderBrush(d);
             animatable.BeginAnimation(ShowingBorderBrushProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalBorderBrushTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverBorderBrushTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedBorderBrushTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedBorderBrushTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedBorderBrushTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActiveBorderBrushTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledBorderBrushTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.BorderBrush);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1695,17 +1998,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalBorderBrushEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverBorderBrushEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedBorderBrushEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedBorderBrushEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedBorderBrushEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActiveBorderBrushEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledBorderBrushEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.BorderBrush);
 
             if ((nowValue is null || nowValue.CanFreeze) &&
                 (targetValue is null || targetValue.CanFreeze))
@@ -1769,17 +2062,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingPadding(d);
             animatable.BeginAnimation(ShowingPaddingProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalPaddingTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverPaddingTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedPaddingTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedPaddingTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedPaddingTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActivePaddingTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledPaddingTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.Padding);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1787,17 +2070,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalPaddingEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverPaddingEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedPaddingEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedPaddingEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedPaddingEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActivePaddingEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledPaddingEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.Padding);
 
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
@@ -1830,17 +2103,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingBorderThickness(d);
             animatable.BeginAnimation(ShowingBorderThicknessProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalBorderThicknessTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverBorderThicknessTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedBorderThicknessTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedBorderThicknessTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedBorderThicknessTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActiveBorderThicknessTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledBorderThicknessTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.BorderThickness);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1848,17 +2111,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalBorderThicknessEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverBorderThicknessEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedBorderThicknessEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedBorderThicknessEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedBorderThicknessEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActiveBorderThicknessEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledBorderThicknessEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.BorderThickness);
 
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
@@ -1891,17 +2144,7 @@ namespace EleCho.WpfSuite.Controls.States
             var nowValue = GetShowingCornerRadius(d);
             animatable.BeginAnimation(ShowingCornerRadiusProxyProperty, null);
 
-            var targetTransitionDuration = targetState switch
-            {
-                State.Normal => GetNormalCornerRadiusTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Hover => GetHoverCornerRadiusTransitionDuration(d) ?? GetHoverTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Pressed => GetPressedCornerRadiusTransitionDuration(d) ?? GetPressedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Checked => GetCheckedCornerRadiusTransitionDuration(d) ?? GetCheckedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Selected => GetSelectedCornerRadiusTransitionDuration(d) ?? GetSelectedTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.SelectedActive => GetSelectedActiveCornerRadiusTransitionDuration(d) ?? GetSelectedActiveTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                State.Disabled => GetDisabledCornerRadiusTransitionDuration(d) ?? GetDisabledTransitionDuration(d) ?? GetDefaultTransitionDuration(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.CornerRadius);
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
@@ -1909,17 +2152,7 @@ namespace EleCho.WpfSuite.Controls.States
                 return;
             }
 
-            var targetEasingFunction = targetState switch
-            {
-                State.Normal => GetNormalCornerRadiusEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Hover => GetHoverCornerRadiusEasingFunction(d) ?? GetHoverEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Pressed => GetPressedCornerRadiusEasingFunction(d) ?? GetPressedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Checked => GetCheckedCornerRadiusEasingFunction(d) ?? GetCheckedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Selected => GetSelectedCornerRadiusEasingFunction(d) ?? GetSelectedEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.SelectedActive => GetSelectedActiveCornerRadiusEasingFunction(d) ?? GetSelectedActiveEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                State.Disabled => GetDisabledCornerRadiusEasingFunction(d) ?? GetDisabledEasingFunction(d) ?? GetDefaultEasingFunction(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.CornerRadius);
 
             CornerRadiusAnimation cornerRadiusAnimation = new CornerRadiusAnimation()
             {

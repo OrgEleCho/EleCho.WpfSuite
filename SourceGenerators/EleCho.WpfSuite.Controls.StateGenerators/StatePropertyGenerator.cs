@@ -26,7 +26,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Checked        = 4,
             Selected       = 8,
             SelectedActive = 16,
-            Disabled       = 32
+            Highlighted    = 32,
+            Disabled       = 64,
         }
 
         private record struct GenerationInfo(INamedTypeSymbol NamedTypeSymbol, StateFlags StateFlags);
