@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EleCho.WpfSuite.Controls\EleCho.WpfSuite.Controls.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Layouts\EleCho.WpfSuite.Layouts.csproj" />
+    <ProjectReference Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

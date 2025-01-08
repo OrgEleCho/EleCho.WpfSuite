@@ -1359,6 +1359,11 @@ namespace EleCho.WpfSuite.Controls.States
                 var fallbackState = state switch
                 {
                     State.Hover => GetStateHoverFallback(d),
+                    State.Pressed => GetStatePressedFallback(d),
+                    State.Checked => GetStateCheckedFallback(d),
+                    State.Selected => GetStateSelectedFallback(d),
+                    State.SelectedActive => GetStateSelectedActiveFallback(d),
+                    State.Disabled => GetStateDisabledFallback(d),
                     _ => null,
                 };
 
@@ -1440,6 +1445,11 @@ namespace EleCho.WpfSuite.Controls.States
                 var fallbackState = state switch
                 {
                     State.Hover => GetStateHoverFallback(d),
+                    State.Pressed => GetStatePressedFallback(d),
+                    State.Checked => GetStateCheckedFallback(d),
+                    State.Selected => GetStateSelectedFallback(d),
+                    State.SelectedActive => GetStateSelectedActiveFallback(d),
+                    State.Disabled => GetStateDisabledFallback(d),
                     _ => null,
                 };
 
@@ -1744,10 +1754,15 @@ namespace EleCho.WpfSuite.Controls.States
         {
             var targetValue = GetStatePropertyStructValue<Thickness>(d, targetState, StateProperty.Padding);
 
+            if (!targetValue.HasValue)
+            {
+                return;
+            }
+
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingPaddingProperty) == DependencyProperty.UnsetValue)
             {
-                d.SetValue(ShowingPaddingPropertyKey, targetValue);
+                d.SetValue(ShowingPaddingPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1768,7 +1783,7 @@ namespace EleCho.WpfSuite.Controls.States
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
-                d.SetValue(ShowingPaddingPropertyKey, targetValue);
+                d.SetValue(ShowingPaddingPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1787,7 +1802,7 @@ namespace EleCho.WpfSuite.Controls.States
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
                 From = nowValue,
-                To = targetValue,
+                To = targetValue.Value,
                 Duration = targetTransitionDuration,
                 EasingFunction = targetEasingFunction,
                 FillBehavior = FillBehavior.HoldEnd,
@@ -1800,10 +1815,15 @@ namespace EleCho.WpfSuite.Controls.States
         {
             var targetValue = GetStatePropertyStructValue<Thickness>(d, targetState, StateProperty.BorderThickness);
 
+            if (!targetValue.HasValue)
+            {
+                return;
+            }
+
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingBorderThicknessProperty) == DependencyProperty.UnsetValue)
             {
-                d.SetValue(ShowingBorderThicknessPropertyKey, targetValue);
+                d.SetValue(ShowingBorderThicknessPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1824,7 +1844,7 @@ namespace EleCho.WpfSuite.Controls.States
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
-                d.SetValue(ShowingBorderThicknessPropertyKey, targetValue);
+                d.SetValue(ShowingBorderThicknessPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1843,7 +1863,7 @@ namespace EleCho.WpfSuite.Controls.States
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
             {
                 From = nowValue,
-                To = targetValue,
+                To = targetValue.Value,
                 Duration = targetTransitionDuration,
                 EasingFunction = targetEasingFunction,
                 FillBehavior = FillBehavior.HoldEnd,
@@ -1856,10 +1876,15 @@ namespace EleCho.WpfSuite.Controls.States
         {
             var targetValue = GetStatePropertyStructValue<CornerRadius>(d, targetState, StateProperty.CornerRadius);
 
+            if (!targetValue.HasValue)
+            {
+                return;
+            }
+
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingCornerRadiusProperty) == DependencyProperty.UnsetValue)
             {
-                d.SetValue(ShowingCornerRadiusPropertyKey, targetValue);
+                d.SetValue(ShowingCornerRadiusPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1880,7 +1905,7 @@ namespace EleCho.WpfSuite.Controls.States
 
             if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
             {
-                d.SetValue(ShowingCornerRadiusPropertyKey, targetValue);
+                d.SetValue(ShowingCornerRadiusPropertyKey, targetValue.Value);
                 return;
             }
 
@@ -1899,7 +1924,7 @@ namespace EleCho.WpfSuite.Controls.States
             CornerRadiusAnimation cornerRadiusAnimation = new CornerRadiusAnimation()
             {
                 From = nowValue,
-                To = targetValue,
+                To = targetValue.Value,
                 Duration = targetTransitionDuration,
                 EasingFunction = targetEasingFunction,
                 FillBehavior = FillBehavior.HoldEnd,

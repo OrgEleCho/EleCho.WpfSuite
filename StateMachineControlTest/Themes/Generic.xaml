@@ -13,40 +13,12 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
 
-        <Setter Property="HoverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
-        <Setter Property="HoverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
-        <Setter Property="HoverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
-        <Setter Property="HoverPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
-        <Setter Property="HoverBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
-        <Setter Property="HoverCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
-
-        <Setter Property="PressedBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBackground}"/>
-        <Setter Property="PressedForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverForeground}"/>
-        <Setter Property="PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderBrush}"/>
-        <Setter Property="PressedPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverPadding}"/>
-        <Setter Property="PressedBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderThickness}"/>
-        <Setter Property="PressedCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverCornerRadius}"/>
-
         <Setter Property="wss:StateManager.NormalBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
         <Setter Property="wss:StateManager.NormalForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
         <Setter Property="wss:StateManager.NormalBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
         <Setter Property="wss:StateManager.NormalPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
         <Setter Property="wss:StateManager.NormalBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
         <Setter Property="wss:StateManager.NormalCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
-
-        <Setter Property="wss:StateManager.HoverBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBackground}"/>
-        <Setter Property="wss:StateManager.HoverForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverForeground}"/>
-        <Setter Property="wss:StateManager.HoverBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderBrush}"/>
-        <Setter Property="wss:StateManager.HoverPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverPadding}"/>
-        <Setter Property="wss:StateManager.HoverBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverBorderThickness}"/>
-        <Setter Property="wss:StateManager.HoverCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=HoverCornerRadius}"/>
-
-        <Setter Property="wss:StateManager.PressedBackground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedBackground}"/>
-        <Setter Property="wss:StateManager.PressedForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedForeground}"/>
-        <Setter Property="wss:StateManager.PressedBorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedBorderBrush}"/>
-        <Setter Property="wss:StateManager.PressedPadding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedPadding}"/>
-        <Setter Property="wss:StateManager.PressedBorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedBorderThickness}"/>
-        <Setter Property="wss:StateManager.PressedCornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=PressedCornerRadius}"/>
 
         <Setter Property="wss:StateManager.DefaultTransitionDuration" Value="0:0:0.200"/>
         <Setter Property="wss:StateManager.HoverTransitionDuration" Value="0:0:0.100"/>
