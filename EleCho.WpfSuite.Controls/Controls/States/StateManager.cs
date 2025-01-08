@@ -15,6 +15,9 @@ namespace EleCho.WpfSuite.Controls.States
 {
     public static class StateManager
     {
+        private record struct DependencyObjectAndStateProperty(DependencyObject DependencyObject, StateProperty StateProperty);
+
+        private static Dictionary<DependencyObjectAndStateProperty, Storyboard>? _runningStoryboards;
 
         #region Getter Setter
 
@@ -54,133 +57,133 @@ namespace EleCho.WpfSuite.Controls.States
 
         #region State Hover
 
-        public static Brush GetHoverBackground(DependencyObject obj) => (Brush)obj.GetValue(HoverBackgroundProperty);
-        public static void SetHoverBackground(DependencyObject obj, Brush value) => obj.SetValue(HoverBackgroundProperty, value);
+        public static Brush? GetHoverBackground(DependencyObject obj) => (Brush?)obj.GetValue(HoverBackgroundProperty);
+        public static void SetHoverBackground(DependencyObject obj, Brush? value) => obj.SetValue(HoverBackgroundProperty, value);
 
-        public static Brush GetHoverForeground(DependencyObject obj) => (Brush)obj.GetValue(HoverForegroundProperty);
-        public static void SetHoverForeground(DependencyObject obj, Brush value) => obj.SetValue(HoverForegroundProperty, value);
+        public static Brush? GetHoverForeground(DependencyObject obj) => (Brush?)obj.GetValue(HoverForegroundProperty);
+        public static void SetHoverForeground(DependencyObject obj, Brush? value) => obj.SetValue(HoverForegroundProperty, value);
 
-        public static Brush GetHoverBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(HoverBorderBrushProperty);
-        public static void SetHoverBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(HoverBorderBrushProperty, value);
+        public static Brush? GetHoverBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(HoverBorderBrushProperty);
+        public static void SetHoverBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(HoverBorderBrushProperty, value);
 
-        public static Thickness GetHoverPadding(DependencyObject obj) => (Thickness)obj.GetValue(HoverPaddingProperty);
-        public static void SetHoverPadding(DependencyObject obj, Thickness value) => obj.SetValue(HoverPaddingProperty, value);
+        public static Thickness? GetHoverPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HoverPaddingProperty);
+        public static void SetHoverPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HoverPaddingProperty, value);
 
-        public static Thickness GetHoverBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(HoverBorderThicknessProperty);
-        public static void SetHoverBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(HoverBorderThicknessProperty, value);
+        public static Thickness? GetHoverBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(HoverBorderThicknessProperty);
+        public static void SetHoverBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(HoverBorderThicknessProperty, value);
 
-        public static CornerRadius GetHoverCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(HoverCornerRadiusProperty);
-        public static void SetHoverCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(HoverCornerRadiusProperty, value);
+        public static CornerRadius? GetHoverCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(HoverCornerRadiusProperty);
+        public static void SetHoverCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(HoverCornerRadiusProperty, value);
 
         #endregion
 
         #region State Pressed
 
-        public static Brush GetPressedBackground(DependencyObject obj) => (Brush)obj.GetValue(PressedBackgroundProperty);
-        public static void SetPressedBackground(DependencyObject obj, Brush value) => obj.SetValue(PressedBackgroundProperty, value);
+        public static Brush? GetPressedBackground(DependencyObject obj) => (Brush?)obj.GetValue(PressedBackgroundProperty);
+        public static void SetPressedBackground(DependencyObject obj, Brush? value) => obj.SetValue(PressedBackgroundProperty, value);
 
-        public static Brush GetPressedForeground(DependencyObject obj) => (Brush)obj.GetValue(PressedForegroundProperty);
-        public static void SetPressedForeground(DependencyObject obj, Brush value) => obj.SetValue(PressedForegroundProperty, value);
+        public static Brush? GetPressedForeground(DependencyObject obj) => (Brush?)obj.GetValue(PressedForegroundProperty);
+        public static void SetPressedForeground(DependencyObject obj, Brush? value) => obj.SetValue(PressedForegroundProperty, value);
 
-        public static Brush GetPressedBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(PressedBorderBrushProperty);
-        public static void SetPressedBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(PressedBorderBrushProperty, value);
+        public static Brush? GetPressedBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(PressedBorderBrushProperty);
+        public static void SetPressedBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(PressedBorderBrushProperty, value);
 
-        public static Thickness GetPressedPadding(DependencyObject obj) => (Thickness)obj.GetValue(PressedPaddingProperty);
-        public static void SetPressedPadding(DependencyObject obj, Thickness value) => obj.SetValue(PressedPaddingProperty, value);
+        public static Thickness? GetPressedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(PressedPaddingProperty);
+        public static void SetPressedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(PressedPaddingProperty, value);
 
-        public static Thickness GetPressedBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(PressedBorderThicknessProperty);
-        public static void SetPressedBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(PressedBorderThicknessProperty, value);
+        public static Thickness? GetPressedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(PressedBorderThicknessProperty);
+        public static void SetPressedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(PressedBorderThicknessProperty, value);
 
-        public static CornerRadius GetPressedCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(PressedCornerRadiusProperty);
-        public static void SetPressedCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(PressedCornerRadiusProperty, value);
+        public static CornerRadius? GetPressedCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(PressedCornerRadiusProperty);
+        public static void SetPressedCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(PressedCornerRadiusProperty, value);
 
         #endregion
 
         #region State Checked
 
-        public static Brush GetCheckedBackground(DependencyObject obj) => (Brush)obj.GetValue(CheckedBackgroundProperty);
-        public static void SetCheckedBackground(DependencyObject obj, Brush value) => obj.SetValue(CheckedBackgroundProperty, value);
+        public static Brush? GetCheckedBackground(DependencyObject obj) => (Brush?)obj.GetValue(CheckedBackgroundProperty);
+        public static void SetCheckedBackground(DependencyObject obj, Brush? value) => obj.SetValue(CheckedBackgroundProperty, value);
 
-        public static Brush GetCheckedForeground(DependencyObject obj) => (Brush)obj.GetValue(CheckedForegroundProperty);
-        public static void SetCheckedForeground(DependencyObject obj, Brush value) => obj.SetValue(CheckedForegroundProperty, value);
+        public static Brush? GetCheckedForeground(DependencyObject obj) => (Brush?)obj.GetValue(CheckedForegroundProperty);
+        public static void SetCheckedForeground(DependencyObject obj, Brush? value) => obj.SetValue(CheckedForegroundProperty, value);
 
-        public static Brush GetCheckedBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(CheckedBorderBrushProperty);
-        public static void SetCheckedBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(CheckedBorderBrushProperty, value);
+        public static Brush? GetCheckedBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(CheckedBorderBrushProperty);
+        public static void SetCheckedBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(CheckedBorderBrushProperty, value);
 
-        public static Thickness GetCheckedPadding(DependencyObject obj) => (Thickness)obj.GetValue(CheckedPaddingProperty);
-        public static void SetCheckedPadding(DependencyObject obj, Thickness value) => obj.SetValue(CheckedPaddingProperty, value);
+        public static Thickness? GetCheckedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(CheckedPaddingProperty);
+        public static void SetCheckedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(CheckedPaddingProperty, value);
 
-        public static Thickness GetCheckedBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(CheckedBorderThicknessProperty);
-        public static void SetCheckedBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(CheckedBorderThicknessProperty, value);
+        public static Thickness? GetCheckedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(CheckedBorderThicknessProperty);
+        public static void SetCheckedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(CheckedBorderThicknessProperty, value);
 
-        public static CornerRadius GetCheckedCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(CheckedCornerRadiusProperty);
-        public static void SetCheckedCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(CheckedCornerRadiusProperty, value);
+        public static CornerRadius? GetCheckedCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(CheckedCornerRadiusProperty);
+        public static void SetCheckedCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(CheckedCornerRadiusProperty, value);
 
         #endregion
 
         #region State Selected
 
-        public static Brush GetSelectedBackground(DependencyObject obj) => (Brush)obj.GetValue(SelectedBackgroundProperty);
-        public static void SetSelectedBackground(DependencyObject obj, Brush value) => obj.SetValue(SelectedBackgroundProperty, value);
+        public static Brush? GetSelectedBackground(DependencyObject obj) => (Brush?)obj.GetValue(SelectedBackgroundProperty);
+        public static void SetSelectedBackground(DependencyObject obj, Brush? value) => obj.SetValue(SelectedBackgroundProperty, value);
 
-        public static Brush GetSelectedForeground(DependencyObject obj) => (Brush)obj.GetValue(SelectedForegroundProperty);
-        public static void SetSelectedForeground(DependencyObject obj, Brush value) => obj.SetValue(SelectedForegroundProperty, value);
+        public static Brush? GetSelectedForeground(DependencyObject obj) => (Brush?)obj.GetValue(SelectedForegroundProperty);
+        public static void SetSelectedForeground(DependencyObject obj, Brush? value) => obj.SetValue(SelectedForegroundProperty, value);
 
-        public static Brush GetSelectedBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(SelectedBorderBrushProperty);
-        public static void SetSelectedBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(SelectedBorderBrushProperty, value);
+        public static Brush? GetSelectedBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(SelectedBorderBrushProperty);
+        public static void SetSelectedBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(SelectedBorderBrushProperty, value);
 
-        public static Thickness GetSelectedPadding(DependencyObject obj) => (Thickness)obj.GetValue(SelectedPaddingProperty);
-        public static void SetSelectedPadding(DependencyObject obj, Thickness value) => obj.SetValue(SelectedPaddingProperty, value);
+        public static Thickness? GetSelectedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedPaddingProperty);
+        public static void SetSelectedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedPaddingProperty, value);
 
-        public static Thickness GetSelectedBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(SelectedBorderThicknessProperty);
-        public static void SetSelectedBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(SelectedBorderThicknessProperty, value);
+        public static Thickness? GetSelectedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedBorderThicknessProperty);
+        public static void SetSelectedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedBorderThicknessProperty, value);
 
-        public static CornerRadius GetSelectedCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(SelectedCornerRadiusProperty);
-        public static void SetSelectedCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(SelectedCornerRadiusProperty, value);
+        public static CornerRadius? GetSelectedCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(SelectedCornerRadiusProperty);
+        public static void SetSelectedCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(SelectedCornerRadiusProperty, value);
 
         #endregion
 
         #region State SelectedActive
 
-        public static Brush GetSelectedActiveBackground(DependencyObject obj) => (Brush)obj.GetValue(SelectedActiveBackgroundProperty);
-        public static void SetSelectedActiveBackground(DependencyObject obj, Brush value) => obj.SetValue(SelectedActiveBackgroundProperty, value);
+        public static Brush? GetSelectedActiveBackground(DependencyObject obj) => (Brush?)obj.GetValue(SelectedActiveBackgroundProperty);
+        public static void SetSelectedActiveBackground(DependencyObject obj, Brush? value) => obj.SetValue(SelectedActiveBackgroundProperty, value);
 
-        public static Brush GetSelectedActiveForeground(DependencyObject obj) => (Brush)obj.GetValue(SelectedActiveForegroundProperty);
-        public static void SetSelectedActiveForeground(DependencyObject obj, Brush value) => obj.SetValue(SelectedActiveForegroundProperty, value);
+        public static Brush? GetSelectedActiveForeground(DependencyObject obj) => (Brush?)obj.GetValue(SelectedActiveForegroundProperty);
+        public static void SetSelectedActiveForeground(DependencyObject obj, Brush? value) => obj.SetValue(SelectedActiveForegroundProperty, value);
 
-        public static Brush GetSelectedActiveBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(SelectedActiveBorderBrushProperty);
-        public static void SetSelectedActiveBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(SelectedActiveBorderBrushProperty, value);
+        public static Brush? GetSelectedActiveBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(SelectedActiveBorderBrushProperty);
+        public static void SetSelectedActiveBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(SelectedActiveBorderBrushProperty, value);
 
-        public static Thickness GetSelectedActivePadding(DependencyObject obj) => (Thickness)obj.GetValue(SelectedActivePaddingProperty);
-        public static void SetSelectedActivePadding(DependencyObject obj, Thickness value) => obj.SetValue(SelectedActivePaddingProperty, value);
+        public static Thickness? GetSelectedActivePadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedActivePaddingProperty);
+        public static void SetSelectedActivePadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedActivePaddingProperty, value);
 
-        public static Thickness GetSelectedActiveBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(SelectedActiveBorderThicknessProperty);
-        public static void SetSelectedActiveBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(SelectedActiveBorderThicknessProperty, value);
+        public static Thickness? GetSelectedActiveBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedActiveBorderThicknessProperty);
+        public static void SetSelectedActiveBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedActiveBorderThicknessProperty, value);
 
-        public static CornerRadius GetSelectedActiveCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(SelectedActiveCornerRadiusProperty);
-        public static void SetSelectedActiveCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(SelectedActiveCornerRadiusProperty, value);
+        public static CornerRadius? GetSelectedActiveCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(SelectedActiveCornerRadiusProperty);
+        public static void SetSelectedActiveCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(SelectedActiveCornerRadiusProperty, value);
 
         #endregion
 
         #region State Disabled
 
-        public static Brush GetDisabledBackground(DependencyObject obj) => (Brush)obj.GetValue(DisabledBackgroundProperty);
-        public static void SetDisabledBackground(DependencyObject obj, Brush value) => obj.SetValue(DisabledBackgroundProperty, value);
+        public static Brush? GetDisabledBackground(DependencyObject obj) => (Brush?)obj.GetValue(DisabledBackgroundProperty);
+        public static void SetDisabledBackground(DependencyObject obj, Brush? value) => obj.SetValue(DisabledBackgroundProperty, value);
 
-        public static Brush GetDisabledForeground(DependencyObject obj) => (Brush)obj.GetValue(DisabledForegroundProperty);
-        public static void SetDisabledForeground(DependencyObject obj, Brush value) => obj.SetValue(DisabledForegroundProperty, value);
+        public static Brush? GetDisabledForeground(DependencyObject obj) => (Brush?)obj.GetValue(DisabledForegroundProperty);
+        public static void SetDisabledForeground(DependencyObject obj, Brush? value) => obj.SetValue(DisabledForegroundProperty, value);
 
-        public static Brush GetDisabledBorderBrush(DependencyObject obj) => (Brush)obj.GetValue(DisabledBorderBrushProperty);
-        public static void SetDisabledBorderBrush(DependencyObject obj, Brush value) => obj.SetValue(DisabledBorderBrushProperty, value);
+        public static Brush? GetDisabledBorderBrush(DependencyObject obj) => (Brush?)obj.GetValue(DisabledBorderBrushProperty);
+        public static void SetDisabledBorderBrush(DependencyObject obj, Brush? value) => obj.SetValue(DisabledBorderBrushProperty, value);
 
-        public static Thickness GetDisabledPadding(DependencyObject obj) => (Thickness)obj.GetValue(DisabledPaddingProperty);
-        public static void SetDisabledPadding(DependencyObject obj, Thickness value) => obj.SetValue(DisabledPaddingProperty, value);
+        public static Thickness? GetDisabledPadding(DependencyObject obj) => (Thickness?)obj.GetValue(DisabledPaddingProperty);
+        public static void SetDisabledPadding(DependencyObject obj, Thickness? value) => obj.SetValue(DisabledPaddingProperty, value);
 
-        public static Thickness GetDisabledBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(DisabledBorderThicknessProperty);
-        public static void SetDisabledBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(DisabledBorderThicknessProperty, value);
+        public static Thickness? GetDisabledBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(DisabledBorderThicknessProperty);
+        public static void SetDisabledBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(DisabledBorderThicknessProperty, value);
 
-        public static CornerRadius GetDisabledCornerRadius(DependencyObject obj) => (CornerRadius)obj.GetValue(DisabledCornerRadiusProperty);
-        public static void SetDisabledCornerRadius(DependencyObject obj, CornerRadius value) => obj.SetValue(DisabledCornerRadiusProperty, value);
+        public static CornerRadius? GetDisabledCornerRadius(DependencyObject obj) => (CornerRadius?)obj.GetValue(DisabledCornerRadiusProperty);
+        public static void SetDisabledCornerRadius(DependencyObject obj, CornerRadius? value) => obj.SetValue(DisabledCornerRadiusProperty, value);
 
         #endregion
 
@@ -560,6 +563,30 @@ namespace EleCho.WpfSuite.Controls.States
 
         #endregion
 
+        #region State Fallbacks
+
+
+        public static State? GetStateHoverFallback(DependencyObject obj) => (State?)obj.GetValue(StateHoverFallbackProperty);
+        public static void SetStateHoverFallback(DependencyObject obj, State? value) => obj.SetValue(StateHoverFallbackProperty, value);
+
+        public static State? GetStatePressedFallback(DependencyObject obj) => (State?)obj.GetValue(StatePressedFallbackProperty);
+        public static void SetStatePressedFallback(DependencyObject obj, State? value) => obj.SetValue(StatePressedFallbackProperty, value);
+
+        public static State? GetStateCheckedFallback(DependencyObject obj) => (State?)obj.GetValue(StateCheckedFallbackProperty);
+        public static void SetStateCheckedFallback(DependencyObject obj, State? value) => obj.SetValue(StateCheckedFallbackProperty, value);
+
+        public static State? GetStateSelectedFallback(DependencyObject obj) => (State?)obj.GetValue(StateSelectedFallbackProperty);
+        public static void SetStateSelectedFallback(DependencyObject obj, State? value) => obj.SetValue(StateSelectedFallbackProperty, value);
+
+        public static State? GetStateSelectedActiveFallback(DependencyObject obj) => (State?)obj.GetValue(StateSelectedActiveFallbackProperty);
+        public static void SetStateSelectedActiveFallback(DependencyObject obj, State? value) => obj.SetValue(StateSelectedActiveFallbackProperty, value);
+
+        public static State? GetStateDisabledFallback(DependencyObject obj) => (State?)obj.GetValue(StateDisabledFallbackProperty);
+        public static void SetStateDisabledFallback(DependencyObject obj, State? value) => obj.SetValue(StateDisabledFallbackProperty, value);
+
+
+        #endregion
+
         #endregion
 
 
@@ -604,13 +631,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("HoverBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty HoverPaddingProperty =
-            DependencyProperty.RegisterAttached("HoverPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("HoverPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty HoverBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("HoverBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("HoverBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty HoverCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("HoverCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("HoverCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -626,13 +653,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("PressedBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty PressedPaddingProperty =
-            DependencyProperty.RegisterAttached("PressedPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("PressedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty PressedBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("PressedBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("PressedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty PressedCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("PressedCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("PressedCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -648,13 +675,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("CheckedBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty CheckedPaddingProperty =
-            DependencyProperty.RegisterAttached("CheckedPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("CheckedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty CheckedBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("CheckedBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("CheckedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty CheckedCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("CheckedCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("CheckedCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -670,13 +697,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("SelectedBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty SelectedPaddingProperty =
-            DependencyProperty.RegisterAttached("SelectedPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("SelectedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty SelectedBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("SelectedBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("SelectedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty SelectedCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("SelectedCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("SelectedCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -692,13 +719,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("SelectedActiveBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty SelectedActivePaddingProperty =
-            DependencyProperty.RegisterAttached("SelectedActivePadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("SelectedActivePadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty SelectedActiveBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("SelectedActiveBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("SelectedActiveBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty SelectedActiveCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("SelectedActiveCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("SelectedActiveCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -714,13 +741,13 @@ namespace EleCho.WpfSuite.Controls.States
             DependencyProperty.RegisterAttached("DisabledBorderBrush", typeof(Brush), typeof(StateManager), new PropertyMetadata(null, propertyChangedCallback: OnAnyStateBorderBrushChanged));
 
         public static readonly DependencyProperty DisabledPaddingProperty =
-            DependencyProperty.RegisterAttached("DisabledPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
+            DependencyProperty.RegisterAttached("DisabledPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
         public static readonly DependencyProperty DisabledBorderThicknessProperty =
-            DependencyProperty.RegisterAttached("DisabledBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
+            DependencyProperty.RegisterAttached("DisabledBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
         public static readonly DependencyProperty DisabledCornerRadiusProperty =
-            DependencyProperty.RegisterAttached("DisabledCornerRadius", typeof(CornerRadius), typeof(StateManager), new PropertyMetadata(default(CornerRadius), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
+            DependencyProperty.RegisterAttached("DisabledCornerRadius", typeof(CornerRadius?), typeof(StateManager), new PropertyMetadata(default(CornerRadius?), propertyChangedCallback: OnAnyStateCornerRadiusChanged));
 
         #endregion
 
@@ -1140,6 +1167,30 @@ namespace EleCho.WpfSuite.Controls.States
 
         #endregion
 
+        #region State Fallbacks
+
+
+        public static readonly DependencyProperty StateHoverFallbackProperty =
+            DependencyProperty.RegisterAttached("StateHoverFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Normal));
+
+        public static readonly DependencyProperty StatePressedFallbackProperty =
+            DependencyProperty.RegisterAttached("StatePressedFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Hover));
+
+        public static readonly DependencyProperty StateCheckedFallbackProperty =
+            DependencyProperty.RegisterAttached("StateCheckedFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Pressed));
+
+        public static readonly DependencyProperty StateSelectedFallbackProperty =
+            DependencyProperty.RegisterAttached("StateSelectedFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Pressed));
+
+        public static readonly DependencyProperty StateSelectedActiveFallbackProperty =
+            DependencyProperty.RegisterAttached("StateSelectedActiveFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Selected));
+
+        public static readonly DependencyProperty StateDisabledFallbackProperty =
+            DependencyProperty.RegisterAttached("StateDisabledFallback", typeof(State?), typeof(StateManager), new PropertyMetadata(State.Normal));
+
+
+        #endregion
+
         #endregion
 
 
@@ -1239,19 +1290,180 @@ namespace EleCho.WpfSuite.Controls.States
             d.SetValue(ShowingCornerRadiusPropertyKey, e.NewValue);
         }
 
+        private static T? GetStatePropertyStructValue<T>(DependencyObject d, State state, StateProperty property)
+            where T : struct
+        {
+            var targetValue = state switch
+            {
+                State.Normal => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(NormalPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(NormalBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(NormalCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Hover => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(HoverPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(HoverBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(HoverCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Pressed => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(PressedPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(PressedBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(PressedCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Checked => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(CheckedPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(CheckedBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(CheckedCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Selected => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(NormalPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(NormalBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(NormalCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.SelectedActive => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(SelectedActivePaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(SelectedActiveBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(SelectedActiveCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Disabled => property switch
+                {
+                    StateProperty.Padding => (T?)d.GetValue(DisabledPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(DisabledBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(DisabledCornerRadiusProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                _ => throw new ArgumentException("Invalid state", nameof(state))
+            };
+
+            if (targetValue is null)
+            {
+                var fallbackState = state switch
+                {
+                    State.Hover => GetStateHoverFallback(d),
+                    _ => null,
+                };
+
+                if (fallbackState is not null)
+                {
+                    return GetStatePropertyStructValue<T>(d, fallbackState.Value, property);
+                }
+            }
+
+            return targetValue;
+        }
+
+        private static T? GetStatePropertyClassValue<T>(DependencyObject d, State state, StateProperty property)
+            where T : class
+        {
+            var targetValue = state switch
+            {
+                State.Normal => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(NormalBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(NormalForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(NormalBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Hover => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(HoverBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(HoverForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(HoverBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Pressed => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(PressedBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(PressedForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(PressedBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Checked => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(CheckedBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(CheckedForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(CheckedBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Selected => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(NormalBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(NormalForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(NormalBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.SelectedActive => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(SelectedActiveBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(SelectedActiveForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(SelectedActiveBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                State.Disabled => property switch
+                {
+                    StateProperty.Background => (T?)d.GetValue(DisabledBackgroundProperty),
+                    StateProperty.Foreground => (T?)d.GetValue(DisabledForegroundProperty),
+                    StateProperty.BorderBrush => (T?)d.GetValue(DisabledBorderBrushProperty),
+                    _ => throw new ArgumentException("Invalid property", nameof(property)),
+                },
+
+                _ => throw new ArgumentException("Invalid state", nameof(state))
+            };
+
+            if (targetValue is null)
+            {
+                var fallbackState = state switch
+                {
+                    State.Hover => GetStateHoverFallback(d),
+                    _ => null,
+                };
+
+                if (fallbackState is not null)
+                {
+                    return GetStatePropertyClassValue<T>(d, fallbackState.Value, property);
+                }
+            }
+
+            return targetValue;
+        }
+
         private static void ActiveStateBackground(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
+            var storyboardKey = new DependencyObjectAndStateProperty(d, StateProperty.Background);
+
+            if (_runningStoryboards is not null &&
+                _runningStoryboards.ContainsKey(storyboardKey))
             {
-                State.Normal => GetNormalBackground(d),
-                State.Hover => GetHoverBackground(d),
-                State.Pressed => GetPressedBackground(d),
-                State.Checked => GetCheckedBackground(d),
-                State.Selected => GetSelectedBackground(d),
-                State.SelectedActive => GetSelectedActiveBackground(d),
-                State.Disabled => GetDisabledBackground(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+                _runningStoryboards[storyboardKey].Stop();
+                _runningStoryboards.Remove(storyboardKey);
+            }
+
+            var targetValue = GetStatePropertyClassValue<Brush>(d, targetState, StateProperty.Background);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingBackgroundProperty) == DependencyProperty.UnsetValue)
@@ -1261,6 +1473,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingBackground(d);
+            animatable.BeginAnimation(ShowingBackgroundProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
@@ -1308,6 +1521,8 @@ namespace EleCho.WpfSuite.Controls.States
             }
             else
             {
+                _runningStoryboards ??= new();
+
                 var brushTransitionHelper = new BrushTransitionHelper(nowValue, targetValue, d, ShowingBackgroundProxyProperty);
 
                 DoubleAnimation doubleAnimation = new DoubleAnimation()
@@ -1323,25 +1538,28 @@ namespace EleCho.WpfSuite.Controls.States
                 Storyboard.SetTarget(doubleAnimation, brushTransitionHelper);
                 Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(BrushTransitionHelper.ProgressProperty));
                 storyboard.Children.Add(doubleAnimation);
+                storyboard.Completed += (s, e) =>
+                {
+                    _runningStoryboards.Remove(storyboardKey);
+                };
 
-                animatable.BeginAnimation(ShowingBackgroundProxyProperty, null);
-                animatable.BeginStoryboard(storyboard);
+                _runningStoryboards[storyboardKey] = storyboard;
+                animatable.BeginStoryboard(storyboard, HandoffBehavior.SnapshotAndReplace, true);
             }
         }
 
         private static void ActiveStateForeground(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
+            var storyboardKey = new DependencyObjectAndStateProperty(d, StateProperty.Foreground);
+
+            if (_runningStoryboards is not null &&
+                _runningStoryboards.ContainsKey(storyboardKey))
             {
-                State.Normal => GetNormalForeground(d),
-                State.Hover => GetHoverForeground(d),
-                State.Pressed => GetPressedForeground(d),
-                State.Checked => GetCheckedForeground(d),
-                State.Selected => GetSelectedForeground(d),
-                State.SelectedActive => GetSelectedActiveForeground(d),
-                State.Disabled => GetDisabledForeground(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+                _runningStoryboards[storyboardKey].Stop();
+                _runningStoryboards.Remove(storyboardKey);
+            }
+
+            var targetValue = GetStatePropertyClassValue<Brush>(d, targetState, StateProperty.Foreground);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingForegroundProperty) == DependencyProperty.UnsetValue)
@@ -1351,6 +1569,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingForeground(d);
+            animatable.BeginAnimation(ShowingForegroundProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
@@ -1398,6 +1617,8 @@ namespace EleCho.WpfSuite.Controls.States
             }
             else
             {
+                _runningStoryboards ??= new();
+
                 var brushTransitionHelper = new BrushTransitionHelper(nowValue, targetValue, d, ShowingForegroundProxyProperty);
 
                 DoubleAnimation doubleAnimation = new DoubleAnimation()
@@ -1413,25 +1634,28 @@ namespace EleCho.WpfSuite.Controls.States
                 Storyboard.SetTarget(doubleAnimation, brushTransitionHelper);
                 Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(BrushTransitionHelper.ProgressProperty));
                 storyboard.Children.Add(doubleAnimation);
+                storyboard.Completed += (s, e) =>
+                {
+                    _runningStoryboards.Remove(storyboardKey);
+                };
 
-                animatable.BeginAnimation(ShowingForegroundProxyProperty, null);
-                animatable.BeginStoryboard(storyboard);
+                _runningStoryboards[storyboardKey] = storyboard;
+                animatable.BeginStoryboard(storyboard, HandoffBehavior.SnapshotAndReplace, true);
             }
         }
 
         private static void ActiveStateBorderBrush(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
+            var storyboardKey = new DependencyObjectAndStateProperty(d, StateProperty.BorderBrush);
+
+            if (_runningStoryboards is not null &&
+                _runningStoryboards.ContainsKey(storyboardKey))
             {
-                State.Normal => GetNormalBorderBrush(d),
-                State.Hover => GetHoverBorderBrush(d),
-                State.Pressed => GetPressedBorderBrush(d),
-                State.Checked => GetCheckedBorderBrush(d),
-                State.Selected => GetSelectedBorderBrush(d),
-                State.SelectedActive => GetSelectedActiveBorderBrush(d),
-                State.Disabled => GetDisabledBorderBrush(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+                _runningStoryboards[storyboardKey].Stop();
+                _runningStoryboards.Remove(storyboardKey);
+            }
+
+            var targetValue = GetStatePropertyClassValue<Brush>(d, targetState, StateProperty.BorderBrush);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingBorderBrushProperty) == DependencyProperty.UnsetValue)
@@ -1441,6 +1665,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingBorderBrush(d);
+            animatable.BeginAnimation(ShowingBorderBrushProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
@@ -1488,6 +1713,8 @@ namespace EleCho.WpfSuite.Controls.States
             }
             else
             {
+                _runningStoryboards ??= new();
+
                 var brushTransitionHelper = new BrushTransitionHelper(nowValue, targetValue, d, ShowingBorderBrushProxyProperty);
 
                 DoubleAnimation doubleAnimation = new DoubleAnimation()
@@ -1503,25 +1730,19 @@ namespace EleCho.WpfSuite.Controls.States
                 Storyboard.SetTarget(doubleAnimation, brushTransitionHelper);
                 Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(BrushTransitionHelper.ProgressProperty));
                 storyboard.Children.Add(doubleAnimation);
+                storyboard.Completed += (s, e) =>
+                {
+                    _runningStoryboards.Remove(storyboardKey);
+                };
 
-                animatable.BeginAnimation(ShowingBorderBrushProxyProperty, null);
-                animatable.BeginStoryboard(storyboard);
+                _runningStoryboards[storyboardKey] = storyboard;
+                animatable.BeginStoryboard(storyboard, HandoffBehavior.SnapshotAndReplace, true);
             }
         }
 
         private static void ActiveStatePadding(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
-            {
-                State.Normal => GetNormalPadding(d),
-                State.Hover => GetHoverPadding(d),
-                State.Pressed => GetPressedPadding(d),
-                State.Checked => GetCheckedPadding(d),
-                State.Selected => GetSelectedPadding(d),
-                State.SelectedActive => GetSelectedActivePadding(d),
-                State.Disabled => GetDisabledPadding(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetValue = GetStatePropertyStructValue<Thickness>(d, targetState, StateProperty.Padding);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingPaddingProperty) == DependencyProperty.UnsetValue)
@@ -1531,6 +1752,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingPadding(d);
+            animatable.BeginAnimation(ShowingPaddingProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
@@ -1576,17 +1798,7 @@ namespace EleCho.WpfSuite.Controls.States
 
         private static void ActiveStateBorderThickness(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
-            {
-                State.Normal => GetNormalBorderThickness(d),
-                State.Hover => GetHoverBorderThickness(d),
-                State.Pressed => GetPressedBorderThickness(d),
-                State.Checked => GetCheckedBorderThickness(d),
-                State.Selected => GetSelectedBorderThickness(d),
-                State.SelectedActive => GetSelectedActiveBorderThickness(d),
-                State.Disabled => GetDisabledBorderThickness(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetValue = GetStatePropertyStructValue<Thickness>(d, targetState, StateProperty.BorderThickness);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingBorderThicknessProperty) == DependencyProperty.UnsetValue)
@@ -1596,6 +1808,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingBorderThickness(d);
+            animatable.BeginAnimation(ShowingBorderThicknessProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
@@ -1641,17 +1854,7 @@ namespace EleCho.WpfSuite.Controls.States
 
         private static void ActiveStateCornerRadius(DependencyObject d, State targetState)
         {
-            var targetValue = targetState switch
-            {
-                State.Normal => GetNormalCornerRadius(d),
-                State.Hover => GetHoverCornerRadius(d),
-                State.Pressed => GetPressedCornerRadius(d),
-                State.Checked => GetCheckedCornerRadius(d),
-                State.Selected => GetSelectedCornerRadius(d),
-                State.SelectedActive => GetSelectedActiveCornerRadius(d),
-                State.Disabled => GetDisabledCornerRadius(d),
-                _ => throw new InvalidOperationException("Invalid State")
-            };
+            var targetValue = GetStatePropertyStructValue<CornerRadius>(d, targetState, StateProperty.CornerRadius);
 
             if (d is not FrameworkElement animatable ||
                 d.ReadLocalValue(ShowingCornerRadiusProperty) == DependencyProperty.UnsetValue)
@@ -1661,6 +1864,7 @@ namespace EleCho.WpfSuite.Controls.States
             }
 
             var nowValue = GetShowingCornerRadius(d);
+            animatable.BeginAnimation(ShowingCornerRadiusProxyProperty, null);
 
             var targetTransitionDuration = targetState switch
             {
