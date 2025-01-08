@@ -50,6 +50,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Thickness GetPadding(DependencyObject obj) => (Thickness)obj.GetValue(PaddingProperty);
         public static void SetPadding(DependencyObject obj, Thickness value) => obj.SetValue(PaddingProperty, value);
 
+        public static Thickness GetCheckerPadding(DependencyObject obj) => (Thickness)obj.GetValue(CheckerPaddingProperty);
+        public static void SetCheckerPadding(DependencyObject obj, Thickness value) => obj.SetValue(CheckerPaddingProperty, value);
+
         public static Thickness GetBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(BorderThicknessProperty);
         public static void SetBorderThickness(DependencyObject obj, Thickness value) => obj.SetValue(BorderThicknessProperty, value);
 
@@ -74,6 +77,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Thickness? GetHoverPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HoverPaddingProperty);
         public static void SetHoverPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HoverPaddingProperty, value);
+
+        public static Thickness? GetHoverCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HoverCheckerPaddingProperty);
+        public static void SetHoverCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HoverCheckerPaddingProperty, value);
 
         public static Thickness? GetHoverBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(HoverBorderThicknessProperty);
         public static void SetHoverBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(HoverBorderThicknessProperty, value);
@@ -100,6 +106,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Thickness? GetPressedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(PressedPaddingProperty);
         public static void SetPressedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(PressedPaddingProperty, value);
 
+        public static Thickness? GetPressedCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(PressedCheckerPaddingProperty);
+        public static void SetPressedCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(PressedCheckerPaddingProperty, value);
+
         public static Thickness? GetPressedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(PressedBorderThicknessProperty);
         public static void SetPressedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(PressedBorderThicknessProperty, value);
 
@@ -124,6 +133,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Thickness? GetCheckedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(CheckedPaddingProperty);
         public static void SetCheckedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(CheckedPaddingProperty, value);
+
+        public static Thickness? GetCheckedCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(CheckedCheckerPaddingProperty);
+        public static void SetCheckedCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(CheckedCheckerPaddingProperty, value);
 
         public static Thickness? GetCheckedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(CheckedBorderThicknessProperty);
         public static void SetCheckedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(CheckedBorderThicknessProperty, value);
@@ -150,6 +162,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Thickness? GetSelectedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedPaddingProperty);
         public static void SetSelectedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedPaddingProperty, value);
 
+        public static Thickness? GetSelectedCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedCheckerPaddingProperty);
+        public static void SetSelectedCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedCheckerPaddingProperty, value);
+
         public static Thickness? GetSelectedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedBorderThicknessProperty);
         public static void SetSelectedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedBorderThicknessProperty, value);
 
@@ -174,6 +189,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Thickness? GetSelectedActivePadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedActivePaddingProperty);
         public static void SetSelectedActivePadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedActivePaddingProperty, value);
+
+        public static Thickness? GetSelectedActiveCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedActiveCheckerPaddingProperty);
+        public static void SetSelectedActiveCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedActiveCheckerPaddingProperty, value);
 
         public static Thickness? GetSelectedActiveBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(SelectedActiveBorderThicknessProperty);
         public static void SetSelectedActiveBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(SelectedActiveBorderThicknessProperty, value);
@@ -200,6 +218,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Thickness? GetDisabledPadding(DependencyObject obj) => (Thickness?)obj.GetValue(DisabledPaddingProperty);
         public static void SetDisabledPadding(DependencyObject obj, Thickness? value) => obj.SetValue(DisabledPaddingProperty, value);
 
+        public static Thickness? GetDisabledCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(DisabledCheckerPaddingProperty);
+        public static void SetDisabledCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(DisabledCheckerPaddingProperty, value);
+
         public static Thickness? GetDisabledBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(DisabledBorderThicknessProperty);
         public static void SetDisabledBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(DisabledBorderThicknessProperty, value);
 
@@ -225,6 +246,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Thickness? GetHighlightedPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HighlightedPaddingProperty);
         public static void SetHighlightedPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HighlightedPaddingProperty, value);
 
+        public static Thickness? GetHighlightedCheckerPadding(DependencyObject obj) => (Thickness?)obj.GetValue(HighlightedCheckerPaddingProperty);
+        public static void SetHighlightedCheckerPadding(DependencyObject obj, Thickness? value) => obj.SetValue(HighlightedCheckerPaddingProperty, value);
+
         public static Thickness? GetHighlightedBorderThickness(DependencyObject obj) => (Thickness?)obj.GetValue(HighlightedBorderThicknessProperty);
         public static void SetHighlightedBorderThickness(DependencyObject obj, Thickness? value) => obj.SetValue(HighlightedBorderThicknessProperty, value);
 
@@ -244,6 +268,8 @@ namespace EleCho.WpfSuite.Controls.States
         public static Brush GetShowingGlyphBrush(DependencyObject obj) => (Brush)obj.GetValue(ShowingGlyphBrushProperty);
 
         public static Thickness GetShowingPadding(DependencyObject obj) => (Thickness)obj.GetValue(ShowingPaddingProperty);
+
+        public static Thickness GetShowingCheckerPadding(DependencyObject obj) => (Thickness)obj.GetValue(ShowingCheckerPaddingProperty);
 
         public static Thickness GetShowingBorderThickness(DependencyObject obj) => (Thickness)obj.GetValue(ShowingBorderThicknessProperty);
 
@@ -275,6 +301,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Duration? GetPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(PaddingTransitionDurationProperty);
         public static void SetPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(PaddingTransitionDurationProperty, value);
 
+        public static Duration? GetCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(CheckerPaddingTransitionDurationProperty);
+        public static void SetCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(CheckerPaddingTransitionDurationProperty, value);
+
         public static Duration? GetBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(BorderThicknessTransitionDurationProperty);
         public static void SetBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(BorderThicknessTransitionDurationProperty, value);
 
@@ -302,6 +331,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Duration? GetHoverPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HoverPaddingTransitionDurationProperty);
         public static void SetHoverPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HoverPaddingTransitionDurationProperty, value);
+
+        public static Duration? GetHoverCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HoverCheckerPaddingTransitionDurationProperty);
+        public static void SetHoverCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HoverCheckerPaddingTransitionDurationProperty, value);
 
         public static Duration? GetHoverBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HoverBorderThicknessTransitionDurationProperty);
         public static void SetHoverBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HoverBorderThicknessTransitionDurationProperty, value);
@@ -331,6 +363,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Duration? GetPressedPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(PressedPaddingTransitionDurationProperty);
         public static void SetPressedPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(PressedPaddingTransitionDurationProperty, value);
 
+        public static Duration? GetPressedCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(PressedCheckerPaddingTransitionDurationProperty);
+        public static void SetPressedCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(PressedCheckerPaddingTransitionDurationProperty, value);
+
         public static Duration? GetPressedBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(PressedBorderThicknessTransitionDurationProperty);
         public static void SetPressedBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(PressedBorderThicknessTransitionDurationProperty, value);
 
@@ -358,6 +393,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Duration? GetCheckedPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(CheckedPaddingTransitionDurationProperty);
         public static void SetCheckedPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(CheckedPaddingTransitionDurationProperty, value);
+
+        public static Duration? GetCheckedCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(CheckedCheckerPaddingTransitionDurationProperty);
+        public static void SetCheckedCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(CheckedCheckerPaddingTransitionDurationProperty, value);
 
         public static Duration? GetCheckedBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(CheckedBorderThicknessTransitionDurationProperty);
         public static void SetCheckedBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(CheckedBorderThicknessTransitionDurationProperty, value);
@@ -387,6 +425,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Duration? GetSelectedPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedPaddingTransitionDurationProperty);
         public static void SetSelectedPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedPaddingTransitionDurationProperty, value);
 
+        public static Duration? GetSelectedCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedCheckerPaddingTransitionDurationProperty);
+        public static void SetSelectedCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedCheckerPaddingTransitionDurationProperty, value);
+
         public static Duration? GetSelectedBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedBorderThicknessTransitionDurationProperty);
         public static void SetSelectedBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedBorderThicknessTransitionDurationProperty, value);
 
@@ -414,6 +455,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Duration? GetSelectedActivePaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedActivePaddingTransitionDurationProperty);
         public static void SetSelectedActivePaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedActivePaddingTransitionDurationProperty, value);
+
+        public static Duration? GetSelectedActiveCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedActiveCheckerPaddingTransitionDurationProperty);
+        public static void SetSelectedActiveCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedActiveCheckerPaddingTransitionDurationProperty, value);
 
         public static Duration? GetSelectedActiveBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(SelectedActiveBorderThicknessTransitionDurationProperty);
         public static void SetSelectedActiveBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(SelectedActiveBorderThicknessTransitionDurationProperty, value);
@@ -443,6 +487,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static Duration? GetHighlightedPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedPaddingTransitionDurationProperty);
         public static void SetHighlightedPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedPaddingTransitionDurationProperty, value);
 
+        public static Duration? GetHighlightedCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedCheckerPaddingTransitionDurationProperty);
+        public static void SetHighlightedCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedCheckerPaddingTransitionDurationProperty, value);
+
         public static Duration? GetHighlightedBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(HighlightedBorderThicknessTransitionDurationProperty);
         public static void SetHighlightedBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(HighlightedBorderThicknessTransitionDurationProperty, value);
 
@@ -470,6 +517,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static Duration? GetDisabledPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(DisabledPaddingTransitionDurationProperty);
         public static void SetDisabledPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(DisabledPaddingTransitionDurationProperty, value);
+
+        public static Duration? GetDisabledCheckerPaddingTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(DisabledCheckerPaddingTransitionDurationProperty);
+        public static void SetDisabledCheckerPaddingTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(DisabledCheckerPaddingTransitionDurationProperty, value);
 
         public static Duration? GetDisabledBorderThicknessTransitionDuration(DependencyObject obj) => (Duration?)obj.GetValue(DisabledBorderThicknessTransitionDurationProperty);
         public static void SetDisabledBorderThicknessTransitionDuration(DependencyObject obj, Duration? value) => obj.SetValue(DisabledBorderThicknessTransitionDurationProperty, value);
@@ -503,6 +553,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static IEasingFunction GetPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(PaddingEasingFunctionProperty);
         public static void SetPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(PaddingEasingFunctionProperty, value);
 
+        public static IEasingFunction GetCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(CheckerPaddingEasingFunctionProperty);
+        public static void SetCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(CheckerPaddingEasingFunctionProperty, value);
+
         public static IEasingFunction GetBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(BorderThicknessEasingFunctionProperty);
         public static void SetBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(BorderThicknessEasingFunctionProperty, value);
 
@@ -530,6 +583,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static IEasingFunction GetHoverPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HoverPaddingEasingFunctionProperty);
         public static void SetHoverPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HoverPaddingEasingFunctionProperty, value);
+
+        public static IEasingFunction GetHoverCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HoverCheckerPaddingEasingFunctionProperty);
+        public static void SetHoverCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HoverCheckerPaddingEasingFunctionProperty, value);
 
         public static IEasingFunction GetHoverBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HoverBorderThicknessEasingFunctionProperty);
         public static void SetHoverBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HoverBorderThicknessEasingFunctionProperty, value);
@@ -559,6 +615,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static IEasingFunction GetPressedPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(PressedPaddingEasingFunctionProperty);
         public static void SetPressedPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(PressedPaddingEasingFunctionProperty, value);
 
+        public static IEasingFunction GetPressedCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(PressedCheckerPaddingEasingFunctionProperty);
+        public static void SetPressedCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(PressedCheckerPaddingEasingFunctionProperty, value);
+
         public static IEasingFunction GetPressedBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(PressedBorderThicknessEasingFunctionProperty);
         public static void SetPressedBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(PressedBorderThicknessEasingFunctionProperty, value);
 
@@ -586,6 +645,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static IEasingFunction GetCheckedPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(CheckedPaddingEasingFunctionProperty);
         public static void SetCheckedPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(CheckedPaddingEasingFunctionProperty, value);
+
+        public static IEasingFunction GetCheckedCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(CheckedCheckerPaddingEasingFunctionProperty);
+        public static void SetCheckedCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(CheckedCheckerPaddingEasingFunctionProperty, value);
 
         public static IEasingFunction GetCheckedBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(CheckedBorderThicknessEasingFunctionProperty);
         public static void SetCheckedBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(CheckedBorderThicknessEasingFunctionProperty, value);
@@ -615,6 +677,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static IEasingFunction GetSelectedPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedPaddingEasingFunctionProperty);
         public static void SetSelectedPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedPaddingEasingFunctionProperty, value);
 
+        public static IEasingFunction GetSelectedCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedCheckerPaddingEasingFunctionProperty);
+        public static void SetSelectedCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedCheckerPaddingEasingFunctionProperty, value);
+
         public static IEasingFunction GetSelectedBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedBorderThicknessEasingFunctionProperty);
         public static void SetSelectedBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedBorderThicknessEasingFunctionProperty, value);
 
@@ -642,6 +707,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static IEasingFunction GetSelectedActivePaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedActivePaddingEasingFunctionProperty);
         public static void SetSelectedActivePaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedActivePaddingEasingFunctionProperty, value);
+
+        public static IEasingFunction GetSelectedActiveCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedActiveCheckerPaddingEasingFunctionProperty);
+        public static void SetSelectedActiveCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedActiveCheckerPaddingEasingFunctionProperty, value);
 
         public static IEasingFunction GetSelectedActiveBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(SelectedActiveBorderThicknessEasingFunctionProperty);
         public static void SetSelectedActiveBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(SelectedActiveBorderThicknessEasingFunctionProperty, value);
@@ -671,6 +739,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static IEasingFunction GetHighlightedPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedPaddingEasingFunctionProperty);
         public static void SetHighlightedPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedPaddingEasingFunctionProperty, value);
 
+        public static IEasingFunction GetHighlightedCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedCheckerPaddingEasingFunctionProperty);
+        public static void SetHighlightedCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedCheckerPaddingEasingFunctionProperty, value);
+
         public static IEasingFunction GetHighlightedBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(HighlightedBorderThicknessEasingFunctionProperty);
         public static void SetHighlightedBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(HighlightedBorderThicknessEasingFunctionProperty, value);
 
@@ -698,6 +769,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static IEasingFunction GetDisabledPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(DisabledPaddingEasingFunctionProperty);
         public static void SetDisabledPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(DisabledPaddingEasingFunctionProperty, value);
+
+        public static IEasingFunction GetDisabledCheckerPaddingEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(DisabledCheckerPaddingEasingFunctionProperty);
+        public static void SetDisabledCheckerPaddingEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(DisabledCheckerPaddingEasingFunctionProperty, value);
 
         public static IEasingFunction GetDisabledBorderThicknessEasingFunction(DependencyObject obj) => (IEasingFunction)obj.GetValue(DisabledBorderThicknessEasingFunctionProperty);
         public static void SetDisabledBorderThicknessEasingFunction(DependencyObject obj, IEasingFunction value) => obj.SetValue(DisabledBorderThicknessEasingFunctionProperty, value);
@@ -763,6 +837,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PaddingProperty =
             DependencyProperty.RegisterAttached("Padding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStatePaddingChanged));
 
+        public static readonly DependencyProperty CheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("CheckerPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
+
         public static readonly DependencyProperty BorderThicknessProperty =
             DependencyProperty.RegisterAttached("BorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
@@ -787,6 +864,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty HoverPaddingProperty =
             DependencyProperty.RegisterAttached("HoverPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
+
+        public static readonly DependencyProperty HoverCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("HoverCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
 
         public static readonly DependencyProperty HoverBorderThicknessProperty =
             DependencyProperty.RegisterAttached("HoverBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
@@ -813,6 +893,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PressedPaddingProperty =
             DependencyProperty.RegisterAttached("PressedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
+        public static readonly DependencyProperty PressedCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("PressedCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
+
         public static readonly DependencyProperty PressedBorderThicknessProperty =
             DependencyProperty.RegisterAttached("PressedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
@@ -837,6 +920,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty CheckedPaddingProperty =
             DependencyProperty.RegisterAttached("CheckedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
+
+        public static readonly DependencyProperty CheckedCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("CheckedCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
 
         public static readonly DependencyProperty CheckedBorderThicknessProperty =
             DependencyProperty.RegisterAttached("CheckedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
@@ -863,6 +949,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty SelectedPaddingProperty =
             DependencyProperty.RegisterAttached("SelectedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
+        public static readonly DependencyProperty SelectedCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("SelectedCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
+
         public static readonly DependencyProperty SelectedBorderThicknessProperty =
             DependencyProperty.RegisterAttached("SelectedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
@@ -887,6 +976,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty SelectedActivePaddingProperty =
             DependencyProperty.RegisterAttached("SelectedActivePadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
+
+        public static readonly DependencyProperty SelectedActiveCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("SelectedActiveCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
 
         public static readonly DependencyProperty SelectedActiveBorderThicknessProperty =
             DependencyProperty.RegisterAttached("SelectedActiveBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
@@ -913,6 +1005,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty HighlightedPaddingProperty =
             DependencyProperty.RegisterAttached("HighlightedPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
 
+        public static readonly DependencyProperty HighlightedCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("HighlightedCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
+
         public static readonly DependencyProperty HighlightedBorderThicknessProperty =
             DependencyProperty.RegisterAttached("HighlightedBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
 
@@ -937,6 +1032,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty DisabledPaddingProperty =
             DependencyProperty.RegisterAttached("DisabledPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStatePaddingChanged));
+
+        public static readonly DependencyProperty DisabledCheckerPaddingProperty =
+            DependencyProperty.RegisterAttached("DisabledCheckerPadding", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateCheckerPaddingChanged));
 
         public static readonly DependencyProperty DisabledBorderThicknessProperty =
             DependencyProperty.RegisterAttached("DisabledBorderThickness", typeof(Thickness?), typeof(StateManager), new PropertyMetadata(default(Thickness?), propertyChangedCallback: OnAnyStateBorderThicknessChanged));
@@ -963,6 +1061,9 @@ namespace EleCho.WpfSuite.Controls.States
         internal static readonly DependencyProperty ShowingPaddingProxyProperty =
             DependencyProperty.RegisterAttached("ShowingPaddingProxy", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnShowingPaddingProxyChanged));
 
+        internal static readonly DependencyProperty ShowingCheckerPaddingProxyProperty =
+            DependencyProperty.RegisterAttached("ShowingCheckerPaddingProxy", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnShowingCheckerPaddingProxyChanged));
+
         internal static readonly DependencyProperty ShowingBorderThicknessProxyProperty =
             DependencyProperty.RegisterAttached("ShowingBorderThicknessProxy", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness), propertyChangedCallback: OnShowingBorderThicknessProxyChanged));
 
@@ -988,6 +1089,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyPropertyKey ShowingPaddingPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly("ShowingPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness)));
 
+        public static readonly DependencyPropertyKey ShowingCheckerPaddingPropertyKey =
+            DependencyProperty.RegisterAttachedReadOnly("ShowingCheckerPadding", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness)));
+
         public static readonly DependencyPropertyKey ShowingBorderThicknessPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly("ShowingBorderThickness", typeof(Thickness), typeof(StateManager), new PropertyMetadata(default(Thickness)));
 
@@ -1003,6 +1107,8 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty ShowingGlyphBrushProperty = ShowingGlyphBrushPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty ShowingPaddingProperty = ShowingPaddingPropertyKey.DependencyProperty;
+
+        public static readonly DependencyProperty ShowingCheckerPaddingProperty = ShowingCheckerPaddingPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty ShowingBorderThicknessProperty = ShowingBorderThicknessPropertyKey.DependencyProperty;
 
@@ -1034,6 +1140,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("PaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
+        public static readonly DependencyProperty CheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("CheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
         public static readonly DependencyProperty BorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("BorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
@@ -1061,6 +1170,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty HoverPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("HoverPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty HoverCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HoverCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
         public static readonly DependencyProperty HoverBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("HoverBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
@@ -1090,6 +1202,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PressedPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("PressedPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
+        public static readonly DependencyProperty PressedCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("PressedCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
         public static readonly DependencyProperty PressedBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("PressedBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
@@ -1117,6 +1232,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty CheckedPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("CheckedPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty CheckedCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("CheckedCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
         public static readonly DependencyProperty CheckedBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("CheckedBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
@@ -1146,6 +1264,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty SelectedPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("SelectedPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
+        public static readonly DependencyProperty SelectedCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("SelectedCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
         public static readonly DependencyProperty SelectedBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("SelectedBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
@@ -1173,6 +1294,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty SelectedActivePaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("SelectedActivePaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty SelectedActiveCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("SelectedActiveCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
         public static readonly DependencyProperty SelectedActiveBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("SelectedActiveBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
@@ -1202,6 +1326,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty HighlightedPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("HighlightedPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
+        public static readonly DependencyProperty HighlightedCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("HighlightedCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
         public static readonly DependencyProperty HighlightedBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("HighlightedBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
@@ -1229,6 +1356,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty DisabledPaddingTransitionDurationProperty =
             DependencyProperty.RegisterAttached("DisabledPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
+
+        public static readonly DependencyProperty DisabledCheckerPaddingTransitionDurationProperty =
+            DependencyProperty.RegisterAttached("DisabledCheckerPaddingTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
 
         public static readonly DependencyProperty DisabledBorderThicknessTransitionDurationProperty =
             DependencyProperty.RegisterAttached("DisabledBorderThicknessTransitionDuration", typeof(Duration?), typeof(StateManager), new PropertyMetadata(default(Duration?), null, coerceValueCallback: CoerceNullableDuration));
@@ -1262,6 +1392,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("PaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
+        public static readonly DependencyProperty CheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("CheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
         public static readonly DependencyProperty BorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("BorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
@@ -1289,6 +1422,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty HoverPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("HoverPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty HoverCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HoverCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty HoverBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("HoverBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
@@ -1318,6 +1454,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty PressedPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("PressedPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
+        public static readonly DependencyProperty PressedCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("PressedCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
         public static readonly DependencyProperty PressedBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("PressedBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
@@ -1345,6 +1484,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty CheckedPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("CheckedPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty CheckedCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("CheckedCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty CheckedBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("CheckedBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
@@ -1374,6 +1516,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty SelectedPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("SelectedPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
+        public static readonly DependencyProperty SelectedCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("SelectedCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
         public static readonly DependencyProperty SelectedBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("SelectedBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
@@ -1401,6 +1546,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty SelectedActivePaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("SelectedActivePaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty SelectedActiveCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("SelectedActiveCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty SelectedActiveBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("SelectedActiveBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
@@ -1430,6 +1578,9 @@ namespace EleCho.WpfSuite.Controls.States
         public static readonly DependencyProperty HighlightedPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("HighlightedPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
+        public static readonly DependencyProperty HighlightedCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("HighlightedCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
         public static readonly DependencyProperty HighlightedBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("HighlightedBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
@@ -1457,6 +1608,9 @@ namespace EleCho.WpfSuite.Controls.States
 
         public static readonly DependencyProperty DisabledPaddingEasingFunctionProperty =
             DependencyProperty.RegisterAttached("DisabledPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
+
+        public static readonly DependencyProperty DisabledCheckerPaddingEasingFunctionProperty =
+            DependencyProperty.RegisterAttached("DisabledCheckerPaddingEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
 
         public static readonly DependencyProperty DisabledBorderThicknessEasingFunctionProperty =
             DependencyProperty.RegisterAttached("DisabledBorderThicknessEasingFunction", typeof(IEasingFunction), typeof(StateManager), new PropertyMetadata(default(IEasingFunction)));
@@ -1507,6 +1661,7 @@ namespace EleCho.WpfSuite.Controls.States
             ActiveStateBorderBrush(d, newState);
             ActiveStateGlyphBrush(d, newState);
             ActiveStatePadding(d, newState);
+            ActiveStateCheckerPadding(d, newState);
             ActiveStateBorderThickness(d, newState);
             ActiveStateCornerRadius(d, newState);
         }
@@ -1534,6 +1689,11 @@ namespace EleCho.WpfSuite.Controls.States
         private static void OnAnyStatePaddingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ActiveStatePadding(d, GetActiveState(d));
+        }
+
+        private static void OnAnyStateCheckerPaddingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ActiveStateCheckerPadding(d, GetActiveState(d));
         }
 
         private static void OnAnyStateBorderThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -1595,6 +1755,11 @@ namespace EleCho.WpfSuite.Controls.States
             d.SetValue(ShowingPaddingPropertyKey, e.NewValue);
         }
 
+        private static void OnShowingCheckerPaddingProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.SetValue(ShowingCheckerPaddingPropertyKey, e.NewValue);
+        }
+
         private static void OnShowingBorderThicknessProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             d.SetValue(ShowingBorderThicknessPropertyKey, e.NewValue);
@@ -1613,6 +1778,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Normal => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(PaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(CheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(BorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(CornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1621,6 +1787,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Hover => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(HoverPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(HoverCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(HoverBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(HoverCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1629,6 +1796,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Pressed => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(PressedPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(PressedCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(PressedBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(PressedCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1637,6 +1805,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Checked => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(CheckedPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(CheckedCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(CheckedBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(CheckedCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1644,15 +1813,17 @@ namespace EleCho.WpfSuite.Controls.States
 
                 State.Selected => property switch
                 {
-                    StateProperty.Padding => (T?)d.GetValue(PaddingProperty),
-                    StateProperty.BorderThickness => (T?)d.GetValue(BorderThicknessProperty),
-                    StateProperty.CornerRadius => (T?)d.GetValue(CornerRadiusProperty),
+                    StateProperty.Padding => (T?)d.GetValue(SelectedPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(SelectedCheckerPaddingProperty),
+                    StateProperty.BorderThickness => (T?)d.GetValue(SelectedBorderThicknessProperty),
+                    StateProperty.CornerRadius => (T?)d.GetValue(SelectedCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
                 State.SelectedActive => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(SelectedActivePaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(SelectedActiveCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(SelectedActiveBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(SelectedActiveCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1661,6 +1832,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Highlighted => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(HighlightedPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(HighlightedCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(HighlightedBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(HighlightedCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1669,6 +1841,7 @@ namespace EleCho.WpfSuite.Controls.States
                 State.Disabled => property switch
                 {
                     StateProperty.Padding => (T?)d.GetValue(DisabledPaddingProperty),
+                    StateProperty.CheckerPadding => (T?)d.GetValue(DisabledCheckerPaddingProperty),
                     StateProperty.BorderThickness => (T?)d.GetValue(DisabledBorderThicknessProperty),
                     StateProperty.CornerRadius => (T?)d.GetValue(DisabledCornerRadiusProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1710,6 +1883,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(BackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(ForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(BorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(GlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1718,6 +1892,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(HoverBackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(HoverForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(HoverBorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(HoverGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1726,6 +1901,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(PressedBackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(PressedForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(PressedBorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(PressedGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1734,6 +1910,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(CheckedBackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(CheckedForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(CheckedBorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(CheckedGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1742,6 +1919,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(BackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(ForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(BorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(SelectedGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1750,6 +1928,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(SelectedActiveBackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(SelectedActiveForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(SelectedActiveBorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(SelectedActiveGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1758,6 +1937,7 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => (T?)d.GetValue(DisabledBackgroundProperty),
                     StateProperty.Foreground => (T?)d.GetValue(DisabledForegroundProperty),
                     StateProperty.BorderBrush => (T?)d.GetValue(DisabledBorderBrushProperty),
+                    StateProperty.GlyphBrush => (T?)d.GetValue(DisabledGlyphBrushProperty),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
                 },
 
@@ -1795,7 +1975,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1806,7 +1988,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetHoverBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetHoverForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetHoverBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetHoverPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetHoverGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetHoverCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetHoverCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetHoverBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetHoverCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1817,7 +2001,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetPressedBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetPressedForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetPressedBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetPressedPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetPressedGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetPressedCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetPressedCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetPressedBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetPressedCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1828,7 +2014,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetCheckedBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetCheckedForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetCheckedBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetCheckedPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetCheckedGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetCheckedCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetCheckedCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetCheckedBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetCheckedCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1839,7 +2027,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetSelectedBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetSelectedForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetSelectedBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetSelectedPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetSelectedGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetSelectedCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetSelectedCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetSelectedBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetSelectedCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1850,7 +2040,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetSelectedActiveBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetSelectedActiveForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetSelectedActiveBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetSelectedActivePaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetSelectedActiveGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetSelectedActiveCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetSelectedActiveCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetSelectedActiveBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetSelectedActiveCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1861,7 +2053,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetHighlightedBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetHighlightedForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetHighlightedBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetHighlightedPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetHighlightedGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetHighlightedCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetHighlightedCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetHighlightedBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetHighlightedCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1872,7 +2066,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetDisabledBackgroundTransitionDuration(d),
                     StateProperty.Foreground => GetDisabledForegroundTransitionDuration(d),
                     StateProperty.BorderBrush => GetDisabledBorderBrushTransitionDuration(d),
-                    StateProperty.Padding => GetDisabledPaddingTransitionDuration(d),
+                    StateProperty.GlyphBrush => GetDisabledGlyphBrushTransitionDuration(d),
+                    StateProperty.Padding => GetDisabledCheckerPaddingTransitionDuration(d),
+                    StateProperty.CheckerPadding => GetDisabledCheckerPaddingTransitionDuration(d),
                     StateProperty.BorderThickness => GetDisabledBorderThicknessTransitionDuration(d),
                     StateProperty.CornerRadius => GetDisabledCornerRadiusTransitionDuration(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1892,7 +2088,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1903,7 +2101,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetHoverBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetHoverForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetHoverBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetHoverGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetHoverPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetHoverCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetHoverBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetHoverCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1914,7 +2114,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetPressedBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetPressedForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetPressedBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetPressedGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetPressedPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetPressedCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetPressedBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetPressedCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1925,7 +2127,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetCheckedBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetCheckedForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetCheckedBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetCheckedGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetCheckedPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetCheckedCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetCheckedBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetCheckedCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1936,7 +2140,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetSelectedBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetSelectedForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetSelectedBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetSelectedGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetSelectedPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetSelectedCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetSelectedBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetSelectedCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1947,7 +2153,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetSelectedActiveBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetSelectedActiveForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetSelectedActiveBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetSelectedActiveGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetSelectedActivePaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetSelectedActiveCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetSelectedActiveBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetSelectedActiveCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1958,7 +2166,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetHighlightedBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetHighlightedForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetHighlightedBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetHighlightedGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetHighlightedPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetHighlightedCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetHighlightedBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetHighlightedCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -1969,7 +2179,9 @@ namespace EleCho.WpfSuite.Controls.States
                     StateProperty.Background => GetDisabledBackgroundEasingFunction(d),
                     StateProperty.Foreground => GetDisabledForegroundEasingFunction(d),
                     StateProperty.BorderBrush => GetDisabledBorderBrushEasingFunction(d),
+                    StateProperty.GlyphBrush => GetDisabledGlyphBrushEasingFunction(d),
                     StateProperty.Padding => GetDisabledPaddingEasingFunction(d),
+                    StateProperty.CheckerPadding => GetDisabledCheckerPaddingEasingFunction(d),
                     StateProperty.BorderThickness => GetDisabledBorderThicknessEasingFunction(d),
                     StateProperty.CornerRadius => GetDisabledCornerRadiusEasingFunction(d),
                     _ => throw new ArgumentException("Invalid property", nameof(property)),
@@ -2323,6 +2535,47 @@ namespace EleCho.WpfSuite.Controls.States
             };
 
             animatable.BeginAnimation(ShowingPaddingProxyProperty, thicknessAnimation, HandoffBehavior.SnapshotAndReplace);
+        }
+
+        private static void ActiveStateCheckerPadding(DependencyObject d, State targetState)
+        {
+            var targetValue = GetStatePropertyStructValue<Thickness>(d, targetState, StateProperty.CheckerPadding);
+
+            if (!targetValue.HasValue)
+            {
+                return;
+            }
+
+            if (d is not FrameworkElement animatable ||
+                d.ReadLocalValue(ShowingCheckerPaddingProperty) == DependencyProperty.UnsetValue)
+            {
+                d.SetValue(ShowingCheckerPaddingPropertyKey, targetValue.Value);
+                return;
+            }
+
+            var nowValue = GetShowingCheckerPadding(d);
+            animatable.BeginAnimation(ShowingCheckerPaddingProxyProperty, null);
+
+            var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.CheckerPadding);
+
+            if (targetTransitionDuration.TimeSpan == TimeSpan.Zero)
+            {
+                d.SetValue(ShowingCheckerPaddingPropertyKey, targetValue.Value);
+                return;
+            }
+
+            var targetEasingFunction = GetStatePropertyEasingFunction(d, targetState, StateProperty.CheckerPadding);
+
+            ThicknessAnimation thicknessAnimation = new ThicknessAnimation()
+            {
+                From = nowValue,
+                To = targetValue.Value,
+                Duration = targetTransitionDuration,
+                EasingFunction = targetEasingFunction,
+                FillBehavior = FillBehavior.HoldEnd,
+            };
+
+            animatable.BeginAnimation(ShowingCheckerPaddingProxyProperty, thicknessAnimation, HandoffBehavior.SnapshotAndReplace);
         }
 
         private static void ActiveStateBorderThickness(DependencyObject d, State targetState)

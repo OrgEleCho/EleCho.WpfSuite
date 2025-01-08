@@ -17,10 +17,18 @@ using EleCho.WpfSuite.Controls.SourceGeneration;
 
 namespace StateMachineControlTest.Controls
 {
-    [GenerateCornerRadiusProperty]
+    [GenerateStates]
     [GenerateStatesState(State.Hover)]
     [GenerateStatesState(State.Pressed)]
+    [GenerateStatesState(State.Highlighted)]
     [GenerateStatesState(State.Disabled)]
+    [GenerateStatesProperty(StateProperty.Background)]
+    [GenerateStatesProperty(StateProperty.Foreground)]
+    [GenerateStatesProperty(StateProperty.BorderBrush)]
+    [GenerateStatesProperty(StateProperty.Padding)]
+    [GenerateStatesProperty(StateProperty.BorderThickness)]
+    [GenerateStatesProperty(StateProperty.CornerRadius)]
+    [GenerateCornerRadiusProperty]
     public partial class TestControl : Button
     {
         static TestControl()

@@ -18,21 +18,19 @@ namespace EleCho.WpfSuite.Controls
     [GenerateStatesProperty(StateProperty.BorderBrush)]
     [GenerateStatesProperty(StateProperty.GlyphBrush)]
     [GenerateStatesProperty(StateProperty.Padding)]
+    [GenerateStatesProperty(StateProperty.CheckerPadding)]
     [GenerateStatesProperty(StateProperty.BorderThickness)]
     [GenerateStatesProperty(StateProperty.CornerRadius)]
     [GenerateCornerRadiusProperty]
     public partial class CheckBox : System.Windows.Controls.CheckBox
     {
-        private static readonly Brush s_glyphBrush = new SolidColorBrush(Color.FromRgb(33, 33, 33));
-        private static readonly Brush s_disabledGlyphBrush = new SolidColorBrush(Color.FromRgb(112, 112, 112));
         private static readonly Geometry s_glyph = Geometry.Parse("F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z");
 
         static CheckBox()
         {
-            s_glyphBrush.Freeze();
-            s_disabledGlyphBrush.Freeze();
             s_glyph.Freeze();
 
+            HorizontalContentAlignmentProperty.OverrideMetadata(typeof(CheckBox), new FrameworkPropertyMetadata(HorizontalAlignment.Left));
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CheckBox), new FrameworkPropertyMetadata(typeof(CheckBox)));
         }
 
@@ -43,7 +41,37 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(GlyphProperty, value); }
         }
 
+        public double Spacing
+        {
+            get { return (double)GetValue(SpacingProperty); }
+            set { SetValue(SpacingProperty, value); }
+        }
+
+        public HorizontalAlignment HorizontalCheckerAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(HorizontalCheckerAlignmentProperty); }
+            set { SetValue(HorizontalCheckerAlignmentProperty, value); }
+        }
+
+        public VerticalAlignment VerticalCheckerAlignment
+        {
+            get { return (VerticalAlignment)GetValue(VerticalCheckerAlignmentProperty); }
+            set { SetValue(VerticalCheckerAlignmentProperty, value); }
+        }
+
+
+
+
         public static readonly DependencyProperty GlyphProperty =
             DependencyProperty.Register(nameof(Glyph), typeof(Geometry), typeof(CheckBox), new FrameworkPropertyMetadata(s_glyph));
+
+        public static readonly DependencyProperty SpacingProperty =
+            DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(CheckBox), new FrameworkPropertyMetadata(2.0));
+
+        public static readonly DependencyProperty HorizontalCheckerAlignmentProperty =
+            DependencyProperty.Register(nameof(HorizontalCheckerAlignment), typeof(HorizontalAlignment), typeof(CheckBox), new FrameworkPropertyMetadata(HorizontalAlignment.Center));
+
+        public static readonly DependencyProperty VerticalCheckerAlignmentProperty =
+            DependencyProperty.Register(nameof(VerticalCheckerAlignment), typeof(VerticalAlignment), typeof(CheckBox), new FrameworkPropertyMetadata(VerticalAlignment.Center));
     }
 }

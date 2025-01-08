@@ -10,60 +10,69 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        <ws:StackPanel Spacing="8"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center">
-            <c:TestControl VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           Content="Test Control"
-                           CornerRadius="20"
+        <Border BorderThickness="1"
+                BorderBrush="Gray"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <ws:StackPanel>
+                <c:TestControl VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Content="Test Control"
+                               CornerRadius="20"
+                               Foreground="White"
+                               HoverBackground="Green"
+                               HoverForeground="Black"
+                               HoverCornerRadius="10"
+                               PressedBackground="Pink"
+                               PressedCornerRadius="0"
+                               Width="100"
+                               Height="100"
+                               Margin="5">
+
+                    <c:TestControl.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Red"/>
+                            <GradientStop Color="Blue" Offset="1"/>
+                        </LinearGradientBrush>
+                    </c:TestControl.Background>
+
+                </c:TestControl>
+
+                <ws:Button Content="QWQ"
+                           BorderThickness="0"
+                           CornerRadius="4"
                            Foreground="White"
-                           Margin="5"
                            HoverBackground="Green"
                            HoverForeground="Black"
-                           HoverCornerRadius="10"
+                           HoverCornerRadius="6"
                            PressedBackground="Pink"
                            PressedCornerRadius="0"
-                           Width="100"
-                           Height="100">
+                           Margin="5">
+                    <ws:Button.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Red"/>
+                            <GradientStop Color="Blue" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ws:Button.Background>
+                </ws:Button>
 
-                <c:TestControl.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Red"/>
-                        <GradientStop Color="Blue" Offset="1"/>
-                    </LinearGradientBrush>
-                </c:TestControl.Background>
+                <ws:CheckBox Content="QWQ" Margin="1 0 0 0"
+                             CheckerPadding="0"
+                             HoverCheckerPadding="3"
+                             PressedCheckerPadding="2"/>
+                <CheckBox Content="QWQ"/>
 
-            </c:TestControl>
+                <Button Content="GC"
+                        Margin="5"
+                        Click="Button_Click"/>
 
-            <ws:Button Content="QWQ"
-                       BorderThickness="0"
-                       CornerRadius="4"
-                       Foreground="White"
-                       Margin="5"
-                       HoverBackground="Green"
-                       HoverForeground="Black"
-                       HoverCornerRadius="6"
-                       PressedBackground="Pink"
-                       PressedCornerRadius="0">
-                <ws:Button.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="Red"/>
-                        <GradientStop Color="Blue" Offset="1"/>
-                    </LinearGradientBrush>
-                </ws:Button.Background>
-            </ws:Button>
-
-            <Button Content="GC"
-                    Margin="5"
-                    Click="Button_Click"/>
-
-            <Rectangle Height="3" Name="rect">
-                <Rectangle.Fill>
-                    <SolidColorBrush Color="Red"
-                                     Opacity="{Binding ElementName=rect,Path=Opacity}"/>
-                </Rectangle.Fill>
-            </Rectangle>
-        </ws:StackPanel>
+                <Rectangle Height="3" Name="rect">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="Red"
+                                         Opacity="{Binding ElementName=rect,Path=Opacity}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </ws:StackPanel>
+        </Border>
     </Grid>
 </Window>

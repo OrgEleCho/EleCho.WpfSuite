@@ -41,6 +41,7 @@ namespace EleCho.WpfSuite.Controls.States.Markup
                 StateProperty.BorderBrush => StateManager.ShowingBorderBrushProperty,
                 StateProperty.GlyphBrush => StateManager.ShowingGlyphBrushProperty,
                 StateProperty.Padding => StateManager.ShowingPaddingProperty,
+                StateProperty.CheckerPadding => StateManager.ShowingCheckerPaddingProperty,
                 StateProperty.BorderThickness => StateManager.ShowingBorderThicknessProperty,
                 StateProperty.CornerRadius => StateManager.ShowingCornerRadiusProperty,
                 _ => throw new ArgumentException("Invalid property", nameof(Property))

@@ -157,9 +157,9 @@ namespace EleCho.WpfSuite.Media.Animation
         /// <summary>
         /// EasingFunction
         /// </summary>
-        public IEasingFunction EasingFunction
+        public IEasingFunction? EasingFunction
         {
-            get { return (IEasingFunction)GetValue(EasingFunctionProperty); }
+            get { return (IEasingFunction?)GetValue(EasingFunctionProperty); }
             set { SetValue(EasingFunctionProperty, value); }
         }
 
