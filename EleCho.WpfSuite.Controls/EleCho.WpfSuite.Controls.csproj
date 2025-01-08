@@ -11,6 +11,7 @@
     <ProjectReference Include="..\EleCho.WpfSuite.Input\EleCho.WpfSuite.Input.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Media\EleCho.WpfSuite.Media.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.ValueConverters\EleCho.WpfSuite.ValueConverters.csproj" />
+    <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll"/>
   </ItemGroup>
 
   <Target Name="BuildDependencies" BeforeTargets="Build">

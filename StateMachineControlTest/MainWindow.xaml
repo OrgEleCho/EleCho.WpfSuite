@@ -36,6 +36,24 @@
 
             </c:TestControl>
 
+            <ws:Button Content="QWQ"
+                       BorderThickness="0"
+                       CornerRadius="4"
+                       Foreground="White"
+                       Margin="5"
+                       HoverBackground="Green"
+                       HoverForeground="Black"
+                       HoverCornerRadius="6"
+                       PressedBackground="Pink"
+                       PressedCornerRadius="0">
+                <ws:Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Red"/>
+                        <GradientStop Color="Blue" Offset="1"/>
+                    </LinearGradientBrush>
+                </ws:Button.Background>
+            </ws:Button>
+
             <Button Content="GC"
                     Margin="5"
                     Click="Button_Click"/>

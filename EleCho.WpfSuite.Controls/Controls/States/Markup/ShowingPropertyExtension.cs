@@ -12,13 +12,12 @@ namespace EleCho.WpfSuite.Controls.States.Markup
     /// <summary>
     /// Return the binding of Showing property. Use this in Style or ControlTemplate.
     /// </summary>
-    [MarkupExtensionReturnType(typeof(Binding))]
     public class ShowingPropertyExtension : MarkupExtension
     {
         /// <summary>
         /// Target property
         /// </summary>
-        public StateProperty Property { get; } = StateProperty.Background;
+        public StateProperty Property { get; set; } = StateProperty.Background;
 
         /// <inheritdoc/>
         public ShowingPropertyExtension()

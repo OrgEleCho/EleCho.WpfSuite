@@ -6,6 +6,7 @@ namespace DebugConsole
 {
     [GenerateCornerRadiusProperty]
     [GenerateStateProperties(State.Hover)]
+    [GenerateStateProperties(State.Highlighted)]
     public partial class TestControl : Control
     {
 

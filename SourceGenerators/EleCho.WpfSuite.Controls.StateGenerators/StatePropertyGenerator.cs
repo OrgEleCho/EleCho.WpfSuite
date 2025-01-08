@@ -32,7 +32,7 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
         private record struct GenerationInfo(INamedTypeSymbol NamedTypeSymbol, StateFlags StateFlags);
 
-        private void AddStatePropertyDefinition(StringBuilder sb, string stateName, string propertyName, string typeName, int indent)
+        private void AddStatePropertyDefinition(StringBuilder sb, string stateName, string propertyName, string ownerTypeName, string typeName, int indent)
         {
             string indentText = new string(' ', indent);
 
@@ -45,7 +45,7 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 {{indentText}}}
                 {{indentText}}
                 {{indentText}}public static readonly {{TypeDependencyPropertyFullName}} {{stateName}}{{propertyName}}Property
-                {{indentText}}    = {{TypeStateManagerFullName}}.{{stateName}}{{propertyName}}Property.AddOwner(typeof({{typeName}}));
+                {{indentText}}    = {{TypeStateManagerFullName}}.{{stateName}}{{propertyName}}Property.AddOwner(typeof({{ownerTypeName}}));
                 {{indentText}}
                 """);
         }
@@ -74,12 +74,12 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
                 var stateName = flag.ToString();
 
-                AddStatePropertyDefinition(sb, stateName, "Background", TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "Foreground", TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "BorderBrush", TypeBrushFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "Padding", TypeThicknessFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "BorderThickness", TypeThicknessFullName, 8);
-                AddStatePropertyDefinition(sb, stateName, "CornerRadius", TypeCornerRadiusFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "Background", name, TypeBrushFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "Foreground", name, TypeBrushFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "BorderBrush", name, TypeBrushFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "Padding", name, TypeThicknessFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "BorderThickness", name, TypeThicknessFullName, 8);
+                AddStatePropertyDefinition(sb, stateName, "CornerRadius", name, TypeCornerRadiusFullName, 8);
             }
 
             sb.AppendLine(
