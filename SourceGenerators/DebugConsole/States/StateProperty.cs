@@ -9,6 +9,7 @@ namespace EleCho.WpfSuite.Controls.States
         BorderBrush,
         GlyphBrush,
         Padding,
+        CheckerPadding,
         BorderThickness,
         CornerRadius,
     }
