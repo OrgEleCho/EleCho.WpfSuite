@@ -56,6 +56,13 @@
                     </ws:Button.Background>
                 </ws:Button>
 
+                <ws:ToggleButton Content="Toggle Button!"
+                                 Padding="8 4"
+                                 Margin="5"
+                                 CornerRadius="6"
+                                 HoverCornerRadius="3"
+                                 PressedCornerRadius="0"/>
+
                 <ws:CheckBox Content="QWQ" Margin="1 0 0 0"
                              CheckerPadding="0"
                              HoverCheckerPadding="3"
