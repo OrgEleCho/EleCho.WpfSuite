@@ -22,6 +22,9 @@ namespace EleCho.WpfSuite.Controls.States
         // highlighted
         Highlighted,
 
+        // focused
+        Focused,
+
         // disabled
         Disabled
     }

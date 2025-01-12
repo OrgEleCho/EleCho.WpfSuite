@@ -47,20 +47,6 @@ namespace EleCho.WpfSuite.Controls.States.Markup
                 StateProperty.GlyphBrush => StateManager.ShowingGlyphBrushProperty,
                 StateProperty.PlaceholderBrush => StateManager.ShowingPlaceholderBrushProperty,
 
-                StateProperty.EditableBackground => StateManager.ShowingEditableBackgroundProperty,
-                StateProperty.EditableForeground => StateManager.ShowingEditableForegroundProperty,
-                StateProperty.EditableBorderBrush => StateManager.ShowingEditableBorderBrushProperty,
-                StateProperty.EditablePadding => StateManager.ShowingEditablePaddingProperty,
-                StateProperty.EditableBorderThickness => StateManager.ShowingEditableBorderThicknessProperty,
-                StateProperty.EditableCornerRadius => StateManager.ShowingEditableCornerRadiusProperty,
-
-                StateProperty.EditableButtonBackground => StateManager.ShowingEditableButtonBackgroundProperty,
-                StateProperty.EditableButtonForeground => StateManager.ShowingEditableButtonForegroundProperty,
-                StateProperty.EditableButtonBorderBrush => StateManager.ShowingEditableButtonBorderBrushProperty,
-                StateProperty.EditableButtonPadding => StateManager.ShowingEditableButtonPaddingProperty,
-                StateProperty.EditableButtonBorderThickness => StateManager.ShowingEditableButtonBorderThicknessProperty,
-                StateProperty.EditableButtonCornerRadius => StateManager.ShowingEditableButtonCornerRadiusProperty,
-
 
                 _ => throw new ArgumentException("Invalid property", nameof(Property))
             };

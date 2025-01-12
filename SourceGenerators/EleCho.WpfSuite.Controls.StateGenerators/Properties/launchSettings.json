@@ -2,7 +2,7 @@
   "profiles": {
     "Test": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "..\\..\\EleCho.WpfSuite.Controls\\EleCho.WpfSuite.Controls.csproj"
+      "targetProject": "..\\DebugConsole\\DebugConsole.csproj"
     }
   }
 }

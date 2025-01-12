@@ -7,15 +7,8 @@ namespace DebugConsole
 {
     [GenerateCornerRadiusProperty]
     [GenerateStates]
-    [GenerateStatesState(State.Hover)]
-    [GenerateStatesState(State.Highlighted)]
-    [GenerateStatesProperty(StateProperty.Background)]
-    [GenerateStatesProperty(StateProperty.Foreground)]
-    [GenerateStatesProperty(StateProperty.BorderBrush)]
-    [GenerateStatesProperty(StateProperty.GlyphBrush)]
-    [GenerateStatesProperty(StateProperty.Padding)]
-    [GenerateStatesProperty(StateProperty.BorderThickness)]
-    [GenerateStatesProperty(StateProperty.CornerRadius)]
+    [GenerateComponentStatesState("Fuck", State.Hover)]
+    [GenerateComponentStateProperty("Fuck", StateProperty.Background)]
     public partial class TestControl : Control
     {
 

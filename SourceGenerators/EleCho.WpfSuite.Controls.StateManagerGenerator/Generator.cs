@@ -46,20 +46,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             CheckerPadding,
             GlyphBrush,
             PlaceholderBrush,
-
-            EditableBackground,
-            EditableForeground,
-            EditableBorderBrush,
-            EditablePadding,
-            EditableBorderThickness,
-            EditableCornerRadius,
-
-            EditableButtonBackground,
-            EditableButtonForeground,
-            EditableButtonBorderBrush,
-            EditableButtonPadding,
-            EditableButtonBorderThickness,
-            EditableButtonCornerRadius,
         }
 
         private static State GetFallbackState(State state)
@@ -79,7 +65,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             };
         }
 
-        private static string GetTypeNameOfStatePropert(StateProperty stateProperty, out bool isValueType, out bool isBrushType)
+        private static string GetTypeNameOfStateProperty(StateProperty stateProperty, out bool isValueType, out bool isBrushType)
         {
             const string TypeBrushFullName = "Brush";
             const string TypeThicknessFullName = "Thickness";
@@ -98,20 +84,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 StateProperty.GlyphBrush => false,
                 StateProperty.PlaceholderBrush => false,
 
-                StateProperty.EditableBackground => false,
-                StateProperty.EditableForeground => false,
-                StateProperty.EditableBorderBrush => false,
-                StateProperty.EditablePadding => true,
-                StateProperty.EditableBorderThickness => true,
-                StateProperty.EditableCornerRadius => true,
-
-                StateProperty.EditableButtonBackground => false,
-                StateProperty.EditableButtonForeground => false,
-                StateProperty.EditableButtonBorderBrush => false,
-                StateProperty.EditableButtonPadding => true,
-                StateProperty.EditableButtonBorderThickness => true,
-                StateProperty.EditableButtonCornerRadius => true,
-
                 _ => throw new NotImplementedException()
             };
 
@@ -127,20 +99,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 StateProperty.CheckerPadding => TypeThicknessFullName,
                 StateProperty.GlyphBrush => TypeBrushFullName,
                 StateProperty.PlaceholderBrush => TypeBrushFullName,
-
-                StateProperty.EditableBackground => TypeBrushFullName,
-                StateProperty.EditableForeground => TypeBrushFullName,
-                StateProperty.EditableBorderBrush => TypeBrushFullName,
-                StateProperty.EditablePadding => TypeThicknessFullName,
-                StateProperty.EditableBorderThickness => TypeThicknessFullName,
-                StateProperty.EditableCornerRadius => TypeCornerRadiusFullName,
-
-                StateProperty.EditableButtonBackground => TypeBrushFullName,
-                StateProperty.EditableButtonForeground => TypeBrushFullName,
-                StateProperty.EditableButtonBorderBrush => TypeBrushFullName,
-                StateProperty.EditableButtonPadding => TypeThicknessFullName,
-                StateProperty.EditableButtonBorderThickness => TypeThicknessFullName,
-                StateProperty.EditableButtonCornerRadius => TypeCornerRadiusFullName,
 
                 _ => throw new NotImplementedException()
             };
@@ -174,20 +132,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     StateProperty.GlyphBrush => DefaultValueBrushFullName,
                     StateProperty.PlaceholderBrush => DefaultValueBrushFullName,
 
-                    StateProperty.EditableBackground => DefaultValueBrushFullName,
-                    StateProperty.EditableForeground => DefaultValueBrushFullName,
-                    StateProperty.EditableBorderBrush => DefaultValueBrushFullName,
-                    StateProperty.EditablePadding => DefaultValueThicknessFullName,
-                    StateProperty.EditableBorderThickness => DefaultValueThicknessFullName,
-                    StateProperty.EditableCornerRadius => DefaultValueCornerRadiusFullName,
-
-                    StateProperty.EditableButtonBackground => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonForeground => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonBorderBrush => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonPadding => DefaultValueThicknessFullName,
-                    StateProperty.EditableButtonBorderThickness => DefaultValueThicknessFullName,
-                    StateProperty.EditableButtonCornerRadius => DefaultValueCornerRadiusFullName,
-
                     _ => throw new NotImplementedException()
                 };
             }
@@ -205,20 +149,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     StateProperty.CheckerPadding => DefaultValueNullableThicknessFullName,
                     StateProperty.GlyphBrush => DefaultValueBrushFullName,
                     StateProperty.PlaceholderBrush => DefaultValueBrushFullName,
-
-                    StateProperty.EditableBackground => DefaultValueBrushFullName,
-                    StateProperty.EditableForeground => DefaultValueBrushFullName,
-                    StateProperty.EditableBorderBrush => DefaultValueBrushFullName,
-                    StateProperty.EditablePadding => DefaultValueNullableThicknessFullName,
-                    StateProperty.EditableBorderThickness => DefaultValueNullableThicknessFullName,
-                    StateProperty.EditableCornerRadius => DefaultValueNullableCornerRadiusFullName,
-
-                    StateProperty.EditableButtonBackground => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonForeground => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonBorderBrush => DefaultValueBrushFullName,
-                    StateProperty.EditableButtonPadding => DefaultValueNullableThicknessFullName,
-                    StateProperty.EditableButtonBorderThickness => DefaultValueNullableThicknessFullName,
-                    StateProperty.EditableButtonCornerRadius => DefaultValueNullableCornerRadiusFullName,
 
                     _ => throw new NotImplementedException()
                 };

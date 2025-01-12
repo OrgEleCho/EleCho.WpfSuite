@@ -15,6 +15,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="ComboBoxEditableTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="AllowDrop" Value="true"/>
@@ -42,12 +43,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
                     <Border x:Name="templateRoot"
-                            Background="{TemplateBinding Background}"
-                            TextElement.Foreground="{TemplateBinding Foreground}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Padding="{TemplateBinding Padding}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            Padding="{smk:ShowingProperty Property=Padding}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                             SnapsToDevicePixels="true">
                         <Border x:Name="splitBorder"
                                 BorderBrush="Transparent"
@@ -58,7 +58,7 @@
                                 SnapsToDevicePixels="true"
                                 Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
-                                  Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:ComboBox}},Path=(wss:StateManager.ShowingGlyphBrush)}"
+                                  Fill="{smk:ShowingProperty Property=GlyphBrush}"
                                   HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
                         </Border>
                     </Border>
@@ -68,78 +68,95 @@
     </Style>
 
     <ControlTemplate x:Key="ComboBoxEditableTemplate" TargetType="{x:Type local:ComboBox}">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
-            </Grid.ColumnDefinitions>
-            <local:Popup x:Name="PART_Popup"
-                         AllowsTransparency="true"
-                         Grid.ColumnSpan="2"
-                         IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                         Placement="Bottom"
-                         PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                <i:SystemDropShadowChrome x:Name="shadow"
-                                          Color="Transparent"
-                                          CornerRadius="{TemplateBinding PopupCornerRadius}"
-                                          MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
-                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                    <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
-                                          TransitionMode="{TemplateBinding PopupContentTransitionMode}">
-                        <Border x:Name="dropDownBorder"
-                                Background="{TemplateBinding PopupBackground}"
-                                BorderThickness="{TemplateBinding PopupBorderThickness}"
-                                BorderBrush="{TemplateBinding PopupBorderBrush}"
-                                CornerRadius="{TemplateBinding PopupCornerRadius}">
-                            <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
-                                <ScrollViewer x:Name="DropDownScrollViewer">
-                                    <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                            <Border x:Name="opaqueRect"
-                                                    Background="{Binding Background, ElementName=dropDownBorder}"
-                                                    Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                                    Width="{Binding ActualWidth, ElementName=dropDownBorder}"
-                                                    CornerRadius="{TemplateBinding PopupCornerRadius}"/>
-                                        </Canvas>
-                                        <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                                    </Grid>
-                                </ScrollViewer>
-                            </local:BorderContentAdapter>
-                        </Border>
-                    </local:ContentControl>
-                </i:SystemDropShadowChrome>
-            </local:Popup>
-            <local:ToggleButton x:Name="toggleButton"
-                                Background="{smk:ShowingProperty Property=EditableButtonBackground}"
-                                BorderBrush="{smk:ShowingProperty Property=EditableButtonBorderBrush}"
-                                BorderThickness="{smk:ShowingProperty Property=EditableButtonBorderThickness}"
-                                CornerRadius="{smk:ShowingProperty Property=EditableButtonCornerRadius}"
-                                ClipToBounds="{TemplateBinding ClipToBounds}"
-                                Grid.ColumnSpan="2"
-                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                Style="{StaticResource ComboBoxToggleButton}"/>
-            <Border x:Name="border"
-                    Background="{smk:ShowingProperty Property=EditableBackground}"
-                    BorderBrush="{smk:ShowingProperty Property=EditableBorderBrush}"
-                    BorderThickness="{smk:ShowingProperty Property=EditableBorderThickness}"
-                    CornerRadius="{smk:ShowingProperty Property=EditableCornerRadius}">
-                <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+        <Border x:Name="border"
+                Background="{smk:ShowingProperty Property=Background}"
+                BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+            <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <local:Popup x:Name="PART_Popup"
+                                 AllowsTransparency="true"
+                                 Grid.ColumnSpan="2"
+                                 IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                 Placement="Bottom"
+                                 PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                        <i:SystemDropShadowChrome x:Name="shadow"
+                                                  Color="Transparent"
+                                                  CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                                  MinWidth="{Binding ActualWidth, ElementName=templateRoot}"
+                                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                            <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
+                                                  TransitionMode="{TemplateBinding PopupContentTransitionMode}">
+                                <Border x:Name="dropDownBorder"
+                                        Background="{TemplateBinding PopupBackground}"
+                                        BorderThickness="{TemplateBinding PopupBorderThickness}"
+                                        BorderBrush="{TemplateBinding PopupBorderBrush}"
+                                        CornerRadius="{TemplateBinding PopupCornerRadius}">
+                                    <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                                        <ScrollViewer x:Name="DropDownScrollViewer">
+                                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                                    <Border x:Name="opaqueRect"
+                                                            Background="{Binding Background, ElementName=dropDownBorder}"
+                                                            Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                            Width="{Binding ActualWidth, ElementName=dropDownBorder}"
+                                                            CornerRadius="{TemplateBinding PopupCornerRadius}"/>
+                                                </Canvas>
+                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </local:BorderContentAdapter>
+                                </Border>
+                            </local:ContentControl>
+                        </i:SystemDropShadowChrome>
+                    </local:Popup>
                     <local:TextBox x:Name="PART_EditableTextBox"
-                                   Foreground="{smk:ShowingProperty Property=EditableForeground}"
-                                   Margin="{smk:ShowingProperty Property=EditablePadding}"
+                                   Foreground="{smk:ShowingProperty Property=Foreground}"
+                                   Margin="{smk:ShowingProperty Property=Padding}"
                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                    IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                   Style="{StaticResource ComboBoxEditableTextBox}"
-                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                </local:BorderContentAdapter>
-            </Border>
-        </Grid>
+                                   Style="{StaticResource ComboBoxEditableTextBox}"/>
+                    <local:ToggleButton x:Name="toggleButton"
+                                        Grid.Column="1"
+                                        wss:StateManager.Background="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonBackground}"
+                                        wss:StateManager.BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonBorderBrush}"
+                                        wss:StateManager.Padding="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPadding}"
+                                        wss:StateManager.BorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonBorderThickness}"
+                                        wss:StateManager.CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonCornerRadius}"
+                                        wss:StateManager.GlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=GlyphBrush}"
+                                        wss:StateManager.HoverBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonHoverBackground}"
+                                        wss:StateManager.HoverBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonHoverBorderBrush}"
+                                        wss:StateManager.HoverPadding="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonHoverPadding}"
+                                        wss:StateManager.HoverBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonHoverBorderThickness}"
+                                        wss:StateManager.HoverCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonHoverCornerRadius}"
+                                        wss:StateManager.HoverGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverGlyphBrush}"
+                                        wss:StateManager.PressedBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPressedBackground}"
+                                        wss:StateManager.PressedBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPressedBorderBrush}"
+                                        wss:StateManager.PressedPadding="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPressedPadding}"
+                                        wss:StateManager.PressedBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPressedBorderThickness}"
+                                        wss:StateManager.PressedCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonPressedCornerRadius}"
+                                        wss:StateManager.PressedGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedGlyphBrush}"
+                                        wss:StateManager.DisabledBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonDisabledBackground}"
+                                        wss:StateManager.DisabledBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonDisabledBorderBrush}"
+                                        wss:StateManager.DisabledPadding="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonDisabledPadding}"
+                                        wss:StateManager.DisabledBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonDisabledBorderThickness}"
+                                        wss:StateManager.DisabledCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=EditableButtonDisabledCornerRadius}"
+                                        wss:StateManager.DisabledGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledGlyphBrush}"
+                                        ClipToBounds="{TemplateBinding ClipToBounds}"
+                                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                        Style="{StaticResource ComboBoxToggleButton}"/>
+                </Grid>
+            </local:BorderContentAdapter>
+        </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-            </Trigger>
-            <Trigger Property="IsKeyboardFocusWithin" Value="true">
-                <Setter Property="Foreground" Value="Black"/>
             </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
@@ -163,11 +180,21 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
             </Trigger>
-            <Trigger SourceName="toggleButton" Property="IsPressed" Value="True">
-                <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
+            <Trigger SourceName="PART_EditableTextBox" Property="IsKeyboardFocused" Value="True">
+                <Setter Property="wss:StateManager.ActiveState" Value="Focused"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+            </Trigger>
+
+            <Trigger SourceName="toggleButton" Property="IsMouseOver" Value="True">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Hover"/>
+            </Trigger>
+            <Trigger SourceName="toggleButton" Property="IsPressed" Value="True">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+            </Trigger>
+            <Trigger SourceName="toggleButton" Property="IsEnabled" Value="False">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Disabled"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -211,10 +238,26 @@
                 </i:SystemDropShadowChrome>
             </local:Popup>
             <local:ToggleButton x:Name="toggleButton"
-                                Background="{smk:ShowingProperty Property=Background}"
-                                BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                                BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
-                                CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
+                                wss:StateManager.Background="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=Background}"
+                                wss:StateManager.BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=BorderBrush}"
+                                wss:StateManager.BorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=BorderThickness}"
+                                wss:StateManager.CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=CornerRadius}"
+                                wss:StateManager.GlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=GlyphBrush}"
+                                wss:StateManager.HoverBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverBackground}"
+                                wss:StateManager.HoverBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverBorderBrush}"
+                                wss:StateManager.HoverBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverBorderThickness}"
+                                wss:StateManager.HoverCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverCornerRadius}"
+                                wss:StateManager.HoverGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=HoverGlyphBrush}"
+                                wss:StateManager.PressedBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedBackground}"
+                                wss:StateManager.PressedBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedBorderBrush}"
+                                wss:StateManager.PressedBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedBorderThickness}"
+                                wss:StateManager.PressedCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedCornerRadius}"
+                                wss:StateManager.PressedGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=PressedGlyphBrush}"
+                                wss:StateManager.DisabledBackground="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledBackground}"
+                                wss:StateManager.DisabledBorderBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledBorderBrush}"
+                                wss:StateManager.DisabledBorderThickness="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledBorderThickness}"
+                                wss:StateManager.DisabledCornerRadius="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledCornerRadius}"
+                                wss:StateManager.DisabledGlyphBrush="{Binding RelativeSource={RelativeSource AncestorType=local:ComboBox},Path=DisabledGlyphBrush}"
                                 ClipToBounds="{TemplateBinding ClipToBounds}"
                                 Grid.ColumnSpan="2"
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -273,6 +316,16 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
             </Trigger>
+
+            <Trigger SourceName="toggleButton" Property="IsMouseOver" Value="True">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Hover"/>
+            </Trigger>
+            <Trigger SourceName="toggleButton" Property="IsPressed" Value="True">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+            </Trigger>
+            <Trigger SourceName="toggleButton" Property="IsEnabled" Value="False">
+                <Setter TargetName="toggleButton" Property="wss:StateManager.ActiveState" Value="Disabled"/>
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <Style TargetType="{x:Type local:ComboBox}">
@@ -281,6 +334,7 @@
         <Setter Property="PopupBorderThickness" Value="1"/>
 
         <!--NormalState-->
+        <Setter Property="Padding" Value="6,3,5,3"/>
         <Setter Property="GlyphBrush" Value="#FF606060"/>
         <Setter Property="Background" >
             <Setter.Value>
@@ -293,10 +347,7 @@
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
         <Setter Property="BorderBrush" Value="#FFACACAC"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="EditableBorderThickness" Value="1"/>
         <Setter Property="EditableButtonBorderThickness" Value="1"/>
-        <Setter Property="EditableBackground" Value="#FFFFFFFF"/>
-        <Setter Property="EditableBorderBrush" Value="#FFABADB3"/>
         <Setter Property="EditableButtonBackground" Value="Transparent"/>
         <Setter Property="EditableButtonBorderBrush" Value="Transparent"/>
 
@@ -311,9 +362,7 @@
         </Setter>
         <Setter Property="HoverBorderBrush" Value="#FF7EB4EA"/>
         <Setter Property="HoverGlyphBrush" Value="#FF000000"/>
-        <Setter Property="HoverEditableBackground" Value="#FFFFFFFF"/>
-        <Setter Property="HoverEditableBorderBrush" Value="#FF7EB4EA"/>
-        <Setter Property="HoverEditableButtonBackground">
+        <Setter Property="EditableButtonHoverBackground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFEBF4FC" Offset="0.0"/>
@@ -321,7 +370,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="HoverEditableButtonBorderBrush" Value="#FF7EB4EA"/>
+        <Setter Property="EditableButtonHoverBorderBrush" Value="#FF7EB4EA"/>
 
         <!--PressedState-->
         <Setter Property="PressedBackground">
@@ -334,9 +383,7 @@
         </Setter>
         <Setter Property="PressedBorderBrush" Value="#FF569DE5"/>
         <Setter Property="PressedGlyphBrush" Value="#FF000000"/>
-        <Setter Property="PressedEditableBackground" Value="#FFFFFFFF"/>
-        <Setter Property="PressedEditableBorderBrush" Value="#FF569DE5"/>
-        <Setter Property="PressedEditableButtonBackground">
+        <Setter Property="EditableButtonPressedBackground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFDAEBFC" Offset="0.0"/>
@@ -344,21 +391,18 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="PressedEditableButtonBorderBrush" Value="#FF569DE5"/>
+        <Setter Property="EditableButtonPressedBorderBrush" Value="#FF569DE5"/>
 
         <!--DisabledState-->
         <Setter Property="DisabledBackground" Value="#FFF0F0F0"/>
         <Setter Property="DisabledBorderBrush" Value="#FFD9D9D9"/>
         <Setter Property="DisabledGlyphBrush" Value="#FFBFBFBF"/>
-        <Setter Property="DisabledEditableBackground" Value="#FFFFFFFF"/>
-        <Setter Property="DisabledEditableBorderBrush" Value="#FFBFBFBF"/>
-        <Setter Property="DisabledEditableButtonBackground" Value="Transparent"/>
-        <Setter Property="DisabledEditableButtonBorderBrush" Value="Transparent"/>
+        <Setter Property="EditableButtonDisabledBackground" Value="Transparent"/>
+        <Setter Property="EditableButtonDisabledBorderBrush" Value="Transparent"/>
 
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="Padding" Value="6,3,5,3"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
@@ -378,9 +422,27 @@
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
+                <Setter Property="Background" Value="#FFFFFFFF"/>
+                <Setter Property="BorderBrush" Value="#FFABADB3"/>
+
+                <!--Hover-->
+                <Setter Property="HoverBackground" Value="#FFFFFFFF"/>
+                <Setter Property="HoverBorderBrush" Value="#FF7EB4EA"/>
+
+                <!--Hover-->
+                <Setter Property="FocusedBackground" Value="#FFFFFFFF"/>
+                <Setter Property="FocusedBorderBrush" Value="#FF7EB4EA"/>
+
+                <!--Pressed-->
+                <Setter Property="PressedBackground" Value="#FFFFFFFF"/>
+                <Setter Property="PressedBorderBrush" Value="#FF569DE5"/>
+
+                <!--Disabled-->
+                <Setter Property="DisabledBackground" Value="#FFFFFFFF"/>
+                <Setter Property="DisabledBorderBrush" Value="#FFBFBFBF"/>
+
                 <Setter Property="IsTabStop" Value="false"/>
                 <Setter Property="Padding" Value="2"/>
-                <Setter Property="EditablePadding" Value="2"/>
                 <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
             </Trigger>
         </Style.Triggers>

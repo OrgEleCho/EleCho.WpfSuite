@@ -89,6 +89,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     $$"""
                     {{indentText}}private static void ActiveState{{stateProperty}}(DependencyObject d, State targetState)
                     {{indentText}}{
+                    {{indentText}}    var nowValue = GetShowing{{stateProperty}}(d);
                     {{indentText}}    var storyboardKey = new DependencyObjectAndStateProperty(d, StateProperty.{{stateProperty}});
                     {{indentText}}
                     {{indentText}}    if (_runningStoryboards is not null &&
@@ -107,7 +108,6 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}        return;
                     {{indentText}}    }
                     {{indentText}}
-                    {{indentText}}    var nowValue = GetShowing{{stateProperty}}(d);
                     {{indentText}}    animatable.BeginAnimation(Showing{{stateProperty}}ProxyProperty, null);
                     {{indentText}}
                     {{indentText}}    var targetTransitionDuration = GetStatePropertyTransitionDuration(d, targetState, StateProperty.{{stateProperty}});
@@ -228,7 +228,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             var propertyPrefix = notDefaultState ? state.ToString() : string.Empty;
 
             var propertyName = $"{propertyPrefix}{stateProperty}";
-            var propertyTypeName = GetTypeNameOfStatePropert(stateProperty, out bool isValueType, out _);
+            var propertyTypeName = GetTypeNameOfStateProperty(stateProperty, out bool isValueType, out _);
             var defaultValue = GetDefaultValueOfStateProperty(stateProperty, notDefaultState);
 
             var coerceValueCallback = default(string);
@@ -345,7 +345,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
         private static void AddShowingPropertyDefinitions(StringBuilder sb, StateProperty stateProperty, string ownerTypeName, int indent)
         {
             var indentText = new string(' ', indent);
-            var propertyTypeName = GetTypeNameOfStatePropert(stateProperty, out var isValueType, out _);
+            var propertyTypeName = GetTypeNameOfStateProperty(stateProperty, out var isValueType, out _);
             var defaultValue = GetDefaultValueOfStateProperty(stateProperty, false);
 
             AddAttachedReadOnlyDependencyPropertyDefinition(sb, $"Showing{stateProperty}", propertyTypeName, ownerTypeName, defaultValue, null, null, isValueType, !isValueType, indent);
@@ -677,7 +677,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
 
             foreach (var stateProperty in (StateProperty[])Enum.GetValues(typeof(StateProperty)))
             {
-                var propertyTypeName = GetTypeNameOfStatePropert(stateProperty, out _, out var isBrushType);
+                var propertyTypeName = GetTypeNameOfStateProperty(stateProperty, out _, out var isBrushType);
 
                 AddAnyStatePropertyChangedCallbackMethod(sb, stateProperty, 8);
                 AddShowingPropertyDefinitions(sb, stateProperty, typeName, 8);
