@@ -11,21 +11,17 @@
     <ProjectReference Include="..\EleCho.WpfSuite.Input\EleCho.WpfSuite.Input.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Media\EleCho.WpfSuite.Media.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.ValueConverters\EleCho.WpfSuite.ValueConverters.csproj" />
-    <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll"/>
-    <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateManagerGenerator.dll"/>
+    <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll" />
+    <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateManagerGenerator.dll" />
   </ItemGroup>
 
   <Target Name="BuildDependencies" BeforeTargets="Build">
-    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj"
-             Properties="TargetFramework=netstandard2.0"/>
-    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj"
-             Properties="TargetFramework=netstandard2.0"/>
+    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj" Properties="TargetFramework=netstandard2.0" />
+    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj" Properties="TargetFramework=netstandard2.0" />
   </Target>
 
   <ItemGroup Label="Package">
-    <None Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll"
-          PackagePath="analyzers\dotnet\cs"
-          Pack="true" />
+    <None Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll" PackagePath="analyzers\dotnet\cs" Pack="true" />
   </ItemGroup>
 
 </Project>
