@@ -7,10 +7,26 @@ namespace EleCho.WpfSuite.Controls.States
         Background,
         Foreground,
         BorderBrush,
-        GlyphBrush,
         Padding,
-        CheckerPadding,
         BorderThickness,
         CornerRadius,
+
+        CheckerPadding,
+        GlyphBrush,
+        PlaceholderBrush,
+
+        EditableBackground,
+        EditableForeground,
+        EditableBorderBrush,
+        EditablePadding,
+        EditableBorderThickness,
+        EditableCornerRadius,
+
+        EditableButtonBackground,
+        EditableButtonForeground,
+        EditableButtonBorderBrush,
+        EditableButtonPadding,
+        EditableButtonBorderThickness,
+        EditableButtonCornerRadius,
     }
 }

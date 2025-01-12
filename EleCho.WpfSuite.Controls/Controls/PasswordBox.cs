@@ -4,13 +4,26 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using EleCho.WpfSuite.Controls.SourceGeneration;
+using EleCho.WpfSuite.Controls.States;
 
 namespace EleCho.WpfSuite.Controls
 {
     /// <summary>
     /// PasswordBox
     /// </summary>
-    public class PasswordBox : TextBox
+    [GenerateStates]
+    [GenerateStatesState(State.Hover)]
+    [GenerateStatesState(State.Focused)]
+    [GenerateStatesState(State.Disabled)]
+    [GenerateStatesProperty(StateProperty.Background)]
+    [GenerateStatesProperty(StateProperty.Foreground)]
+    [GenerateStatesProperty(StateProperty.BorderBrush)]
+    [GenerateStatesProperty(StateProperty.Padding)]
+    [GenerateStatesProperty(StateProperty.BorderThickness)]
+    [GenerateStatesProperty(StateProperty.CornerRadius)]
+    [GenerateStatesProperty(StateProperty.PlaceholderBrush)]
+    public partial class PasswordBox : TextBox
     {
         private readonly StringBuilder _passwordBuilder;
         private readonly StringBuilder _maskTextBuilder;

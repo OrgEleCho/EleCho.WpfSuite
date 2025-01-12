@@ -63,11 +63,29 @@
                                  HoverCornerRadius="3"
                                  PressedCornerRadius="0"/>
 
+                <ws:ComboBox IsEditable="True">
+                    <ws:ComboBoxItem Content="QWQ"/>
+                    <ws:ComboBoxItem Content="AWA"/>
+                    <ws:ComboBoxItem Content="QAQ"/>
+                </ws:ComboBox>
+
+                <ComboBox IsEditable="True">
+                    <ComboBoxItem Content="QWQ"/>
+                    <ComboBoxItem Content="AWA"/>
+                    <ComboBoxItem Content="QAQ"/>
+                </ComboBox>
+
                 <ws:CheckBox Content="QWQ" Margin="1 0 0 0"
                              CheckerPadding="0"
                              HoverCheckerPadding="3"
                              PressedCheckerPadding="2"/>
+
                 <CheckBox Content="QWQ"/>
+
+                <ws:TextBox Placeholder="TestPlaceholder" 
+                            HoverCornerRadius="2"
+                            FocusedCornerRadius="4"
+                            Text="TestTest"/>
 
                 <Button Content="GC"
                         Margin="5"

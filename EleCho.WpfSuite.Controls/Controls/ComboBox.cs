@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EleCho.WpfSuite.Controls.States;
+using EleCho.WpfSuite.Controls.SourceGeneration;
 using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
@@ -19,272 +21,36 @@ namespace EleCho.WpfSuite.Controls
     /// <summary>
     /// Represents a selection control with a drop-down list that can be shown or hidden by clicking the arrow on the control.
     /// </summary>
-    public class ComboBox : System.Windows.Controls.ComboBox
+    [GenerateStates]
+    [GenerateStatesState(State.Hover)]
+    [GenerateStatesState(State.Pressed)]
+    [GenerateStatesState(State.Disabled)]
+    [GenerateStatesProperty(StateProperty.GlyphBrush)]
+    [GenerateStatesProperty(StateProperty.Background)]
+    [GenerateStatesProperty(StateProperty.Foreground)]
+    [GenerateStatesProperty(StateProperty.BorderBrush)]
+    [GenerateStatesProperty(StateProperty.Padding)]
+    [GenerateStatesProperty(StateProperty.BorderThickness)]
+    [GenerateStatesProperty(StateProperty.CornerRadius)]
+    [GenerateStatesProperty(StateProperty.EditableBackground)]
+    [GenerateStatesProperty(StateProperty.EditableForeground)]
+    [GenerateStatesProperty(StateProperty.EditableBorderBrush)]
+    [GenerateStatesProperty(StateProperty.EditablePadding)]
+    [GenerateStatesProperty(StateProperty.EditableBorderThickness)]
+    [GenerateStatesProperty(StateProperty.EditableCornerRadius)]
+    [GenerateStatesProperty(StateProperty.EditableButtonBackground)]
+    [GenerateStatesProperty(StateProperty.EditableButtonBorderBrush)]
+    [GenerateStatesProperty(StateProperty.EditableButtonPadding)]
+    [GenerateStatesProperty(StateProperty.EditableButtonBorderThickness)]
+    [GenerateStatesProperty(StateProperty.EditableButtonCornerRadius)]
+    [GenerateCornerRadiusProperty]
+    [GeneratePopupProperties]
+    public partial class ComboBox : System.Windows.Controls.ComboBox
     {
         static ComboBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ComboBox), new FrameworkPropertyMetadata(typeof(ComboBox)));
         }
-
-
-        /// <summary>
-        /// The CornerRadius property allows users to control the roundness of the corners independently by
-        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
-        /// smoothly blend from corner to corner.
-        /// </summary>
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
-
-        public Brush PopupBackground
-        {
-            get { return (Brush)GetValue(PopupBackgroundProperty); }
-            set { SetValue(PopupBackgroundProperty, value); }
-        }
-
-        public Thickness PopupBorderThickness
-        {
-            get { return (Thickness)GetValue(PopupBorderThicknessProperty); }
-            set { SetValue(PopupBorderThicknessProperty, value); }
-        }
-
-        public Brush PopupBorderBrush
-        {
-            get { return (Brush)GetValue(PopupBorderBrushProperty); }
-            set { SetValue(PopupBorderBrushProperty, value); }
-        }
-
-        public IContentTransition PopupContentTransition
-        {
-            get { return (IContentTransition)GetValue(PopupContentTransitionProperty); }
-            set { SetValue(PopupContentTransitionProperty, value); }
-        }
-        public ContentTransitionMode PopupContentTransitionMode
-        {
-            get { return (ContentTransitionMode)GetValue(PopupContentTransitionModeProperty); }
-            set { SetValue(PopupContentTransitionModeProperty, value); }
-        }
-
-
-
-
-
-
-        /// <summary>
-        /// CornerRadius of popup content
-        /// </summary>
-        public CornerRadius PopupCornerRadius
-        {
-            get { return (CornerRadius)GetValue(PopupCornerRadiusProperty); }
-            set { SetValue(PopupCornerRadiusProperty, value); }
-        }
-
-        // extra properties
-
-        public Brush GlyphBrush
-        {
-            get { return (Brush)GetValue(GlyphBrushProperty); }
-            set { SetValue(GlyphBrushProperty, value); }
-        }
-
-        public Brush TextBoxBackground
-        {
-            get { return (Brush)GetValue(TextBoxBackgroundProperty); }
-            set { SetValue(TextBoxBackgroundProperty, value); }
-        }
-
-        public Brush EditableBackground
-        {
-            get { return (Brush)GetValue(EditableBackgroundProperty); }
-            set { SetValue(EditableBackgroundProperty, value); }
-        }
-
-        public Brush EditableBorderBrush
-        {
-            get { return (Brush)GetValue(EditableBorderBrushProperty); }
-            set { SetValue(EditableBorderBrushProperty, value); }
-        }
-
-        public Brush EditableButtonBackground
-        {
-            get { return (Brush)GetValue(EditableButtonBackgroundProperty); }
-            set { SetValue(EditableButtonBackgroundProperty, value); }
-        }
-
-        public Brush EditableButtonBorderBrush
-        {
-            get { return (Brush)GetValue(EditableButtonBorderBrushProperty); }
-            set { SetValue(EditableButtonBorderBrushProperty, value); }
-        }
-
-
-
-
-
-
-
-        // hover state
-
-
-        public Brush HoverForeground
-        {
-            get { return (Brush)GetValue(HoverForegroundProperty); }
-            set { SetValue(HoverForegroundProperty, value); }
-        }
-
-        public Brush HoverBackground
-        {
-            get { return (Brush)GetValue(HoverBackgroundProperty); }
-            set { SetValue(HoverBackgroundProperty, value); }
-        }
-
-        public Brush HoverBorderBrush
-        {
-            get { return (Brush)GetValue(HoverBorderBrushProperty); }
-            set { SetValue(HoverBorderBrushProperty, value); }
-        }
-
-        public Brush HoverGlyphBrush
-        {
-            get { return (Brush)GetValue(HoverGlyphBrushProperty); }
-            set { SetValue(HoverGlyphBrushProperty, value); }
-        }
-
-        public Brush EditableHoverBackground
-        {
-            get { return (Brush)GetValue(EditableHoverBackgroundProperty); }
-            set { SetValue(EditableHoverBackgroundProperty, value); }
-        }
-
-        public Brush EditableHoverBorderBrush
-        {
-            get { return (Brush)GetValue(EditableHoverBorderBrushProperty); }
-            set { SetValue(EditableHoverBorderBrushProperty, value); }
-        }
-
-        public Brush EditableButtonHoverBackground
-        {
-            get { return (Brush)GetValue(EditableButtonHoverBackgroundProperty); }
-            set { SetValue(EditableButtonHoverBackgroundProperty, value); }
-        }
-
-        public Brush EditableButtonHoverBorderBrush
-        {
-            get { return (Brush)GetValue(EditableButtonHoverBorderBrushProperty); }
-            set { SetValue(EditableButtonHoverBorderBrushProperty, value); }
-        }
-
-
-
-
-        // pressed state
-
-
-        public Brush PressedForeground
-        {
-            get { return (Brush)GetValue(PressedForegroundProperty); }
-            set { SetValue(PressedForegroundProperty, value); }
-        }
-
-        public Brush PressedBackground
-        {
-            get { return (Brush)GetValue(PressedBackgroundProperty); }
-            set { SetValue(PressedBackgroundProperty, value); }
-        }
-
-        public Brush PressedBorderBrush
-        {
-            get { return (Brush)GetValue(PressedBorderBrushProperty); }
-            set { SetValue(PressedBorderBrushProperty, value); }
-        }
-
-        public Brush PressedGlyphBrush
-        {
-            get { return (Brush)GetValue(PressedGlyphBrushProperty); }
-            set { SetValue(PressedGlyphBrushProperty, value); }
-        }
-
-        public Brush EditablePressedBackground
-        {
-            get { return (Brush)GetValue(EditablePressedBackgroundProperty); }
-            set { SetValue(EditablePressedBackgroundProperty, value); }
-        }
-
-        public Brush EditablePressedBorderBrush
-        {
-            get { return (Brush)GetValue(EditablePressedBorderBrushProperty); }
-            set { SetValue(EditablePressedBorderBrushProperty, value); }
-        }
-
-        public Brush EditableButtonPressedBackground
-        {
-            get { return (Brush)GetValue(EditableButtonPressedBackgroundProperty); }
-            set { SetValue(EditableButtonPressedBackgroundProperty, value); }
-        }
-
-        public Brush EditableButtonPressedBorderBrush
-        {
-            get { return (Brush)GetValue(EditableButtonPressedBorderBrushProperty); }
-            set { SetValue(EditableButtonPressedBorderBrushProperty, value); }
-        }
-
-
-
-
-        // pressed state
-
-
-        public Brush DisabledForeground
-        {
-            get { return (Brush)GetValue(DisabledForegroundProperty); }
-            set { SetValue(DisabledForegroundProperty, value); }
-        }
-
-        public Brush DisabledBackground
-        {
-            get { return (Brush)GetValue(DisabledBackgroundProperty); }
-            set { SetValue(DisabledBackgroundProperty, value); }
-        }
-
-        public Brush DisabledBorderBrush
-        {
-            get { return (Brush)GetValue(DisabledBorderBrushProperty); }
-            set { SetValue(DisabledBorderBrushProperty, value); }
-        }
-
-        public Brush DisabledGlyphBrush
-        {
-            get { return (Brush)GetValue(DisabledGlyphBrushProperty); }
-            set { SetValue(DisabledGlyphBrushProperty, value); }
-        }
-
-        public Brush EditableDisabledBackground
-        {
-            get { return (Brush)GetValue(EditableDisabledBackgroundProperty); }
-            set { SetValue(EditableDisabledBackgroundProperty, value); }
-        }
-
-        public Brush EditableDisabledBorderBrush
-        {
-            get { return (Brush)GetValue(EditableDisabledBorderBrushProperty); }
-            set { SetValue(EditableDisabledBorderBrushProperty, value); }
-        }
-
-        public Brush EditableButtonDisabledBackground
-        {
-            get { return (Brush)GetValue(EditableButtonDisabledBackgroundProperty); }
-            set { SetValue(EditableButtonDisabledBackgroundProperty, value); }
-        }
-
-        public Brush EditableButtonDisabledBorderBrush
-        {
-            get { return (Brush)GetValue(EditableButtonDisabledBorderBrushProperty); }
-            set { SetValue(EditableButtonDisabledBorderBrushProperty, value); }
-        }
-
-
 
 
         /// <inheritdoc/>
@@ -298,143 +64,5 @@ namespace EleCho.WpfSuite.Controls
         {
             return item is ComboBoxItem;
         }
-
-
-
-
-
-
-
-
-
-        #region DependencyProperty Declaration
-
-        // extra properties
-
-        public static readonly DependencyProperty GlyphBrushProperty =
-            DependencyProperty.Register(nameof(GlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty TextBoxBackgroundProperty =
-            DependencyProperty.Register(nameof(TextBoxBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-
-
-        // hover state
-
-        public static readonly DependencyProperty HoverForegroundProperty =
-            DependencyProperty.Register(nameof(HoverForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty HoverBackgroundProperty =
-            DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty HoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(HoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty HoverGlyphBrushProperty =
-            DependencyProperty.Register(nameof(HoverGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableHoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableHoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableHoverBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableHoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonHoverBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonHoverBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonHoverBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonHoverBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-
-        // pressed state
-
-        public static readonly DependencyProperty PressedForegroundProperty =
-            DependencyProperty.Register(nameof(PressedForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty PressedBackgroundProperty =
-            DependencyProperty.Register(nameof(PressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty PressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty PressedGlyphBrushProperty =
-            DependencyProperty.Register(nameof(PressedGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditablePressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditablePressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditablePressedBackgroundProperty =
-            DependencyProperty.Register(nameof(EditablePressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonPressedBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonPressedBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonPressedBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonPressedBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-
-        // disabled state
-
-        public static readonly DependencyProperty DisabledForegroundProperty =
-            DependencyProperty.Register(nameof(DisabledForeground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty DisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty DisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(DisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty DisabledGlyphBrushProperty =
-            DependencyProperty.Register(nameof(DisabledGlyphBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableDisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableDisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableDisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonDisabledBackgroundProperty =
-            DependencyProperty.Register(nameof(EditableButtonDisabledBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty EditableButtonDisabledBorderBrushProperty =
-            DependencyProperty.Register(nameof(EditableButtonDisabledBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-
-
-
-        public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(ComboBox));
-
-        public static readonly DependencyProperty PopupBackgroundProperty =
-            DependencyProperty.Register(nameof(PopupBackground), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(SystemColors.WindowBrush));
-
-        public static readonly DependencyProperty PopupCornerRadiusProperty =
-            DependencyProperty.Register(nameof(PopupCornerRadius), typeof(CornerRadius), typeof(ComboBox), new FrameworkPropertyMetadata(default(CornerRadius)));
-
-        public static readonly DependencyProperty PopupBorderThicknessProperty =
-            DependencyProperty.Register(nameof(PopupBorderThickness), typeof(Thickness), typeof(ComboBox), new FrameworkPropertyMetadata(default(Thickness)));
-
-        public static readonly DependencyProperty PopupBorderBrushProperty =
-            DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof(ComboBox), new FrameworkPropertyMetadata(null));
-
-        public static readonly DependencyProperty PopupContentTransitionProperty =
-            DependencyProperty.Register(nameof(PopupContentTransition), typeof(IContentTransition), typeof(ComboBox), new PropertyMetadata(null));
-
-        public static readonly DependencyProperty PopupContentTransitionModeProperty =
-            DependencyProperty.Register(nameof(PopupContentTransitionMode), typeof(ContentTransitionMode), typeof(ComboBox), new PropertyMetadata(ContentTransitionMode.ChangedOrLoaded));
-
-        #endregion
     }
 }

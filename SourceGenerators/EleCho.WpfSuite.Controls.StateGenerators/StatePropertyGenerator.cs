@@ -25,8 +25,9 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Checked        = 1 << 2,
             Selected       = 1 << 3,
             SelectedActive = 1 << 4,
-            Highlighted    = 1 << 5,
-            Disabled       = 1 << 6,
+            Focused        = 1 << 5,
+            Highlighted    = 1 << 6,
+            Disabled       = 1 << 7,
         }
 
         [Flags]
@@ -36,11 +37,27 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Background            = 1 << 0,
             Foreground            = 1 << 1,
             BorderBrush           = 1 << 2,
-            GlyphBrush            = 1 << 3,
-            Padding               = 1 << 4,
-            CheckerPadding        = 1 << 5,
-            BorderThickness       = 1 << 6,
-            CornerRadius          = 1 << 7,
+            Padding               = 1 << 3,
+            BorderThickness       = 1 << 4,
+            CornerRadius          = 1 << 5,
+
+            CheckerPadding        = 1 << 6,
+            GlyphBrush            = 1 << 7,
+            PlaceholderBrush      = 1 << 8,
+
+            EditableBackground        = 1 << 9,
+            EditableForeground        = 1 << 10,
+            EditableBorderBrush       = 1 << 11,
+            EditablePadding           = 1 << 12,
+            EditableBorderThickness   = 1 << 13,
+            EditableCornerRadius      = 1 << 14,
+
+            EditableButtonBackground        = 1 << 15,
+            EditableButtonForeground        = 1 << 16,
+            EditableButtonBorderBrush       = 1 << 17,
+            EditableButtonPadding           = 1 << 18,
+            EditableButtonBorderThickness   = 1 << 19,
+            EditableButtonCornerRadius      = 1 << 20,
         }
 
         private record struct GenerationInfo(INamedTypeSymbol NamedTypeSymbol, StateFlags StateFlags, StatePropertyFlags StatePropertyFlags);
@@ -49,6 +66,21 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
         {
             StatePropertyFlags.GlyphBrush,
             StatePropertyFlags.CheckerPadding,
+            StatePropertyFlags.PlaceholderBrush,
+
+            StatePropertyFlags.EditableBackground,
+            StatePropertyFlags.EditableForeground,
+            StatePropertyFlags.EditableBorderBrush,
+            StatePropertyFlags.EditablePadding,
+            StatePropertyFlags.EditableBorderThickness,
+            StatePropertyFlags.EditableCornerRadius,
+
+            StatePropertyFlags.EditableButtonBackground,
+            StatePropertyFlags.EditableButtonForeground,
+            StatePropertyFlags.EditableButtonBorderBrush,
+            StatePropertyFlags.EditableButtonPadding,
+            StatePropertyFlags.EditableButtonBorderThickness,
+            StatePropertyFlags.EditableButtonCornerRadius,
         };
 
         private string GetTypeNameForStateProperty(StatePropertyFlags flag)
@@ -62,11 +94,28 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 StatePropertyFlags.Background => TypeBrushFullName,
                 StatePropertyFlags.Foreground => TypeBrushFullName,
                 StatePropertyFlags.BorderBrush => TypeBrushFullName,
-                StatePropertyFlags.GlyphBrush => TypeBrushFullName,
                 StatePropertyFlags.Padding => TypeThicknessFullName,
-                StatePropertyFlags.CheckerPadding => TypeThicknessFullName,
                 StatePropertyFlags.BorderThickness => TypeThicknessFullName,
                 StatePropertyFlags.CornerRadius => TypeCornerRadiusFullName,
+
+                StatePropertyFlags.CheckerPadding => TypeThicknessFullName,
+                StatePropertyFlags.GlyphBrush => TypeBrushFullName,
+                StatePropertyFlags.PlaceholderBrush => TypeBrushFullName,
+
+                StatePropertyFlags.EditableBackground => TypeBrushFullName,
+                StatePropertyFlags.EditableForeground => TypeBrushFullName,
+                StatePropertyFlags.EditableBorderBrush => TypeBrushFullName,
+                StatePropertyFlags.EditablePadding => TypeThicknessFullName,
+                StatePropertyFlags.EditableBorderThickness => TypeThicknessFullName,
+                StatePropertyFlags.EditableCornerRadius => TypeCornerRadiusFullName,
+
+                StatePropertyFlags.EditableButtonBackground => TypeBrushFullName,
+                StatePropertyFlags.EditableButtonForeground => TypeBrushFullName,
+                StatePropertyFlags.EditableButtonBorderBrush => TypeBrushFullName,
+                StatePropertyFlags.EditableButtonPadding => TypeThicknessFullName,
+                StatePropertyFlags.EditableButtonBorderThickness => TypeThicknessFullName,
+                StatePropertyFlags.EditableButtonCornerRadius => TypeCornerRadiusFullName,
+
                 _ => throw new ArgumentException(),
             };
         }
