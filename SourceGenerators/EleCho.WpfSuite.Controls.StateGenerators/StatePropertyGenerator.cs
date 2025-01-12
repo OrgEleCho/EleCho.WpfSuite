@@ -21,15 +21,24 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
         [Flags]
         private enum StateFlags
         {
-            None           = 0,
-            Hover          = 1 << 0,
-            Pressed        = 1 << 1,
-            Checked        = 1 << 2,
-            Selected       = 1 << 3,
-            SelectedActive = 1 << 4,
-            Focused        = 1 << 5,
-            Highlighted    = 1 << 6,
-            Disabled       = 1 << 7,
+            None                     = 0,
+            Focused                  = 1 << 0,
+            Hover                    = 1 << 1,
+            Pressed                  = 1 << 2,
+            Checked                  = 1 << 3,
+
+            Selected                 = 1 << 4,
+            SelectedActive           = 1 << 5,
+            SelectedFocused          = 1 << 6,
+
+            FocusedHover             = 1 << 7,
+            CheckedHover             = 1 << 8,
+            SelectedHover            = 1 << 9,
+            SelectedActiveHover      = 1 << 10,
+            SelectedFocusedHover     = 1 << 11,
+
+            Highlighted              = 1 << 12,
+            Disabled                 = 1 << 13
         }
 
         [Flags]

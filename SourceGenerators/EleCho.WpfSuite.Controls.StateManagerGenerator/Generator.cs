@@ -11,7 +11,10 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
         {
             Normal,
 
-            // control
+            // focused
+            Focused,
+
+            // hover
             Hover,
 
             // button
@@ -23,9 +26,14 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             // selection
             Selected,
             SelectedActive,
+            SelectedFocused,
 
-            // Focused
-            Focused,
+            // other hover
+            FocusedHover,
+            CheckedHover,
+            SelectedHover,
+            SelectedActiveHover,
+            SelectedFocusedHover,
 
             // highlighted
             Highlighted,
@@ -52,13 +60,23 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
         {
             return state switch
             {
+                State.Focused => State.Normal,
                 State.Hover => State.Normal,
                 State.Pressed => State.Hover,
                 State.Checked => State.Pressed,
+
                 State.Selected => State.Pressed,
                 State.SelectedActive => State.Selected,
-                State.Focused => State.Normal,
+                State.SelectedFocused => State.Selected,
+
+                State.FocusedHover => State.Focused,
+                State.CheckedHover => State.Checked,
+                State.SelectedHover => State.Selected,
+                State.SelectedActiveHover => State.SelectedHover,
+                State.SelectedFocusedHover => State.SelectedHover,
+
                 State.Highlighted => State.Normal,
+
                 State.Disabled => State.Normal,
 
                 _ => throw new ArgumentException()

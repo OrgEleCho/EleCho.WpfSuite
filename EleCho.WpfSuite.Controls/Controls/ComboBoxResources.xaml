@@ -107,7 +107,9 @@
                                                             Width="{Binding ActualWidth, ElementName=dropDownBorder}"
                                                             CornerRadius="{TemplateBinding PopupCornerRadius}"/>
                                                 </Canvas>
-                                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                <ItemsPresenter x:Name="ItemsPresenter" 
+                                                                KeyboardNavigation.DirectionalNavigation="Contained" 
+                                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Grid>
                                         </ScrollViewer>
                                     </local:BorderContentAdapter>
@@ -263,31 +265,25 @@
                                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                 Style="{StaticResource ComboBoxToggleButton}">
             </local:ToggleButton>
-            <local:Border x:Name="PART_Border"
-                          BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
-                          Padding="{smk:ShowingProperty Property=Padding}"
-                          CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
-                <ContentPresenter x:Name="contentPresenter"
-                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
-                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                  Content="{TemplateBinding SelectionBoxItem}"
-                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                  IsHitTestVisible="false"/>
-            </local:Border>
+            <Border x:Name="PART_Border"
+                    BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                    Padding="{smk:ShowingProperty Property=Padding}"
+                    CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+                <local:BorderContentAdapter>
+                    <ContentPresenter x:Name="contentPresenter"
+                                      TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
+                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      IsHitTestVisible="false"/>
+                </local:BorderContentAdapter>
+            </Border>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="ClipToBounds" Value="True">
-                <Setter TargetName="contentPresenter"
-                        Property="Clip"
-                        Value="{Binding ElementName=PART_Border,Path=ContentClip}"/>
-                <Setter TargetName="DropDownScrollViewer"
-                        Property="Clip"
-                        Value="{Binding ElementName=dropDownBorder,Path=ContentClip}"/>
-            </Trigger>
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                 <Setter Property="Color" TargetName="shadow" Value="#71000000"/>

@@ -6,7 +6,10 @@ namespace EleCho.WpfSuite.Controls.States
     {
         Normal,
 
-        // control
+        // focused
+        Focused,
+
+        // hover
         Hover,
 
         // button
@@ -18,12 +21,17 @@ namespace EleCho.WpfSuite.Controls.States
         // selection
         Selected,
         SelectedActive,
+        SelectedFocused,
+
+        // other hover
+        FocusedHover,
+        CheckedHover,
+        SelectedHover,
+        SelectedActiveHover,
+        SelectedFocusedHover,
 
         // highlighted
         Highlighted,
-
-        // focused
-        Focused,
 
         // disabled
         Disabled

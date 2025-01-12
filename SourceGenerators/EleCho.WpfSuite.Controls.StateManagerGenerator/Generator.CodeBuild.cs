@@ -132,6 +132,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}            FillBehavior = FillBehavior.HoldEnd,
                     {{indentText}}        };
                     {{indentText}}
+                    {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, nowValue);
                     {{indentText}}        animatable.BeginAnimation(Showing{{stateProperty}}ProxyProperty, brushAnimation, HandoffBehavior.SnapshotAndReplace);
                     {{indentText}}    }
                     {{indentText}}    else
@@ -159,6 +160,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}        };
                     {{indentText}}
                     {{indentText}}        _runningStoryboards[storyboardKey] = storyboard;
+                    {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, nowValue);
                     {{indentText}}        animatable.BeginStoryboard(storyboard, HandoffBehavior.SnapshotAndReplace, true);
                     {{indentText}}    }
                     {{indentText}}}
@@ -206,6 +208,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}        FillBehavior = FillBehavior.HoldEnd,
                     {{indentText}}    };
                     {{indentText}}
+                    {{indentText}}    d.SetValue(Showing{{stateProperty}}PropertyKey, nowValue);
                     {{indentText}}    animatable.BeginAnimation(Showing{{stateProperty}}ProxyProperty, animation, HandoffBehavior.SnapshotAndReplace);
                     {{indentText}}}
                     """);
