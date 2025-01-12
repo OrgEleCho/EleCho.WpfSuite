@@ -41,14 +41,16 @@
                     <local:Border x:Name="Part_BD"
                                   Background="{smk:ShowingProperty Property=Background}"
                                   BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                                  Padding="{smk:ShowingProperty Property=Padding}"
                                   BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
                                   CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                                   SnapsToDevicePixels="true">
-                        <local:ScrollViewer x:Name="PART_Content"
-                                            Focusable="false" Padding="{TemplateBinding Padding}">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </local:ScrollViewer>
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <local:ScrollViewer x:Name="PART_Content"
+                                                Padding="{smk:ShowingProperty Property=Padding}"
+                                                Focusable="false" >
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </local:ScrollViewer>
+                        </local:BorderContentAdapter>
                     </local:Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ClipToBounds" Value="True">
@@ -57,22 +59,7 @@
                                     Value="{Binding ElementName=Part_BD,Path=ContentClip}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Part_BD" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="Part_BD" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

@@ -33,7 +33,7 @@
                             <ws:FlexPanel MainSpacing="8"
                                           CrossSpacing="8"
                                           UniformGrow="1"
-                                          Wrap="Wrap">
+                                          Wrap="True">
                             </ws:FlexPanel>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>

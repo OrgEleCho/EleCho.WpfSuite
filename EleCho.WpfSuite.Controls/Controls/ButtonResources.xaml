@@ -49,18 +49,17 @@
                 <ControlTemplate TargetType="{x:Type local:Button}">
                     <local:Border x:Name="border"
                                   Background="{smk:ShowingProperty Property=Background}"
-                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
                                   BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                                  Padding="{smk:ShowingProperty Property=Padding}"
                                   BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
                                   CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                                   SnapsToDevicePixels="true">
                         <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
                             <ContentPresenter x:Name="contentPresenter"
                                               Focusable="False"
+                                              Margin="{smk:ShowingProperty Property=Padding}"
+                                              TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}"
                                               RecognizesAccessKey="True"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </local:BorderContentAdapter>

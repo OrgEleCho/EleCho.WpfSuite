@@ -43,25 +43,26 @@
         <Setter Property="wss:StateManager.DefaultTransitionDuration" Value="0:0:0.200"/>
         <Setter Property="wss:StateManager.HoverTransitionDuration" Value="0:0:0.100"/>
         <Setter Property="wss:StateManager.PressedTransitionDuration" Value="0:0:0"/>
-        
+        <Setter Property="wss:StateManager.CheckedTransitionDuration" Value="0:0:0.100"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <Border x:Name="border" 
-                                  Background="{smk:ShowingProperty Property=Background}"
-                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
-                                  BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                                  Padding="{smk:ShowingProperty Property=Padding}"
-                                  BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
-                                  CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
-                                  SnapsToDevicePixels="true">
+                    <Border x:Name="border"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
+                            SnapsToDevicePixels="true">
                         <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
-                            <ContentPresenter x:Name="contentPresenter" 
-                                          Focusable="False" 
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          RecognizesAccessKey="True" 
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <ContentPresenter x:Name="contentPresenter"
+                                              Focusable="False"
+                                              Margin="{smk:ShowingProperty Property=Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </local:BorderContentAdapter>
                     </Border>
                     <ControlTemplate.Triggers>

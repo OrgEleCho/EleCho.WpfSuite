@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite"
-                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls"
+                    xmlns:wss="clr-namespace:EleCho.WpfSuite.Controls.States"
+                    xmlns:smk="clr-namespace:EleCho.WpfSuite.Controls.States.Markup">
 
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -29,119 +31,50 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
+
+        <Setter Property="wss:StateManager.Background" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}"/>
+        <Setter Property="wss:StateManager.Foreground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="wss:StateManager.BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderBrush}"/>
+        <Setter Property="wss:StateManager.Padding" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Padding}"/>
+        <Setter Property="wss:StateManager.BorderThickness" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=BorderThickness}"/>
+        <Setter Property="wss:StateManager.CornerRadius" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=CornerRadius}"/>
+
+        <Setter Property="wss:StateManager.DefaultTransitionDuration" Value="0:0:0.200"/>
+        <Setter Property="wss:StateManager.HoverTransitionDuration" Value="0:0:0.100"/>
+        <Setter Property="wss:StateManager.PressedTransitionDuration" Value="0:0:0"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RepeatButton}">
                     <local:Border x:Name="border"
-                               Background="{TemplateBinding Background}"
-                               BorderBrush="{TemplateBinding BorderBrush}"
-                               BorderThickness="{TemplateBinding BorderThickness}"
-                               CornerRadius="{TemplateBinding CornerRadius}"
-                               SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                  Background="{smk:ShowingProperty Property=Background}"
+                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
+                                  BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                                  BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                                  CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
+                                  SnapsToDevicePixels="true">
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{smk:ShowingProperty Property=Padding}"
+                                              TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </local:BorderContentAdapter>
                     </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="ClipToBounds" Value="True">
-                            <Setter TargetName="contentPresenter"
-                                    Property="Clip"
-                                    Value="{Binding ElementName=border,Path=ContentClip}"/>
+                        <Trigger Property="Button.IsDefault" Value="True">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Highlighted"/>
                         </Trigger>
-                        <Trigger Property="Button.IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HighlightBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-
-                        <!--Hover styles bellow-->
-
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
                         </Trigger>
-
-                        <!--Pressed styles bellow-->
-
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
                         </Trigger>
-
-                        <!--Disabled styles bellow-->
-
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

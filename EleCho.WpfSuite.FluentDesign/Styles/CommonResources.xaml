@@ -90,14 +90,14 @@
         <Setter Property="SelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
 
-        <Setter Property="HoverFocusedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
-        <Setter Property="HoverFocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="FocusedHoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="FocusedHoverBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         
         <Setter Property="SelectedFocusedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedFocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
         
-        <Setter Property="HoverSelectedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
-        <Setter Property="HoverSelectedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
+        <Setter Property="SelectedHoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
+        <Setter Property="SelectedHoverBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
         <Setter Property="FocusedBorderBrush" Value="Transparent"/>
 
         <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>

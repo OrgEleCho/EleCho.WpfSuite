@@ -49,12 +49,12 @@
                     <Border x:Name="Bd"
                             Background="{smk:ShowingProperty Property=Background}"
                             BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                            Padding="{smk:ShowingProperty Property=Padding}"
                             BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
                             CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                             SnapsToDevicePixels="true">
                         <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
                             <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Margin="{smk:ShowingProperty Property=Padding}"
                                               TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
