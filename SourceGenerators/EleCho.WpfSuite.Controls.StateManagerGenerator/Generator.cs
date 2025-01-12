@@ -72,8 +72,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 State.FocusedHover => State.Focused,
                 State.CheckedHover => State.Checked,
                 State.SelectedHover => State.Selected,
-                State.SelectedActiveHover => State.SelectedHover,
-                State.SelectedFocusedHover => State.SelectedHover,
+                State.SelectedActiveHover => State.SelectedActive,
+                State.SelectedFocusedHover => State.SelectedFocused,
 
                 State.Highlighted => State.Normal,
 

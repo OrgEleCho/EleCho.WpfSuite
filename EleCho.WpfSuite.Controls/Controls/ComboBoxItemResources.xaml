@@ -104,6 +104,9 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="wss:StateManager.ActiveState" Value="SelectedFocusedHover"/>
                         </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

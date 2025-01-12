@@ -9,7 +9,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <Grid>
+    <DockPanel>
+        <ws:ListBox>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+            <ws:ListBoxItem Content="QWQ"/>
+        </ws:ListBox>
+
         <Border BorderThickness="1"
                 BorderBrush="Gray"
                 VerticalAlignment="Center"
@@ -117,5 +127,5 @@
                 </Rectangle>
             </ws:StackPanel>
         </Border>
-    </Grid>
+    </DockPanel>
 </Window>
