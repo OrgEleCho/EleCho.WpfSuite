@@ -20,6 +20,9 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             // button
             Pressed,
 
+            // thumb
+            Dragging,
+
             // checkbox / toggle button
             Checked,
 
@@ -39,7 +42,10 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             Highlighted,
 
             // disabled
-            Disabled
+            Disabled,
+
+            // disabled
+            HighlightedDisabled
         }
 
         private enum StateProperty
@@ -63,6 +69,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 State.Focused => State.Normal,
                 State.Hover => State.Normal,
                 State.Pressed => State.Hover,
+                State.Dragging => State.Pressed,
                 State.Checked => State.Pressed,
 
                 State.Selected => State.Pressed,
@@ -78,6 +85,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 State.Highlighted => State.Normal,
 
                 State.Disabled => State.Normal,
+                State.HighlightedDisabled => State.Disabled,
 
                 _ => throw new ArgumentException()
             };

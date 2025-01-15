@@ -15,6 +15,9 @@ namespace EleCho.WpfSuite.Controls.States
         // button
         Pressed,
 
+        // thumb
+        Dragging,
+
         // checkbox / toggle button
         Checked,
 
@@ -34,6 +37,9 @@ namespace EleCho.WpfSuite.Controls.States
         Highlighted,
 
         // disabled
-        Disabled
+        Disabled,
+
+        // highlighted
+        HighlightedDisabled,
     }
 }

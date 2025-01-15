@@ -25,20 +25,22 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Focused                  = 1 << 0,
             Hover                    = 1 << 1,
             Pressed                  = 1 << 2,
-            Checked                  = 1 << 3,
+            Dragging                 = 1 << 3,
+            Checked                  = 1 << 4,
+        
+            Selected                 = 1 << 5,
+            SelectedActive           = 1 << 6,
+            SelectedFocused          = 1 << 7,
 
-            Selected                 = 1 << 4,
-            SelectedActive           = 1 << 5,
-            SelectedFocused          = 1 << 6,
+            FocusedHover             = 1 << 8,
+            CheckedHover             = 1 << 9,
+            SelectedHover            = 1 << 10,
+            SelectedActiveHover      = 1 << 11,
+            SelectedFocusedHover     = 1 << 12,
 
-            FocusedHover             = 1 << 7,
-            CheckedHover             = 1 << 8,
-            SelectedHover            = 1 << 9,
-            SelectedActiveHover      = 1 << 10,
-            SelectedFocusedHover     = 1 << 11,
-
-            Highlighted              = 1 << 12,
-            Disabled                 = 1 << 13
+            Highlighted              = 1 << 13,
+            Disabled                 = 1 << 14,
+            HighlightedDisabled      = 1 << 15,
         }
 
         [Flags]

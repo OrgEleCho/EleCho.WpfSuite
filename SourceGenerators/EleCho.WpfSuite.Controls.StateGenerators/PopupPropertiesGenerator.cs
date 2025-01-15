@@ -41,12 +41,6 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                                 set { SetValue(PopupBackgroundProperty, value); }
                             }
                             
-                            public Brush PopupForeground
-                            {
-                                get { return (Brush)GetValue(PopupForegroundProperty); }
-                                set { SetValue(PopupForegroundProperty, value); }
-                            }
-                            
                             public Brush PopupBorderBrush
                             {
                                 get { return (Brush)GetValue(PopupBorderBrushProperty); }
@@ -86,9 +80,6 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
                             public static readonly DependencyProperty PopupBackgroundProperty =
                                 DependencyProperty.Register(nameof(PopupBackground), typeof(Brush), typeof({{typeName}}), new FrameworkPropertyMetadata(SystemColors.WindowBrush));
-                            
-                            public static readonly DependencyProperty PopupForegroundProperty =
-                                DependencyProperty.Register(nameof(PopupForeground), typeof(Brush), typeof({{typeName}}), new FrameworkPropertyMetadata(SystemColors.ControlTextBrush));
                             
                             public static readonly DependencyProperty PopupBorderBrushProperty =
                                 DependencyProperty.Register(nameof(PopupBorderBrush), typeof(Brush), typeof({{typeName}}), new FrameworkPropertyMetadata(null));

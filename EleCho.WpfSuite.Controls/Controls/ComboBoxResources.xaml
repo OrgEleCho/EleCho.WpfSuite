@@ -96,7 +96,8 @@
                                         Background="{TemplateBinding PopupBackground}"
                                         BorderThickness="{TemplateBinding PopupBorderThickness}"
                                         BorderBrush="{TemplateBinding PopupBorderBrush}"
-                                        CornerRadius="{TemplateBinding PopupCornerRadius}">
+                                        CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                        Padding="{TemplateBinding PopupPadding}">
                                     <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
                                         <ScrollViewer x:Name="DropDownScrollViewer">
                                             <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
@@ -107,8 +108,8 @@
                                                             Width="{Binding ActualWidth, ElementName=dropDownBorder}"
                                                             CornerRadius="{TemplateBinding PopupCornerRadius}"/>
                                                 </Canvas>
-                                                <ItemsPresenter x:Name="ItemsPresenter" 
-                                                                KeyboardNavigation.DirectionalNavigation="Contained" 
+                                                <ItemsPresenter x:Name="ItemsPresenter"
+                                                                KeyboardNavigation.DirectionalNavigation="Contained"
                                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                                             </Grid>
                                         </ScrollViewer>
@@ -216,7 +217,6 @@
                                           TransitionMode="{TemplateBinding PopupContentTransitionMode}">
                         <local:Border x:Name="dropDownBorder"
                                       Background="{TemplateBinding PopupBackground}"
-                                      TextElement.Foreground="{TemplateBinding PopupForeground}"
                                       BorderBrush="{TemplateBinding PopupBorderBrush}"
                                       Padding="{TemplateBinding PopupPadding}"
                                       BorderThickness="{TemplateBinding PopupBorderThickness}"

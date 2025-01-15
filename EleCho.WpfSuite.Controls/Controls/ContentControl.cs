@@ -150,6 +150,7 @@ namespace EleCho.WpfSuite.Controls
             {
                 _lastTask = this.ApplyContentChangeAsync(null, _pendingNewContent);
                 _lastTaskIsLoadedTransition = false;
+                _pendingNewContent = null;
             }
         }
 
@@ -257,6 +258,16 @@ namespace EleCho.WpfSuite.Controls
 
         private async Task ApplyContentChangeAsync(object? oldContent, object? newContent)
         {
+            if (oldContent is not null)
+            {
+                RemoveLogicalChild(oldContent);
+            }
+
+            if (newContent is not null && newContent != _pendingNewContent)
+            {
+                AddLogicalChild(newContent);
+            }
+
             if (_contentsPanel is null)
             {
                 _pendingNewContent = newContent;

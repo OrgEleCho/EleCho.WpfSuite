@@ -20,6 +20,24 @@
             <ws:ListBoxItem Content="QWQ"/>
         </ws:ListBox>
 
+        <ws:Menu DockPanel.Dock="Top">
+            <ws:MenuItem Header="File">
+                <ws:MenuItem Header="Open"/>
+                <ws:MenuItem Header="Save"/>
+                <ws:MenuItem Header="SaveAs"/>
+            </ws:MenuItem>
+            <ws:MenuItem Header="Edit"/>
+        </ws:Menu>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Save"/>
+                <MenuItem Header="SaveAs"/>
+            </MenuItem>
+            <MenuItem Header="Edit"/>
+        </Menu>
+
         <Border BorderThickness="1"
                 BorderBrush="Gray"
                 VerticalAlignment="Center"
@@ -110,7 +128,7 @@
 
                 <CheckBox Content="QWQ"/>
 
-                <ws:TextBox Placeholder="TestPlaceholder" 
+                <ws:TextBox Placeholder="TestPlaceholder"
                             HoverCornerRadius="2"
                             FocusedCornerRadius="4"
                             Text="TestTest"/>
