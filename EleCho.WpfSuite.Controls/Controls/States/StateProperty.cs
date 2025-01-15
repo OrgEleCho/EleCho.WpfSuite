@@ -14,5 +14,7 @@ namespace EleCho.WpfSuite.Controls.States
         CheckerPadding,
         GlyphBrush,
         PlaceholderBrush,
+        Stroke,
+        Fill,
     }
 }

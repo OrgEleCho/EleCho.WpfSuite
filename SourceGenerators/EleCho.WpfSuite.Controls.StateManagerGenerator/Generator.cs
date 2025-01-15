@@ -60,6 +60,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             CheckerPadding,
             GlyphBrush,
             PlaceholderBrush,
+            Stroke,
+            Fill
         }
 
         private static State GetFallbackState(State state)
@@ -109,6 +111,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 StateProperty.CheckerPadding => true,
                 StateProperty.GlyphBrush => false,
                 StateProperty.PlaceholderBrush => false,
+                StateProperty.Stroke => false,
+                StateProperty.Fill => false,
 
                 _ => throw new NotImplementedException()
             };
@@ -125,6 +129,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 StateProperty.CheckerPadding => TypeThicknessFullName,
                 StateProperty.GlyphBrush => TypeBrushFullName,
                 StateProperty.PlaceholderBrush => TypeBrushFullName,
+                StateProperty.Stroke => TypeBrushFullName,
+                StateProperty.Fill => TypeBrushFullName,
 
                 _ => throw new NotImplementedException()
             };
@@ -157,6 +163,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     StateProperty.CheckerPadding => DefaultValueThicknessFullName,
                     StateProperty.GlyphBrush => DefaultValueBrushFullName,
                     StateProperty.PlaceholderBrush => DefaultValueBrushFullName,
+                    StateProperty.Stroke => DefaultValueBrushFullName,
+                    StateProperty.Fill => DefaultValueBrushFullName,
 
                     _ => throw new NotImplementedException()
                 };
@@ -175,6 +183,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     StateProperty.CheckerPadding => DefaultValueNullableThicknessFullName,
                     StateProperty.GlyphBrush => DefaultValueBrushFullName,
                     StateProperty.PlaceholderBrush => DefaultValueBrushFullName,
+                    StateProperty.Stroke => DefaultValueBrushFullName,
+                    StateProperty.Fill => DefaultValueBrushFullName,
 
                     _ => throw new NotImplementedException()
                 };

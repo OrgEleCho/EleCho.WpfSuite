@@ -57,6 +57,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             CheckerPadding        = 1 << 6,
             GlyphBrush            = 1 << 7,
             PlaceholderBrush      = 1 << 8,
+            Stroke                = 1 << 9,
+            Fill                  = 1 << 10,
         }
 
         private record struct ComponentGenerationInfo(string ComponentName, StateFlags StateFlags, StatePropertyFlags StatePropertyFlags);
@@ -67,6 +69,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             StatePropertyFlags.GlyphBrush,
             StatePropertyFlags.CheckerPadding,
             StatePropertyFlags.PlaceholderBrush,
+            StatePropertyFlags.Stroke,
+            StatePropertyFlags.Fill,
         };
 
         private static string GetTypeNameOfStateProperty(StatePropertyFlags stateProperty, out bool isValueType, out bool isBrushType)
@@ -87,6 +91,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 StatePropertyFlags.CheckerPadding => true,
                 StatePropertyFlags.GlyphBrush => false,
                 StatePropertyFlags.PlaceholderBrush => false,
+                StatePropertyFlags.Stroke => false,
+                StatePropertyFlags.Fill => false,
 
                 _ => throw new NotImplementedException()
             };
@@ -103,6 +109,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 StatePropertyFlags.CheckerPadding => TypeThicknessFullName,
                 StatePropertyFlags.GlyphBrush => TypeBrushFullName,
                 StatePropertyFlags.PlaceholderBrush => TypeBrushFullName,
+                StatePropertyFlags.Stroke => TypeBrushFullName,
+                StatePropertyFlags.Fill => TypeBrushFullName,
 
                 _ => throw new NotImplementedException()
             };
@@ -135,6 +143,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                     StatePropertyFlags.CheckerPadding => DefaultValueThicknessFullName,
                     StatePropertyFlags.GlyphBrush => DefaultValueBrushFullName,
                     StatePropertyFlags.PlaceholderBrush => DefaultValueBrushFullName,
+                    StatePropertyFlags.Stroke => DefaultValueBrushFullName,
+                    StatePropertyFlags.Fill => DefaultValueBrushFullName,
 
                     _ => throw new NotImplementedException()
                 };
@@ -153,6 +163,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                     StatePropertyFlags.CheckerPadding => DefaultValueNullableThicknessFullName,
                     StatePropertyFlags.GlyphBrush => DefaultValueBrushFullName,
                     StatePropertyFlags.PlaceholderBrush => DefaultValueBrushFullName,
+                    StatePropertyFlags.Stroke => DefaultValueBrushFullName,
+                    StatePropertyFlags.Fill => DefaultValueBrushFullName,
 
                     _ => throw new NotImplementedException()
                 };

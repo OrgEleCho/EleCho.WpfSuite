@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ws="https://schemas.elecho.dev/wpfsuite"
-                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
+                    xmlns:local="clr-namespace:EleCho.WpfSuite.Controls"
+                    xmlns:wss="clr-namespace:EleCho.WpfSuite.Controls.States"
+                    xmlns:smk="clr-namespace:EleCho.WpfSuite.Controls.States.Markup">
     <Style x:Key="ExpanderHeaderFocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -17,221 +19,102 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse x:Name="circle" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleFill}" HorizontalAlignment="Center" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"
-                                     Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
-                            <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
-                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
-                        </Grid>
-                    </local:Border>
+                    <Border x:Name="border"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False"
+                                  Margin="{smk:ShowingProperty Property=Padding}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse x:Name="circle"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                         Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                         wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleStroke}"
+                                         wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverStroke}"
+                                         wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedStroke}"
+                                         wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedStroke}"
+                                         wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledStroke}"
+                                         wss:StateManager.Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleFill}"
+                                         wss:StateManager.HoverFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverFill}"
+                                         wss:StateManager.PressedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedFill}"
+                                         wss:StateManager.CheckedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedFill}"
+                                         wss:StateManager.DisabledFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledFill}"
+                                         wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                         wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                         wss:StateManager.PressedTransitionDuration="0:0:0"
+                                         Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"
+                                         Fill="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingFill)}"/>
+                                <Path x:Name="arrow"
+                                      HorizontalAlignment="Center"
+                                      SnapsToDevicePixels="false"
+                                      StrokeThickness="2"
+                                      VerticalAlignment="Center"
+                                      Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowGeometry}"
+                                      wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowStroke}"
+                                      wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowHoverStroke}"
+                                      wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowPressedStroke}"
+                                      wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowCheckedStroke}"
+                                      wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowDisabledStroke}"
+                                      wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                      wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                      wss:StateManager.PressedTransitionDuration="0:0:0"
+                                      Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"/>
+                                <FrameworkElement x:Name="spacer"
+                                                  Grid.Column="1"
+                                                  Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderSpacing}"/>
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  Grid.Column="2"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True" SnapsToDevicePixels="True"
+                                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"/>
+                            </Grid>
+                        </local:BorderContentAdapter>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
                                      Value="{x:Static local:ExpanderHeaderIconPosition.End}">
-                            <Setter Property="Grid.Column" TargetName="circle" Value="2"/>
-                            <Setter Property="Grid.Column" TargetName="arrow" Value="2"/>
+                            <Setter Property="Grid.Column" TargetName="circle" Value="4"/>
+                            <Setter Property="Grid.Column" TargetName="arrow" Value="4"/>
+                            <Setter Property="Grid.Column" TargetName="spacer" Value="3"/>
                         </DataTrigger>
-                        <Trigger Property="ClipToBounds" Value="True">
-                            <Setter TargetName="contentPresenter"
-                                    Property="Clip"
-                                    Value="{Binding ElementName=border,Path=ContentClip}"/>
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="HoverForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Hover"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="PressedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Pressed"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Checked"/>
                             <Setter Property="Data" TargetName="arrow" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowExpandedGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowGeometry"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -242,180 +125,111 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid>
-                                <Grid.LayoutTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <TransformCollection>
-                                                <RotateTransform Angle="180"/>
-                                            </TransformCollection>
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Grid.LayoutTransform>
-                                <Ellipse x:Name="circle" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleFill}" HorizontalAlignment="Center" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"
-                                         Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
-                                <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
+                    <Border x:Name="border"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False"
+                                  Margin="{smk:ShowingProperty Property=Padding}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid x:Name="circleAndArrow">
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="180"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleStroke}"
+                                             wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverStroke}"
+                                             wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedStroke}"
+                                             wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedStroke}"
+                                             wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledStroke}"
+                                             wss:StateManager.Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleFill}"
+                                             wss:StateManager.HoverFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverFill}"
+                                             wss:StateManager.PressedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedFill}"
+                                             wss:StateManager.CheckedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedFill}"
+                                             wss:StateManager.DisabledFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledFill}"
+                                             wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                             wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                             wss:StateManager.PressedTransitionDuration="0:0:0"
+                                             Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"
+                                             Fill="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingFill)}"/>
+                                    <Path x:Name="arrow"
+                                          HorizontalAlignment="Center"
+                                          SnapsToDevicePixels="false"
+                                          StrokeThickness="2"
+                                          VerticalAlignment="Center"
+                                          Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowGeometry}"
+                                          wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowStroke}"
+                                          wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowHoverStroke}"
+                                          wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowPressedStroke}"
+                                          wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowCheckedStroke}"
+                                          wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowDisabledStroke}"
+                                          wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                          wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                          wss:StateManager.PressedTransitionDuration="0:0:0"
+                                          Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"/>
+                                </Grid>
+                                <FrameworkElement x:Name="spacer"
+                                                  Grid.Column="1"
+                                                  Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderSpacing}"/>
+                                <ContentPresenter x:Name="contentPresenter" Grid.Column="2"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True" SnapsToDevicePixels="True" />
                             </Grid>
-                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
-                        </Grid>
-                    </local:Border>
+                        </local:BorderContentAdapter>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
                                      Value="{x:Static local:ExpanderHeaderIconPosition.End}">
-                            <Setter Property="Grid.Column" TargetName="circle" Value="2"/>
-                            <Setter Property="Grid.Column" TargetName="arrow" Value="2"/>
+                            <Setter Property="Grid.Column" TargetName="circleAndArrow" Value="4"/>
+                            <Setter Property="Grid.Column" TargetName="spacer" Value="3"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Hover"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Pressed"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Checked"/>
                             <Setter Property="Data" TargetName="arrow" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowExpandedGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowGeometry"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -426,181 +240,111 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid>
-                                <Grid.LayoutTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <TransformCollection>
-                                                <RotateTransform Angle="90"/>
-                                            </TransformCollection>
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Grid.LayoutTransform>
-                                <Ellipse x:Name="circle" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleFill}" HorizontalAlignment="Center" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"
-                                         Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
-                                <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
+                    <Border x:Name="border"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False"
+                                  Margin="{smk:ShowingProperty Property=Padding}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="circleAndArrow">
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleStroke}"
+                                             wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverStroke}"
+                                             wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedStroke}"
+                                             wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedStroke}"
+                                             wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledStroke}"
+                                             wss:StateManager.Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleFill}"
+                                             wss:StateManager.HoverFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverFill}"
+                                             wss:StateManager.PressedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedFill}"
+                                             wss:StateManager.CheckedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedFill}"
+                                             wss:StateManager.DisabledFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledFill}"
+                                             wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                             wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                             wss:StateManager.PressedTransitionDuration="0:0:0"
+                                             Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"
+                                             Fill="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingFill)}"/>
+                                    <Path x:Name="arrow"
+                                          HorizontalAlignment="Center"
+                                          SnapsToDevicePixels="false"
+                                          StrokeThickness="2"
+                                          VerticalAlignment="Center"
+                                          Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowGeometry}"
+                                          wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowStroke}"
+                                          wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowHoverStroke}"
+                                          wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowPressedStroke}"
+                                          wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowCheckedStroke}"
+                                          wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowDisabledStroke}"
+                                          wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                          wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                          wss:StateManager.PressedTransitionDuration="0:0:0"
+                                          Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"/>
+                                </Grid>
+                                <FrameworkElement x:Name="spacer"
+                                                  Grid.Row="1"
+                                                  Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderSpacing}"/>
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True" Grid.Row="2" SnapsToDevicePixels="True"/>
                             </Grid>
-                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
-                        </Grid>
-                    </local:Border>
+                        </local:BorderContentAdapter>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
                                      Value="{x:Static local:ExpanderHeaderIconPosition.End}">
-                            <Setter Property="Grid.Row" TargetName="circle" Value="2"/>
-                            <Setter Property="Grid.Row" TargetName="arrow" Value="2"/>
+                            <Setter Property="Grid.Row" TargetName="circleAndArrow" Value="4"/>
+                            <Setter Property="Grid.Row" TargetName="spacer" Value="3"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">
-
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Hover"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Pressed"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Checked"/>
                             <Setter Property="Data" TargetName="arrow" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowExpandedGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowGeometry"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -611,180 +355,111 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ToggleButton}">
-                    <local:Border x:Name="border" Padding="{TemplateBinding Padding}"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  CornerRadius="{TemplateBinding CornerRadius}">
-                        <Grid Background="Transparent" SnapsToDevicePixels="False">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid>
-                                <Grid.LayoutTransform>
-                                    <TransformGroup>
-                                        <TransformGroup.Children>
-                                            <TransformCollection>
-                                                <RotateTransform Angle="-90"/>
-                                            </TransformCollection>
-                                        </TransformGroup.Children>
-                                    </TransformGroup>
-                                </Grid.LayoutTransform>
-                                <Ellipse x:Name="circle" Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleFill}" HorizontalAlignment="Center" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"
-                                         Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleStroke}" VerticalAlignment="Center" Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=CircleDiameter}"/>
-                                <Path x:Name="arrow" Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowGeometry}" HorizontalAlignment="Center" Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=ArrowStroke}" SnapsToDevicePixels="false" StrokeThickness="2" VerticalAlignment="Center"/>
+                    <Border x:Name="border"
+                            Background="{smk:ShowingProperty Property=Background}"
+                            BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
+                            BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
+                            CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid Background="Transparent" SnapsToDevicePixels="False"
+                                  Margin="{smk:ShowingProperty Property=Padding}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="circleAndArrow">
+                                    <Grid.LayoutTransform>
+                                        <TransformGroup>
+                                            <TransformGroup.Children>
+                                                <TransformCollection>
+                                                    <RotateTransform Angle="-90"/>
+                                                </TransformCollection>
+                                            </TransformGroup.Children>
+                                        </TransformGroup>
+                                    </Grid.LayoutTransform>
+                                    <Ellipse x:Name="circle"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDiameter}"
+                                             wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleStroke}"
+                                             wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverStroke}"
+                                             wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedStroke}"
+                                             wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedStroke}"
+                                             wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledStroke}"
+                                             wss:StateManager.Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleFill}"
+                                             wss:StateManager.HoverFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleHoverFill}"
+                                             wss:StateManager.PressedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCirclePressedFill}"
+                                             wss:StateManager.CheckedFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleCheckedFill}"
+                                             wss:StateManager.DisabledFill="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderCircleDisabledFill}"
+                                             wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                             wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                             wss:StateManager.PressedTransitionDuration="0:0:0"
+                                             Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"
+                                             Fill="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingFill)}"/>
+                                    <Path x:Name="arrow"
+                                          HorizontalAlignment="Center"
+                                          SnapsToDevicePixels="false"
+                                          StrokeThickness="2"
+                                          VerticalAlignment="Center"
+                                          Data="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowGeometry}"
+                                          wss:StateManager.Stroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowStroke}"
+                                          wss:StateManager.HoverStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowHoverStroke}"
+                                          wss:StateManager.PressedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowPressedStroke}"
+                                          wss:StateManager.CheckedStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowCheckedStroke}"
+                                          wss:StateManager.DisabledStroke="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderArrowDisabledStroke}"
+                                          wss:StateManager.DefaultTransitionDuration="0:0:0.200"
+                                          wss:StateManager.HoverTransitionDuration="0:0:0.100"
+                                          wss:StateManager.PressedTransitionDuration="0:0:0"
+                                          Stroke="{Binding RelativeSource={RelativeSource Mode=Self},Path=(wss:StateManager.ShowingStroke)}"/>
+                                </Grid>
+                                <FrameworkElement x:Name="spacer"
+                                                  Grid.Row="1"
+                                                  Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=local:Expander},Path=HeaderSpacing}"/>
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="2" SnapsToDevicePixels="True" />
                             </Grid>
-                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" Margin="0,4,0,0" RecognizesAccessKey="True" Grid.Row="1" SnapsToDevicePixels="True" VerticalAlignment="Top"/>
-                        </Grid>
-                    </local:Border>
+                        </local:BorderContentAdapter>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:Expander},Path=HeaderIconPosition}"
                                      Value="{x:Static local:ExpanderHeaderIconPosition.End}">
-                            <Setter Property="Grid.Row" TargetName="circle" Value="2"/>
-                            <Setter Property="Grid.Row" TargetName="arrow" Value="2"/>
+                            <Setter Property="Grid.Row" TargetName="circleAndArrow" Value="4"/>
+                            <Setter Property="Grid.Row" TargetName="spacer" Value="3"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Hover"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Hover"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="StrokeThickness" TargetName="circle" Value="1.5"/>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="PressedArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HoverArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Pressed"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Pressed"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Checked"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Checked"/>
                             <Setter Property="Data" TargetName="arrow" >
                                 <Setter.Value>
                                     <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ExpandedArrowGeometry"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowGeometry"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="CheckedForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowExpandedGeometry"/>
+                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="HeaderArrowGeometry"/>
                                     </MultiBinding>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="border" Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBackground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Background"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="border" Property="BorderBrush">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledBorderBrush"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="BorderBrush"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="DisabledForeground"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Foreground"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Fill" TargetName="circle">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledCircleFill"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="CircleFill"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Stroke" TargetName="arrow">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{x:Static ws:FallbackConverter.Instance}">
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="DisabledArrowStroke"/>
-                                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType=local:Expander}" Path="ArrowStroke"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="circle" Property="wss:StateManager.ActiveState" Value="Disabled"/>
+                            <Setter TargetName="arrow" Property="wss:StateManager.ActiveState" Value="Disabled"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -792,31 +467,32 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type local:Expander}">
-        <Setter Property="CircleStroke" Value="#FF333333"/>
-        <Setter Property="CircleFill" Value="#FFFFFFFF"/>
-        <Setter Property="ArrowStroke" Value="#FF333333"/>
-        <Setter Property="HoverCircleStroke" Value="#FF5593FF"/>
-        <Setter Property="HoverCircleFill" Value="#FFF3F9FF"/>
-        <Setter Property="HoverArrowStroke" Value="#FF000000"/>
-        <Setter Property="PressedCircleStroke" Value="#FF3C77DD"/>
-        <Setter Property="PressedCircleFill" Value="#FFD9ECFF"/>
-        <Setter Property="PressedArrowStroke" Value="#FF000000"/>
-        <Setter Property="DisabledCircleStroke" Value="#FFBCBCBC"/>
-        <Setter Property="DisabledCircleFill" Value="#FFE6E6E6"/>
-        <Setter Property="DisabledArrowStroke" Value="#FF707070"/>
+        <Setter Property="HeaderCornerRadius" Value="3"/>
+        <Setter Property="HeaderForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Foreground}"/>
+        <Setter Property="HeaderCircleStroke" Value="#FF333333"/>
+        <Setter Property="HeaderCircleFill" Value="#FFFFFFFF"/>
+        <Setter Property="HeaderArrowStroke" Value="#FF333333"/>
+        <Setter Property="HeaderCircleHoverStroke" Value="#FF5593FF"/>
+        <Setter Property="HeaderCircleHoverFill" Value="#FFF3F9FF"/>
+        <Setter Property="HeaderArrowHoverStroke" Value="#FF000000"/>
+        <Setter Property="HeaderCirclePressedStroke" Value="#FF3C77DD"/>
+        <Setter Property="HeaderCirclePressedFill" Value="#FFD9ECFF"/>
+        <Setter Property="HeaderArrowPressedStroke" Value="#FF000000"/>
+        <Setter Property="HeaderCircleDisabledStroke" Value="#FFBCBCBC"/>
+        <Setter Property="HeaderCircleDisabledFill" Value="#FFE6E6E6"/>
+        <Setter Property="HeaderArrowDisabledStroke" Value="#FF707070"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="HeaderForeground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="CircleDiameter" Value="19"/>
-        <Setter Property="ArrowGeometry" Value="M 1,1.5 L 4.5,5 L 8,1.5"/>
-        <Setter Property="ExpandedArrowGeometry" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
+        <Setter Property="HeaderCircleDiameter" Value="19"/>
+        <Setter Property="HeaderArrowGeometry" Value="M 1,1.5 L 4.5,5 L 8,1.5"/>
+        <Setter Property="HeaderArrowExpandedGeometry" Value="M 1,4.5  L 4.5,1  L 8,4.5"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HeaderMargin" Value="1"/>
         <Setter Property="CornerRadius" Value="3"/>
-        <Setter Property="HeaderCornerRadius" Value="3"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Expander}">
@@ -837,30 +513,42 @@
                                                 FontFamily="{TemplateBinding FontFamily}"
                                                 FontWeight="{TemplateBinding FontWeight}"
                                                 FontSize="{TemplateBinding FontSize}"
+                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                 IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                 Margin="{TemplateBinding HeaderMargin}"
-                                                Padding="{TemplateBinding HeaderPadding}"
                                                 MinWidth="0" MinHeight="0"
                                                 Style="{StaticResource ExpanderDownHeaderStyle}"
-                                                Foreground="{TemplateBinding HeaderForeground}"
-                                                Background="{TemplateBinding HeaderBackground}"
-                                                BorderBrush="{TemplateBinding HeaderBorderBrush}"
-                                                HoverForeground="{TemplateBinding HeaderHoverForeground}"
-                                                HoverBackground="{TemplateBinding HeaderHoverBackground}"
-                                                HoverBorderBrush="{TemplateBinding HeaderHoverBorderBrush}"
-                                                PressedForeground="{TemplateBinding HeaderPressedForeground}"
-                                                PressedBackground="{TemplateBinding HeaderPressedBackground}"
-                                                PressedBorderBrush="{TemplateBinding HeaderPressedBorderBrush}"
-                                                CheckedForeground="{TemplateBinding HeaderCheckedForeground}"
-                                                CheckedBackground="{TemplateBinding HeaderCheckedBackground}"
-                                                CheckedBorderBrush="{TemplateBinding HeaderCheckedBorderBrush}"
-                                                DisabledForeground="{TemplateBinding HeaderDisabledForeground}"
-                                                DisabledBackground="{TemplateBinding HeaderDisabledBackground}"
-                                                DisabledBorderBrush="{TemplateBinding HeaderDisabledBorderBrush}"
-                                                BorderThickness="{TemplateBinding HeaderBorderThickness}"
-                                                CornerRadius="{TemplateBinding HeaderCornerRadius}"
-                                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                wss:StateManager.Background="{TemplateBinding HeaderBackground}"
+                                                wss:StateManager.Foreground="{TemplateBinding HeaderForeground}"
+                                                wss:StateManager.BorderBrush="{TemplateBinding HeaderBorderBrush}"
+                                                wss:StateManager.Padding="{TemplateBinding HeaderPadding}"
+                                                wss:StateManager.BorderThickness="{TemplateBinding HeaderBorderThickness}"
+                                                wss:StateManager.CornerRadius="{TemplateBinding HeaderCornerRadius}"
+                                                wss:StateManager.HoverBackground="{TemplateBinding HeaderHoverBackground}"
+                                                wss:StateManager.HoverForeground="{TemplateBinding HeaderHoverForeground}"
+                                                wss:StateManager.HoverBorderBrush="{TemplateBinding HeaderHoverBorderBrush}"
+                                                wss:StateManager.HoverPadding="{TemplateBinding HeaderHoverPadding}"
+                                                wss:StateManager.HoverBorderThickness="{TemplateBinding HeaderHoverBorderThickness}"
+                                                wss:StateManager.HoverCornerRadius="{TemplateBinding HeaderHoverCornerRadius}"
+                                                wss:StateManager.PressedBackground="{TemplateBinding HeaderPressedBackground}"
+                                                wss:StateManager.PressedForeground="{TemplateBinding HeaderPressedForeground}"
+                                                wss:StateManager.PressedBorderBrush="{TemplateBinding HeaderPressedBorderBrush}"
+                                                wss:StateManager.PressedPadding="{TemplateBinding HeaderPressedPadding}"
+                                                wss:StateManager.PressedBorderThickness="{TemplateBinding HeaderPressedBorderThickness}"
+                                                wss:StateManager.PressedCornerRadius="{TemplateBinding HeaderPressedCornerRadius}"
+                                                wss:StateManager.CheckedBackground="{TemplateBinding HeaderCheckedBackground}"
+                                                wss:StateManager.CheckedForeground="{TemplateBinding HeaderCheckedForeground}"
+                                                wss:StateManager.CheckedBorderBrush="{TemplateBinding HeaderCheckedBorderBrush}"
+                                                wss:StateManager.CheckedPadding="{TemplateBinding HeaderCheckedPadding}"
+                                                wss:StateManager.CheckedBorderThickness="{TemplateBinding HeaderCheckedBorderThickness}"
+                                                wss:StateManager.CheckedCornerRadius="{TemplateBinding HeaderCheckedCornerRadius}"
+                                                wss:StateManager.DisabledBackground="{TemplateBinding HeaderDisabledBackground}"
+                                                wss:StateManager.DisabledForeground="{TemplateBinding HeaderDisabledForeground}"
+                                                wss:StateManager.DisabledBorderBrush="{TemplateBinding HeaderDisabledBorderBrush}"
+                                                wss:StateManager.DisabledPadding="{TemplateBinding HeaderDisabledPadding}"
+                                                wss:StateManager.DisabledBorderThickness="{TemplateBinding HeaderDisabledBorderThickness}"
+                                                wss:StateManager.DisabledCornerRadius="{TemplateBinding HeaderDisabledCornerRadius}"/>
                             <ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Collapsed"/>
                         </DockPanel>

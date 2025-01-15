@@ -9,141 +9,164 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <DockPanel>
-        <ws:ListBox>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-            <ws:ListBoxItem Content="QWQ"/>
-        </ws:ListBox>
+    <ws:ScrollViewer>
+        <DockPanel>
+            <ws:ListBox>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+                <ws:ListBoxItem Content="QWQ"/>
+            </ws:ListBox>
 
-        <ws:Menu DockPanel.Dock="Top">
-            <ws:MenuItem Header="File">
-                <ws:MenuItem Header="Open"/>
-                <ws:MenuItem Header="Save"/>
-                <ws:MenuItem Header="SaveAs"/>
-            </ws:MenuItem>
-            <ws:MenuItem Header="Edit"/>
-        </ws:Menu>
+            <ws:Menu DockPanel.Dock="Top">
+                <ws:MenuItem Header="File">
+                    <ws:MenuItem Header="Open"/>
+                    <ws:MenuItem Header="Save"/>
+                    <ws:MenuItem Header="SaveAs"/>
+                </ws:MenuItem>
+                <ws:MenuItem Header="Edit"/>
+            </ws:Menu>
 
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
-                <MenuItem Header="SaveAs"/>
-            </MenuItem>
-            <MenuItem Header="Edit"/>
-        </Menu>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open"/>
+                    <MenuItem Header="Save"/>
+                    <MenuItem Header="SaveAs"/>
+                </MenuItem>
+                <MenuItem Header="Edit"/>
+            </Menu>
 
-        <Border BorderThickness="1"
-                BorderBrush="Gray"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
-            <ws:StackPanel>
-                <c:TestControl VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Content="Test Control"
-                               CornerRadius="20"
+            <Border BorderThickness="1"
+                    BorderBrush="Gray"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                <ws:StackPanel>
+                    <c:TestControl VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Content="Test Control"
+                                   CornerRadius="20"
+                                   Foreground="White"
+                                   HoverBackground="Green"
+                                   HoverForeground="Black"
+                                   HoverCornerRadius="10"
+                                   PressedBackground="Pink"
+                                   PressedCornerRadius="0"
+                                   Width="100"
+                                   Height="100"
+                                   Margin="5">
+
+                        <c:TestControl.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Red"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </c:TestControl.Background>
+
+                    </c:TestControl>
+
+                    <ws:Button Content="QWQ"
+                               BorderThickness="0"
+                               CornerRadius="4"
                                Foreground="White"
                                HoverBackground="Green"
                                HoverForeground="Black"
-                               HoverCornerRadius="10"
+                               HoverCornerRadius="6"
                                PressedBackground="Pink"
                                PressedCornerRadius="0"
-                               Width="100"
-                               Height="100"
                                Margin="5">
+                        <ws:Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Red"/>
+                                <GradientStop Color="Blue" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ws:Button.Background>
+                    </ws:Button>
 
-                    <c:TestControl.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Color="Red"/>
-                            <GradientStop Color="Blue" Offset="1"/>
-                        </LinearGradientBrush>
-                    </c:TestControl.Background>
+                    <ws:ToggleButton Content="Toggle Button!"
+                                     Padding="8 4"
+                                     Margin="5"
+                                     CornerRadius="6"
+                                     HoverCornerRadius="3"
+                                     PressedCornerRadius="0"/>
 
-                </c:TestControl>
+                    <ws:ComboBox IsEditable="True">
+                        <ws:ComboBox.FocusedForeground>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="Red" Offset="0"/>
+                                <GradientStop Color="Green" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ws:ComboBox.FocusedForeground>
+                        <ws:ComboBoxItem Content="QWQ"/>
+                        <ws:ComboBoxItem Content="AWA"/>
+                        <ws:ComboBoxItem Content="QAQ"/>
+                    </ws:ComboBox>
 
-                <ws:Button Content="QWQ"
-                           BorderThickness="0"
-                           CornerRadius="4"
-                           Foreground="White"
-                           HoverBackground="Green"
-                           HoverForeground="Black"
-                           HoverCornerRadius="6"
-                           PressedBackground="Pink"
-                           PressedCornerRadius="0"
-                           Margin="5">
-                    <ws:Button.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Color="Red"/>
-                            <GradientStop Color="Blue" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ws:Button.Background>
-                </ws:Button>
+                    <ws:ComboBox>
+                        <ws:ComboBoxItem Content="QWQ"/>
+                        <ws:ComboBoxItem Content="AWA"/>
+                        <ws:ComboBoxItem Content="QAQ"/>
+                    </ws:ComboBox>
 
-                <ws:ToggleButton Content="Toggle Button!"
-                                 Padding="8 4"
-                                 Margin="5"
-                                 CornerRadius="6"
-                                 HoverCornerRadius="3"
-                                 PressedCornerRadius="0"/>
+                    <ComboBox IsEditable="True">
+                        <ComboBoxItem Content="QWQ"/>
+                        <ComboBoxItem Content="AWA"/>
+                        <ComboBoxItem Content="QAQ"/>
+                    </ComboBox>
 
-                <ws:ComboBox IsEditable="True">
-                    <ws:ComboBox.FocusedForeground>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="Red" Offset="0"/>
-                            <GradientStop Color="Green" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ws:ComboBox.FocusedForeground>
-                    <ws:ComboBoxItem Content="QWQ"/>
-                    <ws:ComboBoxItem Content="AWA"/>
-                    <ws:ComboBoxItem Content="QAQ"/>
-                </ws:ComboBox>
+                    <ComboBox>
+                        <ComboBoxItem Content="QWQ"/>
+                        <ComboBoxItem Content="AWA"/>
+                        <ComboBoxItem Content="QAQ"/>
+                    </ComboBox>
 
-                <ws:ComboBox>
-                    <ws:ComboBoxItem Content="QWQ"/>
-                    <ws:ComboBoxItem Content="AWA"/>
-                    <ws:ComboBoxItem Content="QAQ"/>
-                </ws:ComboBox>
+                    <ws:CheckBox Content="QWQ" Margin="1 0 0 0"
+                                 CheckerPadding="0"
+                                 HoverCheckerPadding="3"
+                                 PressedCheckerPadding="2"/>
 
-                <ComboBox IsEditable="True">
-                    <ComboBoxItem Content="QWQ"/>
-                    <ComboBoxItem Content="AWA"/>
-                    <ComboBoxItem Content="QAQ"/>
-                </ComboBox>
+                    <CheckBox Content="QWQ"/>
 
-                <ComboBox>
-                    <ComboBoxItem Content="QWQ"/>
-                    <ComboBoxItem Content="AWA"/>
-                    <ComboBoxItem Content="QAQ"/>
-                </ComboBox>
+                    <ws:TextBox Placeholder="TestPlaceholder"
+                                HoverCornerRadius="2"
+                                FocusedCornerRadius="4"
+                                Text="TestTest"/>
 
-                <ws:CheckBox Content="QWQ" Margin="1 0 0 0"
-                             CheckerPadding="0"
-                             HoverCheckerPadding="3"
-                             PressedCheckerPadding="2"/>
+                    <Button Content="GC"
+                            Margin="5"
+                            Click="Button_Click"/>
 
-                <CheckBox Content="QWQ"/>
+                    <Rectangle Height="3" Name="rect">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="Red"
+                                             Opacity="{Binding ElementName=rect,Path=Opacity}"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
 
-                <ws:TextBox Placeholder="TestPlaceholder"
-                            HoverCornerRadius="2"
-                            FocusedCornerRadius="4"
-                            Text="TestTest"/>
+                    <Expander Header="QAQ"
+                              >
+                        <TextBlock>
+                            jfaoiwejfoiw
+                        </TextBlock>
+                    </Expander>
 
-                <Button Content="GC"
-                        Margin="5"
-                        Click="Button_Click"/>
-
-                <Rectangle Height="3" Name="rect">
-                    <Rectangle.Fill>
-                        <SolidColorBrush Color="Red"
-                                         Opacity="{Binding ElementName=rect,Path=Opacity}"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </ws:StackPanel>
-        </Border>
-    </DockPanel>
+                    <ws:Expander Header="QAQ"
+                                 HeaderSpacing="14"
+                                 HeaderIconPosition="End"
+                                 HeaderHoverBackground="Red"
+                                 HeaderPressedBackground="Green"
+                                 HeaderCheckedBackground="Blue"
+                                 HorizontalContentAlignment="Right"
+                                 ExpandDirection="Up">
+                        <TextBlock>
+                            ajowifjowiefj
+                        </TextBlock>
+                    </ws:Expander>
+                    
+                </ws:StackPanel>
+            </Border>
+        </DockPanel>
+    </ws:ScrollViewer>
 </Window>

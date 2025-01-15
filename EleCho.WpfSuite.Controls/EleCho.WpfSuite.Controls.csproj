@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="BuildDependencies">
 
   <Import Project="../Package.props" />
 
@@ -15,7 +15,7 @@
     <Analyzer Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateManagerGenerator.dll" />
   </ItemGroup>
 
-  <Target Name="BuildDependencies" BeforeTargets="Build">
+  <Target Name="BuildDependencies">
     <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj" Properties="TargetFramework=netstandard2.0" />
     <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj" Properties="TargetFramework=netstandard2.0" />
   </Target>
