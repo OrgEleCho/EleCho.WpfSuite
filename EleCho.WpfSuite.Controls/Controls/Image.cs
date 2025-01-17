@@ -2,10 +2,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using EleCho.WpfSuite.Controls.SourceGeneration;
 
 namespace EleCho.WpfSuite.Controls
 {
-    public class Image : Control
+    [GenerateCornerRadiusProperty]
+    public partial class Image : Control
     {
         static Image()
         {
@@ -24,17 +26,6 @@ namespace EleCho.WpfSuite.Controls
         {
             get { return (Stretch)GetValue(StretchProperty); }
             set { SetValue(StretchProperty, value); }
-        }
-
-        /// <summary>
-        /// The CornerRadius property allows users to control the roundness of the corners independently by
-        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
-        /// smoothly blend from corner to corner.
-        /// </summary>
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
         }
 
         protected override Size MeasureOverride(Size constraint)
@@ -82,9 +73,6 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty StretchProperty =
             DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(Image), new FrameworkPropertyMetadata(Stretch.Uniform, FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(Image));
 
     }
 }

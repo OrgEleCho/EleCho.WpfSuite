@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using EleCho.WpfSuite.Controls.SourceGeneration;
 using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
@@ -10,8 +11,9 @@ namespace EleCho.WpfSuite.Controls
     /// <summary>
     /// Frame is a content control that supports navigation.
     /// </summary>
+    [GenerateCornerRadiusProperty]
     [TemplatePart(Name = "PART_ContentControl", Type = typeof(ContentControl))]
-    public class Frame : System.Windows.Controls.Frame
+    public partial class Frame : System.Windows.Controls.Frame
     {
         static Frame()
         {
@@ -24,17 +26,6 @@ namespace EleCho.WpfSuite.Controls
         private int _lastBackStackSize;
 
 
-
-        /// <summary>
-        /// The CornerRadius property allows users to control the roundness of the corners independently by
-        /// setting a radius value for each corner.  Radius values that are too large are scaled so that they
-        /// smoothly blend from corner to corner.
-        /// </summary>
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
 
         /// <summary>
         /// Transition of content switching
@@ -103,12 +94,6 @@ namespace EleCho.WpfSuite.Controls
             return DependencyProperty.UnsetValue;
         }
 
-
-        /// <summary>
-        /// The DependencyProperty of <see cref="CornerRadius"/> property
-        /// </summary>
-        public static readonly DependencyProperty CornerRadiusProperty =
-            Border.CornerRadiusProperty.AddOwner(typeof(Frame));
 
         /// <summary>
         /// The DependencyProperty of <see cref="Transition"/> property
