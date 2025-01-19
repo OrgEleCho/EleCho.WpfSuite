@@ -17,7 +17,7 @@
 
         <Setter Property="wss:StateManager.DefaultTransitionDuration" Value="0:0:0.200"/>
         <Setter Property="wss:StateManager.HoverTransitionDuration" Value="0:0:0.100"/>
-        <Setter Property="wss:StateManager.PressedTransitionDuration" Value="0:0:0"/>
+        <Setter Property="wss:StateManager.DraggingTransitionDuration" Value="0:0:0"/>
 
         <Setter Property="Template">
             <Setter.Value>
