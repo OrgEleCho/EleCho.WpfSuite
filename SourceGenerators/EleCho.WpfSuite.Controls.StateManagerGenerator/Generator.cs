@@ -1,6 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
-using System;
+﻿using System;
 using System.Text;
+using Microsoft.CodeAnalysis;
 
 namespace EleCho.WpfSuite.Controls.StateManagerGenerator
 {

@@ -72,7 +72,7 @@
         <Setter Property="PressedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorTertiaryBrush}}"/>
         <Setter Property="DisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlFillColorDisabledBrush}}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
-        
+
         <!--Popup-->
         <Setter Property="PopupBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlSolidFillColorDefaultBrush}}"/>
         <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
@@ -92,10 +92,10 @@
 
         <Setter Property="FocusedHoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="FocusedHoverBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
-        
+
         <Setter Property="SelectedFocusedBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedFocusedBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
-        
+
         <Setter Property="SelectedHoverBackground" Value="{DynamicResource {x:Static wsd:FluentResource.SubtleFillColorSecondaryBrush}}"/>
         <Setter Property="SelectedHoverBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.AccentFillColorDefaultBrush}}"/>
         <Setter Property="FocusedBorderBrush" Value="Transparent"/>
@@ -233,22 +233,19 @@
         <Setter Property="ButtonCornerRadius" Value="3"/>
         <Setter Property="BorderBrush" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="GlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
-        <Setter Property="HoverGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorSecondaryBrush}}"/>
-        <Setter Property="PressedGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorTertiaryBrush}}"/>
-        <Setter Property="DisabledGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorDisabledBrush}}"/>
+        <Setter Property="ButtonGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+        <Setter Property="ButtonHoverGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorSecondaryBrush}}"/>
+        <Setter Property="ButtonPressedGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorTertiaryBrush}}"/>
+        <Setter Property="ButtonDisabledGlyphBrush" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorDisabledBrush}}"/>
 
         <Setter Property="Background" Value="{DynamicResource {x:Static wsd:FluentResource.LayerFillColorAltBrush}}"/>
-        <Setter Property="HoverBackground" Value="{x:Null}"/>
-        <Setter Property="PressedBackground" Value="{x:Null}"/>
-        <Setter Property="DisabledBackground" Value="{x:Null}"/>
 
         <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
-        
-        <Setter Property="ThumbBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrongStrokeColorDefaultBrush}}"/>
-        <Setter Property="HoverThumbBrush" Value="{x:Null}"/>
-        <Setter Property="DraggingThumbBrush" Value="{x:Null}"/>
-        <Setter Property="DisabledThumbBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrongStrokeColorDisabledBrush}}"/>
+
+        <Setter Property="ThumbBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrongStrokeColorDefaultBrush}}"/>
+        <Setter Property="ThumbHoverBackground" Value="{x:Null}"/>
+        <Setter Property="ThumbDraggingBackground" Value="{x:Null}"/>
+        <Setter Property="ThumbDisabledBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrongStrokeColorDisabledBrush}}"/>
 
         <Setter Property="IsButtonVisible" Value="False"/>
 
@@ -256,12 +253,10 @@
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Width" Value="12"/>
                 <Setter Property="MinWidth" Value="12"/>
-                <Setter Property="GlyphMargin" Value="1 2"/>
             </Trigger>
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="Height" Value="12"/>
                 <Setter Property="MinHeight" Value="12"/>
-                <Setter Property="GlyphMargin" Value="1 2"/>
             </Trigger>
         </Style.Triggers>
     </Style>

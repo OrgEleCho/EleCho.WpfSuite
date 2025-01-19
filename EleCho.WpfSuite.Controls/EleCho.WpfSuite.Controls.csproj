@@ -16,8 +16,10 @@
   </ItemGroup>
 
   <Target Name="BuildDependencies">
-    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj" Properties="TargetFramework=netstandard2.0" />
-    <MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj" Properties="TargetFramework=netstandard2.0" />
+    <Exec Command="dotnet build ..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj -c $(Configuration)" />
+    <Exec Command="dotnet build ..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj -c $(Configuration)" />
+    <!--<MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\EleCho.WpfSuite.Controls.StateGenerators.csproj" Properties="TargetFramework=netstandard2.0" />-->
+    <!--<MSBuild Projects="..\SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj" Properties="TargetFramework=netstandard2.0" />-->
   </Target>
 
   <ItemGroup Label="Package">

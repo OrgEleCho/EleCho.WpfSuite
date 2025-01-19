@@ -7,6 +7,7 @@
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
     <IsRoslynComponent>true</IsRoslynComponent>
     <LangVersion>12</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
