@@ -20,19 +20,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Tooltip}">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{TemplateBinding Background}" 
-                            Name="Border" 
+                            Background="{TemplateBinding Background}"
+                            Name="Border"
                             SnapsToDevicePixels="True">
-                        <ContentPresenter Content="{TemplateBinding Content}" 
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                          ContentStringFormat="{TemplateBinding ContentStringFormat}" 
-                                          Margin="{TemplateBinding Padding}" 
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </local:BorderContentAdapter>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

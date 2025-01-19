@@ -269,7 +269,7 @@
                     BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
                     Padding="{smk:ShowingProperty Property=Padding}"
                     CornerRadius="{smk:ShowingProperty Property=CornerRadius}">
-                <local:BorderContentAdapter>
+                <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
                     <ContentPresenter x:Name="contentPresenter"
                                       TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
                                       ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
