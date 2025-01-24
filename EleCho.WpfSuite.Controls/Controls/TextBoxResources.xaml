@@ -38,37 +38,31 @@
                     <local:Border x:Name="border"
                                   Background="{smk:ShowingProperty Property=Background}"
                                   BorderBrush="{smk:ShowingProperty Property=BorderBrush}"
-                                  Padding="{smk:ShowingProperty Property=Padding}"
                                   BorderThickness="{smk:ShowingProperty Property=BorderThickness}"
                                   CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                                   SnapsToDevicePixels="True">
-
-                        <Grid x:Name="PART_ContentContainer">
-                            <local:ScrollViewer x:Name="PART_ContentHost"
-                                                Focusable="false"
-                                                HorizontalScrollBarVisibility="Hidden"
-                                                VerticalScrollBarVisibility="Hidden"/>
-                            <Border Padding="{TemplateBinding Padding}" >
-                                <TextBlock x:Name="PART_Placeholder"
-                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                           Text="{TemplateBinding Placeholder}"
-                                           TextWrapping="{TemplateBinding TextWrapping}"
-                                           Foreground="{smk:ShowingProperty Property=PlaceholderBrush}"
-                                           IsHitTestVisible="False"
-                                           Focusable="False"
-                                           Margin="2 0 2 0"
-                                           Visibility="Hidden"
-                                           IsEnabled="False"/>
-                            </Border>
-                        </Grid>
+                        <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid x:Name="PART_ContentContainer"
+                                  Margin="{smk:ShowingProperty Property=Padding}">
+                                <local:ScrollViewer x:Name="PART_ContentHost"
+                                                    Focusable="false"
+                                                    HorizontalScrollBarVisibility="Hidden"
+                                                    VerticalScrollBarVisibility="Hidden"/>
+                                <ContentPresenter x:Name="PART_Placeholder"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  TextElement.Foreground="{smk:ShowingProperty Property=PlaceholderBrush}"
+                                                  Content="{TemplateBinding Placeholder}"
+                                                  ContentTemplate="{TemplateBinding PlaceholderTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding PlaceholderTemplateSelector}"
+                                                  IsHitTestVisible="False"
+                                                  Focusable="False"
+                                                  Margin="2 0 2 0"
+                                                  Visibility="Hidden"/>
+                            </Grid>
+                        </local:BorderContentAdapter>
                     </local:Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="ClipToBounds" Value="True">
-                            <Setter TargetName="PART_ContentContainer"
-                                    Property="Clip"
-                                    Value="{Binding ElementName=border,Path=ContentClip}"/>
-                        </Trigger>
                         <Trigger Property="Text" Value="">
                             <Setter Property="Visibility" TargetName="PART_Placeholder" Value="Visible"/>
                         </Trigger>

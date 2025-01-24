@@ -37,11 +37,26 @@ namespace EleCho.WpfSuite.Controls
             TextProperty.OverrideMetadata(typeof(System.Windows.Controls.PasswordBox), new FrameworkPropertyMetadata(string.Empty));
         }
 
-        public string Placeholder
+        public object Placeholder
         {
-            get { return (string)GetValue(PlaceholderProperty); }
+            get { return (object)GetValue(PlaceholderProperty); }
             set { SetValue(PlaceholderProperty, value); }
         }
+
+        public DataTemplate PlaceholderTemplate
+        {
+            get { return (DataTemplate)GetValue(PlaceholderTemplateProperty); }
+            set { SetValue(PlaceholderTemplateProperty, value); }
+        }
+
+        public DataTemplateSelector PlaceholderTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(PlaceholderTemplateSelectorProperty); }
+            set { SetValue(PlaceholderTemplateSelectorProperty, value); }
+        }
+
+
+
 
         public double DisabledTextOpacity
         {
@@ -53,6 +68,12 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(DisabledTextOpacity), typeof(double), typeof(TextBox), new FrameworkPropertyMetadata(0.56));
 
         public static readonly DependencyProperty PlaceholderProperty =
-            DependencyProperty.Register(nameof(Placeholder), typeof(string), typeof(TextBox), new FrameworkPropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(Placeholder), typeof(object), typeof(TextBox), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty PlaceholderTemplateProperty =
+            DependencyProperty.Register(nameof(PlaceholderTemplate), typeof(DataTemplate), typeof(TextBox), new FrameworkPropertyMetadata(null));
+
+        public static readonly DependencyProperty PlaceholderTemplateSelectorProperty =
+            DependencyProperty.Register(nameof(PlaceholderTemplateSelector), typeof(DataTemplateSelector), typeof(TextBox), new FrameworkPropertyMetadata(null));
     }
 }
