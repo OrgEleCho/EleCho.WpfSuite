@@ -50,6 +50,8 @@
                                                 VerticalScrollBarVisibility="Hidden"/>
                             <Border Padding="{TemplateBinding Padding}" >
                                 <TextBlock x:Name="PART_Placeholder"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                            Text="{TemplateBinding Placeholder}"
                                            TextWrapping="{TemplateBinding TextWrapping}"
                                            Foreground="{smk:ShowingProperty Property=PlaceholderBrush}"
