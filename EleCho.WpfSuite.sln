@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugConsole", "SourceGener
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EleCho.WpfSuite.Controls.StateManagerGenerator", "SourceGenerators\EleCho.WpfSuite.Controls.StateManagerGenerator\EleCho.WpfSuite.Controls.StateManagerGenerator.csproj", "{DCE1832E-1FFF-41AB-8B00-1CD16ACECF59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTest22", "BugTest22\BugTest22.csproj", "{49675E1E-BC30-4AD3-8419-29D39CAA9B71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +122,10 @@ Global
 		{DCE1832E-1FFF-41AB-8B00-1CD16ACECF59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE1832E-1FFF-41AB-8B00-1CD16ACECF59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE1832E-1FFF-41AB-8B00-1CD16ACECF59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49675E1E-BC30-4AD3-8419-29D39CAA9B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49675E1E-BC30-4AD3-8419-29D39CAA9B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49675E1E-BC30-4AD3-8419-29D39CAA9B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49675E1E-BC30-4AD3-8419-29D39CAA9B71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
