@@ -454,7 +454,7 @@ namespace EleCho.WpfSuite.Helpers
             DependencyProperty.RegisterAttached("IsCloseButton", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsCloseButtonChanged));
 
 
-        private static IntPtr WindowCaptionButtonsInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        private static unsafe IntPtr WindowCaptionButtonsInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (handled)
             {
@@ -464,229 +464,26 @@ namespace EleCho.WpfSuite.Helpers
             switch ((nint)msg)
             {
                 case NativeDefinition.WM_NCHITTEST:
+                {
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
+                    var result = default(IntPtr);
+
+                    if (s_maximumButtons is not null &&
+                        s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
                     {
-                        var x = (short)(lParam.ToInt32() & 0x0000FFFF);
-                        var y = (short)((lParam.ToInt32() >> 16) & 0x0000FFFF);
-                        var result = default(IntPtr);
+                        var relativePoint = maximumButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(maximumButtonVisual, relativePoint);
 
-                        if (s_maximumButtons is not null &&
-                            s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
+                        if (hitResult is not null)
                         {
-                            var relativePoint = maximumButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(maximumButtonVisual, relativePoint);
+                            maximumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
 
-                            if (hitResult is not null)
-                            {
-                                maximumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
-
-                                handled = true;
-                                result = NativeDefinition.HTMAXBUTTON;
-                            }
-                            else
-                            {
-                                maximumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
-
-                                if (maximumButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, false);
-                                }
-                            }
+                            handled = true;
+                            result = NativeDefinition.HTMAXBUTTON;
                         }
-
-                        if (s_minimumButtons is not null &&
-                            s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
-                        {
-                            var relativePoint = minimumButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(minimumButtonVisual, relativePoint);
-
-                            if (hitResult is not null)
-                            {
-                                minimumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
-
-                                handled = true;
-                                result = NativeDefinition.HTMINBUTTON;
-                            }
-                            else
-                            {
-                                minimumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
-
-                                if (minimumButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, false);
-                                }
-                            }
-                        }
-
-                        if (s_closeButtons is not null &&
-                            s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
-                        {
-                            var relativePoint = closeButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(closeButtonVisual, relativePoint);
-
-                            if (hitResult is not null)
-                            {
-                                closeButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
-
-                                handled = true;
-                                result = NativeDefinition.HTCLOSE;
-                            }
-                            else
-                            {
-                                closeButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
-
-                                if (closeButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, false);
-                                }
-                            }
-                        }
-
-                        return result;
-                    }
-
-                case NativeDefinition.WM_NCLBUTTONDOWN:
-                    {
-                        var x = (short)(lParam.ToInt32() & 0x0000FFFF);
-                        var y = (short)((lParam.ToInt32() >> 16) & 0x0000FFFF);
-
-                        if (s_maximumButtons is not null &&
-                            s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
-                        {
-                            var relativePoint = maximumButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(maximumButtonVisual, relativePoint);
-
-                            if (hitResult is not null)
-                            {
-                                if (maximumButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, true);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        if (s_minimumButtons is not null &&
-                            s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
-                        {
-                            var relativePoint = minimumButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(minimumButtonVisual, relativePoint);
-
-                            if (hitResult is not null)
-                            {
-                                if (minimumButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, true);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        if (s_closeButtons is not null &&
-                            s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
-                        {
-                            var relativePoint = closeButtonVisual.PointFromScreen(new Point(x, y));
-                            var hitResult = VisualTreeHelper.HitTest(closeButtonVisual, relativePoint);
-
-                            if (hitResult is not null)
-                            {
-                                if (closeButtonVisual is ButtonBase button)
-                                {
-                                    button.SetValue(s_buttonIsPressedPropertyKey, true);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        break;
-                    }
-
-                case NativeDefinition.WM_NCLBUTTONUP:
-                    {
-                        var x = (short)(lParam.ToInt32() & 0x0000FFFF);
-                        var y = (short)((lParam.ToInt32() >> 16) & 0x0000FFFF);
-
-                        if (s_maximumButtons is not null &&
-                            s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
-                        {
-                            if (maximumButtonVisual is ButtonBase button)
-                            {
-                                bool shouldClick = false;
-                                if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
-                                {
-                                    shouldClick = true;
-                                }
-
-                                button.SetValue(s_buttonIsPressedPropertyKey, false);
-
-                                if (shouldClick)
-                                {
-                                    button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
-                                    button.Command?.Execute(button.CommandParameter);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        if (s_minimumButtons is not null &&
-                            s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
-                        {
-                            if (minimumButtonVisual is ButtonBase button)
-                            {
-                                bool shouldClick = false;
-                                if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
-                                {
-                                    shouldClick = true;
-                                }
-
-                                button.SetValue(s_buttonIsPressedPropertyKey, false);
-
-                                if (shouldClick)
-                                {
-                                    button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
-                                    button.Command?.Execute(button.CommandParameter);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        if (s_closeButtons is not null &&
-                            s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
-                        {
-                            if (closeButtonVisual is ButtonBase button)
-                            {
-                                bool shouldClick = false;
-                                if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
-                                {
-                                    shouldClick = true;
-                                }
-
-                                button.SetValue(s_buttonIsPressedPropertyKey, false);
-
-                                if (shouldClick)
-                                {
-                                    button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
-                                    button.Command?.Execute(button.CommandParameter);
-                                }
-
-                                handled = true;
-                            }
-                        }
-
-                        break;
-                    }
-
-                case NativeDefinition.WM_NCMOUSELEAVE:
-                    {
-                        var x = (short)(lParam.ToInt32() & 0x0000FFFF);
-                        var y = (short)((lParam.ToInt32() >> 16) & 0x0000FFFF);
-
-                        if (s_maximumButtons is not null &&
-                            s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
+                        else
                         {
                             maximumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
 
@@ -695,9 +492,22 @@ namespace EleCho.WpfSuite.Helpers
                                 button.SetValue(s_buttonIsPressedPropertyKey, false);
                             }
                         }
+                    }
 
-                        if (s_minimumButtons is not null &&
-                            s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
+                    if (s_minimumButtons is not null &&
+                        s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
+                    {
+                        var relativePoint = minimumButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(minimumButtonVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            minimumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
+
+                            handled = true;
+                            result = NativeDefinition.HTMINBUTTON;
+                        }
+                        else
                         {
                             minimumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
 
@@ -706,9 +516,22 @@ namespace EleCho.WpfSuite.Helpers
                                 button.SetValue(s_buttonIsPressedPropertyKey, false);
                             }
                         }
+                    }
 
-                        if (s_closeButtons is not null &&
-                            s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
+                    if (s_closeButtons is not null &&
+                        s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
+                    {
+                        var relativePoint = closeButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(closeButtonVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            closeButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
+
+                            handled = true;
+                            result = NativeDefinition.HTCLOSE;
+                        }
+                        else
                         {
                             closeButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
 
@@ -717,9 +540,190 @@ namespace EleCho.WpfSuite.Helpers
                                 button.SetValue(s_buttonIsPressedPropertyKey, false);
                             }
                         }
-
-                        break;
                     }
+
+                    return result;
+                }
+
+                case NativeDefinition.WM_NCLBUTTONDOWN:
+                {
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
+
+                    if (s_maximumButtons is not null &&
+                        s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
+                    {
+                        var relativePoint = maximumButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(maximumButtonVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            if (maximumButtonVisual is ButtonBase button)
+                            {
+                                button.SetValue(s_buttonIsPressedPropertyKey, true);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    if (s_minimumButtons is not null &&
+                        s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
+                    {
+                        var relativePoint = minimumButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(minimumButtonVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            if (minimumButtonVisual is ButtonBase button)
+                            {
+                                button.SetValue(s_buttonIsPressedPropertyKey, true);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    if (s_closeButtons is not null &&
+                        s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
+                    {
+                        var relativePoint = closeButtonVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(closeButtonVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            if (closeButtonVisual is ButtonBase button)
+                            {
+                                button.SetValue(s_buttonIsPressedPropertyKey, true);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    break;
+                }
+
+                case NativeDefinition.WM_NCLBUTTONUP:
+                {
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
+
+                    if (s_maximumButtons is not null &&
+                        s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
+                    {
+                        if (maximumButtonVisual is ButtonBase button)
+                        {
+                            bool shouldClick = false;
+                            if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
+                            {
+                                shouldClick = true;
+                            }
+
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+
+                            if (shouldClick)
+                            {
+                                button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
+                                button.Command?.Execute(button.CommandParameter);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    if (s_minimumButtons is not null &&
+                        s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
+                    {
+                        if (minimumButtonVisual is ButtonBase button)
+                        {
+                            bool shouldClick = false;
+                            if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
+                            {
+                                shouldClick = true;
+                            }
+
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+
+                            if (shouldClick)
+                            {
+                                button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
+                                button.Command?.Execute(button.CommandParameter);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    if (s_closeButtons is not null &&
+                        s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
+                    {
+                        if (closeButtonVisual is ButtonBase button)
+                        {
+                            bool shouldClick = false;
+                            if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
+                            {
+                                shouldClick = true;
+                            }
+
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+
+                            if (shouldClick)
+                            {
+                                button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
+                                button.Command?.Execute(button.CommandParameter);
+                            }
+
+                            handled = true;
+                        }
+                    }
+
+                    break;
+                }
+
+                case NativeDefinition.WM_NCMOUSELEAVE:
+                {
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
+
+                    if (s_maximumButtons is not null &&
+                        s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
+                    {
+                        maximumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
+
+                        if (maximumButtonVisual is ButtonBase button)
+                        {
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+                        }
+                    }
+
+                    if (s_minimumButtons is not null &&
+                        s_minimumButtons.TryGetValue(hwnd, out var minimumButtonVisual))
+                    {
+                        minimumButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
+
+                        if (minimumButtonVisual is ButtonBase button)
+                        {
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+                        }
+                    }
+
+                    if (s_closeButtons is not null &&
+                        s_closeButtons.TryGetValue(hwnd, out var closeButtonVisual))
+                    {
+                        closeButtonVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
+
+                        if (closeButtonVisual is ButtonBase button)
+                        {
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+                        }
+                    }
+
+                    break;
+                }
             }
 
             return IntPtr.Zero;
@@ -1859,5 +1863,15 @@ namespace EleCho.WpfSuite.Helpers
         }
 
         #endregion
+
+        [StructLayout(LayoutKind.Explicit)]
+        private struct XYInLParam
+        {
+            [FieldOffset(0)]
+            public short X;
+
+            [FieldOffset(2)]
+            public short Y;
+        }
     }
 }
