@@ -50,6 +50,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BugTests", "BugTests", "{2D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTest22", "BugTests\BugTest22\BugTest22.csproj", "{4418DD21-D064-4B52-9C50-C6F350F7C08B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueAnimatorTest", "ValueAnimatorTest\ValueAnimatorTest.csproj", "{02E27C59-F59A-438F-8F6C-D290EAA0C7B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{4418DD21-D064-4B52-9C50-C6F350F7C08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4418DD21-D064-4B52-9C50-C6F350F7C08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4418DD21-D064-4B52-9C50-C6F350F7C08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E27C59-F59A-438F-8F6C-D290EAA0C7B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E27C59-F59A-438F-8F6C-D290EAA0C7B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E27C59-F59A-438F-8F6C-D290EAA0C7B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E27C59-F59A-438F-8F6C-D290EAA0C7B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
