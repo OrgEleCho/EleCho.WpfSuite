@@ -281,6 +281,7 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 using System.Windows;
                 using System.Windows.Media;
                 using System.Windows.Media.Animation;
+                using EleCho.WpfSuite.Controls.States;
                 using EleCho.WpfSuite.Media.Animation;
 
                 namespace {{typeNamespace}}
@@ -311,6 +312,7 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 }
 
                 AddStateDefaultProperties(sb, stateFlag, typeName, 8);
+                AddDependencyPropertyFromStateManager(sb, $"State{stateFlag}Fallback", "State", typeName, true, 8);
 
                 foreach (var statePropertyFlag in (StatePropertyFlags[])Enum.GetValues(typeof(StatePropertyFlags)))
                 {
