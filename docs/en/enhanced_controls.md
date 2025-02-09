@@ -44,6 +44,43 @@ Appearence, non-hovering, hovering and pressed states:
     <img src="/images/stateproperty-example-state3.png" title="状态属性示例,状态3" />
 </p>
 
+## Transition Effects
+
+In the WPF Suite, all controls, by default, have transition effects accompanying property changes during state transitions. For example, if there is a container with several Buttons like the following:
+
+```xml
+<ws:Button Padding="8 6"
+           Content="Test Button"
+           BorderThickness="0"
+           CornerRadius="4"
+           HoverBackground="#94d1ff"
+           PressedBackground="#4895cf"
+           PressedForeground="White">
+</ws:Button>
+```
+
+The effect is as follows:
+
+![State Transition Example](/images/state-transition-example.gif)
+
+### Easing Functions and Transition Duration
+
+Each state of a control can be configured with easing functions and transition durations, and each property of each state can also be individually configured with easing functions and transition durations.
+
+For example, to set the transition duration for all properties in the Hover state, you only need to set the `HoverTransitionDuration` property. If you want to set the transition duration specifically for the `Background` property in the Hover state, you can set the `HoverBackgroundTransitionDuration` property.
+
+If no transition duration is set, it will fall back in the following order: `current state, current property's transition duration`, `current state's transition duration`, `default transition duration`. The same applies to easing functions.
+
+However, it's important to note that the easing function and transition duration refer to those used when transitioning from another state to the current state. For example, the "Pressed" state generally requires a quick response, so you can set `PressedTransitionDuration` to 0:0:0, meaning no animation is applied, and the properties are immediately applied.
+
+> Most controls have transition durations set for the Default, Hover, and Pressed states. For controls that do not have a Pressed state, similar states like the Dragging state for Thumb also have transition durations set.
+
+### Property Fallback Mechanism
+
+When a control's state changes and properties need to be switched, there is a fallback mechanism to determine the target property value. For example, by default, if the `PressedBackground` of a button is null, it will attempt to use `HoverBackground`. If `HoverBackground` is also null, it will fall back to the `Background` property.
+
+To set the fallback state for a specific state, use the "State{StateName}Fallback" attached property. For example, to modify the fallback state for Pressed state properties to Default, set "StatePressedFallback" to Default.
+
 ## Rounding Corners
 
 Button, TextBox, PasswordBox and most controls now support CornerRadius for rounding corners.

@@ -43,9 +43,47 @@ WPF Suite 对于大部分控件都有进行属性拓展, 包括状态属性, 圆
     <img src="/images/stateproperty-example-state3.png" title="状态属性示例,状态3" />
 </p>
 
+## 过渡效果
+
+WPF Suite 中的所有控件, 在默认情况下, 状态切换伴随的属性变更, 都有过渡效果. 假如有一个容器有若干个如下 Button:
+
+```xml
+<ws:Button Padding="8 6"
+           Content="Test Button"
+           BorderThickness="0"
+           CornerRadius="4"
+           HoverBackground="#94d1ff"
+           PressedBackground="#4895cf"
+           PressedForeground="White">
+</ws:Button>
+```
+
+其效果如下:
+
+![状态过渡示例](/images/state-transition-example.gif)
+
+### 缓动函数与过渡时间
+
+控件的每一个状态都可以配置缓动函数以及过渡时间, 每一个状态的属性也都可以单独配置缓动函数以及过渡时间.
+
+例如, 要设置 Hover 状态下所有属性的过渡时间, 只需要设定 HoverTransitionDuration 属性即可. 若是想为 Hover 状态下 Background 单独设置过渡时间, 也只需要设定 HoverBackgroundTransitionDuration 属性即可.
+
+如果没有设置缓动时间, 会按照 `当前状态, 当前属性的缓动时间`, `当前状态的缓动时间`, `默认缓动时间` 这样的顺序进行回退(Fallback). 缓动函数同理.
+
+不过, 需要注意的是, 缓动函数以及过渡时间, 指的是从其他状态过渡到当前状态所使用的缓动函数以及过渡时间. 例如, "按下" 状态一般需要快速的响应, 所以可以设定 PressedTransitionDuration 为 0:0:0, 即不做任何动画, 立即应用属性.
+
+> 大部分控件都设置了 Default, Hover 以及 Pressed 状态下的过渡时间. 对于没有 Pressed
+> 状态的控件, 也设置了和 Pressed 状态类似状态的过渡时间. 例如 Thumb 的是 Dragging 状态.
+
+### 属性回退机制
+
+在控件状态变化的时候, 要切换属性时, 取得目标属性值时有回退(Fallback)机制. 例如默认情况下, 如果当前按钮的 PressedBackground 为 null, 那么会尝试使用 HoverBackground, 如若 HoverBackground 也为 null, 那么会继续回退到 Background 属性.
+
+如果要设置某一状态的回退状态, 使用 "State状态名Fallback" 附加属性即可. 例如, 要修改 Pressed 状态属性的回退状态为 Default, 设置 "StatePressedFallback" 为 Default 即可.
+
 ## 圆角
 
-现在 Button, TextBox, PasswordBox 以及绝大部分控件都支持使用 CornerRadius 来设置圆角
+现在 Button, TextBox, PasswordBox 以及绝大部分控件都支持使用 CornerRadius 来设置圆角. 同时圆角也支持过渡效果.
 
 使用示例
 {: .fw-300}

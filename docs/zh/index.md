@@ -64,4 +64,4 @@ EleCho.WpfSuite is &copy; 2024-{{ "now" | date: "%Y" }} by [EleCho](https://gith
 
 ### 许可证
 
-EleCho.WpfSuite 通过 [MIT license](https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt) 分发.
+EleCho.WpfSuite 通过 [MIT license](https://github.com/OrgEleCho/EleCho.WpfSuite/blob/master/LICENSE.txt) 分发.

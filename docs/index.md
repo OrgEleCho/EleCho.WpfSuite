@@ -65,4 +65,4 @@ EleCho.WpfSuite is &copy; 2024-{{ "now" | date: "%Y" }} by [EleCho](https://gith
 
 ### License
 
-EleCho.WpfSuite is distributed by an [MIT license](https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt).
+EleCho.WpfSuite is distributed by an [MIT license](https://github.com/OrgEleCho/EleCho.WpfSuite/blob/master/LICENSE.txt).

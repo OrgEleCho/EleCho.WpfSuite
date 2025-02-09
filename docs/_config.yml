@@ -3,7 +3,7 @@ description: WPF layout panels, controls, value converters, markup extensions, t
 theme: just-the-docs
 
 url: https://wpfsuite.elecho.dev
-favicon_ico: "/assets/favicon.ico"
+favicon_ico: "/favicon.ico"
 
 callouts:
   danger:
