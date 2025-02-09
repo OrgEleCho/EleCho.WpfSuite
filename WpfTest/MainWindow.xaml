@@ -23,7 +23,7 @@
     </Window.Resources>
 
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="-1" />
+        <WindowChrome GlassFrameThickness="-1"/>
     </WindowChrome.WindowChrome>
 
     <ws:WindowContentAdapter>
@@ -31,7 +31,6 @@
             <Grid Height="30"
                   Background="#10000000"
                   DockPanel.Dock="Top"
-                  MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"
                   Visibility="Visible">
                 <ws:StackPanel Orientation="Horizontal"
                                HorizontalAlignment="Left">

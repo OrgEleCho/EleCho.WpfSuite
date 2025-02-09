@@ -21,6 +21,7 @@ namespace EleCho.WpfSuite.Helpers
             public const nint HTCLOSE = 20;
             public const nint HTMAXBUTTON = 9;
             public const nint HTMINBUTTON = 8;
+            public const nint HTCAPTION = 2;
 
             [DllImport("DWMAPI")]
             public static extern nint DwmSetWindowAttribute(nint hwnd, DwmWindowAttribute attribute, nint dataPointer, uint dataSize);

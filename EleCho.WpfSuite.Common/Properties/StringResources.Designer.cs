@@ -88,6 +88,15 @@ namespace EleCho.WpfSuite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caption is already set to another Visual..
+        /// </summary>
+        internal static string CaptionIsAlreadySetToAnotherVisual {
+            get {
+                return ResourceManager.GetString("CaptionIsAlreadySetToAnotherVisual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close button is already set to another Visual..
         /// </summary>
         internal static string CloseButtonIsAlreadySetToAnotherVisual {
@@ -150,6 +159,15 @@ namespace EleCho.WpfSuite.Properties {
         internal static string ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode {
             get {
                 return ResourceManager.GetString("ThisExceptionIsOnlyThrownWhenTheProgramIsRunningInDebugMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Visual is already a window caption.
+        /// </summary>
+        internal static string ThisVisualIsAlreadyAWindowCaption {
+            get {
+                return ResourceManager.GetString("ThisVisualIsAlreadyAWindowCaption", resourceCulture);
             }
         }
         

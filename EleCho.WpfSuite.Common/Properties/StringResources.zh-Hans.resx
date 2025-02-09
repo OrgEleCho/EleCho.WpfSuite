@@ -159,4 +159,10 @@
   <data name="ThisVisualIsAlreadyAWindowMinimumButton" xml:space="preserve">
     <value>此 Visual 已经是窗口的最小化按钮了</value>
   </data>
+  <data name="CaptionIsAlreadySetToAnotherVisual" xml:space="preserve">
+    <value>标题已经被设置为其他 Visual 了</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowCaption" xml:space="preserve">
+    <value>此 Visual 已经是窗口的标题了</value>
+  </data>
 </root>

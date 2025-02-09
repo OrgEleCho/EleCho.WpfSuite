@@ -42,10 +42,11 @@ namespace EleCho.WpfSuite.Helpers
 
         static readonly Version s_versionCurrentWindows = Environment.OSVersion.Version;
 
+        static Dictionary<nint, Visual>? s_captions;
         static Dictionary<nint, Visual>? s_maximumButtons;
         static Dictionary<nint, Visual>? s_minimumButtons;
         static Dictionary<nint, Visual>? s_closeButtons;
-        static Dictionary<Visual, nint>? s_buttonWindows;
+        static Dictionary<Visual, nint>? s_visualWindows;
 
         static DependencyPropertyKey s_uiElementIsMouseOverPropertyKey =
             (DependencyPropertyKey)typeof(UIElement).GetField("IsMouseOverPropertyKey", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null)!;
@@ -368,6 +369,27 @@ namespace EleCho.WpfSuite.Helpers
         }
 
 
+        /// <summary>
+        /// Get value of IsCaption property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool GetIsCaption(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsCaptionProperty);
+        }
+
+        /// <summary>
+        /// Set value of IsCaption property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
+        public static void SetIsCaption(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsCaptionProperty, value);
+        }
+
+
 
         /// <summary>
         /// The DependencyProperty of Backdrop property
@@ -453,8 +475,14 @@ namespace EleCho.WpfSuite.Helpers
         public static readonly DependencyProperty IsCloseButtonProperty =
             DependencyProperty.RegisterAttached("IsCloseButton", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsCloseButtonChanged));
 
+        /// <summary>
+        /// The DependencyProperty of IsCaption property
+        /// </summary>
+        public static readonly DependencyProperty IsCaptionProperty =
+            DependencyProperty.RegisterAttached("IsCaption", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsCaptionChanged));
 
-        private static unsafe IntPtr WindowCaptionButtonsInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+
+        private static unsafe IntPtr WindowHitTestInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (handled)
             {
@@ -469,6 +497,30 @@ namespace EleCho.WpfSuite.Helpers
                     var x = (int)xy.X;
                     var y = (int)xy.Y;
                     var result = default(IntPtr);
+
+                    if (s_captions is not null &&
+                        s_captions.TryGetValue(hwnd, out var captionVisual))
+                    {
+                        var relativePoint = captionVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(captionVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            captionVisual.SetValue(s_uiElementIsMouseOverPropertyKey, true);
+
+                            handled = true;
+                            result = NativeDefinition.HTCAPTION;
+                        }
+                        else
+                        {
+                            captionVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
+
+                            if (captionVisual is ButtonBase button)
+                            {
+                                button.SetValue(s_buttonIsPressedPropertyKey, false);
+                            }
+                        }
+                    }
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -551,6 +603,21 @@ namespace EleCho.WpfSuite.Helpers
                     var x = (int)xy.X;
                     var y = (int)xy.Y;
 
+                    if (s_captions is not null &&
+                        s_captions.TryGetValue(hwnd, out var captionVisual))
+                    {
+                        var relativePoint = captionVisual.PointFromScreen(new Point(x, y));
+                        var hitResult = VisualTreeHelper.HitTest(captionVisual, relativePoint);
+
+                        if (hitResult is not null)
+                        {
+                            if (captionVisual is ButtonBase button)
+                            {
+                                button.SetValue(s_buttonIsPressedPropertyKey, true);
+                            }
+                        }
+                    }
+
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
                     {
@@ -610,6 +677,27 @@ namespace EleCho.WpfSuite.Helpers
                     var xy = *(XYInLParam*)&lParam;
                     var x = (int)xy.X;
                     var y = (int)xy.Y;
+
+                    if (s_captions is not null &&
+                        s_captions.TryGetValue(hwnd, out var captionVisual))
+                    {
+                        if (captionVisual is ButtonBase button)
+                        {
+                            bool shouldClick = false;
+                            if ((bool)button.GetValue(s_buttonIsPressedPropertyKey.DependencyProperty))
+                            {
+                                shouldClick = true;
+                            }
+
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+
+                            if (shouldClick)
+                            {
+                                button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
+                                button.Command?.Execute(button.CommandParameter);
+                            }
+                        }
+                    }
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -688,6 +776,17 @@ namespace EleCho.WpfSuite.Helpers
                     var xy = *(XYInLParam*)&lParam;
                     var x = (int)xy.X;
                     var y = (int)xy.Y;
+
+                    if (s_captions is not null &&
+                        s_captions.TryGetValue(hwnd, out var captionVisual))
+                    {
+                        captionVisual.SetValue(s_uiElementIsMouseOverPropertyKey, false);
+
+                        if (captionVisual is ButtonBase button)
+                        {
+                            button.SetValue(s_buttonIsPressedPropertyKey, false);
+                        }
+                    }
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -804,6 +903,31 @@ namespace EleCho.WpfSuite.Helpers
             }
 
             ApplyWindowCloseButton(null, frameworkElement, false);
+        }
+
+        private static void OnCaptionLoaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not FrameworkElement frameworkElement)
+            {
+                return;
+            }
+
+            if (GetWindowHwndSource(frameworkElement) is not HwndSource hwndSource)
+            {
+                throw new InvalidOperationException(StringResources.CanNotGetHwndSourceOfVisual);
+            }
+
+            ApplyWindowCaption(hwndSource, frameworkElement, true);
+        }
+
+        private static void OnCaptionUnloaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is not FrameworkElement frameworkElement)
+            {
+                return;
+            }
+
+            ApplyWindowCaption(null, frameworkElement, false);
         }
 
         #endregion
@@ -1105,6 +1229,11 @@ namespace EleCho.WpfSuite.Helpers
                     throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCloseButton);
                 }
 
+                if (GetIsCaption(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCaption);
+                }
+
                 frameworkElement.Loaded += OnMinimumButtonLoaded;
                 frameworkElement.Unloaded += OnMinimumButtonUnloaded;
 
@@ -1151,6 +1280,11 @@ namespace EleCho.WpfSuite.Helpers
                 if (GetIsCloseButton(d))
                 {
                     throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCloseButton);
+                }
+
+                if (GetIsCaption(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCaption);
                 }
 
                 frameworkElement.Loaded += OnMaximumButtonLoaded;
@@ -1201,6 +1335,11 @@ namespace EleCho.WpfSuite.Helpers
                     throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMaximumButton);
                 }
 
+                if (GetIsCaption(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCaption);
+                }
+
                 frameworkElement.Loaded += OnCloseButtonLoaded;
                 frameworkElement.Unloaded += OnCloseButtonUnloaded;
 
@@ -1219,6 +1358,59 @@ namespace EleCho.WpfSuite.Helpers
                     GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
                 {
                     ApplyWindowCloseButton(hwndSource, frameworkElement, false);
+                }
+            }
+        }
+
+        private static void OnIsCaptionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not FrameworkElement frameworkElement)
+            {
+                throw new InvalidOperationException("Target DependencyObject is not FrameworkElement");
+            }
+
+            if (DesignerProperties.GetIsInDesignMode(d))
+            {
+                return;
+            }
+
+            var newValue = (bool)e.NewValue;
+
+            if (newValue)
+            {
+                if (GetIsMinimumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMinimumButton);
+                }
+
+                if (GetIsMaximumButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowMaximumButton);
+                }
+
+                if (GetIsCloseButton(d))
+                {
+                    throw new InvalidOperationException(StringResources.ThisVisualIsAlreadyAWindowCloseButton);
+                }
+
+                frameworkElement.Loaded += OnCaptionLoaded;
+                frameworkElement.Unloaded += OnCaptionUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowCaption(hwndSource, frameworkElement, true);
+                }
+            }
+            else
+            {
+                frameworkElement.Loaded += OnCaptionLoaded;
+                frameworkElement.Unloaded += OnCaptionUnloaded;
+
+                if (frameworkElement.IsLoaded &&
+                    GetWindowHwndSource(frameworkElement) is HwndSource hwndSource)
+                {
+                    ApplyWindowCaption(hwndSource, frameworkElement, false);
                 }
             }
         }
@@ -1604,7 +1796,7 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_minimumButtons ??= new();
-                s_buttonWindows ??= new();
+                s_visualWindows ??= new();
 
                 if (s_minimumButtons.ContainsKey(windowHandle))
                 {
@@ -1614,24 +1806,24 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_minimumButtons[windowHandle] = visual;
-                s_buttonWindows[visual] = windowHandle;
+                s_visualWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.AddHook(WindowHitTestInteropHook);
                 }
             }
             else
             {
                 if (s_minimumButtons is null ||
-                    s_buttonWindows is null)
+                    s_visualWindows is null)
                 {
                     return;
                 }
 
                 if (hwndSource is null)
                 {
-                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    if (!s_visualWindows.TryGetValue(visual, out var handle))
                     {
                         throw new InvalidOperationException();
                     }
@@ -1642,21 +1834,21 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_minimumButtons.Remove(windowHandle);
-                s_buttonWindows.Remove(visual);
+                s_visualWindows.Remove(visual);
 
                 if (s_minimumButtons.Count == 0)
                 {
                     s_minimumButtons = null;
                 }
 
-                if (s_buttonWindows.Count == 0)
+                if (s_visualWindows.Count == 0)
                 {
-                    s_buttonWindows = null;
+                    s_visualWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))
                 {
-                    hwndSource.RemoveHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.RemoveHook(WindowHitTestInteropHook);
                 }
             }
         }
@@ -1673,7 +1865,7 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_maximumButtons ??= new();
-                s_buttonWindows ??= new();
+                s_visualWindows ??= new();
 
                 if (s_maximumButtons.ContainsKey(windowHandle))
                 {
@@ -1683,24 +1875,24 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_maximumButtons[windowHandle] = visual;
-                s_buttonWindows[visual] = windowHandle;
+                s_visualWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.AddHook(WindowHitTestInteropHook);
                 }
             }
             else
             {
                 if (s_maximumButtons is null ||
-                    s_buttonWindows is null)
+                    s_visualWindows is null)
                 {
                     return;
                 }
 
                 if (hwndSource is null)
                 {
-                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    if (!s_visualWindows.TryGetValue(visual, out var handle))
                     {
                         throw new InvalidOperationException();
                     }
@@ -1711,21 +1903,21 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_maximumButtons.Remove(windowHandle);
-                s_buttonWindows.Remove(visual);
+                s_visualWindows.Remove(visual);
 
                 if (s_maximumButtons.Count == 0)
                 {
                     s_maximumButtons = null;
                 }
 
-                if (s_buttonWindows.Count == 0)
+                if (s_visualWindows.Count == 0)
                 {
-                    s_buttonWindows = null;
+                    s_visualWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))
                 {
-                    hwndSource.RemoveHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.RemoveHook(WindowHitTestInteropHook);
                 }
             }
         }
@@ -1742,7 +1934,7 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_closeButtons ??= new();
-                s_buttonWindows ??= new();
+                s_visualWindows ??= new();
 
                 if (s_closeButtons.ContainsKey(windowHandle))
                 {
@@ -1752,24 +1944,24 @@ namespace EleCho.WpfSuite.Helpers
                 bool hasHookBefore = HasWindowCaptionButton(windowHandle);
 
                 s_closeButtons[windowHandle] = visual;
-                s_buttonWindows[visual] = windowHandle;
+                s_visualWindows[visual] = windowHandle;
 
                 if (!hasHookBefore)
                 {
-                    hwndSource.AddHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.AddHook(WindowHitTestInteropHook);
                 }
             }
             else
             {
                 if (s_closeButtons is null ||
-                    s_buttonWindows is null)
+                    s_visualWindows is null)
                 {
                     return;
                 }
 
                 if (hwndSource is null)
                 {
-                    if (!s_buttonWindows.TryGetValue(visual, out var handle))
+                    if (!s_visualWindows.TryGetValue(visual, out var handle))
                     {
                         throw new InvalidOperationException();
                     }
@@ -1780,21 +1972,90 @@ namespace EleCho.WpfSuite.Helpers
                 var windowHandle = hwndSource.Handle;
 
                 s_closeButtons.Remove(windowHandle);
-                s_buttonWindows.Remove(visual);
+                s_visualWindows.Remove(visual);
 
                 if (s_closeButtons.Count == 0)
                 {
                     s_closeButtons = null;
                 }
 
-                if (s_buttonWindows.Count == 0)
+                if (s_visualWindows.Count == 0)
                 {
-                    s_buttonWindows = null;
+                    s_visualWindows = null;
                 }
 
                 if (!HasWindowCaptionButton(windowHandle))
                 {
-                    hwndSource.RemoveHook(WindowCaptionButtonsInteropHook);
+                    hwndSource.RemoveHook(WindowHitTestInteropHook);
+                }
+            }
+        }
+
+        private static unsafe void ApplyWindowCaption(HwndSource? hwndSource, Visual visual, bool isCaption)
+        {
+            if (isCaption)
+            {
+                if (hwndSource is null)
+                {
+                    throw new ArgumentNullException(nameof(hwndSource));
+                }
+
+                var windowHandle = hwndSource.Handle;
+
+                s_captions ??= new();
+                s_visualWindows ??= new();
+
+                if (s_captions.ContainsKey(windowHandle))
+                {
+                    throw new InvalidOperationException(StringResources.CaptionIsAlreadySetToAnotherVisual);
+                }
+
+                bool hasHookBefore = HasWindowCaptionButton(windowHandle);
+
+                s_captions[windowHandle] = visual;
+                s_visualWindows[visual] = windowHandle;
+
+                if (!hasHookBefore)
+                {
+                    hwndSource.AddHook(WindowHitTestInteropHook);
+                }
+            }
+            else
+            {
+                if (s_captions is null ||
+                    s_visualWindows is null)
+                {
+                    return;
+                }
+
+                if (hwndSource is null)
+                {
+                    if (!s_visualWindows.TryGetValue(visual, out var handle))
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    hwndSource = HwndSource.FromHwnd(handle);
+                }
+
+                var windowHandle = hwndSource.Handle;
+
+                s_captions.Remove(windowHandle);
+                s_visualWindows.Remove(visual);
+
+                if (s_captions.Count == 0)
+                {
+                    s_captions = null;
+                }
+
+                if (s_visualWindows.Count == 0)
+                {
+                    s_visualWindows = null;
+                }
+
+                if (!HasWindowCaptionButton(windowHandle))
+                {
+                    hwndSource.RemoveHook(WindowHitTestInteropHook);
                 }
             }
         }

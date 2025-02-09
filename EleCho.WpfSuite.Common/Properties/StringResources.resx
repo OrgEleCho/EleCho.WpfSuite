@@ -159,4 +159,10 @@
   <data name="ThisVisualIsAlreadyAWindowMinimumButton" xml:space="preserve">
     <value>This Visual is already a window minimum button</value>
   </data>
+  <data name="CaptionIsAlreadySetToAnotherVisual" xml:space="preserve">
+    <value>Caption is already set to another Visual.</value>
+  </data>
+  <data name="ThisVisualIsAlreadyAWindowCaption" xml:space="preserve">
+    <value>This Visual is already a window caption</value>
+  </data>
 </root>

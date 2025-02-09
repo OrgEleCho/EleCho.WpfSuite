@@ -169,11 +169,6 @@ namespace WpfTest
             NavigationItems.Remove(navigationItem);
         }
 
-        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         [RelayCommand]
         private void MinimumSelf()
         {
