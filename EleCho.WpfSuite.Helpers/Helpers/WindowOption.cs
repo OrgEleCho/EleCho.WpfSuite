@@ -454,7 +454,7 @@ namespace EleCho.WpfSuite.Helpers
             DependencyProperty.RegisterAttached("IsCloseButton", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsCloseButtonChanged));
 
 
-        private static IntPtr WindowCaptionButtonsInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        private static unsafe IntPtr WindowCaptionButtonsInteropHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             if (handled)
             {
@@ -465,8 +465,9 @@ namespace EleCho.WpfSuite.Helpers
             {
                 case NativeDefinition.WM_NCHITTEST:
                 {
-                    var x = (int)((ulong)lParam & 0x0000FFFF);
-                    var y = (int)((ulong)lParam & 0xFFFF0000) >> 16;
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
                     var result = default(IntPtr);
 
                     if (s_maximumButtons is not null &&
@@ -546,8 +547,9 @@ namespace EleCho.WpfSuite.Helpers
 
                 case NativeDefinition.WM_NCLBUTTONDOWN:
                 {
-                    var x = (int)((ulong)lParam & 0x0000FFFF);
-                    var y = (int)((ulong)lParam & 0xFFFF0000) >> 16;
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -605,8 +607,9 @@ namespace EleCho.WpfSuite.Helpers
 
                 case NativeDefinition.WM_NCLBUTTONUP:
                 {
-                    var x = (int)((ulong)lParam & 0x0000FFFF);
-                    var y = (int)((ulong)lParam & 0xFFFF0000) >> 16;
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -682,8 +685,9 @@ namespace EleCho.WpfSuite.Helpers
 
                 case NativeDefinition.WM_NCMOUSELEAVE:
                 {
-                    var x = (int)((ulong)lParam & 0x0000FFFF);
-                    var y = (int)((ulong)lParam & 0xFFFF0000) >> 16;
+                    var xy = *(XYInLParam*)&lParam;
+                    var x = (int)xy.X;
+                    var y = (int)xy.Y;
 
                     if (s_maximumButtons is not null &&
                         s_maximumButtons.TryGetValue(hwnd, out var maximumButtonVisual))
@@ -1859,5 +1863,15 @@ namespace EleCho.WpfSuite.Helpers
         }
 
         #endregion
+
+        [StructLayout(LayoutKind.Explicit)]
+        private struct XYInLParam
+        {
+            [FieldOffset(0)]
+            public short X;
+
+            [FieldOffset(2)]
+            public short Y;
+        }
     }
 }

@@ -1,0 +1,47 @@
+﻿<Window x:Class="BugTest22.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BugTest22"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+        mc:Ignorable="d"
+        ws:WindowOption.Backdrop="Mica"
+        ws:WindowOption.IsCaptionMenuVisible="False"
+        ws:WindowOption.IsDarkMode="True"
+        Background="Transparent"
+        Title="MainWindow"
+        Height="300"
+        Width="450">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <StackPanel WindowChrome.IsHitTestVisibleInChrome="True"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Height="30">
+            <Button x:Name="MinimumButton"
+                    FontFamily="Segoe Fluent Icons"
+                    Content="&#xE921;"
+                    Width="40"
+                    ws:WindowOption.IsMinimumButton="True" />
+            <Button x:Name="IsMaximumButton"
+                    FontFamily="Segoe Fluent Icons"
+                    Content="&#xE922;"
+                    Width="40"
+                    ws:WindowOption.IsMaximumButton="True" />
+            <Button x:Name="IsCloseButton"
+                    FontFamily="Segoe Fluent Icons"
+                    Content="&#xE8BB;"
+                    Width="40"
+                    ws:WindowOption.IsCloseButton="True" />
+        </StackPanel>
+
+        <Button Content="Random button"
+                Height="50"
+                Width="100"
+                ToolTip="Test"/>
+    </Grid>
+</Window>

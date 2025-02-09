@@ -12,7 +12,7 @@ Controls was depended by:
 
 Helpers was depended by:
 
-- ~~Nothing~~
+- Controls
 
 
 Input was depended by:
@@ -32,7 +32,7 @@ Markup was depended by:
 
 Media was depended by:
 
-- ~~Nothing~~
+- Controls
 
 
 ValueConverters was depended by:
