@@ -15,7 +15,7 @@
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="45"
-                      GlassFrameThickness="-1"/>
+                      GlassFrameThickness="0"/>
     </WindowChrome.WindowChrome>
     
     <Grid>
