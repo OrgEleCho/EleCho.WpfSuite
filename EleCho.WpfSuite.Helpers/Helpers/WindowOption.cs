@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shell;
 using System.Xml.Linq;
+using EleCho.WpfSuite.Internal;
 using EleCho.WpfSuite.Properties;
 using static EleCho.WpfSuite.Helpers.WindowOption.NativeDefinition;
 
@@ -937,177 +938,400 @@ namespace EleCho.WpfSuite.Helpers
 
         private static void OnBackdropChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            var accentState = GetAccentState(d);
+            var backdrop = GetBackdrop(d);
+
             // check
-            if (GetAccentState(d) is not WindowAccentState.None &&
-                GetBackdrop(d) is not WindowBackdrop.Auto &&
-                GetBackdrop(d) is not WindowBackdrop.None)
+            if (accentState is not WindowAccentState.None &&
+                backdrop is not WindowBackdrop.Auto &&
+                backdrop is not WindowBackdrop.None)
             {
                 throw new InvalidOperationException(StringResources.BackdropAndAccentCannotBothBeSet);
             }
 
-            if (d is Window window)
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyBackdrop(d as Window, hwndSource, backdrop);
+            }
+
+            if (backdrop != WindowBackdrop.Auto)
+            {
+                if (d is Window window)
                 {
-                    ApplyBackdrop(window, hwndSource, GetBackdrop(d));
+                    window.SourceInitialized += EventHandlerApplyBackdrop;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyBackdrop(window, hwndSource, GetBackdrop(d));
-                    });
+                    popup.Opened += EventHandlerApplyBackdrop;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyBackdrop;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyBackdrop;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyBackdrop;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyBackdrop;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyBackdrop;
-                popup.Opened += EventHandlerApplyBackdrop;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyBackdrop;
-                element.Loaded += EventHandlerApplyBackdrop;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyBackdrop;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyBackdrop;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyBackdrop;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyBackdrop;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyBackdrop;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyBackdrop;
+                }
             }
         }
 
         private static void OnCornerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var corner = GetCorner(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyCorner(hwndSource, corner);
+            }
+
+            if (corner != WindowCorner.Default)
+            {
+                if (d is Window window)
                 {
-                    ApplyCorner(window, hwndSource, GetCorner(d));
+                    window.SourceInitialized += EventHandlerApplyCorner;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyCorner(window, hwndSource, GetCorner(d));
-                    });
+                    popup.Opened += EventHandlerApplyCorner;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyCorner;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyCorner;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyCorner;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyCorner;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyCorner;
-                popup.Opened += EventHandlerApplyCorner;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyCorner;
-                element.Loaded += EventHandlerApplyCorner;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyCorner;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyCorner;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyCorner;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyCorner;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyCorner;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyCorner;
+                }
             }
         }
 
         private static void OnCaptionColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var captionColor = GetCaptionColor(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyCaptionColor(hwndSource, captionColor);
+            }
+
+            if (captionColor != WindowOptionColor.Default)
+            {
+                if (d is Window window)
                 {
-                    ApplyCaptionColor(window, hwndSource, GetCaptionColor(d));
+                    window.SourceInitialized += EventHandlerApplyCaptionColor;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyCaptionColor(window, hwndSource, GetCaptionColor(d));
-                    });
+                    popup.Opened += EventHandlerApplyCaptionColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyCaptionColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyCaptionColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyCaptionColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyCaptionColor;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyCaptionColor;
-                popup.Opened += EventHandlerApplyCaptionColor;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyCaptionColor;
-                element.Loaded += EventHandlerApplyCaptionColor;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyCaptionColor;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyCaptionColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyCaptionColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyCaptionColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyCaptionColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyCaptionColor;
+                }
             }
         }
 
         private static void OnTextColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var textColor = GetTextColor(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyTextColor(hwndSource, textColor);
+            }
+
+            if (textColor != WindowOptionColor.Default)
+            {
+                if (d is Window window)
                 {
-                    ApplyTextColor(window, hwndSource, GetTextColor(d));
+                    window.SourceInitialized += EventHandlerApplyTextColor;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyTextColor(window, hwndSource, GetTextColor(d));
-                    });
+                    popup.Opened += EventHandlerApplyTextColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyTextColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyTextColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyTextColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyTextColor;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyTextColor;
-                popup.Opened += EventHandlerApplyTextColor;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyTextColor;
-                element.Loaded += EventHandlerApplyTextColor;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyTextColor;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyTextColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyTextColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyTextColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyTextColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyTextColor;
+                }
             }
         }
 
         private static void OnBorderColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var borderColor = GetBorderColor(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyBorderColor(hwndSource, borderColor);
+            }
+
+            if (borderColor != WindowOptionColor.Default)
+            {
+                if (d is Window window)
                 {
-                    ApplyBorderColor(window, hwndSource, GetBorderColor(d));
+                    window.SourceInitialized += EventHandlerApplyBorderColor;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyBorderColor(window, hwndSource, GetBorderColor(d));
-                    });
+                    popup.Opened += EventHandlerApplyBorderColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyBorderColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyBorderColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyBorderColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyBorderColor;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyBorderColor;
-                popup.Opened += EventHandlerApplyBorderColor;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyBorderColor;
-                element.Loaded += EventHandlerApplyBorderColor;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyBorderColor;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyBorderColor;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyBorderColor;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyBorderColor;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyBorderColor;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyBorderColor;
+                }
             }
         }
 
         private static void OnIsDarkModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var isDarkMode = GetIsDarkMode(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyDarkMode(hwndSource, isDarkMode);
+            }
+
+            if (isDarkMode)
+            {
+                if (d is Window window)
                 {
-                    ApplyDarkMode(window, hwndSource, GetIsDarkMode(d));
+                    window.SourceInitialized += EventHandlerApplyDarkMode;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyDarkMode(window, hwndSource, GetIsDarkMode(d));
-                    });
+                    popup.Opened += EventHandlerApplyDarkMode;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyDarkMode;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyDarkMode;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyDarkMode;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyDarkMode;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyDarkMode;
-                popup.Opened += EventHandlerApplyDarkMode;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyDarkMode;
-                element.Loaded += EventHandlerApplyDarkMode;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyDarkMode;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyDarkMode;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyDarkMode;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyDarkMode;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyDarkMode;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyDarkMode;
+                }
             }
         }
 
@@ -1121,85 +1345,198 @@ namespace EleCho.WpfSuite.Helpers
                 throw new InvalidOperationException(StringResources.BackdropAndAccentCannotBothBeSet);
             }
 
-            if (d is Window window)
+            var accentState = GetAccentState(d);
+            var gradientColor = GetAccentGradientColor(d);
+            var accentBorder = GetAccentBorder(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyAccent(d as Window, hwndSource, accentState, gradientColor, accentBorder);
+            }
+
+            if (accentState != WindowAccentState.None)
+            {
+                if (d is Window window)
                 {
-                    ApplyAccent(window, hwndSource, GetAccentState(d), GetAccentGradientColor(d), GetAccentBorder(d));
+                    window.SourceInitialized += EventHandlerApplyAccent;
                 }
-                else if (e.Property == AccentStateProperty)
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyAccent(window, hwndSource, GetAccentState(d), GetAccentGradientColor(d), GetAccentBorder(d));
-                    });
+                    popup.Opened += EventHandlerApplyAccent;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyAccent;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyAccent;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyAccent;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyAccent;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyAccent;
-                popup.Opened += EventHandlerApplyAccent;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyAccent;
-                element.Loaded += EventHandlerApplyAccent;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyAccent;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyAccent;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyAccent;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyAccent;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyAccent;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyAccent;
+                }
             }
         }
 
         private static void OnIsCaptionVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var isCaptionVisible = GetIsCaptionVisible(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyIsCaptionVisible(hwndSource, isCaptionVisible);
+            }
+
+            if (!isCaptionVisible)
+            {
+                if (d is Window window)
                 {
-                    ApplyIsCaptionVisible(window, hwndSource, GetIsCaptionVisible(d));
+                    window.SourceInitialized += EventHandlerApplyIsCaptionVisible;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyIsCaptionVisible(window, hwndSource, GetIsCaptionVisible(d));
-                    });
+                    popup.Opened += EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyIsCaptionVisible;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyIsCaptionVisible;
-                popup.Opened += EventHandlerApplyIsCaptionVisible;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyIsCaptionVisible;
-                element.Loaded += EventHandlerApplyIsCaptionVisible;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyIsCaptionVisible;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyIsCaptionVisible;
+                }
             }
         }
 
         private static void OnIsCaptionMenuVisibleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is Window window)
+            var isCaptionMenuVisible = GetIsCaptionMenuVisible(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
             {
-                if (GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyIsCaptionMenuVisible(hwndSource, isCaptionMenuVisible);
+            }
+
+            if (!isCaptionMenuVisible)
+            {
+                if (d is Window window)
                 {
-                    ApplyIsCaptionMenuVisible(window, hwndSource, GetIsCaptionMenuVisible(d));
+                    window.SourceInitialized += EventHandlerApplyIsCaptionMenuVisible;
                 }
-                else
+                else if (d is Popup popup)
                 {
-                    DoAfterHandleOk(d, (d, hwndSource) =>
-                    {
-                        ApplyIsCaptionMenuVisible(window, hwndSource, GetIsCaptionMenuVisible(d));
-                    });
+                    popup.Opened += EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyIsCaptionMenuVisible;
                 }
             }
-            else if (d is Popup popup)
+            else
             {
-                popup.Opened -= EventHandlerApplyIsCaptionMenuVisible;
-                popup.Opened += EventHandlerApplyIsCaptionMenuVisible;
-            }
-            else if (d is FrameworkElement element)
-            {
-                element.Loaded -= EventHandlerApplyIsCaptionMenuVisible;
-                element.Loaded += EventHandlerApplyIsCaptionMenuVisible;
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyIsCaptionMenuVisible;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyIsCaptionMenuVisible;
+                }
             }
         }
 
@@ -1420,7 +1757,6 @@ namespace EleCho.WpfSuite.Helpers
 
         #region Utilities
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static int CreateColorInteger(Color color)
         {
             return
@@ -1430,7 +1766,6 @@ namespace EleCho.WpfSuite.Helpers
                 color.A << 24;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static HwndSource? GetWindowHwndSource(DependencyObject dependencyObject)
         {
             if (dependencyObject is Window window)
@@ -1448,6 +1783,13 @@ namespace EleCho.WpfSuite.Helpers
 
                 return PresentationSource.FromVisual(popup.Child) as HwndSource;
             }
+            else if (VisualTreeUtils.FindChild<Popup>(dependencyObject) is Popup childPopup)
+            {
+                if (childPopup.Child is null)
+                    return null;
+
+                return PresentationSource.FromVisual(childPopup.Child) as HwndSource;
+            }
             else if (dependencyObject is Visual visual)
             {
                 return PresentationSource.FromVisual(visual) as HwndSource;
@@ -1456,7 +1798,11 @@ namespace EleCho.WpfSuite.Helpers
             return null;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void UnregisterEventHandlerForWindowHandleOk(Visual visual, EventHandler eventHandler)
+        {
+
+        }
+
         private static void DoAfterHandleOk(DependencyObject dependencyObject, Action<DependencyObject, HwndSource> action)
         {
             if (dependencyObject is Window window)
@@ -1507,41 +1853,44 @@ namespace EleCho.WpfSuite.Helpers
 
                 tooltip.Opened += eventHandler;
             }
+            else if (dependencyObject is ContextMenu contextMenu)
+            {
+                var eventHandler = default(RoutedEventHandler);
+
+                eventHandler = (s, e) =>
+                {
+                    if (GetWindowHwndSource(contextMenu) is HwndSource hwndSource)
+                    {
+                        action?.Invoke(dependencyObject, hwndSource);
+                    }
+
+                    contextMenu.Opened -= eventHandler;
+                };
+
+                contextMenu.Opened += eventHandler;
+            }
+            else if (dependencyObject is MenuItem menuItem)
+            {
+                var eventHandler = default(RoutedEventHandler);
+
+                eventHandler = (s, e) =>
+                {
+                    if (GetWindowHwndSource(menuItem) is HwndSource hwndSource)
+                    {
+                        action?.Invoke(dependencyObject, hwndSource);
+                    }
+
+                    menuItem.SubmenuOpened -= eventHandler;
+                };
+
+                menuItem.SubmenuOpened += eventHandler;
+            }
             else
             {
                 throw new NotSupportedException("Invalid dependency object");
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void DoAfterWindowSourceInitialized(Window window, Action action)
-        {
-            var eventHandler = default(EventHandler);
-
-            eventHandler = (s, e) =>
-            {
-                action?.Invoke();
-                window.SourceInitialized -= eventHandler;
-            };
-
-            window.SourceInitialized += eventHandler;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void DoAfterElementLoaded(FrameworkElement element, Action action)
-        {
-            var eventHandler = default(RoutedEventHandler);
-
-            eventHandler = (s, e) =>
-            {
-                action?.Invoke();
-                element.Loaded -= eventHandler;
-            };
-
-            element.Loaded += eventHandler;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool HasWindowCaptionButton(nint hwnd)
         {
             if (s_minimumButtons is not null && s_minimumButtons.ContainsKey(hwnd))
@@ -1628,7 +1977,7 @@ namespace EleCho.WpfSuite.Helpers
                 SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOOWNERZORDER | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER);
         }
 
-        private static unsafe void ApplyCorner(Window? window, HwndSource hwndSource, WindowCorner corner)
+        private static unsafe void ApplyCorner(HwndSource hwndSource, WindowCorner corner)
         {
             // this api is only available on windows 11 22000
             if (s_versionCurrentWindows < s_versionWindows11_22000)
@@ -1639,7 +1988,7 @@ namespace EleCho.WpfSuite.Helpers
             DwmSetWindowAttribute(handle, DwmWindowAttribute.WINDOW_CORNER_PREFERENCE, (nint)(void*)&corner, (uint)sizeof(WindowCorner));
         }
 
-        private static unsafe void ApplyCaptionColor(Window? window, HwndSource hwndSource, WindowOptionColor color)
+        private static unsafe void ApplyCaptionColor(HwndSource hwndSource, WindowOptionColor color)
         {
             // this api is only available on windows 11 22000
             if (s_versionCurrentWindows < s_versionWindows11_22000)
@@ -1650,7 +1999,7 @@ namespace EleCho.WpfSuite.Helpers
             DwmSetWindowAttribute(handle, DwmWindowAttribute.CAPTION_COLOR, (nint)(void*)&color, (uint)sizeof(WindowOptionColor));
         }
 
-        private static unsafe void ApplyTextColor(Window? window, HwndSource hwndSource, WindowOptionColor color)
+        private static unsafe void ApplyTextColor(HwndSource hwndSource, WindowOptionColor color)
         {
             // this api is only available on windows 11 22000
             if (s_versionCurrentWindows < s_versionWindows11_22000)
@@ -1661,7 +2010,7 @@ namespace EleCho.WpfSuite.Helpers
             DwmSetWindowAttribute(handle, DwmWindowAttribute.TEXT_COLOR, (nint)(void*)&color, (uint)sizeof(WindowOptionColor));
         }
 
-        private static unsafe void ApplyBorderColor(Window? window, HwndSource hwndSource, WindowOptionColor color)
+        private static unsafe void ApplyBorderColor(HwndSource hwndSource, WindowOptionColor color)
         {
             // this api is only available on windows 11 22000
             if (s_versionCurrentWindows < s_versionWindows11_22000)
@@ -1672,7 +2021,7 @@ namespace EleCho.WpfSuite.Helpers
             DwmSetWindowAttribute(handle, DwmWindowAttribute.BORDER_COLOR, (nint)(void*)&color, (uint)sizeof(WindowOptionColor));
         }
 
-        private static unsafe void ApplyDarkMode(Window? window, HwndSource hwndSource, bool isDarkMode)
+        private static unsafe void ApplyDarkMode(HwndSource hwndSource, bool isDarkMode)
         {
             // this api is only available on windows 11
             if (s_versionCurrentWindows < s_versionWindows11_22000)
@@ -1750,7 +2099,7 @@ namespace EleCho.WpfSuite.Helpers
                 SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOOWNERZORDER | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER);
         }
 
-        private static unsafe void ApplyIsCaptionVisible(Window? window, HwndSource hwndSource, bool isCaptionVisible)
+        private static unsafe void ApplyIsCaptionVisible(HwndSource hwndSource, bool isCaptionVisible)
         {
             var handle = hwndSource.Handle;
 
@@ -1767,7 +2116,7 @@ namespace EleCho.WpfSuite.Helpers
                 SetWindowPosFlags.DRAWFRAME | SetWindowPosFlags.NOACTIVATE | SetWindowPosFlags.NOMOVE | SetWindowPosFlags.NOOWNERZORDER | SetWindowPosFlags.NOSIZE | SetWindowPosFlags.NOZORDER);
         }
 
-        private static unsafe void ApplyIsCaptionMenuVisible(Window? window, HwndSource hwndSource, bool isCaptionMenuVisible)
+        private static unsafe void ApplyIsCaptionMenuVisible(HwndSource hwndSource, bool isCaptionMenuVisible)
         {
             var handle = hwndSource.Handle;
 
@@ -2071,35 +2420,35 @@ namespace EleCho.WpfSuite.Helpers
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyCorner(sender as Window, hwndSource, GetCorner(d));
+                ApplyCorner(hwndSource, GetCorner(d));
         }
 
         private static void EventHandlerApplyCaptionColor(object? sender, EventArgs e)
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyCaptionColor(sender as Window, hwndSource, GetCaptionColor(d));
+                ApplyCaptionColor(hwndSource, GetCaptionColor(d));
         }
 
         private static void EventHandlerApplyTextColor(object? sender, EventArgs e)
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyTextColor(sender as Window, hwndSource, GetTextColor(d));
+                ApplyTextColor(hwndSource, GetTextColor(d));
         }
 
         private static void EventHandlerApplyBorderColor(object? sender, EventArgs e)
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyBorderColor(sender as Window, hwndSource, GetBorderColor(d));
+                ApplyBorderColor(hwndSource, GetBorderColor(d));
         }
 
         private static void EventHandlerApplyDarkMode(object? sender, EventArgs e)
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyDarkMode(sender as Window, hwndSource, GetIsDarkMode(d));
+                ApplyDarkMode(hwndSource, GetIsDarkMode(d));
         }
 
         private static void EventHandlerApplyAccent(object? sender, EventArgs e)
@@ -2113,14 +2462,14 @@ namespace EleCho.WpfSuite.Helpers
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyIsCaptionVisible(sender as Window, hwndSource, GetIsCaptionVisible(d));
+                ApplyIsCaptionVisible(hwndSource, GetIsCaptionVisible(d));
         }
 
         private static void EventHandlerApplyIsCaptionMenuVisible(object? sender, EventArgs e)
         {
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
-                ApplyIsCaptionMenuVisible(sender as Window, hwndSource, GetIsCaptionMenuVisible(d));
+                ApplyIsCaptionMenuVisible(hwndSource, GetIsCaptionMenuVisible(d));
         }
 
         #endregion

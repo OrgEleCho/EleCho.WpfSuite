@@ -34,14 +34,19 @@
                       PlacementTarget="{Binding ElementName=suitePopupToggle}"
                       AllowsTransparency="False"
                       NoActivate="False"
-                      ws:WindowOption.AccentState="None"
-                      ws:WindowOption.BorderColor="Red"
-                      ws:WindowOption.Backdrop="Acrylic"
+                      StaysOpen="False"
+                      ws:WindowOption.AccentState="AcrylicBlurBehind"
                       ws:WindowOption.Corner="RoundSmall">
                 <Border Background="Transparent" BorderThickness="0" BorderBrush="Gray" Padding="14">
                     <ws:StackPanel Spacing="4">
                         <TextBlock Text="WPF Suite Popup"/>
                         <ws:TextBox Placeholder="Test TextBox"/>
+                        <ws:Button BorderThickness="0" 
+                                   Background="Transparent"
+                                   HoverBackground="Pink"
+                                   CornerRadius="4"
+                                   Padding="10"
+                                   Content="..."/>
                     </ws:StackPanel>
                 </Border>
             </ws:Popup>

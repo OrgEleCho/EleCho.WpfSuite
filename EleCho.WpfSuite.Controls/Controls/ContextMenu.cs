@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using EleCho.WpfSuite.Controls.SourceGeneration;
+using EleCho.WpfSuite.Internal;
 using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
@@ -29,7 +30,7 @@ namespace EleCho.WpfSuite.Controls
         {
             get { return (ContentTransitionMode)GetValue(TransitionModeProperty); }
             set { SetValue(TransitionModeProperty, value); }
-          }
+        }
 
         public static readonly DependencyProperty SeparatorBrushProperty =
             DependencyProperty.Register(nameof(SeparatorBrush), typeof(Brush), typeof(ContextMenu), new FrameworkPropertyMetadata(null));
@@ -40,12 +41,13 @@ namespace EleCho.WpfSuite.Controls
         public static readonly DependencyProperty TransitionModeProperty =
             ContentControl.TransitionModeProperty.AddOwner(typeof(ContextMenu));
 
-
+        /// <inheritdoc/>
         protected override DependencyObject GetContainerForItemOverride()
         {
             return new MenuItem();
         }
 
+        /// <inheritdoc/>
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             return item is MenuItem;

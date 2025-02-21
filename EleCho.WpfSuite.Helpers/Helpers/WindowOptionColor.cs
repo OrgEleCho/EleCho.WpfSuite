@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Media;
 
@@ -9,7 +10,7 @@ namespace EleCho.WpfSuite.Helpers
     /// </summary>
     [TypeConverter(typeof(WindowOptionColorConverter))]
     [StructLayout(LayoutKind.Sequential)]
-    public struct WindowOptionColor
+    public struct WindowOptionColor : IEquatable<WindowOptionColor>
     {
         private int _value;
 
@@ -118,5 +119,35 @@ namespace EleCho.WpfSuite.Helpers
         /// </summary>
         /// <param name="color"></param>
         public static implicit operator WindowOptionColor(Color color) => new WindowOptionColor(color.R, color.G, color.B, 0);
+
+        /// <inheritdoc/>
+        public static bool operator ==(WindowOptionColor left, WindowOptionColor right) => left.Equals(right);
+
+        /// <inheritdoc/>
+        public static bool operator !=(WindowOptionColor left, WindowOptionColor right) => !(left == right);
+
+        /// <inheritdoc/>
+        public override bool Equals(object? obj) => obj is WindowOptionColor color && Equals(color);
+
+        /// <inheritdoc/>
+        public bool Equals(WindowOptionColor other) => _value == other._value;
+
+        /// <inheritdoc/>
+        public override int GetHashCode() => _value.GetHashCode();
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (this == Default)
+            {
+                return nameof(Default);
+            }
+            else if (this == None)
+            {
+                return nameof(None);
+            }
+
+            return $"#{_value:X8}";
+        }
     }
 }
