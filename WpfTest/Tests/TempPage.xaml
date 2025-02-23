@@ -94,7 +94,8 @@
                 </ws:WrapPanel>
             </Grid>
 
-            <ws:ComboBox IsEditable="True">
+            <ws:ComboBox IsEditable="True"
+                         HoverBackground="Red">
                 <ws:ComboBox.Items>
                     <ws:ComboBoxItem Content="QWQ"/>
                 </ws:ComboBox.Items>

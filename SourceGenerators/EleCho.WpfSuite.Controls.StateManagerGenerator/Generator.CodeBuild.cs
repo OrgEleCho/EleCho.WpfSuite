@@ -270,7 +270,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
             var propertyTypeName = TypeDurationFullName;
             var defaultValue = "default(Duration?)";
 
-            var coerceValueCallback = GetTypeCoerceValueCallbackMethodName(propertyTypeName, true, notDefaultState);
+            var coerceValueCallback = GetTypeCoerceValueCallbackMethodName(propertyTypeName, true, true);
             var propertyChangedCallback = default(string);
 
             AddAttachedDependencyPropertyDefinition(sb, propertyName, propertyTypeName, ownerTypeName, defaultValue, coerceValueCallback, propertyChangedCallback, true, true, indent);
