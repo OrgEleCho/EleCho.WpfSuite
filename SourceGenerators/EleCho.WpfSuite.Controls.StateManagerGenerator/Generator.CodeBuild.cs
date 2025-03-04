@@ -159,7 +159,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}            _runningStoryboards.Remove(storyboardKey);
                     {{indentText}}        };
                     {{indentText}}
-                    {{indentText}}        _runningStoryboards[storyboardKey] = storyboard;
+                    {{indentText}}        _runningStoryboards[storyboardKey] = new RunningStoryboard(storyboard, brushTransitionHelper);
                     {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, nowValue);
                     {{indentText}}        animatable.BeginStoryboard(storyboard, HandoffBehavior.SnapshotAndReplace, true);
                     {{indentText}}    }
@@ -653,7 +653,25 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {
                         private record struct DependencyObjectAndStateProperty(DependencyObject DependencyObject, StateProperty StateProperty);
 
-                        private static Dictionary<DependencyObjectAndStateProperty, Storyboard>? _runningStoryboards;
+                        private class RunningStoryboard
+                        {
+                            public Storyboard Storyboard { get; }
+                            public BrushTransitionHelper? BrushTransitionHelper { get; }
+
+                            public RunningStoryboard(Storyboard storyboard, BrushTransitionHelper? brushTransitionHelper)
+                            {
+                                Storyboard = storyboard;
+                                BrushTransitionHelper = brushTransitionHelper;
+                            }
+
+                            public void Stop()
+                            {
+                                Storyboard.Stop();
+                                BrushTransitionHelper.Stop();
+                            }
+                        }
+
+                        private static Dictionary<DependencyObjectAndStateProperty, RunningStoryboard>? _runningStoryboards;
 
 
                 """);

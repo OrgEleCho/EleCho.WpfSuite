@@ -27,7 +27,7 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             Pressed                  = 1 << 2,
             Dragging                 = 1 << 3,
             Checked                  = 1 << 4,
-        
+
             Selected                 = 1 << 5,
             SelectedActive           = 1 << 6,
             SelectedFocused          = 1 << 7,
@@ -192,20 +192,25 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 """);
         }
 
-        private void AddDependencyPropertyFromStateManager(StringBuilder sb, string propertyName, string propertyTypeName, string ownerTypeName, bool addNullableTag, int indent)
+        private void AddDependencyPropertyFromStateManager(StringBuilder sb, string propertyName, string propertyTypeName, string ownerTypeName, bool addNullableTag, int indent, string? newPropertyName = null)
         {
+            if (newPropertyName == null)
+            {
+                newPropertyName = propertyName;
+            }
+
             string indentText = new string(' ', indent);
             string nullableTagPlaceholder = addNullableTag ? "?" : string.Empty;
 
             sb.AppendLine(
                 $$"""
-                {{indentText}}public {{propertyTypeName}}{{nullableTagPlaceholder}} {{propertyName}} 
+                {{indentText}}public {{propertyTypeName}}{{nullableTagPlaceholder}} {{newPropertyName}} 
                 {{indentText}}{
-                {{indentText}}    get => ({{propertyTypeName}}{{nullableTagPlaceholder}})GetValue({{propertyName}}Property);
-                {{indentText}}    set => SetValue({{propertyName}}Property, value);
+                {{indentText}}    get => ({{propertyTypeName}}{{nullableTagPlaceholder}})GetValue({{newPropertyName}}Property);
+                {{indentText}}    set => SetValue({{newPropertyName}}Property, value);
                 {{indentText}}}
                 {{indentText}}
-                {{indentText}}public static readonly {{TypeDependencyPropertyFullName}} {{propertyName}}Property
+                {{indentText}}public static readonly {{TypeDependencyPropertyFullName}} {{newPropertyName}}Property
                 {{indentText}}    = {{TypeStateManagerFullName}}.{{propertyName}}Property.AddOwner(typeof({{ownerTypeName}}));
                 {{indentText}}
                 """);
@@ -225,28 +230,30 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
         private void AddStatePropertyTransitionDurationDefinition(StringBuilder sb, StateFlags state, StatePropertyFlags stateProperty, string ownerTypeName, bool addNullableTag, int indent)
         {
+            const string TypeDurationFullName = "global::System.Windows.Duration";
             if (state == StateFlags.None)
             {
-                throw new ArgumentOutOfRangeException(nameof(state));
+                AddDependencyPropertyFromStateManager(sb, $"{stateProperty}TransitionDuration", TypeDurationFullName, ownerTypeName, addNullableTag, indent, $"Default{stateProperty}TransitionDuration");
             }
-
-            const string TypeDurationFullName = "global::System.Windows.Duration";
-            var propertyPrefix = state.ToString();
-
-            AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}TransitionDuration", TypeDurationFullName, ownerTypeName, addNullableTag, indent);
+            else
+            {
+                var propertyPrefix = state.ToString();
+                AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}TransitionDuration", TypeDurationFullName, ownerTypeName, addNullableTag, indent);
+            }
         }
 
         private void AddStatePropertyEasingFunctionDefinition(StringBuilder sb, StateFlags state, StatePropertyFlags stateProperty, string ownerTypeName, bool addNullableTag, int indent)
         {
+            const string TypeIEasingFunctionFullName = "global::System.Windows.Media.Animation.IEasingFunction";
             if (state == StateFlags.None)
             {
-                throw new ArgumentOutOfRangeException(nameof(state));
+                AddDependencyPropertyFromStateManager(sb, $"{stateProperty}EasingFunction", TypeIEasingFunctionFullName, ownerTypeName, addNullableTag, indent, $"Default{stateProperty}EasingFunction");
             }
-
-            const string TypeIEasingFunctionFullName = "global::System.Windows.Media.Animation.IEasingFunction";
-            var propertyPrefix = state.ToString();
-
-            AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}EasingFunction", TypeIEasingFunctionFullName, ownerTypeName, addNullableTag, indent);
+            else
+            {
+                var propertyPrefix = state.ToString();
+                AddDependencyPropertyFromStateManager(sb, $"{propertyPrefix}{stateProperty}EasingFunction", TypeIEasingFunctionFullName, ownerTypeName, addNullableTag, indent);
+            }
         }
 
         private void AddStateDefaultProperties(StringBuilder sb, StateFlags state, string ownerTypeName, int indent)
@@ -305,28 +312,46 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
             foreach (var stateFlag in (StateFlags[])Enum.GetValues(typeof(StateFlags)))
             {
-                if (stateFlag == StateFlags.None ||
-                    !stateFlags.HasFlag(stateFlag))
+                if (!stateFlags.HasFlag(stateFlag))
                 {
                     continue;
                 }
 
-                AddStateDefaultProperties(sb, stateFlag, typeName, 8);
-                AddDependencyPropertyFromStateManager(sb, $"State{stateFlag}Fallback", "State", typeName, true, 8);
-
-                foreach (var statePropertyFlag in (StatePropertyFlags[])Enum.GetValues(typeof(StatePropertyFlags)))
+                if (stateFlag == StateFlags.None)
                 {
-                    if (statePropertyFlag == StatePropertyFlags.None ||
-                        !statePropertyFlags.HasFlag(statePropertyFlag))
+                    foreach (var statePropertyFlag in (StatePropertyFlags[])Enum.GetValues(typeof(StatePropertyFlags)))
                     {
-                        continue;
+                        if (statePropertyFlag == StatePropertyFlags.None ||
+                            !statePropertyFlags.HasFlag(statePropertyFlag))
+                        {
+                            continue;
+                        }
+
+                        var propertyTypeName = GetTypeNameOfStateProperty(statePropertyFlag, out _, out _);
+
+                        AddStatePropertyTransitionDurationDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
+                        AddStatePropertyEasingFunctionDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
                     }
+                }
+                else
+                {
+                    AddStateDefaultProperties(sb, stateFlag, typeName, 8);
+                    AddDependencyPropertyFromStateManager(sb, $"State{stateFlag}Fallback", "State", typeName, true, 8);
 
-                    var propertyTypeName = GetTypeNameOfStateProperty(statePropertyFlag, out _, out _);
+                    foreach (var statePropertyFlag in (StatePropertyFlags[])Enum.GetValues(typeof(StatePropertyFlags)))
+                    {
+                        if (statePropertyFlag == StatePropertyFlags.None ||
+                            !statePropertyFlags.HasFlag(statePropertyFlag))
+                        {
+                            continue;
+                        }
 
-                    AddStatePropertyTransitionDurationDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
-                    AddStatePropertyEasingFunctionDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
-                    AddStatePropertyDefinition(sb, stateFlag, statePropertyFlag, propertyTypeName, typeName, true, 8);
+                        var propertyTypeName = GetTypeNameOfStateProperty(statePropertyFlag, out _, out _);
+
+                        AddStatePropertyTransitionDurationDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
+                        AddStatePropertyEasingFunctionDefinition(sb, stateFlag, statePropertyFlag, typeName, true, 8);
+                        AddStatePropertyDefinition(sb, stateFlag, statePropertyFlag, propertyTypeName, typeName, true, 8);
+                    }
                 }
             }
 
