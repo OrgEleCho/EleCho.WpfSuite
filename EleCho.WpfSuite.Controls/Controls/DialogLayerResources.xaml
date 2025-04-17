@@ -27,7 +27,7 @@
                                                           Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
                                                           BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
                                                           BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                          CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.CornerRadius}}"
+                                                          CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.CornerRadius}"
                                                           ClipToBounds="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ClipToBounds}"
                                                           Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
                                                           ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
