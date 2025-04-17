@@ -12,24 +12,27 @@
                                   BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid>
                             <ContentPresenter />
-                            <Grid x:Name="TempDialogs" 
+                            <Grid x:Name="TempDialogs"
                                   Visibility="Collapsed"/>
                             <local:ContentControl x:Name="MaskContainer"
-                                               Transition="{TemplateBinding MaskTransition}">
+                                                  Transition="{TemplateBinding MaskTransition}">
                                 <Border Background="{TemplateBinding Mask}"/>
                             </local:ContentControl>
                             <local:ContentControl x:Name="DialogContentContainer"
-                                               Transition="{TemplateBinding DialogTransition}">
+                                                  Transition="{TemplateBinding DialogTransition}">
                                 <Border Padding="{TemplateBinding Padding}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
-                                    <ContentControl Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                    BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
-                                                    BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                    Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
-                                                    ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
-                                                    ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
-                                                    DataContext="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.DataContext}"/>
+                                    <local:ContentControl Padding="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Padding}"
+                                                          Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
+                                                          BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                                          CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.CornerRadius}}"
+                                                          ClipToBounds="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ClipToBounds}"
+                                                          Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
+                                                          ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
+                                                          ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
+                                                          DataContext="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.DataContext}"/>
                                 </Border>
                             </local:ContentControl>
                         </Grid>
