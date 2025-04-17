@@ -75,6 +75,9 @@
                     </ws:ContentControl.Transition>
                     <ToggleButton Content="Toggle test" IsChecked="True"/>
                 </ws:ContentControl>
+
+                <ws:Button Background="#eeeeee"
+                           HoverBackground="#11000000"/>
             </ws:StackPanel>
 
             <Grid x:Name="TestPanel"

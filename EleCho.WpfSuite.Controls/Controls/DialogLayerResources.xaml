@@ -20,19 +20,20 @@
                             </local:ContentControl>
                             <local:ContentControl x:Name="DialogContentContainer"
                                                   Transition="{TemplateBinding DialogTransition}">
-                                <Border Padding="{TemplateBinding Padding}"
+                                <Border Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                        BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
+                                        BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.CornerRadius}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
-                                    <local:ContentControl Padding="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Padding}"
-                                                          Background="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                          BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.BorderThickness}"
-                                                          BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Background}"
-                                                          CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.CornerRadius}"
-                                                          ClipToBounds="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ClipToBounds}"
+                                    <local:BorderContentAdapter ClipToBounds="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ClipToBounds}">
+                                        <ContentPresenter x:Name="DialogContentPresenter" 
+                                                          Margin="{TemplateBinding Padding}"
                                                           Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.Content}"
                                                           ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplate}"
                                                           ContentTemplateSelector="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.ContentTemplateSelector}"
                                                           DataContext="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowingDialog.DataContext}"/>
+                                    </local:BorderContentAdapter>
                                 </Border>
                             </local:ContentControl>
                         </Grid>

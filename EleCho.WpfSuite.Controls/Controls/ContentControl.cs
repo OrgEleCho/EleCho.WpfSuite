@@ -263,9 +263,14 @@ namespace EleCho.WpfSuite.Controls
                 RemoveLogicalChild(oldContent);
             }
 
-            if (newContent is not null && newContent != _pendingNewContent)
+            if (newContent is not null && 
+                newContent != _pendingNewContent)
             {
-                AddLogicalChild(newContent);
+                if (newContent is DependencyObject newContentDO &&
+                    LogicalTreeHelper.GetParent(newContentDO) is null)
+                {
+                    AddLogicalChild(newContent);
+                }
             }
 
             if (_contentsPanel is null)

@@ -23,6 +23,7 @@ namespace EleCho.WpfSuite.Controls
         }
 
         private Panel? _tempDialogs;
+
         private Panel? TempDialogs => _tempDialogs ??= GetTemplateChild("TempDialogs") as Panel;
 
         public Brush Mask
@@ -66,9 +67,6 @@ namespace EleCho.WpfSuite.Controls
 
         public static readonly DependencyProperty ShowingDialogProperty = ShowingDialogPropertyKey.DependencyProperty;
         public static readonly DependencyProperty IsShowingDialogProperty = IsShowingDialogPropertyKey.DependencyProperty;
-
-
-
         public int DialogCount => _dialogStack.Count;
 
         public void Push(Dialog dialog)
@@ -195,7 +193,11 @@ namespace EleCho.WpfSuite.Controls
             {
                 foreach (InputBinding inputBinding in dialog.InputBindings)
                 {
-                    dialogLayer.InputBindings.Add(inputBinding);
+                    dialogLayer.InputBindings.Add(new InputBinding(inputBinding.Command, inputBinding.Gesture)
+                    {
+                        CommandParameter = inputBinding.CommandParameter,
+                        CommandTarget = inputBinding.CommandTarget,
+                    });
                 }
             }
         }
