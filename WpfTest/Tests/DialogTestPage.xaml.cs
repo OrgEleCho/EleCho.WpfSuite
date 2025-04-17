@@ -59,6 +59,12 @@ namespace WpfTest.Tests
             });
         }
 
+        [RelayCommand]
+        public void CloseDialog()
+        {
+            IsDialogOpen = false;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             IsDialogOpen = false;

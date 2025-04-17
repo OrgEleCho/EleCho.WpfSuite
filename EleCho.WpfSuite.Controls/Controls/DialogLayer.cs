@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using EleCho.WpfSuite.Media.Transition;
 using EleCho.WpfSuite.Properties;
@@ -58,7 +59,7 @@ namespace EleCho.WpfSuite.Controls
 
 
         public static readonly DependencyPropertyKey ShowingDialogPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ShowingDialog), typeof(Dialog), typeof(DialogLayer), new FrameworkPropertyMetadata(null));
+            DependencyProperty.RegisterReadOnly(nameof(ShowingDialog), typeof(Dialog), typeof(DialogLayer), new FrameworkPropertyMetadata(null, propertyChangedCallback: OnShowingDialogChanged));
 
         public static readonly DependencyPropertyKey IsShowingDialogPropertyKey =
             DependencyProperty.RegisterReadOnly(nameof(IsShowingDialog), typeof(bool), typeof(DialogLayer), new FrameworkPropertyMetadata(false));
@@ -180,6 +181,23 @@ namespace EleCho.WpfSuite.Controls
             }
 
             return FindDialogLayerFromChildren(dependencyObject);
+        }
+
+        private static void OnShowingDialogChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not DialogLayer dialogLayer)
+            {
+                return;
+            }
+
+            dialogLayer.InputBindings.Clear();
+            if (e.NewValue is Dialog dialog)
+            {
+                foreach (InputBinding inputBinding in dialog.InputBindings)
+                {
+                    dialogLayer.InputBindings.Add(inputBinding);
+                }
+            }
         }
     }
 }

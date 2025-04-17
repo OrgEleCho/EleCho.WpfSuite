@@ -35,6 +35,9 @@
             </ws:StackPanel>
 
             <ws:Dialog IsOpen="{Binding IsDialogOpen,Mode=TwoWay}">
+                <ws:Dialog.InputBindings>
+                    <KeyBinding Key="Esc" Command="{Binding CloseDialogCommand}"/>
+                </ws:Dialog.InputBindings>
                 <Border Background="White"
                         CornerRadius="10"
                         MaxWidth="500"
