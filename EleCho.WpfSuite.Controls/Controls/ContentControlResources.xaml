@@ -13,8 +13,8 @@
                                   BorderThickness="{TemplateBinding BorderThickness}"
                                   CornerRadius="{TemplateBinding CornerRadius}">
                         <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
-                            <Grid x:Name="PART_Contents"
-                                  Margin="{TemplateBinding Padding}"/>
+                            <!--Content Control 不使用 Padding 属性-->
+                            <Grid x:Name="PART_Contents"/>
                         </local:BorderContentAdapter>
                     </local:Border>
                 </ControlTemplate>

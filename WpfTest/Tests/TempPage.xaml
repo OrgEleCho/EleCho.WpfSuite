@@ -78,6 +78,10 @@
 
                 <ws:Button Background="#eeeeee"
                            HoverBackground="#11000000"/>
+
+                <ContentControl Padding="10">
+                    <Rectangle Width="10" Height="10" Fill="Pink"/>
+                </ContentControl>
             </ws:StackPanel>
 
             <Grid x:Name="TestPanel"
