@@ -160,6 +160,8 @@
             <ws:TextBox Text="What"
                         IsEnabled="False"/>
 
+            <ws:ComboBox IsEditable="True"/>
+
             <TextBox Text="What"
                      IsEnabled="False"/>
 

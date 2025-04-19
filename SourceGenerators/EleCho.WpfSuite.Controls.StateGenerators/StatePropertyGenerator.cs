@@ -275,6 +275,9 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
         private string GenerateForType(string typeName, string typeNamespace, StateFlags stateFlags, StatePropertyFlags statePropertyFlags, IEnumerable<ComponentGenerationInfo> componentGenerationInfos)
         {
+            const string TypeDurationFullName = "global::System.Windows.Duration";
+            const string TypeIEasingFunctionFullName = "global::System.Windows.Media.Animation.IEasingFunction";
+
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(
@@ -377,6 +380,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                         var propertyPrefix = stateFlag != StateFlags.None ? stateFlag.ToString() : string.Empty;
 
                         AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}", propertyTypeName, typeName, propertyDefaultValue, null, null, isValueType, stateFlag != StateFlags.None, 8);
+                        AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}EasingFunction", TypeIEasingFunctionFullName, typeName, "null", null, null, false, true, 8);
+                        AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}TransitionDuration", TypeDurationFullName, typeName, "null", null, null, true, true, 8);
                     }
                 }
             }
