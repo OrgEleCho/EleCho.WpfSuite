@@ -101,6 +101,12 @@
                 </ws:WrapPanel>
             </Grid>
 
+            <ws:StackPanel Orientation="Horizontal"
+                           Spacing="4">
+                <TextBlock Visibility="Collapsed"/>
+                <!--<TextBlock Text="121"/>-->
+            </ws:StackPanel>
+
             <ws:ComboBox IsEditable="True"
                          HoverBackground="Red">
                 <ws:ComboBox.Items>
