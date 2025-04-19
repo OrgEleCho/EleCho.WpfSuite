@@ -332,6 +332,34 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 """);
         }
 
+        private static void AddGetActualDurationMethod(StringBuilder sb, int indent)
+        {
+            var indentText = new string(' ', indent);
+
+            sb.AppendLine(
+                $$"""
+                {{indentText}}private static Duration GetActualDuration(Duration duration)
+                {{indentText}}{
+                {{indentText}}    if (!duration.HasTimeSpan)
+                {{indentText}}    {
+                {{indentText}}        return new Duration(default(TimeSpan));
+                {{indentText}}    }
+                {{indentText}}
+                {{indentText}}    var ticks = duration.TimeSpan.Ticks * TransitionDurationFactor;
+                {{indentText}}    if (ticks <= 0)
+                {{indentText}}    {
+                {{indentText}}        return new Duration(default(TimeSpan));
+                {{indentText}}    }
+                {{indentText}}    else if (ticks > long.MaxValue)
+                {{indentText}}    {
+                {{indentText}}        return new Duration(TimeSpan.MaxValue);
+                {{indentText}}    }
+                {{indentText}}
+                {{indentText}}    return new Duration(new TimeSpan((long)ticks));
+                {{indentText}}}
+                """);
+        }
+
         private static void AddAnyStatePropertyChangedCallbackMethod(StringBuilder sb, StateProperty stateProperty, int indent)
         {
             var indentText = new string(' ', indent);
@@ -580,7 +608,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 $$"""
                 {{indentText}}private static Duration GetStatePropertyTransitionDuration(DependencyObject d, State state, StateProperty property)
                 {{indentText}}{
-                {{indentText}}    return state switch
+                {{indentText}}    Duration originDuration = state switch
                 {{indentText}}    {
                 """);
 
@@ -625,6 +653,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                 {{indentText}}        _ => throw new ArgumentException("Invalid state", nameof(state))
                 {{indentText}}
                 {{indentText}}    } ?? GetDefaultTransitionDuration(d);
+                {{indentText}}    
+                {{indentText}}    return GetActualDuration(originDuration);
                 {{indentText}}}
                 """);
         }
@@ -673,7 +703,10 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
 
                         private static Dictionary<DependencyObjectAndStateProperty, RunningStoryboard>? _runningStoryboards;
 
-
+                        /// <summary>
+                        /// Transition duration factor
+                        /// </summary>
+                        public static double TransitionDurationFactor { get; set; } = 1;
                 """);
 
             // ActiveState
@@ -713,6 +746,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
 
             AddCoerceDurationMethod(sb, 8);
             AddCoerceNullableDurationMethod(sb, 8);
+            AddGetActualDurationMethod(sb, 8);
 
             sb.AppendLine(
                 """

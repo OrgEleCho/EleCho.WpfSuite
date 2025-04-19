@@ -273,6 +273,25 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
             }
         }
 
+        private static void AddCoerceNullableDurationMethod(StringBuilder sb, int indent)
+        {
+            var indentText = new string(' ', indent);
+
+            sb.AppendLine(
+                $$"""
+                {{indentText}}private static object CoerceNullableDuration(DependencyObject d, object baseValue)
+                {{indentText}}{
+                {{indentText}}    if (baseValue is Duration duration &&
+                {{indentText}}        !duration.HasTimeSpan)
+                {{indentText}}    {
+                {{indentText}}        throw new ArgumentException();
+                {{indentText}}    }
+                {{indentText}}
+                {{indentText}}    return baseValue;
+                {{indentText}}}
+                """);
+        }
+
         private string GenerateForType(string typeName, string typeNamespace, StateFlags stateFlags, StatePropertyFlags statePropertyFlags, IEnumerable<ComponentGenerationInfo> componentGenerationInfos)
         {
             const string TypeDurationFullName = "global::System.Windows.Duration";
@@ -358,6 +377,8 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
                 }
             }
 
+            bool useNullableDurationCoreceFunction = false;
+
             foreach (var componentGenerationInfo in componentGenerationInfos)
             {
                 foreach (var stateFlag in (StateFlags[])Enum.GetValues(typeof(StateFlags)))
@@ -381,9 +402,16 @@ namespace EleCho.WpfSuite.Controls.StateGenerators
 
                         AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}", propertyTypeName, typeName, propertyDefaultValue, null, null, isValueType, stateFlag != StateFlags.None, 8);
                         AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}EasingFunction", TypeIEasingFunctionFullName, typeName, "null", null, null, false, true, 8);
-                        AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}TransitionDuration", TypeDurationFullName, typeName, "null", null, null, true, true, 8);
+                        AddDependencyPropertyDefinition(sb, $"{componentGenerationInfo.ComponentName}{propertyPrefix}{statePropertyFlag}TransitionDuration", TypeDurationFullName, typeName, "null", "CoerceNullableDuration", null, true, true, 8);
+
+                        useNullableDurationCoreceFunction = true;
                     }
                 }
+            }
+
+            if (useNullableDurationCoreceFunction)
+            {
+                AddCoerceNullableDurationMethod(sb, 8);
             }
 
             sb.AppendLine(

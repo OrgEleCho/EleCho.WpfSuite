@@ -115,10 +115,6 @@
                 </ComboBox.Items>
             </ComboBox>
 
-            <ws:StackPanel>
-                <ws:ComboBoxItem Content="QWQ"/>
-            </ws:StackPanel>
-
             <ws:TextBox AcceptsReturn="True"
                         MaxHeight="300"
                         Placeholder="Multi line TextBox"/>
