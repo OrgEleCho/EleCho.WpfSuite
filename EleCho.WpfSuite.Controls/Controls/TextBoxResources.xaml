@@ -42,23 +42,24 @@
                                   CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                                   SnapsToDevicePixels="True">
                         <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
-                            <Grid x:Name="PART_ContentContainer"
-                                  Margin="{smk:ShowingProperty Property=Padding}">
+                            <Grid x:Name="PART_ContentContainer">
                                 <local:ScrollViewer x:Name="PART_ContentHost"
                                                     Focusable="false"
                                                     HorizontalScrollBarVisibility="Hidden"
                                                     VerticalScrollBarVisibility="Hidden"/>
-                                <ContentPresenter x:Name="PART_Placeholder"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  TextElement.Foreground="{smk:ShowingProperty Property=PlaceholderBrush}"
-                                                  Content="{TemplateBinding Placeholder}"
-                                                  ContentTemplate="{TemplateBinding PlaceholderTemplate}"
-                                                  ContentTemplateSelector="{TemplateBinding PlaceholderTemplateSelector}"
-                                                  IsHitTestVisible="False"
-                                                  Focusable="False"
-                                                  Margin="2 0 2 0"
-                                                  Visibility="Hidden"/>
+                                <Border Margin="{TemplateBinding Padding}">
+                                    <ContentPresenter x:Name="PART_Placeholder"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      TextElement.Foreground="{smk:ShowingProperty Property=PlaceholderBrush}"
+                                                      Content="{TemplateBinding Placeholder}"
+                                                      ContentTemplate="{TemplateBinding PlaceholderTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding PlaceholderTemplateSelector}"
+                                                      IsHitTestVisible="False"
+                                                      Focusable="False"
+                                                      Margin="2 0 2 0"
+                                                      Visibility="Hidden"/>
+                                </Border>
                             </Grid>
                         </local:BorderContentAdapter>
                     </local:Border>

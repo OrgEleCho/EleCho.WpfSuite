@@ -24,7 +24,6 @@ namespace EleCho.WpfSuite.Controls
     [GenerateStatesProperty(StateProperty.Background)]
     [GenerateStatesProperty(StateProperty.Foreground)]
     [GenerateStatesProperty(StateProperty.BorderBrush)]
-    [GenerateStatesProperty(StateProperty.Padding)]
     [GenerateStatesProperty(StateProperty.BorderThickness)]
     [GenerateStatesProperty(StateProperty.CornerRadius)]
     [GenerateStatesProperty(StateProperty.PlaceholderBrush)]
