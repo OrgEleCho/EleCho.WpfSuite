@@ -102,7 +102,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}    var targetValue = GetStatePropertyClassValue<Brush>(d, targetState, StateProperty.{{stateProperty}});
                     {{indentText}}
                     {{indentText}}    if (d is not FrameworkElement animatable ||
-                    {{indentText}}        d.ReadLocalValue(Showing{{stateProperty}}Property) == DependencyProperty.UnsetValue)
+                    {{indentText}}        d.ReadLocalValue(Showing{{stateProperty}}Property) == DependencyProperty.UnsetValue ||
+                    {{indentText}}        !animatable.IsLoaded)
                     {{indentText}}    {
                     {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, targetValue);
                     {{indentText}}        return;
@@ -180,7 +181,8 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}    }
                     {{indentText}}
                     {{indentText}}    if (d is not FrameworkElement animatable ||
-                    {{indentText}}        d.ReadLocalValue(Showing{{stateProperty}}Property) == DependencyProperty.UnsetValue)
+                    {{indentText}}        d.ReadLocalValue(Showing{{stateProperty}}Property) == DependencyProperty.UnsetValue ||
+                    {{indentText}}        !animatable.IsLoaded)
                     {{indentText}}    {
                     {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, targetValue.Value);
                     {{indentText}}        return;
