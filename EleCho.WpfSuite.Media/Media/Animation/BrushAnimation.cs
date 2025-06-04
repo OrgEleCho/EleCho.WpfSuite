@@ -122,135 +122,161 @@ namespace EleCho.WpfSuite.Media.Animation
             if (from is SolidColorBrush fromSolidColorBrush &&
                 to is SolidColorBrush toSolidColorBrush)
             {
-                if (cache is not SolidColorBrush cachedSolidColorBrush)
+                if (MustBeOpaque(fromSolidColorBrush) &&
+                    MustBeOpaque(toSolidColorBrush))
                 {
-                    cache = cachedSolidColorBrush = new SolidColorBrush();
+                    if (cache is not SolidColorBrush cachedSolidColorBrush)
+                    {
+                        cache = cachedSolidColorBrush = new SolidColorBrush();
+                    }
+
+                    cachedSolidColorBrush.Color = LerpColor(fromSolidColorBrush.Color, toSolidColorBrush.Color, t);
+                    return cachedSolidColorBrush;
                 }
-
-                cachedSolidColorBrush.Color = LerpColor(fromSolidColorBrush.Color, toSolidColorBrush.Color, t);
-                return cachedSolidColorBrush;
-            }
-
-            if (MustBeOpaque(to))
-            {
-                if (cache is not VisualBrush cachedVisualBrush)
+                else if (IsTransparent(fromSolidColorBrush))
                 {
-                    cache = cachedVisualBrush = new VisualBrush();
-                }
+                    if (cache is not SolidColorBrush cachedSolidColorBrush)
+                    {
+                        cache = cachedSolidColorBrush = new SolidColorBrush();
+                    }
 
-                if (cachedVisualBrush.Visual is not Border rootBorder)
+                    var fromColor = Color.FromArgb(0, toSolidColorBrush.Color.R, toSolidColorBrush.Color.G, toSolidColorBrush.Color.B);
+                    cachedSolidColorBrush.Color = LerpColor(fromColor, toSolidColorBrush.Color, t);
+                    return cachedSolidColorBrush;
+                }
+                else if (IsTransparent(toSolidColorBrush))
                 {
-                    cachedVisualBrush.Visual = rootBorder = new Border();
+                    if (cache is not SolidColorBrush cachedSolidColorBrush)
+                    {
+                        cache = cachedSolidColorBrush = new SolidColorBrush();
+                    }
+
+                    var toColor = Color.FromArgb(0, fromSolidColorBrush.Color.R, fromSolidColorBrush.Color.G, fromSolidColorBrush.Color.B);
+                    cachedSolidColorBrush.Color = LerpColor(fromSolidColorBrush.Color, toColor, t);
+                    return cachedSolidColorBrush;
                 }
-
-                if (rootBorder.Child is not Border contentBorder)
-                {
-                    rootBorder.Child = contentBorder = new Border();
-                }
-
-                rootBorder.Width = 1;
-                rootBorder.Height = 1;
-                rootBorder.Background = from;
-                contentBorder.Background = to;
-                contentBorder.Opacity = t;
-
-                return cachedVisualBrush;
-            }
-            else if (IsTransparent(from))
-            {
-                if (cache is not VisualBrush cachedVisualBrush)
-                {
-                    cache = cachedVisualBrush = new VisualBrush();
-                }
-
-                if (cachedVisualBrush.Visual is not Border rootBorder)
-                {
-                    cachedVisualBrush.Visual = rootBorder = new Border();
-                }
-
-                rootBorder.Child = null;
-                rootBorder.Width = 1;
-                rootBorder.Height = 1;
-                rootBorder.Background = to;
-                rootBorder.Opacity = t;
-
-                return cachedVisualBrush;
-            }
-            else if (IsTransparent(to))
-            {
-                if (cache is not VisualBrush cachedVisualBrush)
-                {
-                    cache = cachedVisualBrush = new VisualBrush();
-                }
-
-                if (cachedVisualBrush.Visual is not Border rootBorder)
-                {
-                    cachedVisualBrush.Visual = rootBorder = new Border();
-                }
-
-                rootBorder.Child = null;
-                rootBorder.Width = 1;
-                rootBorder.Height = 1;
-                rootBorder.Background = from;
-                rootBorder.Opacity = 1 - t;
-
-                return cachedVisualBrush;
             }
             else
             {
-                if (cache is not VisualBrush cachedVisualBrush)
+                if (MustBeOpaque(to))
                 {
-                    cache = cachedVisualBrush = new VisualBrush();
-                }
-
-                if (cachedVisualBrush.Visual is not Grid rootGrid)
-                {
-                    cachedVisualBrush.Visual = rootGrid = new Grid();
-                }
-
-                var childBorder1 = default(Border);
-                var childBorder2 = default(Border);
-
-                if (rootGrid.Children.Count < 1)
-                {
-                    rootGrid.Children.Add(childBorder1 = new Border());
-                }
-                else
-                {
-                    childBorder1 = rootGrid.Children[0] as Border;
-                    if (childBorder1 == null)
+                    if (cache is not VisualBrush cachedVisualBrush)
                     {
-                        rootGrid.Children[0] = childBorder1 = new Border();
+                        cache = cachedVisualBrush = new VisualBrush();
                     }
-                }
 
-                if (rootGrid.Children.Count < 2)
-                {
-                    rootGrid.Children.Add(childBorder2 = new Border());
-                }
-                else
-                {
-                    childBorder2 = rootGrid.Children[1] as Border;
-                    if (childBorder2 == null)
+                    if (cachedVisualBrush.Visual is not Border rootBorder)
                     {
-                        rootGrid.Children[1] = childBorder2 = new Border();
+                        cachedVisualBrush.Visual = rootBorder = new Border();
                     }
-                }
 
-                while (rootGrid.Children.Count > 2)
+                    if (rootBorder.Child is not Border contentBorder)
+                    {
+                        rootBorder.Child = contentBorder = new Border();
+                    }
+
+                    rootBorder.Width = 1;
+                    rootBorder.Height = 1;
+                    rootBorder.Background = from;
+                    contentBorder.Background = to;
+                    contentBorder.Opacity = t;
+
+                    return cachedVisualBrush;
+                }
+                else if (IsTransparent(from))
                 {
-                    rootGrid.Children.RemoveAt(rootGrid.Children.Count - 1);
+                    if (cache is not VisualBrush cachedVisualBrush)
+                    {
+                        cache = cachedVisualBrush = new VisualBrush();
+                    }
+
+                    if (cachedVisualBrush.Visual is not Border rootBorder)
+                    {
+                        cachedVisualBrush.Visual = rootBorder = new Border();
+                    }
+
+                    rootBorder.Child = null;
+                    rootBorder.Width = 1;
+                    rootBorder.Height = 1;
+                    rootBorder.Background = to;
+                    rootBorder.Opacity = t;
+
+                    return cachedVisualBrush;
                 }
+                else if (IsTransparent(to))
+                {
+                    if (cache is not VisualBrush cachedVisualBrush)
+                    {
+                        cache = cachedVisualBrush = new VisualBrush();
+                    }
 
-                rootGrid.Width = 1;
-                rootGrid.Height = 1;
-                childBorder1.Background = from;
-                childBorder1.Opacity = 1 - t;
-                childBorder2.Background = to;
-                childBorder2.Opacity = t;
+                    if (cachedVisualBrush.Visual is not Border rootBorder)
+                    {
+                        cachedVisualBrush.Visual = rootBorder = new Border();
+                    }
 
-                return cachedVisualBrush;
+                    rootBorder.Child = null;
+                    rootBorder.Width = 1;
+                    rootBorder.Height = 1;
+                    rootBorder.Background = from;
+                    rootBorder.Opacity = 1 - t;
+
+                    return cachedVisualBrush;
+                }
             }
+
+            if (cache is not VisualBrush finalCachedVisualBrush)
+            {
+                cache = finalCachedVisualBrush = new VisualBrush();
+            }
+
+            if (finalCachedVisualBrush.Visual is not Grid rootGrid)
+            {
+                finalCachedVisualBrush.Visual = rootGrid = new Grid();
+            }
+
+            var childBorder1 = default(Border);
+            var childBorder2 = default(Border);
+
+            if (rootGrid.Children.Count < 1)
+            {
+                rootGrid.Children.Add(childBorder1 = new Border());
+            }
+            else
+            {
+                childBorder1 = rootGrid.Children[0] as Border;
+                if (childBorder1 == null)
+                {
+                    rootGrid.Children[0] = childBorder1 = new Border();
+                }
+            }
+
+            if (rootGrid.Children.Count < 2)
+            {
+                rootGrid.Children.Add(childBorder2 = new Border());
+            }
+            else
+            {
+                childBorder2 = rootGrid.Children[1] as Border;
+                if (childBorder2 == null)
+                {
+                    rootGrid.Children[1] = childBorder2 = new Border();
+                }
+            }
+
+            while (rootGrid.Children.Count > 2)
+            {
+                rootGrid.Children.RemoveAt(rootGrid.Children.Count - 1);
+            }
+
+            rootGrid.Width = 1;
+            rootGrid.Height = 1;
+            childBorder1.Background = from;
+            childBorder1.Opacity = 1 - t;
+            childBorder2.Background = to;
+            childBorder2.Opacity = t;
+
+            return finalCachedVisualBrush;
         }
 
         /// <inheritdoc/>

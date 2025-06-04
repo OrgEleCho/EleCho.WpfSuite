@@ -145,14 +145,14 @@
                     <Path x:Name="GlyphPanel" Data="{StaticResource Checkmark}" FlowDirection="LeftToRight" Fill="{TemplateBinding Foreground}" Margin="3" VerticalAlignment="Center" Visibility="Collapsed"/>
                     <ContentPresenter ContentSource="Header" Grid.Column="1" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                     <local:Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" PlacementTarget="{Binding ElementName=templateRoot}">
-                        <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
-                                              TransitionMode="{TemplateBinding PopupContentTransitionMode}">
-                            <Border x:Name="SubMenuBorder"
-                                    Background="{TemplateBinding PopupBackground}"
-                                    BorderBrush="{TemplateBinding PopupBorderBrush}"
-                                    BorderThickness="{TemplateBinding PopupBorderThickness}"
-                                    CornerRadius="{TemplateBinding PopupCornerRadius}"
-                                    Padding="{TemplateBinding PopupPadding}">
+                        <Border x:Name="SubMenuBorder"
+                                Background="{TemplateBinding PopupBackground}"
+                                BorderBrush="{TemplateBinding PopupBorderBrush}"
+                                BorderThickness="{TemplateBinding PopupBorderThickness}"
+                                CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                Padding="{TemplateBinding PopupPadding}">
+                            <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
+                                                  TransitionMode="{TemplateBinding PopupContentTransitionMode}">
                                 <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                     <Grid RenderOptions.ClearTypeHint="Enabled">
                                         <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -162,8 +162,8 @@
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
                                     </Grid>
                                 </ScrollViewer>
-                            </Border>
-                        </local:ContentControl>
+                            </local:ContentControl>
+                        </Border>
                     </local:Popup>
                 </Grid>
             </local:BorderContentAdapter>
@@ -324,18 +324,18 @@
                             </Border.BorderBrush>
                             <Path x:Name="Glyph" Data="{DynamicResource Checkmark}" FlowDirection="LeftToRight" Fill="{smk:ShowingProperty Property=Foreground}" Height="11" Width="9"/>
                         </Border>
-                        <ContentPresenter ContentSource="Header" Grid.Column="2" HorizontalAlignment="Left" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
-                        <TextBlock Grid.Column="4" Margin="{TemplateBinding Padding}" Opacity="0.7" Text="{TemplateBinding InputGestureText}" VerticalAlignment="Center"/>
+                        <ContentPresenter ContentSource="Header" Grid.Column="2" HorizontalAlignment="Left" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Opacity="0.7" Text="{TemplateBinding InputGestureText}" VerticalAlignment="Center"/>
                         <Path x:Name="RightArrow" Grid.Column="5" Data="{StaticResource RightArrow}" Fill="{smk:ShowingProperty Property=Foreground}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         <local:Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="-2" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource Mode=TemplatedParent}}" Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3">
-                            <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
-                                                  TransitionMode="{TemplateBinding PopupContentTransitionMode}">
-                                <Border x:Name="SubMenuBorder"
-                                        Background="{TemplateBinding PopupBackground}"
-                                        BorderBrush="{TemplateBinding PopupBorderBrush}"
-                                        BorderThickness="{TemplateBinding PopupBorderThickness}"
-                                        CornerRadius="{TemplateBinding PopupCornerRadius}"
-                                        Padding="{TemplateBinding PopupPadding}">
+                            <Border x:Name="SubMenuBorder"
+                                    Background="{TemplateBinding PopupBackground}"
+                                    BorderBrush="{TemplateBinding PopupBorderBrush}"
+                                    BorderThickness="{TemplateBinding PopupBorderThickness}"
+                                    CornerRadius="{TemplateBinding PopupCornerRadius}"
+                                    Padding="{TemplateBinding PopupPadding}">
+                                <local:ContentControl Transition="{TemplateBinding PopupContentTransition}"
+                                                      TransitionMode="{TemplateBinding PopupContentTransitionMode}">
                                     <ScrollViewer x:Name="SubMenuScrollViewer" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
                                         <Grid RenderOptions.ClearTypeHint="Enabled">
                                             <Canvas HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -345,8 +345,8 @@
                                             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Cycle" Grid.IsSharedSizeScope="true" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" KeyboardNavigation.TabNavigation="Cycle"/>
                                         </Grid>
                                     </ScrollViewer>
-                                </Border>
-                            </local:ContentControl>
+                                </local:ContentControl>
+                            </Border>
                         </local:Popup>
                     </Grid>
                 </Grid>

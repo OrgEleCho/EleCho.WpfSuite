@@ -157,6 +157,20 @@
            BasedOn="{StaticResource {x:Type ws:ContextMenu}}">
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static wsd:FluentResource.TextFillColorPrimaryBrush}}"/>
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HasDropShadow" Value="False"/>
+        <Setter Property="ws:WindowOption.AccentState" Value="AcrylicBlurBehind"/>
+        <Setter Property="ws:WindowOption.Corner" Value="RoundSmall"/>
+        <Setter Property="Transition">
+            <Setter.Value>
+                <ws:SlideFadeTransition Duration="0:0:0.200"
+                                        Orientation="Vertical"
+                                        Reverse="True"
+                                        Distance="30"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="{x:Type ws:Menu}"
@@ -188,9 +202,10 @@
         <Setter Property="HighlightedDisabledBorderBrush" Value="{x:Null}"/>
 
         <!--Popup-->
-        <Setter Property="PopupBackground" Value="{DynamicResource {x:Static wsd:FluentResource.ControlSolidFillColorDefaultBrush}}"/>
-        <Setter Property="PopupBorderBrush" Value="{DynamicResource {x:Static wsd:FluentResource.ControlStrokeColorDefaultBrush}}"/>
-        <Setter Property="PopupCornerRadius" Value="6"/>
+        <Setter Property="ws:WindowOption.AccentState" Value="AcrylicBlurBehind"/>
+        <Setter Property="ws:WindowOption.Corner" Value="RoundSmall"/>
+        <Setter Property="PopupBackground" Value="Transparent"/>
+        <Setter Property="PopupBorderThickness" Value="0"/>
         <Setter Property="PopupContentTransition">
             <Setter.Value>
                 <ws:SlideFadeTransition Duration="0:0:0.200"

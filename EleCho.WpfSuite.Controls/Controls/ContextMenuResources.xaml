@@ -5,9 +5,6 @@
                     xmlns:i="clr-namespace:EleCho.WpfSuite.Internal"
                     xmlns:local="clr-namespace:EleCho.WpfSuite.Controls">
     <Style TargetType="{x:Type local:ContextMenu}">
-        <Style.Resources>
-            <ResourceDictionary />
-        </Style.Resources>
         <Setter Property="Background" Value="#FFF5F5F5"/>
         <Setter Property="SeparatorBrush" Value="#FFE2E3E3"/>
         <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"/>
@@ -27,13 +24,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ContextMenu}">
                     <i:SystemDropShadowChrome Color="#00FFFFFF" x:Name="Shdw" SnapsToDevicePixels="True">
-                        <local:ContentControl Transition="{TemplateBinding Transition}"
-                                              TransitionMode="{TemplateBinding TransitionMode}">
-                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                    Background="{TemplateBinding Panel.Background}"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    Name="ContextMenuBorder">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Name="ContextMenuBorder">
+                            <local:ContentControl Transition="{TemplateBinding Transition}"
+                                                  TransitionMode="{TemplateBinding TransitionMode}">
                                 <local:ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" x:Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
                                     <Grid RenderOptions.ClearTypeHint="Enabled">
                                         <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -45,8 +42,8 @@
                                         <ItemsPresenter Name="ItemsPresenter" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Cycle" />
                                     </Grid>
                                 </local:ScrollViewer>
-                            </Border>
-                        </local:ContentControl>
+                            </local:ContentControl>
+                        </Border>
                     </i:SystemDropShadowChrome>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ContextMenuService.HasDropShadow"

@@ -216,13 +216,36 @@
                                 <DataTemplate>
                                     <StackPanel Background="Transparent">
                                         <StackPanel.ContextMenu>
-                                            <ws:ContextMenu Background="White">
+                                            <ws:ContextMenu>
+                                                <ws:ContextMenu.Resources>
+                                                    <Style TargetType="ws:MenuItem"
+                                                           BasedOn="{StaticResource {x:Type ws:MenuItem}}">
+                                                        <Setter Property="Padding" Value="8"/>
+                                                    </Style>
+                                                </ws:ContextMenu.Resources>
+                                                <ws:MenuItem Header="What the fuck"/>
+                                                <ws:MenuItem Header="Test">
+                                                    <ws:MenuItem.ItemsSource>
+                                                        <x:Array Type="sys:String">
+                                                            <sys:String>QWQ</sys:String>
+                                                            <sys:String>QWQ</sys:String>
+                                                            <sys:String>QWQ</sys:String>
+                                                            <sys:String>QWQ</sys:String>
+                                                        </x:Array>
+                                                    </ws:MenuItem.ItemsSource>
+                                                </ws:MenuItem>
                                                 <ws:MenuItem Header="Remove"
                                                              Icon="Fuck"
+                                                             Background="Transparent"
                                                              HighlightedBackground="#88FF0000"
                                                              Command="{Binding Source={StaticResource DataProxy},Path=Data.RemoveTabCommand}"
                                                              CommandParameter="{Binding}">
-                                                    <ws:MenuItem Header="QAQ"/>
+                                                    <ws:MenuItem Header="QAQ">
+                                                        <ws:MenuItem Header="QAQ"/>
+                                                        <ws:MenuItem Header="QAQ"/>
+                                                        <ws:MenuItem Header="QAQ"/>
+
+                                                    </ws:MenuItem>
                                                     <ws:MenuItem Header="QAQ"/>
                                                     <ws:MenuItem Header="QAQ"/>
                                                 </ws:MenuItem>

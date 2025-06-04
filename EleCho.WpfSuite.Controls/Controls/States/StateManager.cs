@@ -8,8 +8,11 @@ using EleCho.WpfSuite.Controls.States.Internal;
 
 namespace EleCho.WpfSuite.Controls.States
 {
+    /// <summary>
+    /// State transition effect manager
+    /// </summary>
     public static partial class StateManager
     {
-        // auto generated, do not modify
+        // most of members are auto generated
     }
 }

@@ -17,6 +17,7 @@ namespace EleCho.WpfSuite.Controls.States.Internal
         private readonly DependencyProperty _targetProperty;
 
         private Brush? _cache;
+        private bool _stopped;
 
         public BrushTransitionHelper(Brush? from, Brush? to, DependencyObject target, DependencyProperty targetProperty)
         {
@@ -32,12 +33,18 @@ namespace EleCho.WpfSuite.Controls.States.Internal
             set { SetValue(ProgressProperty, value); }
         }
 
+        public void Stop()
+        {
+            _stopped = true;
+        }
+
         public static readonly DependencyProperty ProgressProperty =
             DependencyProperty.Register("Progress", typeof(double), typeof(BrushTransitionHelper), new PropertyMetadata(0.0, propertyChangedCallback: OnProgressChanged));
 
         private static void OnProgressChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is not BrushTransitionHelper helper)
+            if (d is not BrushTransitionHelper helper ||
+                helper._stopped)
             {
                 return;
             }

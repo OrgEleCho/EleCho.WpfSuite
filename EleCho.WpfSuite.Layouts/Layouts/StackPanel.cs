@@ -34,6 +34,7 @@ namespace EleCho.WpfSuite.Layouts
         {
             var spacing = Spacing;
             var panelDesiredSize = new Size();
+            var hasTailingSpacing = false;
 
             if (Orientation == Orientation.Vertical)
             {
@@ -46,13 +47,22 @@ namespace EleCho.WpfSuite.Layouts
                     panelDesiredSize.Height += childDesiredSize.Height;
 
                     if (child.Visibility != Visibility.Collapsed)
+                    {
+                        hasTailingSpacing = true;
                         panelDesiredSize.Height += spacing;
+                    }
+                    else
+                    {
+                        hasTailingSpacing = false;
+                    }
 
                     if (childDesiredSize.Width > panelDesiredSize.Width)
+                    {
                         panelDesiredSize.Width = childDesiredSize.Width;
+                    }
                 }
 
-                if (InternalChildren.Count != 0)
+                if (hasTailingSpacing)
                 {
                     panelDesiredSize.Height -= spacing;
                 }
@@ -68,13 +78,22 @@ namespace EleCho.WpfSuite.Layouts
                     panelDesiredSize.Width += childDesiredSize.Width;
 
                     if (child.Visibility != Visibility.Collapsed)
+                    {
+                        hasTailingSpacing = true;
                         panelDesiredSize.Width += spacing;
+                    }
+                    else
+                    {
+                        hasTailingSpacing = false;
+                    }
 
                     if (childDesiredSize.Height > panelDesiredSize.Height)
+                    {
                         panelDesiredSize.Height = childDesiredSize.Height;
+                    }
                 }
 
-                if (InternalChildren.Count != 0)
+                if (hasTailingSpacing)
                 {
                     panelDesiredSize.Width -= spacing;
                 }
@@ -131,6 +150,6 @@ namespace EleCho.WpfSuite.Layouts
         /// The DependencyProperty of <see cref="Spacing"/> property
         /// </summary>
         public static readonly DependencyProperty SpacingProperty =
-            DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(StackPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure));
+            DependencyProperty.Register(nameof(Spacing), typeof(double), typeof(StackPanel), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsMeasure), ValidationUtils.IsInRangeOfPosDoubleIncludeZero);
     }
 }
