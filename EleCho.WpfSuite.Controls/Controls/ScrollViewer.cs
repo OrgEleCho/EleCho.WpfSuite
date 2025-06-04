@@ -149,16 +149,16 @@ namespace EleCho.WpfSuite.Controls
             }
         }
 
-        public bool AllowTogglePreferedScrollOrientationByShiftKey
+        public bool AllowTogglePreferredScrollOrientationByShiftKey
         {
-            get { return (bool)GetValue(AllowTogglePreferedScrollOrientationByShiftKeyProperty); }
-            set { SetValue(AllowTogglePreferedScrollOrientationByShiftKeyProperty, value); }
+            get { return (bool)GetValue(AllowTogglePreferredScrollOrientationByShiftKeyProperty); }
+            set { SetValue(AllowTogglePreferredScrollOrientationByShiftKeyProperty, value); }
         }
 
-        public Orientation PreferedScrollOrientation
+        public Orientation PreferredScrollOrientation
         {
-            get { return (Orientation)GetValue(PreferedScrollOrientationProperty); }
-            set { SetValue(PreferedScrollOrientationProperty, value); }
+            get { return (Orientation)GetValue(PreferredScrollOrientationProperty); }
+            set { SetValue(PreferredScrollOrientationProperty, value); }
         }
 
         /// <inheritdoc/>
@@ -276,8 +276,8 @@ namespace EleCho.WpfSuite.Controls
                 return false;
             }
 
-            var preferredScrollOrientation = PreferedScrollOrientation;
-            if (AllowTogglePreferedScrollOrientationByShiftKey && Keyboard.Modifiers == ModifierKeys.Shift)
+            var preferredScrollOrientation = PreferredScrollOrientation;
+            if (AllowTogglePreferredScrollOrientationByShiftKey && Keyboard.Modifiers == ModifierKeys.Shift)
             {
                 preferredScrollOrientation = preferredScrollOrientation switch
                 {
@@ -596,16 +596,16 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(TouchpadScrollDeltaFactor), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(1.0));
 
         /// <summary>
-        /// The DependencyProperty of <see cref="AllowTogglePreferedScrollOrientationByShiftKey"/> property
+        /// The DependencyProperty of <see cref="AllowTogglePreferredScrollOrientationByShiftKey"/> property
         /// </summary>
-        public static readonly DependencyProperty AllowTogglePreferedScrollOrientationByShiftKeyProperty =
-            DependencyProperty.Register(nameof(AllowTogglePreferedScrollOrientationByShiftKey), typeof(bool), typeof(ScrollViewer), new FrameworkPropertyMetadata(true));
+        public static readonly DependencyProperty AllowTogglePreferredScrollOrientationByShiftKeyProperty =
+            DependencyProperty.Register(nameof(AllowTogglePreferredScrollOrientationByShiftKey), typeof(bool), typeof(ScrollViewer), new FrameworkPropertyMetadata(true));
 
         /// <summary>
-        /// The DependencyProperty of <see cref="PreferedScrollOrientationProperty"/> property
+        /// The DependencyProperty of <see cref="PreferredScrollOrientationProperty"/> property
         /// </summary>
-        public static readonly DependencyProperty PreferedScrollOrientationProperty =
-            DependencyProperty.Register(nameof(PreferedScrollOrientation), typeof(Orientation), typeof(ScrollViewer), new FrameworkPropertyMetadata(Orientation.Vertical));
+        public static readonly DependencyProperty PreferredScrollOrientationProperty =
+            DependencyProperty.Register(nameof(PreferredScrollOrientation), typeof(Orientation), typeof(ScrollViewer), new FrameworkPropertyMetadata(Orientation.Vertical));
 
         private static bool ValidateSmoothScrollingTime(object value)
         {

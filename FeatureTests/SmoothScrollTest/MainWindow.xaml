@@ -7,8 +7,31 @@
         xmlns:ws="https://schemas.elecho.dev/wpfsuite"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Loaded="Window_Loaded">
-    <ws:ScrollViewer SmoothScrollingTime="0:0:0.5">
-        <StackPanel x:Name="panel" Orientation="Vertical" />
-    </ws:ScrollViewer>
+        Loaded="Window_Loaded"
+        PreviewMouseWheel="Window_PreviewMouseWheel"
+        ws:StylusTouchDevice.Simulate="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer >
+            <StackPanel x:Name="panel" Orientation="Vertical"
+                        Background="Transparent"
+                        Margin="20">
+                <TextBox Height="300"/>
+            </StackPanel>
+        </ScrollViewer>
+        <ws:ListBox x:Name="testListBox" Grid.Column="1"
+                    VirtualizingPanel.ScrollUnit="Pixel"
+                    VirtualizingPanel.VirtualizationMode="Recycling">
+
+        </ws:ListBox>
+        <ListBox x:Name="testListBox2" Grid.Column="2"
+                 VirtualizingPanel.ScrollUnit="Pixel"
+                 VirtualizingPanel.VirtualizationMode="Recycling">
+
+        </ListBox>
+    </Grid>
 </Window>

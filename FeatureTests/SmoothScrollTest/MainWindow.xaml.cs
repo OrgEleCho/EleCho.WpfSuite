@@ -16,6 +16,10 @@ namespace SmoothScrollTest;
 /// </summary>
 public partial class MainWindow : Window
 {
+    public string[] SomeCollection { get; } = Enumerable.Range(0, 300)
+        .Select(i => $"Item {i}")
+        .ToArray();
+
     public MainWindow()
     {
         InitializeComponent();
@@ -42,5 +46,13 @@ public partial class MainWindow : Window
                 Margin = new Thickness(10)
             });
         }
+
+        testListBox.ItemsSource = SomeCollection;
+        testListBox2.ItemsSource = SomeCollection;
+    }
+
+    private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+
     }
 }
