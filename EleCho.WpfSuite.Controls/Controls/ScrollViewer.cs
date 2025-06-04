@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EleCho.WpfSuite.Internal;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -35,10 +36,8 @@ namespace EleCho.WpfSuite.Controls
 
         private delegate bool GetBool(ScrollViewer scrollViewer);
         private static readonly GetBool _propertyHandlesMouseWheelScrollingGetter;
-        private static readonly IEasingFunction _scrollingAnimationEase = new CubicEase(){ EasingMode = EasingMode.EaseOut };
+        private static readonly IEasingFunction _scrollingAnimationEase = new CubicEase() { EasingMode = EasingMode.EaseOut };
         private const long _millisecondsBetweenTouchpadScrolling = 100;
-
-        private bool _animationRunning = false;
 
         // 上次的滚动 delta, 不管是水平还是垂直, 都会保存下来
         // 用于判断是否是触摸板滚动
@@ -46,9 +45,17 @@ namespace EleCho.WpfSuite.Controls
         private int _lastScrollDelta = 0;
         private int _lastVerticalScrollingDelta = 0;
         private int _lastHorizontalScrollingDelta = 0;
-        private long _lastScrollingTick;
+        private TimeSpan _lastScrollTime;
+        private double _requestingSmoothVerticalOffsetTarget = double.NaN;
+        private double _requestingSmoothHorizontalOffsetTarget = double.NaN;
 
         private FrameworkElement? _scrollContentPresenter;
+        private SecondOrderDynamics? _verticalSecondOrderDynamics;
+        private SecondOrderDynamics? _horizontalSecondOrderDynamics;
+
+        private static readonly Stopwatch s_commonStopwatch = Stopwatch.StartNew();
+        private static readonly HashSet<ScrollViewer> s_scrollViewersOnUI = new HashSet<ScrollViewer>();
+        private static TimeSpan s_lastRenderingTime;
 
         /// <inheritdoc/>
         public ScrollViewer()
@@ -154,7 +161,112 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(PreferedScrollOrientationProperty, value); }
         }
 
+        /// <inheritdoc/>
+        protected override void OnVisualParentChanged(DependencyObject oldParent)
+        {
+            if (VisualParent is not null)
+            {
+                s_scrollViewersOnUI.Add(this);
+            }
+            else
+            {
+                s_scrollViewersOnUI.Remove(this);
+            }
 
+            EnsureCompositionRenderingProcessStatus();
+            base.OnVisualParentChanged(oldParent);
+        }
+
+        private static void EnsureCompositionRenderingProcessStatus()
+        {
+            if (s_scrollViewersOnUI.Count > 0)
+            {
+                s_lastRenderingTime = s_commonStopwatch.Elapsed;
+
+                CompositionTarget.Rendering -= CompositionTargetRendering;
+                CompositionTarget.Rendering += CompositionTargetRendering;
+            }
+            else
+            {
+                CompositionTarget.Rendering -= CompositionTargetRendering;
+            }
+        }
+
+        private static void CompositionTargetRendering(object? sender, EventArgs e)
+        {
+            if (s_commonStopwatch is null)
+            {
+                return;
+            }
+
+            var nowRenderingTime = s_commonStopwatch.Elapsed;
+            var elapsed = nowRenderingTime - s_lastRenderingTime;
+            var elapsedSeconds = elapsed.TotalSeconds;
+            if (elapsedSeconds == 0)
+            {
+                return;
+            }
+
+            s_lastRenderingTime = nowRenderingTime;
+
+            foreach (var scrollViewer in s_scrollViewersOnUI)
+            {
+                var scrollInfo = scrollViewer.ScrollInfo;
+                var verticalOffset = scrollInfo.VerticalOffset;
+                var horizontalOffset = scrollInfo.HorizontalOffset;
+                var verticalOffsetTarget = scrollViewer._requestingSmoothVerticalOffsetTarget;
+                var horizontalOffsetTarget = scrollViewer._requestingSmoothHorizontalOffsetTarget;
+                var dynamicsFrequency = 1 / scrollViewer.SmoothScrollingTime.TotalSeconds;
+
+                if (!double.IsNaN(verticalOffsetTarget))
+                {
+                    scrollViewer._verticalSecondOrderDynamics ??= new SecondOrderDynamics(dynamicsFrequency, 1, 0, verticalOffset);
+                    scrollViewer._verticalSecondOrderDynamics.F = dynamicsFrequency;
+
+                    var animatedVerticalOffset = scrollViewer._verticalSecondOrderDynamics.Update(elapsedSeconds, verticalOffsetTarget, out var deltaValue);
+
+                    if (Math.Abs(animatedVerticalOffset - verticalOffset) > 0.1)
+                    {
+                        scrollInfo.SetVerticalOffset(animatedVerticalOffset);
+                    }
+
+                    // stop 
+                    if (Math.Abs(deltaValue) < 0.05)
+                    {
+                        scrollViewer._requestingSmoothVerticalOffsetTarget = double.NaN;
+                        scrollViewer._verticalSecondOrderDynamics = null;
+                    }
+                }
+                else
+                {
+                    scrollViewer._verticalSecondOrderDynamics = null;
+                }
+
+                if (!double.IsNaN(horizontalOffsetTarget))
+                {
+                    scrollViewer._horizontalSecondOrderDynamics ??= new SecondOrderDynamics(dynamicsFrequency, 1, 0, horizontalOffset);
+                    scrollViewer._horizontalSecondOrderDynamics.F = dynamicsFrequency;
+
+                    var animatedHorizontalOffset = scrollViewer._horizontalSecondOrderDynamics.Update(elapsedSeconds, horizontalOffsetTarget, out var deltaValue);
+
+                    if (Math.Abs(animatedHorizontalOffset - horizontalOffset) > 0.1)
+                    {
+                        scrollInfo.SetHorizontalOffset(animatedHorizontalOffset);
+                    }
+
+                    // stop 
+                    if (Math.Abs(deltaValue) < 0.05)
+                    {
+                        scrollViewer._requestingSmoothVerticalOffsetTarget = double.NaN;
+                        scrollViewer._horizontalSecondOrderDynamics = null;
+                    }
+                }
+                else
+                {
+                    scrollViewer._horizontalSecondOrderDynamics = null;
+                }
+            }
+        }
 
         private bool CoreScrollWithWheelDelta(int deltaX, int deltaY)
         {
@@ -164,10 +276,10 @@ namespace EleCho.WpfSuite.Controls
                 return false;
             }
 
-            var preferedScrollOrientation = PreferedScrollOrientation;
+            var preferredScrollOrientation = PreferedScrollOrientation;
             if (AllowTogglePreferedScrollOrientationByShiftKey && Keyboard.Modifiers == ModifierKeys.Shift)
             {
-                preferedScrollOrientation = preferedScrollOrientation switch
+                preferredScrollOrientation = preferredScrollOrientation switch
                 {
                     Orientation.Horizontal => Orientation.Vertical,
                     Orientation.Vertical => Orientation.Horizontal,
@@ -182,7 +294,7 @@ namespace EleCho.WpfSuite.Controls
             if (deltaX != 0)
             {
                 scrollDelta = -deltaX;
-                preferedScrollOrientation = Orientation.Horizontal;
+                preferredScrollOrientation = Orientation.Horizontal;
 
                 if (!canScrollHorizontal)
                 {
@@ -190,12 +302,13 @@ namespace EleCho.WpfSuite.Controls
                 }
             }
 
-            var tickCount = Environment.TickCount;
+            var elapsed = s_commonStopwatch.Elapsed;
+            var elapsedMillisecondsAfterLastScroll = (elapsed - _lastScrollTime).TotalMilliseconds;
             var isTouchpadScrolling =
                     scrollDelta % Mouse.MouseWheelDeltaForOneLine != 0 ||
-                    (tickCount - _lastScrollingTick < _millisecondsBetweenTouchpadScrolling && _lastScrollDelta % Mouse.MouseWheelDeltaForOneLine != 0);
+                    (elapsedMillisecondsAfterLastScroll < _millisecondsBetweenTouchpadScrolling && _lastScrollDelta % Mouse.MouseWheelDeltaForOneLine != 0);
 
-            bool canScrollHorizontalAndPreferHorizontal = canScrollHorizontal && preferedScrollOrientation == Orientation.Horizontal;
+            bool canScrollHorizontalAndPreferHorizontal = canScrollHorizontal && preferredScrollOrientation == Orientation.Horizontal;
 
             if (isTouchpadScrolling)
             {
@@ -228,7 +341,7 @@ namespace EleCho.WpfSuite.Controls
                 }
 
                 var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastVerticalScrollingDelta);
-                var nowOffset = sameDirectionAsLast && _animationRunning ? VerticalOffsetTarget : VerticalOffset;
+                var nowOffset = sameDirectionAsLast && !double.IsNaN(_requestingSmoothVerticalOffsetTarget) ? _requestingSmoothVerticalOffsetTarget : VerticalOffset;
                 var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
@@ -236,35 +349,14 @@ namespace EleCho.WpfSuite.Controls
                 if (newOffset > ScrollableHeight)
                     newOffset = ScrollableHeight;
 
-                SetValue(VerticalOffsetTargetPropertyKey, newOffset);
-                BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, null);
-
-                if (!EnableScrollingAnimation || isTouchpadScrolling)
+                if (!EnableSmoothScrolling || isTouchpadScrolling)
                 {
+                    _requestingSmoothVerticalOffsetTarget = double.NaN;
                     ScrollToVerticalOffset(newOffset);
                 }
                 else
                 {
-                    var diff = newOffset - VerticalOffset;
-                    var absDiff = Math.Abs(diff);
-                    var duration = ScrollingAnimationDuration;
-                    if (absDiff < Mouse.MouseWheelDeltaForOneLine)
-                    {
-                        duration = new Duration(TimeSpan.FromTicks((long)(duration.TimeSpan.Ticks * absDiff / Mouse.MouseWheelDeltaForOneLine)));
-                    }
-
-                    DoubleAnimation doubleAnimation = new DoubleAnimation()
-                    {
-                        EasingFunction = _scrollingAnimationEase,
-                        Duration = duration,
-                        From = VerticalOffset,
-                        To = newOffset,
-                    };
-
-                    doubleAnimation.Completed += DoubleAnimation_Completed;
-
-                    _animationRunning = true;
-                    BeginAnimation(ScrollViewerUtils.VerticalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
+                    _requestingSmoothVerticalOffsetTarget = newOffset;
                 }
 
                 _lastVerticalScrollingDelta = deltaY;
@@ -287,7 +379,7 @@ namespace EleCho.WpfSuite.Controls
                 }
 
                 var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastHorizontalScrollingDelta);
-                var nowOffset = sameDirectionAsLast && _animationRunning ? HorizontalOffsetTarget : HorizontalOffset;
+                var nowOffset = sameDirectionAsLast && !double.IsNaN(_requestingSmoothHorizontalOffsetTarget) ? _requestingSmoothHorizontalOffsetTarget : HorizontalOffset;
                 var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
@@ -295,35 +387,14 @@ namespace EleCho.WpfSuite.Controls
                 if (newOffset > ScrollableWidth)
                     newOffset = ScrollableWidth;
 
-                SetValue(HorizontalOffsetTargetPropertyKey, newOffset);
-                BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, null);
-
-                if (!EnableScrollingAnimation || isTouchpadScrolling)
+                if (!EnableSmoothScrolling || isTouchpadScrolling)
                 {
+                    _requestingSmoothHorizontalOffsetTarget = double.NaN;
                     ScrollToHorizontalOffset(newOffset);
                 }
                 else
                 {
-                    var diff = newOffset - HorizontalOffset;
-                    var absDiff = Math.Abs(diff);
-                    var duration = ScrollingAnimationDuration;
-                    if (absDiff < Mouse.MouseWheelDeltaForOneLine)
-                    {
-                        duration = new Duration(TimeSpan.FromTicks((long)(duration.TimeSpan.Ticks * absDiff / Mouse.MouseWheelDeltaForOneLine)));
-                    }
-
-                    DoubleAnimation doubleAnimation = new DoubleAnimation()
-                    {
-                        EasingFunction = _scrollingAnimationEase,
-                        Duration = duration,
-                        From = HorizontalOffset,
-                        To = newOffset,
-                    };
-
-                    doubleAnimation.Completed += DoubleAnimation_Completed;
-
-                    _animationRunning = true;
-                    BeginAnimation(ScrollViewerUtils.HorizontalOffsetProperty, doubleAnimation, HandoffBehavior.SnapshotAndReplace);
+                    _requestingSmoothHorizontalOffsetTarget = newOffset;
                 }
 
                 _lastHorizontalScrollingDelta = deltaY;
@@ -334,15 +405,10 @@ namespace EleCho.WpfSuite.Controls
                 return false;
             }
 
-            _lastScrollingTick = tickCount;
+            _lastScrollTime = elapsed;
             _lastScrollDelta = deltaY;
 
             return true;
-        }
-
-        private void DoubleAnimation_Completed(object? sender, EventArgs e)
-        {
-            _animationRunning = false;
         }
 
         /// <inheritdoc/>
@@ -354,8 +420,6 @@ namespace EleCho.WpfSuite.Controls
             }
             else if (!e.Handled)
             {
-                Debug.WriteLine(e.Delta);
-
                 var handled = CoreScrollWithWheelDelta(0, e.Delta);
                 e.Handled = handled;
             }
@@ -371,22 +435,6 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <summary>
-        /// The horizontal offset of scrolling target 
-        /// </summary>
-        public double HorizontalOffsetTarget
-        {
-            get { return (double)GetValue(HorizontalOffsetTargetProperty); }
-        }
-
-        /// <summary>
-        /// The vertical offset of scrolling target 
-        /// </summary>
-        public double VerticalOffsetTarget
-        {
-            get { return (double)GetValue(VerticalOffsetTargetProperty); }
-        }
-
-        /// <summary>
         /// Scroll with wheel delta instead of scrolling fixed number of lines
         /// </summary>
         public bool ScrollWithWheelDelta
@@ -399,19 +447,19 @@ namespace EleCho.WpfSuite.Controls
         /// Enable scrolling animation while using mouse <br/>
         /// You need to set ScrollWithWheelDelta to true to use this
         /// </summary>
-        public bool EnableScrollingAnimation
+        public bool EnableSmoothScrolling
         {
-            get { return (bool)GetValue(EnableScrollingAnimationProperty); }
-            set { SetValue(EnableScrollingAnimationProperty, value); }
+            get { return (bool)GetValue(EnableSmoothScrollingProperty); }
+            set { SetValue(EnableSmoothScrollingProperty, value); }
         }
 
         /// <summary>
-        /// Scrolling animation duration
+        /// Smooth scrolling time
         /// </summary>
-        public Duration ScrollingAnimationDuration
+        public TimeSpan SmoothScrollingTime
         {
-            get { return (Duration)GetValue(ScrollingAnimationDurationProperty); }
-            set { SetValue(ScrollingAnimationDurationProperty, value); }
+            get { return (TimeSpan)GetValue(SmoothScrollingTimeProperty); }
+            set { SetValue(SmoothScrollingTimeProperty, value); }
         }
 
         /// <summary>
@@ -446,35 +494,6 @@ namespace EleCho.WpfSuite.Controls
 
 
 
-
-
-
-        /// <summary>
-        /// The key needed set a read-only property
-        /// </summary>
-        public static readonly DependencyPropertyKey HorizontalOffsetTargetPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(HorizontalOffsetTarget), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(0.0));
-
-        /// <summary>
-        /// The key needed set a read-only property
-        /// </summary>
-        public static readonly DependencyPropertyKey VerticalOffsetTargetPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(VerticalOffsetTarget), typeof(double), typeof(ScrollViewer), new FrameworkPropertyMetadata(0.0));
-
-        /// <summary>
-        /// The key needed set a read-only property
-        /// </summary>
-        public static readonly DependencyProperty HorizontalOffsetTargetProperty =
-            HorizontalOffsetTargetPropertyKey.DependencyProperty;
-
-        /// <summary>
-        /// The key needed set a read-only property
-        /// </summary>
-        public static readonly DependencyProperty VerticalOffsetTargetProperty =
-            VerticalOffsetTargetPropertyKey.DependencyProperty;
-
-
-
         /// <summary>
         /// Get value of ScrollWithWheelDelta property
         /// </summary>
@@ -502,7 +521,7 @@ namespace EleCho.WpfSuite.Controls
         /// <returns></returns>
         public static bool GetEnableScrollingAnimation(DependencyObject obj)
         {
-            return (bool)obj.GetValue(EnableScrollingAnimationProperty);
+            return (bool)obj.GetValue(EnableSmoothScrollingProperty);
         }
 
         /// <summary>
@@ -512,27 +531,7 @@ namespace EleCho.WpfSuite.Controls
         /// <param name="value"></param>
         public static void SetEnableScrollingAnimation(DependencyObject obj, bool value)
         {
-            obj.SetValue(EnableScrollingAnimationProperty, value);
-        }
-
-        /// <summary>
-        /// Get value of ScrollingAnimationDuration property
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static Duration GetScrollingAnimationDuration(DependencyObject obj)
-        {
-            return (Duration)obj.GetValue(ScrollingAnimationDurationProperty);
-        }
-
-        /// <summary>
-        /// Set value of ScrollingAnimationDuration property
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="value"></param>
-        public static void SetScrollingAnimationDuration(DependencyObject obj, Duration value)
-        {
-            obj.SetValue(ScrollingAnimationDurationProperty, value);
+            obj.SetValue(EnableSmoothScrollingProperty, value);
         }
 
 
@@ -565,18 +564,18 @@ namespace EleCho.WpfSuite.Controls
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// The DependencyProperty of <see cref="EnableScrollingAnimation"/> property.
+        /// The DependencyProperty of <see cref="EnableSmoothScrolling"/> property.
         /// </summary>
-        public static readonly DependencyProperty EnableScrollingAnimationProperty =
-            DependencyProperty.RegisterAttached(nameof(EnableScrollingAnimation), typeof(bool), typeof(ScrollViewer),
+        public static readonly DependencyProperty EnableSmoothScrollingProperty =
+            DependencyProperty.RegisterAttached(nameof(EnableSmoothScrolling), typeof(bool), typeof(ScrollViewer),
                 new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// The DependencyProperty of <see cref="ScrollingAnimationDuration"/> property.
+        /// The DependencyProperty of <see cref="SmoothScrollingTime"/> property.
         /// </summary>
-        public static readonly DependencyProperty ScrollingAnimationDurationProperty =
-            DependencyProperty.RegisterAttached(nameof(ScrollingAnimationDuration), typeof(Duration), typeof(ScrollViewer),
-                new FrameworkPropertyMetadata(new Duration(TimeSpan.FromMilliseconds(250)), FrameworkPropertyMetadataOptions.Inherits), ValidateScrollingAnimationDuration);
+        public static readonly DependencyProperty SmoothScrollingTimeProperty =
+            DependencyProperty.RegisterAttached(nameof(SmoothScrollingTime), typeof(TimeSpan), typeof(ScrollViewer),
+                new FrameworkPropertyMetadata(TimeSpan.FromSeconds(0.2), FrameworkPropertyMetadataOptions.Inherits), ValidateSmoothScrollingTime);
 
         /// <summary>
         /// The DependencyProperty of <see cref="AlwaysHandleMouseWheelScrolling"/> property
@@ -608,7 +607,9 @@ namespace EleCho.WpfSuite.Controls
         public static readonly DependencyProperty PreferedScrollOrientationProperty =
             DependencyProperty.Register(nameof(PreferedScrollOrientation), typeof(Orientation), typeof(ScrollViewer), new FrameworkPropertyMetadata(Orientation.Vertical));
 
-        private static bool ValidateScrollingAnimationDuration(object value)
-            => value is Duration duration && duration.HasTimeSpan;
+        private static bool ValidateSmoothScrollingTime(object value)
+        {
+            return value is TimeSpan timeSpan && timeSpan.TotalSeconds > 0;
+        }
     }
 }
