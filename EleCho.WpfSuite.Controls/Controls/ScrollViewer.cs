@@ -211,9 +211,8 @@ namespace EleCho.WpfSuite.Controls
 
             foreach (var scrollViewer in s_scrollViewersOnUI)
             {
-                var scrollInfo = scrollViewer.ScrollInfo;
-                var verticalOffset = scrollInfo.VerticalOffset;
-                var horizontalOffset = scrollInfo.HorizontalOffset;
+                var verticalOffset = scrollViewer.VerticalOffset;
+                var horizontalOffset = scrollViewer.HorizontalOffset;
                 var verticalOffsetTarget = scrollViewer._requestingSmoothVerticalOffsetTarget;
                 var horizontalOffsetTarget = scrollViewer._requestingSmoothHorizontalOffsetTarget;
                 var dynamicsFrequency = 1 / scrollViewer.SmoothScrollingTime.TotalSeconds;
@@ -227,7 +226,7 @@ namespace EleCho.WpfSuite.Controls
 
                     if (Math.Abs(animatedVerticalOffset - verticalOffset) > 0.1)
                     {
-                        scrollInfo.SetVerticalOffset(animatedVerticalOffset);
+                        scrollViewer.ScrollToVerticalOffset(animatedVerticalOffset);
                     }
 
                     // stop 
@@ -251,7 +250,7 @@ namespace EleCho.WpfSuite.Controls
 
                     if (Math.Abs(animatedHorizontalOffset - horizontalOffset) > 0.1)
                     {
-                        scrollInfo.SetHorizontalOffset(animatedHorizontalOffset);
+                        scrollViewer.ScrollToHorizontalOffset(animatedHorizontalOffset);
                     }
 
                     // stop 
