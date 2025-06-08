@@ -165,27 +165,30 @@ namespace EleCho.WpfSuite.Controls
                     DrawVisual(drawingContext, drawingVisual, parentRelatedXY);
                 }
 
-                if (currentParent is Panel parentPanelToRender)
+                var childCount = VisualTreeHelper.GetChildrenCount(currentParent);
+                for (int i = 0; i < childCount; i++)
                 {
-                    foreach (UIElement child in parentPanelToRender.Children)
+                    if (VisualTreeHelper.GetChild(currentParent, i) is not UIElement child)
                     {
-                        if (child == breakElement)
-                        {
-                            break;
-                        }
+                        continue;
+                    }
 
-                        var childRelatedXY = child.TranslatePoint(default, self);
-                        var childRect = new Rect(childRelatedXY, child.RenderSize);
+                    if (child == breakElement)
+                    {
+                        break;
+                    }
 
-                        if (!selfRect.IntersectsWith(childRect))
-                        {
-                            continue; // skip if not intersecting
-                        }
+                    var childRelatedXY = child.TranslatePoint(default, self);
+                    var childRect = new Rect(childRelatedXY, child.RenderSize);
 
-                        if (child.IsVisible)
-                        {
-                            DrawVisual(drawingContext, child, childRelatedXY);
-                        }
+                    if (!selfRect.IntersectsWith(childRect))
+                    {
+                        continue; // skip if not intersecting
+                    }
+
+                    if (child.IsVisible)
+                    {
+                        DrawVisual(drawingContext, child, childRelatedXY);
                     }
                 }
             }
