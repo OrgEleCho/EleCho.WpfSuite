@@ -24,6 +24,7 @@
             </StackPanel>
         </ScrollViewer>
         <ws:ListBox x:Name="testListBox" Grid.Column="1"
+                    d:ItemsSource="{d:SampleData ItemCount=30}"
                     VirtualizingPanel.ScrollUnit="Pixel"
                     VirtualizingPanel.VirtualizationMode="Recycling">
 
@@ -33,5 +34,23 @@
                  VirtualizingPanel.VirtualizationMode="Recycling">
 
         </ListBox>
+        <ws:BlurBehindBorder Grid.Column="1"
+                             Margin="20 0 35 20"
+                             VerticalAlignment="Bottom"
+                             Background="#33FF0000"
+                             CornerRadius="8"
+                             BlurRadius="8"
+                             BlurKernelType="Gaussian"
+                             Height="50">
+            <ws:BlurBehindBorder.Effect>
+                <DropShadowEffect BlurRadius="10"
+                                  ShadowDepth="0"
+                                  Opacity="0.4"/>
+            </ws:BlurBehindBorder.Effect>
+            <TextBlock Text="卧槽, 背景模糊"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="18"/>
+        </ws:BlurBehindBorder>
     </Grid>
 </Window>

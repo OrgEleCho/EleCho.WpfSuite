@@ -18,27 +18,31 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(ContentClipProperty, value); }
         }
 
-
-        /// <summary>
-        /// The key needed set a read-only property
-        /// </summary>
-        public static readonly DependencyPropertyKey ContentClipPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Border), new FrameworkPropertyMetadata(default(Geometry)));
-
-        /// <summary>
-        /// The DependencyProperty for the ContentClip property. <br/>
-        /// Flags: None <br/>
-        /// Default value: null
-        /// </summary>
-        public static readonly DependencyProperty ContentClipProperty =
-            ContentClipPropertyKey.DependencyProperty;
-
         /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
             SetValue(ContentClipPropertyKey, CalculateContentClip(this));
 
             return base.ArrangeOverride(finalSize);
+        }
+
+        internal static Geometry? CalculateLayoutClip(Size layoutSlotSize, Thickness borderThickness, CornerRadius cornerRadius)
+        {
+            if (layoutSlotSize.Width <= 0 ||
+                layoutSlotSize.Height <= 0)
+            {
+                return new RectangleGeometry(new Rect(0, 0, 0, 0));
+            }
+
+            var rect = new Rect(0, 0, layoutSlotSize.Width, layoutSlotSize.Height);
+            var radii = new Radii(cornerRadius, borderThickness, true);
+
+            var layoutGeometry = new StreamGeometry();
+            using StreamGeometryContext ctx = layoutGeometry.Open();
+            GenerateGeometry(ctx, rect, radii);
+
+            layoutGeometry.Freeze();
+            return layoutGeometry;
         }
 
         /// <inheritdoc/>
@@ -49,25 +53,7 @@ namespace EleCho.WpfSuite.Controls
                 return null;
             }
 
-            var borderThickness = BorderThickness;
-            var cornerRadius = CornerRadius;
-            var renderSize = RenderSize;
-
-            if (renderSize.Width <= 0 ||
-                renderSize.Height <= 0)
-            {
-                return null;
-            }
-
-            var rect = new Rect(0, 0, renderSize.Width, renderSize.Height);
-            var radii = new Radii(cornerRadius, borderThickness, true);
-
-            var layoutGeometry = new StreamGeometry();
-            using StreamGeometryContext ctx = layoutGeometry.Open();
-            GenerateGeometry(ctx, rect, radii);
-
-            layoutGeometry.Freeze();
-            return layoutGeometry;
+            return CalculateLayoutClip(layoutSlotSize, BorderThickness, CornerRadius);
         }
 
         private static Geometry? CalculateContentClip(System.Windows.Controls.Border border)
@@ -223,6 +209,21 @@ namespace EleCho.WpfSuite.Controls
                 ctx.ArcTo(topLeft, new Size(radiusX, radiusY), 0, false, SweepDirection.Clockwise, true, false);
             }
         }
+
+
+        /// <summary>
+        /// The key needed set a read-only property
+        /// </summary>
+        private static readonly DependencyPropertyKey ContentClipPropertyKey =
+            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(Border), new FrameworkPropertyMetadata(default(Geometry)));
+
+        /// <summary>
+        /// The DependencyProperty for the ContentClip property. <br/>
+        /// Flags: None <br/>
+        /// Default value: null
+        /// </summary>
+        public static readonly DependencyProperty ContentClipProperty =
+            ContentClipPropertyKey.DependencyProperty;
 
 
         internal struct Radii
