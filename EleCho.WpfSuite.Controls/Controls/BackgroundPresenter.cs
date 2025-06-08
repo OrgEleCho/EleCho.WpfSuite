@@ -224,7 +224,7 @@ namespace EleCho.WpfSuite.Controls
         /// Dependency property for <see cref="MaxDepth"/>.
         /// </summary>
         public static readonly DependencyProperty MaxDepthProperty =
-            DependencyProperty.Register("MaxDepth", typeof(int), typeof(BackgroundPresenter), new PropertyMetadata(64));
+            DependencyProperty.Register("MaxDepth", typeof(int), typeof(BackgroundPresenter), new FrameworkPropertyMetadata(64));
     }
 
 }
