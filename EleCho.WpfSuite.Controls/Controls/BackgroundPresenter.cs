@@ -97,9 +97,7 @@ namespace EleCho.WpfSuite.Controls
             int maxDepth,
             bool throwExceptionIfParentArranging)
         {
-#if DEBUG
             bool selfInDesignMode = DesignerProperties.GetIsInDesignMode(self);
-#endif
 
             var parent = VisualTreeHelper.GetParent(self) as UIElement;
             while (
@@ -113,14 +111,12 @@ namespace EleCho.WpfSuite.Controls
                     return;
                 }
 
-#if DEBUG
                 if (selfInDesignMode &&
                     parent.GetType().ToString().Contains("VisualStudio"))
                 {
                     // 遍历到 VS 自身的设计器元素, 中断!
                     break;
                 }
-#endif
 
                 // is parent arranging
                 // we cannot render it
