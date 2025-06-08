@@ -1,0 +1,41 @@
+﻿<Window x:Class="BlurBehindTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlurBehindTest"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <VisualBrush Viewport="0,0,16,16"
+                         ViewportUnits="Absolute"
+                         TileMode="Tile">
+                <VisualBrush.Visual>
+                    <UniformGrid Columns="2"
+                                 Width="16"
+                                 Height="16">
+                        <Rectangle Fill="#1a1a1a"/>
+                        <Rectangle Fill="#2e2e2e"/>
+                        <Rectangle Fill="#2e2e2e"/>
+                        <Rectangle Fill="#1a1a1a"/>
+                    </UniformGrid>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Grid.Background>
+
+        <Button Background="{x:Null}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Width="300"
+                Height="300">
+            <ws:BlurBehindBorder CornerRadius="8"
+                                 BlurRadius="10"
+                                 Background="#11FF0000">
+                <TextBlock Text="OWIEJFIOWJEOjawioejfoiweFI"
+                           Margin="24"/>
+            </ws:BlurBehindBorder>
+        </Button>
+    </Grid>
+</Window>
