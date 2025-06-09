@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\SlimeNull\OneDrive\Pictures\Desktop\0c0f3f16880511ebb6edd017c2d2eca2.jpg"/>
-        </Grid.Background>
+        <!--<Grid.Background>
+        <ImageBrush ImageSource="C:\Users\SlimeNull\OneDrive\Pictures\Desktop\0c0f3f16880511ebb6edd017c2d2eca2.jpg"/>
+        </Grid.Background>-->
 
         <TextBlock Text="Sed amet nisl facilisis vero dolor sea et dolor dolore"
                    HorizontalAlignment="Left"

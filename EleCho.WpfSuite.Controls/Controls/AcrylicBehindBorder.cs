@@ -11,7 +11,7 @@ using EleCho.WpfSuite.Internal.Effects;
 namespace EleCho.WpfSuite.Controls
 {
     /// <inheritdoc/>
-    public class AcrylicBlurBehindBorder : System.Windows.Controls.Border
+    public class AcrylicBehindBorder : System.Windows.Controls.Border
     {
         private readonly Stack<UIElement> _panelStack = new();
 
@@ -201,7 +201,7 @@ namespace EleCho.WpfSuite.Controls
         /// The key needed set a read-only property
         /// </summary>
         private static readonly DependencyPropertyKey ContentClipPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(AcrylicBlurBehindBorder), new FrameworkPropertyMetadata(default(Geometry)));
+            DependencyProperty.RegisterReadOnly(nameof(ContentClip), typeof(Geometry), typeof(AcrylicBehindBorder), new FrameworkPropertyMetadata(default(Geometry)));
 
         /// <summary>
         /// The DependencyProperty for the ContentClip property. <br/>
@@ -215,38 +215,38 @@ namespace EleCho.WpfSuite.Controls
         /// The maximum depth of the visual tree to render.
         /// </summary>
         public static readonly DependencyProperty MaxDepthProperty =
-            BackgroundPresenter.MaxDepthProperty.AddOwner(typeof(AcrylicBlurBehindBorder));
+            BackgroundPresenter.MaxDepthProperty.AddOwner(typeof(AcrylicBehindBorder));
 
         /// <summary>
         /// The radius of the blur effect applied to the background.
         /// </summary>
         public static readonly DependencyProperty BlurRadiusProperty =
-            BlurBehindBorder.BlurRadiusProperty.AddOwner(typeof(AcrylicBlurBehindBorder));
+            BlurBehindBorder.BlurRadiusProperty.AddOwner(typeof(AcrylicBehindBorder));
 
         /// <summary>
         /// The type of kernel used for the blur effect.
         /// </summary>
         public static readonly DependencyProperty BlurKernelTypeProperty =
-            BlurBehindBorder.BlurKernelTypeProperty.AddOwner(typeof(AcrylicBlurBehindBorder));
+            BlurBehindBorder.BlurKernelTypeProperty.AddOwner(typeof(AcrylicBehindBorder));
 
         /// <summary>
         /// The rendering bias for the blur effect, which can affect performance and quality.
         /// </summary>
         public static readonly DependencyProperty BlurRenderingBiasProperty =
-            BlurBehindBorder.BlurRenderingBiasProperty.AddOwner(typeof(AcrylicBlurBehindBorder));
+            BlurBehindBorder.BlurRenderingBiasProperty.AddOwner(typeof(AcrylicBehindBorder));
 
         /// <summary>
         /// The strength of the noise effect applied to the background.
         /// </summary>
         public static readonly DependencyProperty NoiseStrengthProperty =
-            DependencyProperty.Register(nameof(NoiseStrength), typeof(double), typeof(AcrylicBlurBehindBorder), 
+            DependencyProperty.Register(nameof(NoiseStrength), typeof(double), typeof(AcrylicBehindBorder), 
                 new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// The color used to blend with the background.
         /// </summary>
         public static readonly DependencyProperty BlendColorProperty =
-            DependencyProperty.Register(nameof(BlendColor), typeof(Color), typeof(AcrylicBlurBehindBorder), 
+            DependencyProperty.Register(nameof(BlendColor), typeof(Color), typeof(AcrylicBehindBorder), 
                 new FrameworkPropertyMetadata(Colors.Transparent, FrameworkPropertyMetadataOptions.AffectsRender));
     }
 }
