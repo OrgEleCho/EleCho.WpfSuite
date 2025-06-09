@@ -192,18 +192,26 @@ namespace EleCho.WpfSuite.Controls
         /// The radius of the blur effect applied to the background.
         /// </summary>
         public static readonly DependencyProperty BlurRadiusProperty =
-            DependencyProperty.Register(nameof(BlurRadius), typeof(double), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.AffectsRender));
+            DependencyProperty.Register(nameof(BlurRadius), typeof(double), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(5.0, propertyChangedCallback: OnRenderPropertyChanged));
 
         /// <summary>
         /// The type of kernel used for the blur effect.
         /// </summary>
         public static readonly DependencyProperty BlurKernelTypeProperty =
-            DependencyProperty.Register(nameof(BlurKernelType), typeof(KernelType), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(KernelType.Gaussian, FrameworkPropertyMetadataOptions.AffectsRender));
+            DependencyProperty.Register(nameof(BlurKernelType), typeof(KernelType), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(KernelType.Gaussian, propertyChangedCallback: OnRenderPropertyChanged));
 
         /// <summary>
         /// The rendering bias for the blur effect, which can affect performance and quality.
         /// </summary>
         public static readonly DependencyProperty BlurRenderingBiasProperty =
-            DependencyProperty.Register(nameof(BlurRenderingBias), typeof(RenderingBias), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(RenderingBias.Performance, FrameworkPropertyMetadataOptions.AffectsRender));
+            DependencyProperty.Register(nameof(BlurRenderingBias), typeof(RenderingBias), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(RenderingBias.Performance, propertyChangedCallback: OnRenderPropertyChanged));
+
+        private static void OnRenderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is UIElement element)
+            {
+                BackgroundPresenter.ForceRender(element);
+            }
+        }
     }
 }

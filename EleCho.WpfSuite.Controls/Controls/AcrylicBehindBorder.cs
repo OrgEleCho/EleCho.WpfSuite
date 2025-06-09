@@ -13,6 +13,11 @@ namespace EleCho.WpfSuite.Controls
     /// <inheritdoc/>
     public class AcrylicBehindBorder : System.Windows.Controls.Border
     {
+        static AcrylicBehindBorder()
+        {
+            BlurRadiusProperty.OverrideMetadata(typeof(AcrylicBehindBorder), new FrameworkPropertyMetadata(64.0));
+        }
+
         private readonly Stack<UIElement> _panelStack = new();
 
         /// <summary>
@@ -167,7 +172,7 @@ namespace EleCho.WpfSuite.Controls
                     Effect = new BlendEffect()
                     {
                         InputSize = new Size(RenderSize.Width, RenderSize.Height),
-                        NoiseStrength = NoiseStrength / 15,
+                        NoiseStrength = NoiseStrength / 20,
                         OverlayColor = BlendColor,
                     }
                 };
@@ -240,13 +245,21 @@ namespace EleCho.WpfSuite.Controls
         /// </summary>
         public static readonly DependencyProperty NoiseStrengthProperty =
             DependencyProperty.Register(nameof(NoiseStrength), typeof(double), typeof(AcrylicBehindBorder), 
-                new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+                new FrameworkPropertyMetadata(1.0, propertyChangedCallback: OnRenderPropertyChanged));
 
         /// <summary>
         /// The color used to blend with the background.
         /// </summary>
         public static readonly DependencyProperty BlendColorProperty =
             DependencyProperty.Register(nameof(BlendColor), typeof(Color), typeof(AcrylicBehindBorder), 
-                new FrameworkPropertyMetadata(Colors.Transparent, FrameworkPropertyMetadataOptions.AffectsRender));
+                new FrameworkPropertyMetadata(Colors.Transparent, propertyChangedCallback: OnRenderPropertyChanged));
+
+        private static void OnRenderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is UIElement element)
+            {
+                BackgroundPresenter.ForceRender(element);
+            }
+        }
     }
 }
