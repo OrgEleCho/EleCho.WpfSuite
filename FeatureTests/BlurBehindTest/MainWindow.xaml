@@ -9,33 +9,20 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <VisualBrush Viewport="0,0,16,16"
-                         ViewportUnits="Absolute"
-                         TileMode="Tile">
-                <VisualBrush.Visual>
-                    <UniformGrid Columns="2"
-                                 Width="16"
-                                 Height="16">
-                        <Rectangle Fill="#1a1a1a"/>
-                        <Rectangle Fill="#2e2e2e"/>
-                        <Rectangle Fill="#2e2e2e"/>
-                        <Rectangle Fill="#1a1a1a"/>
-                    </UniformGrid>
-                </VisualBrush.Visual>
-            </VisualBrush>
+            <ImageBrush ImageSource="C:\Users\SlimeNull\OneDrive\Pictures\Desktop\0c0f3f16880511ebb6edd017c2d2eca2.jpg"/>
         </Grid.Background>
 
-        <Button Background="{x:Null}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Width="300"
-                Height="300">
-            <ws:BlurBehindBorder CornerRadius="8"
-                                 BlurRadius="10"
-                                 Background="#11FF0000">
-                <TextBlock Text="OWIEJFIOWJEOjawioejfoiweFI"
-                           Margin="24"/>
-            </ws:BlurBehindBorder>
-        </Button>
+        <TextBlock Text="Sed amet nisl facilisis vero dolor sea et dolor dolore"
+                   HorizontalAlignment="Left"
+                   Width="50"
+                   TextWrapping="Wrap"/>
+
+        <Canvas>
+            <ws:AcrylicBlurBehindBorder Width="300"
+                                        Height="300"
+                                        Margin="20"
+                                        BlurRadius="100"
+                                        CornerRadius="30"/>
+        </Canvas>
     </Grid>
 </Window>

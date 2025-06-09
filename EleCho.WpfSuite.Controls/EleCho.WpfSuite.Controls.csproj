@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Internal\Effects\BlendEffect.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EleCho.WpfSuite.Helpers\EleCho.WpfSuite.Helpers.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Input\EleCho.WpfSuite.Input.csproj" />
     <ProjectReference Include="..\EleCho.WpfSuite.Media\EleCho.WpfSuite.Media.csproj" />
@@ -24,6 +28,10 @@
 
   <ItemGroup Label="Package">
     <None Include="..\SourceGenerators\EleCho.WpfSuite.Controls.StateGenerators\bin\$(Configuration)\netstandard2.0\EleCho.WpfSuite.Controls.StateGenerators.dll" PackagePath="analyzers\dotnet\cs" Pack="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Internal\Effects\BlendEffect.ps" />
   </ItemGroup>
 
 </Project>

@@ -7,5 +7,6 @@ using System.Windows.Markup;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("WpfTest")]
+[assembly: InternalsVisibleTo("BlurBehindTest")]
 
 #endif
