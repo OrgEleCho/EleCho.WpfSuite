@@ -56,6 +56,10 @@ namespace EleCho.WpfSuite.Controls
 
             _methodGetContentBounds.Invoke(visualBrush, out var contentBounds);
             relatedXY -= visualOffset;
+            if (contentBounds.IsEmpty)
+            {
+                return;
+            }
 
             drawingContext.DrawRectangle(
                 visualBrush, null,
