@@ -65,10 +65,22 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(BlurRenderingBiasProperty, value); }
         }
 
+        public Color BlurBaseColor
+        {
+            get { return (Color)GetValue(BlurBaseColorProperty); }
+            set { SetValue(BlurBaseColorProperty, value); }
+        }
+
         public double NoiseStrength
         {
             get { return (double)GetValue(NoiseStrengthProperty); }
             set { SetValue(NoiseStrengthProperty, value); }
+        }
+
+        public double NoiseScale
+        {
+            get { return (double)GetValue(NoiseScaleProperty); }
+            set { SetValue(NoiseScaleProperty, value); }
         }
 
         public Color BlendColor
@@ -149,12 +161,14 @@ namespace EleCho.WpfSuite.Controls
         /// <inheritdoc/>
         protected override void OnRender(DrawingContext dc)
         {
+            double blurRadius = BlurRadius;
+            double noiseScale = NoiseScale;
+
             DrawingVisual blurDrawingVisual = new DrawingVisual()
             {
-                Clip = new RectangleGeometry(new Rect(0, 0, RenderSize.Width, RenderSize.Height)),
                 Effect = new BlurEffect()
                 {
-                    Radius = BlurRadius,
+                    Radius = blurRadius,
                     KernelType = BlurKernelType,
                     RenderingBias = BlurRenderingBias
                 }
@@ -162,6 +176,13 @@ namespace EleCho.WpfSuite.Controls
 
             using (DrawingContext visualContext = blurDrawingVisual.RenderOpen())
             {
+                var baseColorArea = new Rect(-blurRadius, -blurRadius, RenderSize.Width + blurRadius * 2, RenderSize.Height + blurRadius * 2);
+                if (!baseColorArea.IsEmpty &&
+                    BlurBaseColor.A != 0)
+                {
+                    visualContext.DrawRectangle(new SolidColorBrush(BlurBaseColor), null, baseColorArea);
+                }
+
                 BackgroundPresenter.DrawBackground(visualContext, this, _panelStack, MaxDepth, false);
             }
 
@@ -171,7 +192,10 @@ namespace EleCho.WpfSuite.Controls
                 {
                     Effect = new BlendEffect()
                     {
-                        InputSize = new Size(RenderSize.Width, RenderSize.Height),
+                        InputSize = new Size(
+                            RenderSize.Width * noiseScale + blurRadius * 2, 
+                            RenderSize.Height * noiseScale + blurRadius * 2),
+
                         NoiseStrength = NoiseStrength / 20,
                         OverlayColor = BlendColor,
                     }
@@ -180,7 +204,7 @@ namespace EleCho.WpfSuite.Controls
                 using (DrawingContext visualContext = blendDrawingVisual.RenderOpen())
                 {
                     // Draw the background with the blur effect
-                    BackgroundPresenter.DrawVisual(visualContext, blurDrawingVisual, new Point(0, 0));
+                    BackgroundPresenter.DrawVisual(visualContext, blurDrawingVisual, default, -blurRadius, -blurRadius, blurRadius, blurRadius);
                 }
 
                 var layoutClip = Border.CalculateLayoutClip(RenderSize, BorderThickness, CornerRadius);
@@ -240,11 +264,18 @@ namespace EleCho.WpfSuite.Controls
         public static readonly DependencyProperty BlurRenderingBiasProperty =
             BlurBehindBorder.BlurRenderingBiasProperty.AddOwner(typeof(AcrylicBehindBorder));
 
+        public static readonly DependencyProperty BlurBaseColorProperty =
+            BlurBehindBorder.BlurBaseColorProperty.AddOwner(typeof(AcrylicBehindBorder));
+
         /// <summary>
         /// The strength of the noise effect applied to the background.
         /// </summary>
         public static readonly DependencyProperty NoiseStrengthProperty =
             DependencyProperty.Register(nameof(NoiseStrength), typeof(double), typeof(AcrylicBehindBorder), 
+                new FrameworkPropertyMetadata(1.0, propertyChangedCallback: OnRenderPropertyChanged));
+
+        public static readonly DependencyProperty NoiseScaleProperty =
+            DependencyProperty.Register(nameof(NoiseScale), typeof(double), typeof(AcrylicBehindBorder), 
                 new FrameworkPropertyMetadata(1.0, propertyChangedCallback: OnRenderPropertyChanged));
 
         /// <summary>

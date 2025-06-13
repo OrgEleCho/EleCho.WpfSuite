@@ -59,6 +59,12 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(BlurRenderingBiasProperty, value); }
         }
 
+        public Color BlurBaseColor
+        {
+            get { return (Color)GetValue(BlurBaseColorProperty); }
+            set { SetValue(BlurBaseColorProperty, value); }
+        }
+
         /// <inheritdoc/>
         protected override Size ArrangeOverride(Size finalSize)
         {
@@ -131,12 +137,13 @@ namespace EleCho.WpfSuite.Controls
         /// <inheritdoc/>
         protected override void OnRender(DrawingContext dc)
         {
+            var blurRadius = BlurRadius;
+
             DrawingVisual drawingVisual = new DrawingVisual()
             {
-                Clip = new RectangleGeometry(new Rect(0, 0, RenderSize.Width, RenderSize.Height)),
                 Effect = new BlurEffect()
                 {
-                    Radius = BlurRadius,
+                    Radius = blurRadius,
                     KernelType = BlurKernelType,
                     RenderingBias = BlurRenderingBias
                 }
@@ -144,6 +151,13 @@ namespace EleCho.WpfSuite.Controls
 
             using (DrawingContext visualContext = drawingVisual.RenderOpen())
             {
+                var baseColorArea = new Rect(-blurRadius, -blurRadius, RenderSize.Width + blurRadius * 2, RenderSize.Height + blurRadius * 2);
+                if (!baseColorArea.IsEmpty &&
+                    BlurBaseColor.A != 0)
+                {
+                    visualContext.DrawRectangle(new SolidColorBrush(BlurBaseColor), null, baseColorArea);
+                }
+
                 BackgroundPresenter.DrawBackground(visualContext, this, _panelStack, MaxDepth, false);
             }
 
@@ -155,7 +169,7 @@ namespace EleCho.WpfSuite.Controls
                     dc.PushClip(layoutClip);
                 }
 
-                BackgroundPresenter.DrawVisual(dc, drawingVisual, default);
+                BackgroundPresenter.DrawVisual(dc, drawingVisual, default, -blurRadius, -blurRadius, blurRadius, blurRadius);
 
                 if (layoutClip != null)
                 {
@@ -205,6 +219,10 @@ namespace EleCho.WpfSuite.Controls
         /// </summary>
         public static readonly DependencyProperty BlurRenderingBiasProperty =
             DependencyProperty.Register(nameof(BlurRenderingBias), typeof(RenderingBias), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(RenderingBias.Performance, propertyChangedCallback: OnRenderPropertyChanged));
+
+
+        public static readonly DependencyProperty BlurBaseColorProperty =
+            DependencyProperty.Register(nameof(BlurBaseColor), typeof(Color), typeof(BlurBehindBorder), new FrameworkPropertyMetadata(Colors.Transparent, propertyChangedCallback: OnRenderPropertyChanged));
 
         private static void OnRenderPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

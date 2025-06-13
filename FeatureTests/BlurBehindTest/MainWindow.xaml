@@ -9,58 +9,23 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\SlimeNull\OneDrive\Pictures\Desktop\0c0f3f16880511ebb6edd017c2d2eca2.jpg"/>
+            <ImageBrush ImageSource="C:\Users\Xavier\Pictures\Abstract_Windows\02.jpg"/>
         </Grid.Background>
 
-        <TextBlock Text="Sed amet nisl facilisis vero dolor sea et dolor dolore"
-                   HorizontalAlignment="Left"
-                   Width="50"
-                   TextWrapping="Wrap"/>
-
         <Canvas>
-            <ws:BlurBehindBorder Width="200"
-                                 Height="200"
-                                 BlurRadius="64"
-                                 CornerRadius="30"
-                                 Canvas.Left="20"
-                                 Canvas.Top="20"
-                                 MouseDown="SiblingPresenter_MouseDown"
-                                 MouseUp="SiblingPresenter_MouseUp"
-                                 MouseMove="SiblingPresenter_MouseMove">
-                <ws:BlurBehindBorder.Effect>
-                    <DropShadowEffect ShadowDepth="0"
-                                      BlurRadius="10"/>
-                </ws:BlurBehindBorder.Effect>
-            </ws:BlurBehindBorder>
-
             <ws:AcrylicBehindBorder Width="200"
                                     Height="200"
-                                    BlurRadius="64"
-                                    NoiseStrength="1"
-                                    BlendColor="#66000000"
+                                    BlurRadius="300"
                                     CornerRadius="30"
-                                    Canvas.Left="250"
+                                    Canvas.Left="20"
                                     Canvas.Top="20"
+                                    NoiseStrength="1"
+                                    BlurBaseColor="Purple"
+                                    Background="#11000000"
                                     MouseDown="SiblingPresenter_MouseDown"
                                     MouseUp="SiblingPresenter_MouseUp"
                                     MouseMove="SiblingPresenter_MouseMove">
-                <ws:AcrylicBehindBorder.Effect>
-                    <DropShadowEffect ShadowDepth="0"
-                                      BlurRadius="10"/>
-                </ws:AcrylicBehindBorder.Effect>
             </ws:AcrylicBehindBorder>
-
-            <ws:BackgroundPresenter Width="200"
-                                    Height="200"
-                                    Canvas.Top="20"
-                                    Canvas.Left="500"
-                                    MouseDown="SiblingPresenter_MouseDown"
-                                    MouseUp="SiblingPresenter_MouseUp"
-                                    MouseMove="SiblingPresenter_MouseMove">
-                <ws:BackgroundPresenter.Effect>
-                    <BlurEffect Radius="30"/>
-                </ws:BackgroundPresenter.Effect>
-            </ws:BackgroundPresenter>
         </Canvas>
     </Grid>
 </Window>

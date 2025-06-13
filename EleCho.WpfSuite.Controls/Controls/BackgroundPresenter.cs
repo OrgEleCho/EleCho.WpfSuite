@@ -49,7 +49,7 @@ namespace EleCho.WpfSuite.Controls
             _onRenderMethod.Invoke(target, drawingContext);
         }
 
-        internal static void DrawVisual(DrawingContext drawingContext, Visual visual, Point relatedXY)
+        internal static void DrawVisual(DrawingContext drawingContext, Visual visual, Point relatedXY, double leftOffset, double topOffset, double rightOffset, double bottomOffset)
         {
             var visualBrush = new VisualBrush(visual);
             var visualOffset = (Vector)_offsetOfVisual.GetValue(visual)!;
@@ -63,7 +63,16 @@ namespace EleCho.WpfSuite.Controls
 
             drawingContext.DrawRectangle(
                 visualBrush, null,
-                new Rect(relatedXY.X + contentBounds.X, relatedXY.Y + contentBounds.Y, contentBounds.Width, contentBounds.Height));
+                new Rect(
+                    relatedXY.X + contentBounds.X + leftOffset,
+                    relatedXY.Y + contentBounds.Y + topOffset,
+                    contentBounds.Width - leftOffset + rightOffset,
+                    contentBounds.Height - topOffset + bottomOffset));
+        }
+
+        internal static void DrawVisual(DrawingContext drawingContext, Visual visual, Point relatedXY)
+        {
+            DrawVisual(drawingContext, visual, relatedXY, 0, 0, 0, 0);
         }
 
         /// <inheritdoc/>
