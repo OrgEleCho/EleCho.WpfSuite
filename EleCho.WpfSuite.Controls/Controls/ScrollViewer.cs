@@ -256,7 +256,7 @@ namespace EleCho.WpfSuite.Controls
                     // stop 
                     if (Math.Abs(deltaValue) < 0.05)
                     {
-                        scrollViewer._requestingSmoothVerticalOffsetTarget = double.NaN;
+                        scrollViewer._requestingSmoothHorizontalOffsetTarget = double.NaN;
                         scrollViewer._horizontalSecondOrderDynamics = null;
                     }
                 }

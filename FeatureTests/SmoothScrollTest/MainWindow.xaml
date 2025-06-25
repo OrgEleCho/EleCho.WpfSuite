@@ -25,6 +25,7 @@
         </ScrollViewer>
         <ws:ListBox x:Name="testListBox" Grid.Column="1"
                     d:ItemsSource="{d:SampleData ItemCount=30}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     VirtualizingPanel.ScrollUnit="Pixel"
                     VirtualizingPanel.VirtualizationMode="Recycling">
 
