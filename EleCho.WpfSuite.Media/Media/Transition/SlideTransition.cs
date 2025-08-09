@@ -11,7 +11,7 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// Slide transition
     /// </summary>
-    public class SlideTransition : ContentTransition
+    public class SlideTransition : StoryboardContentTransition
     {
         /// <summary>
         /// Slide orientation

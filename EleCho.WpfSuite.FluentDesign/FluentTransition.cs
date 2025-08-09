@@ -11,7 +11,7 @@ using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
-    public class FluentTransition : ContentTransition
+    public class FluentTransition : StoryboardContentTransition
     {
         static FluentTransition()
         {
@@ -73,7 +73,6 @@ namespace EleCho.WpfSuite.FluentDesign
             DoubleAnimationUsingKeyFrames opacityAnimation = new()
             {
                 Duration = Duration,
-                FillBehavior = FillBehavior.Stop,
                 KeyFrames =
                 {
                     new DiscreteDoubleKeyFrame(0, KeyTime.FromTimeSpan(TimeSpan.Zero)),
@@ -145,7 +144,6 @@ namespace EleCho.WpfSuite.FluentDesign
 
             return new Storyboard()
             {
-                FillBehavior = FillBehavior.Stop,
                 Duration = Duration,
                 Children =
                 {

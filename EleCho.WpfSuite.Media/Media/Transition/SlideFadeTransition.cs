@@ -8,7 +8,7 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// Slide and fade transition
     /// </summary>
-    public class SlideFadeTransition : ContentTransition
+    public class SlideFadeTransition : StoryboardContentTransition
     {
         /// <summary>
         /// Slide orientation

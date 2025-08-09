@@ -7,7 +7,7 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// Fade transition
     /// </summary>
-    public class FadeTransition : ContentTransition
+    public class FadeTransition : StoryboardContentTransition
     {
         /// <inheritdoc/>
         protected override Freezable CreateInstanceCore() => new FadeTransition();

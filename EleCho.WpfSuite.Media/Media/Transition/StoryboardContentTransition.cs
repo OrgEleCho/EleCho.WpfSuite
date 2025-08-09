@@ -9,12 +9,12 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// ContentTransition
     /// </summary>
-    public abstract class ContentTransition : Freezable, IContentTransition
+    public abstract class StoryboardContentTransition : Freezable, IContentTransition
     {
         /// <summary>
         /// Create an instance of this Transition
         /// </summary>
-        public ContentTransition()
+        public StoryboardContentTransition()
         {
 
         }
@@ -66,6 +66,7 @@ namespace EleCho.WpfSuite.Media.Transition
             {
                 oldContentStoryboard = CreateOldContentStoryboard(container, oldContent, forward);
             }
+
             if (newContent is not null)
             {
                 newContentStoryboard = CreateNewContentStoryboard(container, newContent, forward);
@@ -83,8 +84,8 @@ namespace EleCho.WpfSuite.Media.Transition
                 completed = true;
             };
 
-            newContentStoryboard?.Begin(newContent);
-            oldContentStoryboard?.Begin(oldContent);
+            newContentStoryboard?.Begin(newContent, true);
+            oldContentStoryboard?.Begin(oldContent, true);
 
             while (true)
             {
@@ -97,11 +98,12 @@ namespace EleCho.WpfSuite.Media.Transition
 
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    newContentStoryboard?.Stop(newContent);
-                    oldContentStoryboard?.Stop(oldContent);
                     break;
                 }
             }
+
+            newContentStoryboard?.Stop(newContent);
+            oldContentStoryboard?.Stop(oldContent);
         }
 
         /// <summary>
@@ -127,12 +129,12 @@ namespace EleCho.WpfSuite.Media.Transition
         /// </summary>
 
         public static readonly DependencyProperty DurationProperty =
-            DependencyProperty.Register(nameof(Duration), typeof(Duration), typeof(ContentTransition), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150)), null, CoerceDuration));
+            DependencyProperty.Register(nameof(Duration), typeof(Duration), typeof(StoryboardContentTransition), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(150)), null, CoerceDuration));
 
         /// <summary>
         /// The DependencyProperty of <see cref="EasingFunction"/> property
         /// </summary>
         public static readonly DependencyProperty EasingFunctionProperty =
-            DependencyProperty.Register(nameof(EasingFunction), typeof(IEasingFunction), typeof(ContentTransition), new PropertyMetadata(new CircleEase() { EasingMode = EasingMode.EaseOut }));
+            DependencyProperty.Register(nameof(EasingFunction), typeof(IEasingFunction), typeof(StoryboardContentTransition), new PropertyMetadata(new CircleEase() { EasingMode = EasingMode.EaseOut }));
     }
 }

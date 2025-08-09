@@ -33,7 +33,6 @@
                            CornerRadius="3">
                     <ws:ScrollViewer PanningMode="Both"
                                      ws:MouseTouchDevice.Simulate="True"
-                                     ScrollingAnimationDuration="0:0:0.5"
                                      MouseScrollDeltaFactor="2"
                                      TouchpadScrollDeltaFactor="3"
                                      Padding="14"
@@ -146,7 +145,7 @@
                                  HorizontalScrollBarVisibility="Auto"
                                  ws:MouseTouchDevice.Simulate="True">
                     <TextBlock Width="300"
-                               Height="300"  
+                               Height="300"
                                TextWrapping="Wrap"
                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                ScrollViewer.VerticalScrollBarVisibility="Auto"

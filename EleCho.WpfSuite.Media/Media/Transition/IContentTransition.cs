@@ -22,6 +22,6 @@ namespace EleCho.WpfSuite.Media.Transition
         /// <param name="forward">This transition is forward</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns></returns>
-        public Task Run(FrameworkElement container, FrameworkElement? oldContent, FrameworkElement? newContent, bool forward, CancellationToken cancellationToken);
+        public abstract Task Run(FrameworkElement container, FrameworkElement? oldContent, FrameworkElement? newContent, bool forward, CancellationToken cancellationToken);
     }
 }

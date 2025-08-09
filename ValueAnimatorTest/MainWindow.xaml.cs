@@ -26,11 +26,7 @@ namespace ValueAnimatorTest
 
         public ValueAnimator<double> ItemWidth { get; } = new ValueAnimator<double>(200)
         {
-            Duration = new Duration(TimeSpan.FromMilliseconds(350)),
-            EasingFunction = new SineEase()
-            {
-                EasingMode = EasingMode.EaseOut,
-            }
+
         };
 
         private void Button_Click(object sender, RoutedEventArgs e)

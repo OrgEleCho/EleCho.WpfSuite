@@ -8,24 +8,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\Xavier\Pictures\Abstract_Windows\02.jpg"/>
-        </Grid.Background>
+
+        <MediaElement Source="D:\CloudMusic\MV\李宗盛 - 山丘.mp4"/>
 
         <Canvas>
-            <ws:AcrylicBehindBorder Width="200"
-                                    Height="200"
-                                    BlurRadius="300"
-                                    CornerRadius="30"
-                                    Canvas.Left="20"
-                                    Canvas.Top="20"
-                                    NoiseStrength="1"
-                                    BlurBaseColor="Purple"
-                                    Background="#11000000"
-                                    MouseDown="SiblingPresenter_MouseDown"
-                                    MouseUp="SiblingPresenter_MouseUp"
-                                    MouseMove="SiblingPresenter_MouseMove">
-            </ws:AcrylicBehindBorder>
+            <ws:BlurBehindBorder Width="200"
+                                 Height="200"
+                                 BlurRadius="30"
+                                 CornerRadius="30"
+                                 Canvas.Left="20"
+                                 Canvas.Top="20"
+                                 BlurBaseColor="White"
+                                 Background="#11000000"
+                                 MouseDown="SiblingPresenter_MouseDown"
+                                 MouseUp="SiblingPresenter_MouseUp"
+                                 MouseMove="SiblingPresenter_MouseMove">
+            </ws:BlurBehindBorder>
         </Canvas>
     </Grid>
 </Window>

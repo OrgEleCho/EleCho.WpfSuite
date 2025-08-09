@@ -91,7 +91,7 @@ namespace EleCho.WpfSuite.Media.Animation
             return !MayBeNotOpaque(brush);
         }
 
-        private static Brush? LerpBrush(ref Brush? cache, Brush? from, Brush? to, double t)
+        internal static Brush? LerpBrush(ref Brush? cache, Brush? from, Brush? to, double t)
         {
             // can not use from or to as cache
             if (cache == from ||
@@ -277,6 +277,12 @@ namespace EleCho.WpfSuite.Media.Animation
             childBorder2.Opacity = t;
 
             return finalCachedVisualBrush;
+        }
+
+        internal static Brush? LerpBrushWithoutCache(Brush? from, Brush? to, double t)
+        {
+            Brush? cache = null;
+            return LerpBrush(ref cache, from, to, t);
         }
 
         /// <inheritdoc/>

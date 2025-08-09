@@ -7,7 +7,7 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// Rotate transition
     /// </summary>
-    public class RotateTransition : ContentTransition
+    public class RotateTransition : StoryboardContentTransition
     {
         /// <summary>
         /// Angle of rotation

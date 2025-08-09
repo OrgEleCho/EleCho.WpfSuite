@@ -1,6 +1,8 @@
 ﻿using EleCho.WpfSuite.Internal;
+using EleCho.WpfSuite.Media.Animation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -36,7 +38,6 @@ namespace EleCho.WpfSuite.Controls
 
         private delegate bool GetBool(ScrollViewer scrollViewer);
         private static readonly GetBool _propertyHandlesMouseWheelScrollingGetter;
-        private static readonly IEasingFunction _scrollingAnimationEase = new CubicEase() { EasingMode = EasingMode.EaseOut };
         private const long _millisecondsBetweenTouchpadScrolling = 100;
 
         // 上次的滚动 delta, 不管是水平还是垂直, 都会保存下来
@@ -46,21 +47,67 @@ namespace EleCho.WpfSuite.Controls
         private int _lastVerticalScrollingDelta = 0;
         private int _lastHorizontalScrollingDelta = 0;
         private TimeSpan _lastScrollTime;
-        private double _requestingSmoothVerticalOffsetTarget = double.NaN;
-        private double _requestingSmoothHorizontalOffsetTarget = double.NaN;
 
         private FrameworkElement? _scrollContentPresenter;
-        private SecondOrderDynamics? _verticalSecondOrderDynamics;
-        private SecondOrderDynamics? _horizontalSecondOrderDynamics;
+        private readonly ValueAnimator<double> _verticalScrollOffsetAnimator;
+        private readonly ValueAnimator<double> _horizontalScrollOffsetAnimator;
 
         private static readonly Stopwatch s_commonStopwatch = Stopwatch.StartNew();
-        private static readonly HashSet<ScrollViewer> s_scrollViewersOnUI = new HashSet<ScrollViewer>();
-        private static TimeSpan s_lastRenderingTime;
+        private double? _lastVerticalOffsetBySmoothScrolling = null;
+        private double? _lastHorizontalOffsetBySmoothScrolling = null;
 
         /// <inheritdoc/>
         public ScrollViewer()
         {
             AddHandler(EleCho.WpfSuite.Input.Mouse.WheelEvent, (RoutedEventHandler)OnSuiteMouseWheel);
+
+            _verticalScrollOffsetAnimator = new ValueAnimator<double>();
+            _horizontalScrollOffsetAnimator = new ValueAnimator<double>();
+
+            var frequency = 1 / SmoothScrollingTime.TotalSeconds;
+            _verticalScrollOffsetAnimator.Frequency = frequency;
+            _horizontalScrollOffsetAnimator.Frequency = frequency;
+
+            _verticalScrollOffsetAnimator.AnimatedValueChanged += VerticalScrollOffsetAnimator_AnimatedValueChanged;
+            _horizontalScrollOffsetAnimator.AnimatedValueChanged += HorizontalScrollOffsetAnimator_AnimatedValueChanged;
+        }
+
+        private void HorizontalScrollOffsetAnimator_AnimatedValueChanged(object? sender, EventArgs e)
+        {
+            if (sender is ValueAnimator<double> valueAnimator)
+            {
+                var nowOffset = HorizontalOffset;
+                if (_lastHorizontalOffsetBySmoothScrolling is not null &&
+                    _lastHorizontalOffsetBySmoothScrolling.Value != nowOffset)
+                {
+                    _lastHorizontalOffsetBySmoothScrolling = null;
+                    _horizontalScrollOffsetAnimator.StopImmediately(nowOffset);
+                    return;
+                }
+
+                var newOffset = valueAnimator.AnimatedValue;
+                ScrollToHorizontalOffset(newOffset);
+                _lastHorizontalOffsetBySmoothScrolling = newOffset;
+            }
+        }
+
+        private void VerticalScrollOffsetAnimator_AnimatedValueChanged(object? sender, EventArgs e)
+        {
+            if (sender is ValueAnimator<double> valueAnimator)
+            {
+                var nowOffset = VerticalOffset;
+                if (_lastVerticalOffsetBySmoothScrolling is not null &&
+                    _lastVerticalOffsetBySmoothScrolling.Value != nowOffset)
+                {
+                    _lastVerticalOffsetBySmoothScrolling = null;
+                    _verticalScrollOffsetAnimator.StopImmediately(nowOffset);
+                    return;
+                }
+
+                var newOffset = valueAnimator.AnimatedValue;
+                ScrollToVerticalOffset(newOffset);
+                _lastVerticalOffsetBySmoothScrolling = newOffset;
+            }
         }
 
         /// <inheritdoc/>
@@ -103,10 +150,10 @@ namespace EleCho.WpfSuite.Controls
             {
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
-                    return scrollInfo.VerticalOffset > 0;
+                    return scrollInfo.VerticalOffset > 0.5;
                 }
 
-                return VerticalOffset > 0;
+                return VerticalOffset > 0.5;
             }
         }
 
@@ -116,10 +163,10 @@ namespace EleCho.WpfSuite.Controls
             {
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
-                    return scrollInfo.VerticalOffset + scrollInfo.ViewportHeight < scrollInfo.ExtentHeight;
+                    return scrollInfo.VerticalOffset + scrollInfo.ViewportHeight < scrollInfo.ExtentHeight - 0.5;
                 }
 
-                return VerticalOffset + ViewportHeight < ExtentHeight;
+                return VerticalOffset + ViewportHeight < ExtentHeight - 0.5;
             }
         }
 
@@ -129,10 +176,10 @@ namespace EleCho.WpfSuite.Controls
             {
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
-                    return scrollInfo.HorizontalOffset > 0;
+                    return scrollInfo.HorizontalOffset > 0.5;
                 }
 
-                return HorizontalOffset > 0;
+                return HorizontalOffset > 0.5;
             }
         }
 
@@ -142,10 +189,10 @@ namespace EleCho.WpfSuite.Controls
             {
                 if (ScrollInfo is IScrollInfo scrollInfo)
                 {
-                    return scrollInfo.HorizontalOffset + scrollInfo.ViewportWidth < scrollInfo.ExtentWidth;
+                    return scrollInfo.HorizontalOffset + scrollInfo.ViewportWidth < scrollInfo.ExtentWidth - 0.5;
                 }
 
-                return HorizontalOffset + ViewportWidth < ExtentWidth;
+                return HorizontalOffset + ViewportWidth < ExtentWidth - 0.5;
             }
         }
 
@@ -159,112 +206,6 @@ namespace EleCho.WpfSuite.Controls
         {
             get { return (Orientation)GetValue(PreferredScrollOrientationProperty); }
             set { SetValue(PreferredScrollOrientationProperty, value); }
-        }
-
-        /// <inheritdoc/>
-        protected override void OnVisualParentChanged(DependencyObject oldParent)
-        {
-            if (VisualParent is not null)
-            {
-                s_scrollViewersOnUI.Add(this);
-            }
-            else
-            {
-                s_scrollViewersOnUI.Remove(this);
-            }
-
-            EnsureCompositionRenderingProcessStatus();
-            base.OnVisualParentChanged(oldParent);
-        }
-
-        private static void EnsureCompositionRenderingProcessStatus()
-        {
-            if (s_scrollViewersOnUI.Count > 0)
-            {
-                s_lastRenderingTime = s_commonStopwatch.Elapsed;
-
-                CompositionTarget.Rendering -= CompositionTargetRendering;
-                CompositionTarget.Rendering += CompositionTargetRendering;
-            }
-            else
-            {
-                CompositionTarget.Rendering -= CompositionTargetRendering;
-            }
-        }
-
-        private static void CompositionTargetRendering(object? sender, EventArgs e)
-        {
-            if (s_commonStopwatch is null)
-            {
-                return;
-            }
-
-            var nowRenderingTime = s_commonStopwatch.Elapsed;
-            var elapsed = nowRenderingTime - s_lastRenderingTime;
-            var elapsedSeconds = elapsed.TotalSeconds;
-            if (elapsedSeconds == 0)
-            {
-                return;
-            }
-
-            s_lastRenderingTime = nowRenderingTime;
-
-            foreach (var scrollViewer in s_scrollViewersOnUI)
-            {
-                var verticalOffset = scrollViewer.VerticalOffset;
-                var horizontalOffset = scrollViewer.HorizontalOffset;
-                var verticalOffsetTarget = scrollViewer._requestingSmoothVerticalOffsetTarget;
-                var horizontalOffsetTarget = scrollViewer._requestingSmoothHorizontalOffsetTarget;
-                var dynamicsFrequency = 1 / scrollViewer.SmoothScrollingTime.TotalSeconds;
-
-                if (!double.IsNaN(verticalOffsetTarget))
-                {
-                    scrollViewer._verticalSecondOrderDynamics ??= new SecondOrderDynamics(dynamicsFrequency, 1, 0, verticalOffset);
-                    scrollViewer._verticalSecondOrderDynamics.F = dynamicsFrequency;
-
-                    var animatedVerticalOffset = scrollViewer._verticalSecondOrderDynamics.Update(elapsedSeconds, verticalOffsetTarget, out var deltaValue);
-
-                    if (Math.Abs(animatedVerticalOffset - verticalOffset) > 0.1)
-                    {
-                        scrollViewer.ScrollToVerticalOffset(animatedVerticalOffset);
-                    }
-
-                    // stop 
-                    if (Math.Abs(deltaValue) < 0.05)
-                    {
-                        scrollViewer._requestingSmoothVerticalOffsetTarget = double.NaN;
-                        scrollViewer._verticalSecondOrderDynamics = null;
-                    }
-                }
-                else
-                {
-                    scrollViewer._verticalSecondOrderDynamics = null;
-                }
-
-                if (!double.IsNaN(horizontalOffsetTarget))
-                {
-                    scrollViewer._horizontalSecondOrderDynamics ??= new SecondOrderDynamics(dynamicsFrequency, 1, 0, horizontalOffset);
-                    scrollViewer._horizontalSecondOrderDynamics.F = dynamicsFrequency;
-
-                    var animatedHorizontalOffset = scrollViewer._horizontalSecondOrderDynamics.Update(elapsedSeconds, horizontalOffsetTarget, out var deltaValue);
-
-                    if (Math.Abs(animatedHorizontalOffset - horizontalOffset) > 0.1)
-                    {
-                        scrollViewer.ScrollToHorizontalOffset(animatedHorizontalOffset);
-                    }
-
-                    // stop 
-                    if (Math.Abs(deltaValue) < 0.05)
-                    {
-                        scrollViewer._requestingSmoothVerticalOffsetTarget = double.NaN;
-                        scrollViewer._horizontalSecondOrderDynamics = null;
-                    }
-                }
-                else
-                {
-                    scrollViewer._horizontalSecondOrderDynamics = null;
-                }
-            }
         }
 
         private bool CoreScrollWithWheelDelta(int deltaX, int deltaY)
@@ -322,6 +263,8 @@ namespace EleCho.WpfSuite.Controls
                 scrollDelta *= MouseScrollDeltaFactor;
             }
 
+            var gonnaUseSmoothScrolling = EnableSmoothScrolling && !isTouchpadScrolling;
+
             if (canScrollVertical && !canScrollHorizontalAndPreferHorizontal)
             {
                 if (scrollDelta > 0 && !CanScrollUp)
@@ -340,7 +283,19 @@ namespace EleCho.WpfSuite.Controls
                 }
 
                 var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastVerticalScrollingDelta);
-                var nowOffset = sameDirectionAsLast && !double.IsNaN(_requestingSmoothVerticalOffsetTarget) ? _requestingSmoothVerticalOffsetTarget : VerticalOffset;
+                var nowOffset = VerticalOffset;
+                if (gonnaUseSmoothScrolling)
+                {
+                    if (sameDirectionAsLast && _verticalScrollOffsetAnimator.IsRunning)
+                    {
+                        nowOffset = _verticalScrollOffsetAnimator.Value;
+                    }
+                    else
+                    {
+                        _verticalScrollOffsetAnimator.UpdateValueDirectly(nowOffset);
+                    }
+                }
+
                 var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
@@ -348,14 +303,16 @@ namespace EleCho.WpfSuite.Controls
                 if (newOffset > ScrollableHeight)
                     newOffset = ScrollableHeight;
 
-                if (!EnableSmoothScrolling || isTouchpadScrolling)
+                _lastVerticalOffsetBySmoothScrolling = null;
+                if (!gonnaUseSmoothScrolling)
                 {
-                    _requestingSmoothVerticalOffsetTarget = double.NaN;
+                    // ensure animation stopped
+                    _verticalScrollOffsetAnimator.StopImmediately();
                     ScrollToVerticalOffset(newOffset);
                 }
                 else
                 {
-                    _requestingSmoothVerticalOffsetTarget = newOffset;
+                    _verticalScrollOffsetAnimator.Value = newOffset;
                 }
 
                 _lastVerticalScrollingDelta = deltaY;
@@ -378,7 +335,19 @@ namespace EleCho.WpfSuite.Controls
                 }
 
                 var sameDirectionAsLast = Math.Sign(deltaY) == Math.Sign(_lastHorizontalScrollingDelta);
-                var nowOffset = sameDirectionAsLast && !double.IsNaN(_requestingSmoothHorizontalOffsetTarget) ? _requestingSmoothHorizontalOffsetTarget : HorizontalOffset;
+                var nowOffset = HorizontalOffset;
+                if (gonnaUseSmoothScrolling)
+                {
+                    if (sameDirectionAsLast && _horizontalScrollOffsetAnimator.IsRunning)
+                    {
+                        nowOffset = _horizontalScrollOffsetAnimator.Value;
+                    }
+                    else
+                    {
+                        _horizontalScrollOffsetAnimator.UpdateValueDirectly(nowOffset);
+                    }
+                }
+
                 var newOffset = nowOffset - scrollDelta;
 
                 if (newOffset < 0)
@@ -386,14 +355,15 @@ namespace EleCho.WpfSuite.Controls
                 if (newOffset > ScrollableWidth)
                     newOffset = ScrollableWidth;
 
-                if (!EnableSmoothScrolling || isTouchpadScrolling)
+                _lastHorizontalOffsetBySmoothScrolling = null;
+                if (!gonnaUseSmoothScrolling)
                 {
-                    _requestingSmoothHorizontalOffsetTarget = double.NaN;
+                    _horizontalScrollOffsetAnimator.StopImmediately();
                     ScrollToHorizontalOffset(newOffset);
                 }
                 else
                 {
-                    _requestingSmoothHorizontalOffsetTarget = newOffset;
+                    _horizontalScrollOffsetAnimator.Value = newOffset;
                 }
 
                 _lastHorizontalScrollingDelta = deltaY;
@@ -489,10 +459,6 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(AlwaysHandleMouseWheelScrollingProperty, value); }
         }
 
-
-
-
-
         /// <summary>
         /// Get value of ScrollWithWheelDelta property
         /// </summary>
@@ -574,7 +540,7 @@ namespace EleCho.WpfSuite.Controls
         /// </summary>
         public static readonly DependencyProperty SmoothScrollingTimeProperty =
             DependencyProperty.RegisterAttached(nameof(SmoothScrollingTime), typeof(TimeSpan), typeof(ScrollViewer),
-                new FrameworkPropertyMetadata(TimeSpan.FromSeconds(0.2), FrameworkPropertyMetadataOptions.Inherits), ValidateSmoothScrollingTime);
+                new FrameworkPropertyMetadata(TimeSpan.FromSeconds(0.3), FrameworkPropertyMetadataOptions.Inherits, propertyChangedCallback: OnSmoothScrollingTimeChanged), ValidateSmoothScrollingTime);
 
         /// <summary>
         /// The DependencyProperty of <see cref="AlwaysHandleMouseWheelScrolling"/> property
@@ -609,6 +575,19 @@ namespace EleCho.WpfSuite.Controls
         private static bool ValidateSmoothScrollingTime(object value)
         {
             return value is TimeSpan timeSpan && timeSpan.TotalSeconds > 0;
+        }
+
+        private static void OnSmoothScrollingTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is not ScrollViewer scrollViewer ||
+                e.NewValue is not TimeSpan smoothTime)
+            {
+                return;
+            }
+
+            var frequency = 1 / smoothTime.TotalSeconds;
+            scrollViewer._verticalScrollOffsetAnimator.Frequency = frequency;
+            scrollViewer._horizontalScrollOffsetAnimator.Frequency = frequency;
         }
     }
 }

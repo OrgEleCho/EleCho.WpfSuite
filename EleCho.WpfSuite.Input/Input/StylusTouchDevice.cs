@@ -57,6 +57,12 @@ namespace EleCho.WpfSuite.Input
 
         private static void StylusDown(object sender, StylusDownEventArgs e)
         {
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&
@@ -83,6 +89,12 @@ namespace EleCho.WpfSuite.Input
             if (sender is not DependencyObject dependencyObject)
                 return;
 
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&
@@ -105,6 +117,12 @@ namespace EleCho.WpfSuite.Input
 
         private static void StylusUp(object sender, StylusEventArgs e)
         {
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&

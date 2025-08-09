@@ -111,7 +111,22 @@ namespace EleCho.WpfSuite.Internal
             return _y;
         }
 
-        public double Update(double deltaTime, double x) 
+        public double Update(double deltaTime, double x)
             => Update(deltaTime, x, out _);
+
+        public void UpdateDirectly(double value)
+        {
+            _xp = value;
+            _y = value;
+            _yd = 0;
+        }
+
+        public void SetMotionValues(double f, double z, double r)
+        {
+            _f = f;
+            _z = z;
+            _r = r;
+            InitMotionValues(f, z, r);
+        }
     }
 }

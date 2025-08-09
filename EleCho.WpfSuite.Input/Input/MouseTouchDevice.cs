@@ -51,6 +51,12 @@ namespace EleCho.WpfSuite.Input
 
         private static void MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&
@@ -76,6 +82,12 @@ namespace EleCho.WpfSuite.Input
             if (sender is not DependencyObject dependencyObject)
                 return;
 
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&
@@ -98,6 +110,12 @@ namespace EleCho.WpfSuite.Input
 
         private static void MouseUp(object sender, MouseEventArgs e)
         {
+            if (e.OriginalSource is DependencyObject originSource &&
+                !GetSimulate(originSource))
+            {
+                return;
+            }
+
             var currentPosition = e.GetPosition(null);
 
             if (_device != null &&

@@ -8,7 +8,7 @@ namespace EleCho.WpfSuite.Media.Transition
     /// <summary>
     /// Scale and fade transition
     /// </summary>
-    public class ScaleFadeTransition : ContentTransition
+    public class ScaleFadeTransition : StoryboardContentTransition
     {
         /// <summary>
         /// Large scale
