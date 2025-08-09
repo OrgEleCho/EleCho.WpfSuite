@@ -17,7 +17,7 @@ namespace SmoothScrollTest;
 public partial class MainWindow : Window
 {
     public string[] SomeCollection { get; } = Enumerable.Range(0, 300)
-        .Select(i => $"Item {i}")
+        .Select(i => $"Item {i} jfowiejfoiajweoifjoiawejfoijwfaoiejfiowaejfiojwef")
         .ToArray();
 
     public MainWindow()
