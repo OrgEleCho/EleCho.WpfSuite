@@ -46,10 +46,16 @@
                                 CornerRadius="{smk:ShowingProperty Property=CornerRadius}"
                                 Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
                             <local:BorderContentAdapter ClipToBounds="{TemplateBinding ClipToBounds}">
-                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"
-                                                  Margin="{smk:ShowingProperty Property=Padding}"
-                                                  TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <local:ContentControl x:Name="PART_SelectedContentHost"
+                                                      Margin="{smk:ShowingProperty Property=Padding}"
+                                                      Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SelectedContent}"
+                                                      ContentTemplate="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SelectedContentTemplate}"
+                                                      ContentTemplateSelector="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SelectedContentTemplateSelector}"
+                                                      ContentStringFormat="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=SelectedContentStringFormat}"
+                                                      Transition="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Transition}"
+                                                      TransitionMode="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=TransitionMode}"
+                                                      TextElement.Foreground="{smk:ShowingProperty Property=Foreground}"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                             </local:BorderContentAdapter>
                         </Border>
                     </Grid>

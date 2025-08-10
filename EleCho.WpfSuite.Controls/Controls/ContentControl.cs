@@ -66,6 +66,15 @@ namespace EleCho.WpfSuite.Controls
         }
 
         /// <summary>
+        /// String format of content
+        /// </summary>
+        public string? ContentStringFormat
+        {
+            get => (string)GetValue(ContentStringFormatProperty);
+            set => SetValue(ContentStringFormatProperty, value);
+        }
+
+        /// <summary>
         /// Transition of content
         /// </summary>
         public IContentTransition? Transition
@@ -92,6 +101,9 @@ namespace EleCho.WpfSuite.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// Create an instance of <see cref="ContentControl"/>
+        /// </summary>
         public ContentControl()
         {
             Loaded += ContentControlLoaded;
@@ -134,7 +146,7 @@ namespace EleCho.WpfSuite.Controls
         {
             if (TransitionMode == ContentTransitionMode.ChangedOrLoaded)
             {
-                _lastTask = this.TransionCurrentAsync(true);
+                _lastTask = this.TransitionCurrentAsync(true);
                 _lastTaskIsLoadedTransition = true;
             }
         }
@@ -180,6 +192,12 @@ namespace EleCho.WpfSuite.Controls
             DependencyProperty.Register(nameof(ContentTemplateSelector), typeof(DataTemplateSelector), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
+        /// The DependencyProperty of <see cref="ContentStringFormat"/> property
+        /// </summary>
+        public static readonly DependencyProperty ContentStringFormatProperty =
+            DependencyProperty.Register(nameof(ContentStringFormat), typeof(string), typeof(ContentControl), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        /// <summary>
         /// The DependencyProperty of <see cref="TransitionModeProperty"/> property
         /// </summary>
         public static readonly DependencyProperty TransitionModeProperty =
@@ -217,14 +235,14 @@ namespace EleCho.WpfSuite.Controls
             return baseValue;
         }
 
-        private async Task TransionCurrentAsync(bool avoidOther)
+        private async Task TransitionCurrentAsync(bool avoidOther)
         {
             if (_contentsPanel is null)
             {
                 return;
             }
 
-            if (avoidOther && 
+            if (avoidOther &&
                 !_lastTaskIsLoadedTransition &&
                 _lastTask != null &&
                 !_lastTask.IsCompleted)
@@ -245,7 +263,7 @@ namespace EleCho.WpfSuite.Controls
                 return;
             }
 
-            FrameworkElement? elementToTransition = 
+            FrameworkElement? elementToTransition =
                 _contentsPanel.Children[_contentsPanel.Children.Count - 1] as FrameworkElement;
 
             if (Transition is IContentTransition transition &&
@@ -263,7 +281,7 @@ namespace EleCho.WpfSuite.Controls
                 RemoveLogicalChild(oldContent);
             }
 
-            if (newContent is not null && 
+            if (newContent is not null &&
                 newContent != _pendingNewContent)
             {
                 if (newContent is DependencyObject newContentDO &&
@@ -281,7 +299,7 @@ namespace EleCho.WpfSuite.Controls
 
             var delay = ContentDelay;
 
-            if (delay != default && 
+            if (delay != default &&
                 delay.TimeSpan != default)
             {
                 await Task.Delay(delay.TimeSpan);
@@ -304,7 +322,7 @@ namespace EleCho.WpfSuite.Controls
                 oldContentElement = _contentsPanel.Children[_contentsPanel.Children.Count - 1];
             }
 
-            if(newContent is not null)
+            if (newContent is not null)
             {
                 var contentPresenter = new ContentPresenter()
                 {
@@ -325,9 +343,16 @@ namespace EleCho.WpfSuite.Controls
                         Path = new PropertyPath(nameof(ContentTemplateSelector)),
                     });
 
+                contentPresenter.SetBinding(ContentPresenter.ContentStringFormatProperty,
+                    new Binding()
+                    {
+                        Source = this,
+                        Path = new PropertyPath(nameof(ContentStringFormat)),
+                    });
+
                 newContentElement = contentPresenter;
             }
-            
+
             var forward = !_backward;
 
             if (Transition is IContentTransition transition)

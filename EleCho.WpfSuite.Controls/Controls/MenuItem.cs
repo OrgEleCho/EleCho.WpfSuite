@@ -2,7 +2,6 @@
 using System.Windows.Media;
 using EleCho.WpfSuite.Controls.SourceGeneration;
 using EleCho.WpfSuite.Controls.States;
-using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.Controls
 {
@@ -44,7 +43,7 @@ namespace EleCho.WpfSuite.Controls
         /// <inheritdoc/>
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
-            return item is MenuItem;
+            return item is MenuItem or System.Windows.Controls.Separator;
         }
 
         public static readonly DependencyProperty SeparatorBrushProperty =

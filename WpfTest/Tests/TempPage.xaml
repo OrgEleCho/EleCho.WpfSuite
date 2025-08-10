@@ -29,9 +29,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" 
-                                Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
                                           Padding="0"/>
@@ -277,6 +277,10 @@
 
             <ws:TabControl CornerRadius="0 3 5 5"
                            MinHeight="300">
+                <ws:TabControl.Transition>
+                    <ws:SlideFadeTransition Orientation="Vertical"
+                                            Distance="50"/>
+                </ws:TabControl.Transition>
                 <ws:TabItem Header="QWQ"
                             HoverBackground="Pink"
                             CornerRadius="2 2 0 0">
@@ -291,7 +295,7 @@
                             SelectedBorderBrush="Green"
                             BorderThickness="5"
                             CornerRadius="2 2 0 0">
-                    <TextBlock Text="This is a tab item"/>
+                    <TextBlock Text="This is a tab item 2"/>
                 </ws:TabItem>
             </ws:TabControl>
             <Button Width="200"
