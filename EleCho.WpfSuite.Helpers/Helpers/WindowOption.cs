@@ -94,6 +94,12 @@ namespace EleCho.WpfSuite.Helpers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
+        /// <remarks>
+        /// This property controls whether the window backdrop (Mica/Acrylic) remains active when the window loses focus.
+        /// By default (false), Windows automatically deactivates the backdrop when the window is not focused.
+        /// When set to true, the backdrop will remain active even when the window loses focus.
+        /// This property is primarily designed for Window objects, but also supports Popup, ToolTip, ContextMenu, and MenuItem for consistency with other WindowOption properties.
+        /// </remarks>
         [AttachedPropertyBrowsableForType(typeof(Window))]
         public static bool GetIsBackdropAlwaysActive(DependencyObject obj)
         {
@@ -105,6 +111,12 @@ namespace EleCho.WpfSuite.Helpers
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="value"></param>
+        /// <remarks>
+        /// This property controls whether the window backdrop (Mica/Acrylic) remains active when the window loses focus.
+        /// By default (false), Windows automatically deactivates the backdrop when the window is not focused.
+        /// When set to true, the backdrop will remain active even when the window loses focus.
+        /// This property is primarily designed for Window objects, but also supports Popup, ToolTip, ContextMenu, and MenuItem for consistency with other WindowOption properties.
+        /// </remarks>
         public static void SetIsBackdropAlwaysActive(DependencyObject obj, bool value)
         {
             obj.SetValue(IsBackdropAlwaysActiveProperty, value);
@@ -423,6 +435,12 @@ namespace EleCho.WpfSuite.Helpers
         /// <summary>
         /// The DependencyProperty of IsBackdropAlwaysActive property
         /// </summary>
+        /// <remarks>
+        /// Controls whether the window backdrop (Mica/Acrylic) remains active when the window loses focus.
+        /// Default value is false, meaning the backdrop will be deactivated when the window loses focus (standard Windows behavior).
+        /// When set to true, the backdrop will remain active even when the window is not focused.
+        /// This property requires Windows 11 Build 22621 or later.
+        /// </remarks>
         public static readonly DependencyProperty IsBackdropAlwaysActiveProperty =
             DependencyProperty.RegisterAttached("IsBackdropAlwaysActive", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsBackdropAlwaysActiveChanged));
 
