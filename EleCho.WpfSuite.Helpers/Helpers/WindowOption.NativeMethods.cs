@@ -160,6 +160,7 @@ namespace EleCho.WpfSuite.Helpers
                 TEXT_COLOR,
                 VISIBLE_FRAME_BORDER_THICKNESS,
                 SYSTEMBACKDROP_TYPE,
+                SYSTEMBACKDROP_ALWAYS_ACTIVE,
                 LAST
             }
 

@@ -90,6 +90,28 @@ namespace EleCho.WpfSuite.Helpers
 
 
         /// <summary>
+        /// Get value of IsBackdropAlwaysActive property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [AttachedPropertyBrowsableForType(typeof(Window))]
+        public static bool GetIsBackdropAlwaysActive(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsBackdropAlwaysActiveProperty);
+        }
+
+        /// <summary>
+        /// Set value of IsBackdropAlwaysActive property
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="value"></param>
+        public static void SetIsBackdropAlwaysActive(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsBackdropAlwaysActiveProperty, value);
+        }
+
+
+        /// <summary>
         /// Get value of Corner property
         /// </summary>
         /// <param name="obj"></param>
@@ -397,6 +419,12 @@ namespace EleCho.WpfSuite.Helpers
         /// </summary>
         public static readonly DependencyProperty BackdropProperty =
             DependencyProperty.RegisterAttached("Backdrop", typeof(WindowBackdrop), typeof(WindowOption), new FrameworkPropertyMetadata(WindowBackdrop.Auto, OnBackdropChanged));
+
+        /// <summary>
+        /// The DependencyProperty of IsBackdropAlwaysActive property
+        /// </summary>
+        public static readonly DependencyProperty IsBackdropAlwaysActiveProperty =
+            DependencyProperty.RegisterAttached("IsBackdropAlwaysActive", typeof(bool), typeof(WindowOption), new FrameworkPropertyMetadata(false, OnIsBackdropAlwaysActiveChanged));
 
         /// <summary>
         /// The DependencyProperty of Corner property
@@ -1006,6 +1034,71 @@ namespace EleCho.WpfSuite.Helpers
                 else if (d is FrameworkElement element)
                 {
                     element.Loaded -= EventHandlerApplyBackdrop;
+                }
+            }
+        }
+
+        private static void OnIsBackdropAlwaysActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var isAlwaysActive = GetIsBackdropAlwaysActive(d);
+
+            if (GetWindowHwndSource(d) is HwndSource hwndSource)
+            {
+                ApplyIsBackdropAlwaysActive(hwndSource, isAlwaysActive);
+            }
+
+            if (isAlwaysActive)
+            {
+                if (d is Window window)
+                {
+                    window.SourceInitialized += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded += EventHandlerApplyIsBackdropAlwaysActive;
+                }
+            }
+            else
+            {
+                if (d is Window window)
+                {
+                    window.SourceInitialized -= EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is Popup popup)
+                {
+                    popup.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is ToolTip toolTip)
+                {
+                    toolTip.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is ContextMenu contextMenu)
+                {
+                    contextMenu.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is MenuItem menuItem)
+                {
+                    menuItem.SubmenuOpened -= EventHandlerApplyIsBackdropAlwaysActive;
+                }
+                else if (d is FrameworkElement element)
+                {
+                    element.Loaded -= EventHandlerApplyIsBackdropAlwaysActive;
                 }
             }
         }
@@ -1988,6 +2081,17 @@ namespace EleCho.WpfSuite.Helpers
             DwmSetWindowAttribute(handle, DwmWindowAttribute.WINDOW_CORNER_PREFERENCE, (nint)(void*)&corner, (uint)sizeof(WindowCorner));
         }
 
+        private static unsafe void ApplyIsBackdropAlwaysActive(HwndSource hwndSource, bool isAlwaysActive)
+        {
+            // this api is only available on windows 11 22621
+            if (s_versionCurrentWindows < s_versionWindows11_22621)
+                return;
+
+            var handle = hwndSource.Handle;
+
+            DwmSetWindowAttribute(handle, DwmWindowAttribute.SYSTEMBACKDROP_ALWAYS_ACTIVE, (nint)(void*)&isAlwaysActive, (uint)sizeof(bool));
+        }
+
         private static unsafe void ApplyCaptionColor(HwndSource hwndSource, WindowOptionColor color)
         {
             // this api is only available on windows 11 22000
@@ -2421,6 +2525,13 @@ namespace EleCho.WpfSuite.Helpers
             if (sender is DependencyObject d &&
                 GetWindowHwndSource(d) is HwndSource hwndSource)
                 ApplyCorner(hwndSource, GetCorner(d));
+        }
+
+        private static void EventHandlerApplyIsBackdropAlwaysActive(object? sender, EventArgs e)
+        {
+            if (sender is DependencyObject d &&
+                GetWindowHwndSource(d) is HwndSource hwndSource)
+                ApplyIsBackdropAlwaysActive(hwndSource, GetIsBackdropAlwaysActive(d));
         }
 
         private static void EventHandlerApplyCaptionColor(object? sender, EventArgs e)
