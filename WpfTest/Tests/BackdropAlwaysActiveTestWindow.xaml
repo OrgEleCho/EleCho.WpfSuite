@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfTest.Tests.BackdropAlwaysActiveTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest.Tests"
+        xmlns:ws="https://schemas.elecho.dev/wpfsuite"
+        mc:Ignorable="d"
+        Title="Backdrop Always Active Test" Height="400" Width="600"
+        Background="Transparent"
+        d:Background="White"
+        ws:WindowOption.Backdrop="Acrylic"
+        ws:WindowOption.IsBackdropAlwaysActive="True">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="45"
+                      GlassFrameThickness="-1"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Grid Grid.Row="0" Height="45" Background="#20000000">
+            <TextBlock Text="Backdrop Always Active Test"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="15,0,0,0"
+                       FontSize="14"
+                       FontWeight="SemiBold"/>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" Margin="20">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Test Instructions:"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="0,0,0,15"/>
+                
+                <TextBlock TextWrapping="Wrap"
+                           FontSize="14"
+                           MaxWidth="500"
+                           Margin="0,0,0,10">
+                    <Run Text="1. This window has"/>
+                    <Run Text="ws:WindowOption.IsBackdropAlwaysActive=&quot;True&quot;" FontWeight="Bold"/>
+                    <LineBreak/>
+                    <Run Text="2. Click another window to make this window lose focus"/>
+                    <LineBreak/>
+                    <Run Text="3. The Acrylic backdrop should"/>
+                    <Run Text="remain active" FontWeight="Bold"/>
+                    <Run Text="even when the window loses focus"/>
+                    <LineBreak/>
+                    <LineBreak/>
+                    <Run Text="Compare this with the standard behavior:"/>
+                </TextBlock>
+
+                <Button Content="Open Window Without Always Active"
+                        Click="OpenNormalWindow_Click"
+                        Padding="15,8"
+                        Margin="0,15,0,0"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
