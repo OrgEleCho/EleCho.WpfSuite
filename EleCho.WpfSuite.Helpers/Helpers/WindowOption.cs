@@ -1047,59 +1047,42 @@ namespace EleCho.WpfSuite.Helpers
                 ApplyIsBackdropAlwaysActive(hwndSource, isAlwaysActive);
             }
 
-            if (isAlwaysActive)
+            // Always remove the event handler first to prevent duplicates
+            if (d is Window window)
             {
-                if (d is Window window)
-                {
+                window.SourceInitialized -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
                     window.SourceInitialized += EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is Popup popup)
-                {
-                    popup.Opened += EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is ToolTip toolTip)
-                {
-                    toolTip.Opened += EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is ContextMenu contextMenu)
-                {
-                    contextMenu.Opened += EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is MenuItem menuItem)
-                {
-                    menuItem.SubmenuOpened += EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is FrameworkElement element)
-                {
-                    element.Loaded += EventHandlerApplyIsBackdropAlwaysActive;
-                }
             }
-            else
+            else if (d is Popup popup)
             {
-                if (d is Window window)
-                {
-                    window.SourceInitialized -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is Popup popup)
-                {
-                    popup.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is ToolTip toolTip)
-                {
-                    toolTip.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is ContextMenu contextMenu)
-                {
-                    contextMenu.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is MenuItem menuItem)
-                {
-                    menuItem.SubmenuOpened -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
-                else if (d is FrameworkElement element)
-                {
-                    element.Loaded -= EventHandlerApplyIsBackdropAlwaysActive;
-                }
+                popup.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
+                    popup.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+            }
+            else if (d is ToolTip toolTip)
+            {
+                toolTip.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
+                    toolTip.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+            }
+            else if (d is ContextMenu contextMenu)
+            {
+                contextMenu.Opened -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
+                    contextMenu.Opened += EventHandlerApplyIsBackdropAlwaysActive;
+            }
+            else if (d is MenuItem menuItem)
+            {
+                menuItem.SubmenuOpened -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
+                    menuItem.SubmenuOpened += EventHandlerApplyIsBackdropAlwaysActive;
+            }
+            else if (d is FrameworkElement element)
+            {
+                element.Loaded -= EventHandlerApplyIsBackdropAlwaysActive;
+                if (isAlwaysActive)
+                    element.Loaded += EventHandlerApplyIsBackdropAlwaysActive;
             }
         }
 
