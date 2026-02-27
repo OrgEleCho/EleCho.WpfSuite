@@ -12,7 +12,7 @@ namespace EleCho.WpfSuite.Media.Animation
     /// <summary>
     /// Animated value helper
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of value to animate.</typeparam>
     public class ValueAnimator<T> : Animatable, IValueAnimator<T>
     {
         static ValueAnimator()
@@ -61,7 +61,7 @@ namespace EleCho.WpfSuite.Media.Animation
         /// <summary>
         /// Create a new instance of <see cref="ValueAnimator{T}"/> with specified initial value
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Initial target value and animated value.</param>
         public ValueAnimator(T value) : this()
         {
             UpdateValueDirectly(value);
@@ -133,33 +133,50 @@ namespace EleCho.WpfSuite.Media.Animation
         /// </summary>
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
 
-
+        /// <summary>
+        /// Frequency of the animation (Hz). Higher values make the animation faster.
+        /// </summary>
         public double Frequency
         {
             get { return (double)GetValue(FrequencyProperty); }
             set { SetValue(FrequencyProperty, value); }
         }
 
+        /// <summary>
+        /// Damping coefficient of the animation. Values less than 1 cause oscillation, equal to 1 is critically damped, greater than 1 is over-damped.
+        /// </summary>
         public double Damping
         {
             get { return (double)GetValue(DampingProperty); }
             set { SetValue(DampingProperty, value); }
         }
 
+        /// <summary>
+        /// Initial response of the animation. Controls how quickly the animation starts moving towards the target.
+        /// </summary>
         public double InitialResponse
         {
             get { return (double)GetValue(InitialResponseProperty); }
             set { SetValue(InitialResponseProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DependencyProperty"/> definition of <see cref="Frequency"/>
+        /// </summary>
         public static readonly DependencyProperty FrequencyProperty =
             DependencyProperty.Register("Frequency", typeof(double), typeof(ValueAnimator<T>),
                 new PropertyMetadata(5.0, propertyChangedCallback: OnDynamicsPropertyChanged));
 
+        /// <summary>
+        /// <see cref="DependencyProperty"/> definition of <see cref="Damping"/>
+        /// </summary>
         public static readonly DependencyProperty DampingProperty =
             DependencyProperty.Register("Damping", typeof(double), typeof(ValueAnimator<T>),
                 new PropertyMetadata(1.0, propertyChangedCallback: OnDynamicsPropertyChanged));
 
+        /// <summary>
+        /// <see cref="DependencyProperty"/> definition of <see cref="InitialResponse"/>
+        /// </summary>
         public static readonly DependencyProperty InitialResponseProperty =
             DependencyProperty.Register("InitialResponse", typeof(double), typeof(ValueAnimator<T>),
                 new PropertyMetadata(1.0, propertyChangedCallback: OnDynamicsPropertyChanged));
@@ -167,7 +184,7 @@ namespace EleCho.WpfSuite.Media.Animation
         /// <summary>
         /// Set the value of <see cref="Value"/> directly without animation
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Value to assign to both <see cref="Value"/> and <see cref="AnimatedValue"/>.</param>
         public void UpdateValueDirectly(T value)
         {
             _suppressAnimation = !IsRunning;
@@ -186,7 +203,7 @@ namespace EleCho.WpfSuite.Media.Animation
         /// <summary>
         /// Stop the animation immediately and set the animated value to specified value
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">Value to apply immediately after stopping animation.</param>
         public void StopImmediately(T value)
         {
             EnsureAnimationStopped();
@@ -372,24 +389,99 @@ namespace EleCho.WpfSuite.Media.Animation
         }
     }
 
+    /// <summary>
+    /// Value animator for <see cref="Byte"/> type
+    /// </summary>
     public class ByteValueAnimator : ValueAnimator<Byte> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Int16"/> type
+    /// </summary>
     public class Int16ValueAnimator : ValueAnimator<Int16> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Int32"/> type
+    /// </summary>
     public class Int32ValueAnimator : ValueAnimator<Int32> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Int64"/> type
+    /// </summary>
     public class Int64ValueAnimator : ValueAnimator<Int64> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Single"/> type
+    /// </summary>
     public class SingleValueAnimator : ValueAnimator<Single> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Double"/> type
+    /// </summary>
     public class DoubleValueAnimator : ValueAnimator<Double> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Decimal"/> type
+    /// </summary>
     public class DecimalValueAnimator : ValueAnimator<Decimal> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Color"/> type
+    /// </summary>
     public class ColorValueAnimator : ValueAnimator<Color> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Point"/> type
+    /// </summary>
     public class PointValueAnimator : ValueAnimator<Point> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Size"/> type
+    /// </summary>
     public class SizeValueAnimator : ValueAnimator<Size> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Rect"/> type
+    /// </summary>
     public class RectValueAnimator : ValueAnimator<Rect> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Vector"/> type
+    /// </summary>
     public class VectorValueAnimator : ValueAnimator<Vector> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Vector3D"/> type
+    /// </summary>
     public class Vector3DValueAnimator : ValueAnimator<Vector3D> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Point3D"/> type
+    /// </summary>
     public class Point3DValueAnimator : ValueAnimator<Point3D> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Quaternion"/> type
+    /// </summary>
     public class QuaternionValueAnimator : ValueAnimator<Quaternion> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Rotation3D"/> type
+    /// </summary>
     public class Rotation3DValueAnimator : ValueAnimator<Rotation3D> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Thickness"/> type
+    /// </summary>
     public class ThicknessValueAnimator : ValueAnimator<Thickness> { }
+
+    /// <summary>
+    /// Value animator for <see cref="CornerRadius"/> type
+    /// </summary>
     public class CornerRadiusValueAnimator : ValueAnimator<CornerRadius> { }
+
+    /// <summary>
+    /// Value animator for <see cref="Brush"/> type
+    /// </summary>
     public class BrushValueAnimator : ValueAnimator<Brush> { }
 
 
