@@ -75,5 +75,11 @@ namespace WpfTest.Tests
             window.Foreground = new SolidColorBrush(Color.FromRgb(214, 214, 214));
             window.Show();
         }
+
+        [RelayCommand]
+        public void OpenBackdropAlwaysActiveTestWindow()
+        {
+            new BackdropAlwaysActiveTestWindow().Show();
+        }
     }
 }

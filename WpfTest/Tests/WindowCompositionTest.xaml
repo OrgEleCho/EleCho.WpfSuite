@@ -39,6 +39,15 @@
                         <ws:Button Content="Custom Acrylic Window" Command="{Binding OpenDarkCustomAcrylicWindowCommand}"/>
                     </ws:StackPanel>
                 </ws:GroupBox>
+
+                <ws:GroupBox Header="Backdrop Always Active"
+                             Padding="8">
+                    <ws:StackPanel Orientation="Horizontal"
+                               HorizontalAlignment="Left"
+                               Spacing="8">
+                        <ws:Button Content="Test Backdrop Always Active" Command="{Binding OpenBackdropAlwaysActiveTestWindowCommand}"/>
+                    </ws:StackPanel>
+                </ws:GroupBox>
             </ws:StackPanel>
         </Grid>
     </ws:ScrollViewer>
