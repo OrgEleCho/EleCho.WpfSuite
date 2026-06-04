@@ -85,6 +85,7 @@ namespace EleCho.WpfSuite.Media.Animation
             private set => SetValue(AnimatedValuePropertyKey, value);
         }
 
+        /// <inheritdoc/>
         object? IValueAnimator.Value
         {
             get => Value;
@@ -106,6 +107,7 @@ namespace EleCho.WpfSuite.Media.Animation
             }
         }
 
+        /// <inheritdoc/>
         object? IValueAnimator.AnimatedValue => AnimatedValue;
 
         /// <summary>

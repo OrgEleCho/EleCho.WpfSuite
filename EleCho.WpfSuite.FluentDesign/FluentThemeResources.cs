@@ -4,12 +4,18 @@ using Microsoft.Win32;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
+    /// <summary>
+    /// Provides Fluent theme dictionaries and supports light, dark and auto theme switching.
+    /// </summary>
     public class FluentThemeResources : ResourceDictionary
     {
         private readonly ResourceDictionary _lightThemeResources = new();
         private readonly ResourceDictionary _darkThemeResources = new();
         private ApplicationTheme? _applicationTheme;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FluentThemeResources"/> class.
+        /// </summary>
         public FluentThemeResources()
         {
             _lightThemeResources = new ResourceDictionary() { Source = new Uri("pack://application:,,,/EleCho.WpfSuite.FluentDesign;component/Themes/Light.xaml") };
@@ -18,6 +24,9 @@ namespace EleCho.WpfSuite.FluentDesign
             Theme = ApplicationTheme.Auto;
         }
 
+        /// <summary>
+        /// Gets or sets the configured application theme.
+        /// </summary>
         public ApplicationTheme Theme
         {
             get
@@ -82,6 +91,9 @@ namespace EleCho.WpfSuite.FluentDesign
             }
         }
 
+        /// <summary>
+        /// Gets the currently applied theme.
+        /// </summary>
         public ApplicationTheme ActualTheme
         {
             get

@@ -11,16 +11,34 @@ using System.IO;
 namespace EleCho.WpfSuite.Internal.Effects
 {
 #if DEBUG
+    /// <summary>
+    /// BlendEffect 类用于应用自定义的混合效果。
+    /// </summary>
     public
 #else
     internal 
 #endif
         class BlendEffect : ShaderEffect
     {
+        /// <summary>
+        /// 输入纹理的依赖属性。
+        /// </summary>
         public static readonly DependencyProperty InputProperty = ShaderEffect.RegisterPixelShaderSamplerProperty("Input", typeof(BlendEffect), 0);
+        /// <summary>
+        /// 输入大小的依赖属性。
+        /// </summary>
         public static readonly DependencyProperty InputSizeProperty = DependencyProperty.Register("InputSize", typeof(Size), typeof(BlendEffect), new UIPropertyMetadata(new Size(100D, 100D), PixelShaderConstantCallback(0)));
+        /// <summary>
+        /// 噪声强度的依赖属性。
+        /// </summary>
         public static readonly DependencyProperty NoiseStrengthProperty = DependencyProperty.Register("NoiseStrength", typeof(double), typeof(BlendEffect), new UIPropertyMetadata(((double)(0.1D)), PixelShaderConstantCallback(1)));
+        /// <summary>
+        /// 覆盖颜色的依赖属性。
+        /// </summary>
         public static readonly DependencyProperty OverlayColorProperty = DependencyProperty.Register("OverlayColor", typeof(Color), typeof(BlendEffect), new UIPropertyMetadata(Color.FromArgb(255, 0, 0, 0), PixelShaderConstantCallback(2)));
+        /// <summary>
+        /// 初始化 BlendEffect 类的新实例。
+        /// </summary>
         public BlendEffect()
         {
             PixelShader pixelShader = new PixelShader();
@@ -32,6 +50,9 @@ namespace EleCho.WpfSuite.Internal.Effects
             this.UpdateShaderValue(NoiseStrengthProperty);
             this.UpdateShaderValue(OverlayColorProperty);
         }
+        /// <summary>
+        /// 获取或设置输入纹理。
+        /// </summary>
         public Brush Input
         {
             get
@@ -43,6 +64,9 @@ namespace EleCho.WpfSuite.Internal.Effects
                 this.SetValue(InputProperty, value);
             }
         }
+        /// <summary>
+        /// 获取或设置输入大小。
+        /// </summary>
         public Size InputSize
         {
             get
@@ -54,6 +78,9 @@ namespace EleCho.WpfSuite.Internal.Effects
                 this.SetValue(InputSizeProperty, value);
             }
         }
+        /// <summary>
+        /// 获取或设置噪声强度。
+        /// </summary>
         public double NoiseStrength
         {
             get
@@ -65,6 +92,9 @@ namespace EleCho.WpfSuite.Internal.Effects
                 this.SetValue(NoiseStrengthProperty, value);
             }
         }
+        /// <summary>
+        /// 获取或设置覆盖颜色。
+        /// </summary>
         public Color OverlayColor
         {
             get

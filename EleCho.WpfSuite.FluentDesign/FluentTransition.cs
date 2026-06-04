@@ -11,6 +11,9 @@ using EleCho.WpfSuite.Media.Transition;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
+    /// <summary>
+    /// Provides a Fluent-style content transition based on storyboard animations.
+    /// </summary>
     public class FluentTransition : StoryboardContentTransition
     {
         static FluentTransition()
@@ -64,7 +67,10 @@ namespace EleCho.WpfSuite.FluentDesign
             return distance;
         }
 
+        /// <inheritdoc/>
         protected override Freezable CreateInstanceCore() => new FluentTransition();
+
+        /// <inheritdoc/>
         protected override Storyboard CreateNewContentStoryboard(UIElement container, UIElement newContent, bool forward)
         {
             if (newContent.RenderTransform is not TranslateTransform)
@@ -127,6 +133,7 @@ namespace EleCho.WpfSuite.FluentDesign
             };
         }
 
+        /// <inheritdoc/>
         protected override Storyboard CreateOldContentStoryboard(UIElement container, UIElement oldContent, bool forward)
         {
             DoubleAnimation opacityAnimation = new()

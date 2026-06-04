@@ -9,6 +9,9 @@ using System.Windows.Media;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
+    /// <summary>
+    /// Displays a glyph from the Segoe Fluent Icons font based on a <see cref="FluentSymbol"/> value.
+    /// </summary>
     public class FluentIcon : TextBlock
     {
         static FluentIcon()
@@ -18,12 +21,18 @@ namespace EleCho.WpfSuite.FluentDesign
             FontFamilyProperty.OverrideMetadata(typeof(FluentIcon), new FrameworkPropertyMetadata(segoeFont));
         }
 
+        /// <summary>
+        /// Gets or sets the symbol to render.
+        /// </summary>
         public FluentSymbol Symbol
         {
             get { return (FluentSymbol)GetValue(SymbolProperty); }
             set { SetValue(SymbolProperty, value); }
         }
 
+        /// <summary>
+        /// Identifies the <see cref="Symbol"/> dependency property.
+        /// </summary>
         public static readonly DependencyProperty SymbolProperty =
             DependencyProperty.Register(nameof(Symbol), typeof(FluentSymbol), typeof(FluentIcon), new FrameworkPropertyMetadata(default(FluentSymbol), SymbolChangedCallback));
 

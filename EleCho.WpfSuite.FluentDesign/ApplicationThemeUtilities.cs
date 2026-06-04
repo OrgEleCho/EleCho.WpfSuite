@@ -7,6 +7,9 @@ using Microsoft.Win32;
 
 namespace EleCho.WpfSuite.FluentDesign
 {
+    /// <summary>
+    /// Provides helper methods to get and apply application theme settings.
+    /// </summary>
     public static class ApplicationThemeUtilities
     {
         private static bool _isWatchingSystemTheme = false;
@@ -51,6 +54,10 @@ namespace EleCho.WpfSuite.FluentDesign
             }
         }
 
+        /// <summary>
+        /// Gets the current configured application theme.
+        /// </summary>
+        /// <returns>The configured application theme.</returns>
         public static ApplicationTheme GetApplicationTheme()
         {
             var applicationFluentResources = FindApplicationFluentResources();
@@ -92,6 +99,10 @@ namespace EleCho.WpfSuite.FluentDesign
             }
         }
 
+        /// <summary>
+        /// Gets the currently effective application theme.
+        /// </summary>
+        /// <returns>The effective application theme.</returns>
         public static ApplicationTheme GetApplicationActualTheme()
         {
             var applicationFluentResources = FindApplicationFluentResources();
@@ -126,6 +137,10 @@ namespace EleCho.WpfSuite.FluentDesign
             }
         }
 
+        /// <summary>
+        /// Sets the application theme and applies it to all current windows.
+        /// </summary>
+        /// <param name="theme">The theme to apply.</param>
         public static void SetApplicationTheme(ApplicationTheme theme)
         {
             var actualTheme = theme;
@@ -157,6 +172,10 @@ namespace EleCho.WpfSuite.FluentDesign
             ApplyThemeForAllWindows(actualTheme);
         }
 
+        /// <summary>
+        /// Applies the current effective application theme to the specified window.
+        /// </summary>
+        /// <param name="window">The window to update.</param>
         public static void EnsureWindowTheme(Window window)
         {
             var actualTheme = GetApplicationActualTheme();

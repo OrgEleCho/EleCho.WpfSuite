@@ -1,5 +1,9 @@
 ﻿namespace EleCho.WpfSuite.FluentDesign
 {
+    /// <summary>
+    /// Fluent 设计符号枚举。
+    /// </summary>
+    #pragma warning disable CS1591
     public enum FluentSymbol
     {
         AcceptMedium = 0xF78C,
@@ -1448,4 +1452,5 @@
         ZoomOut = 0xE71F,
         Zoom = 0xE71E,
     }
+    #pragma warning restore CS1591
 }
