@@ -105,6 +105,7 @@ namespace EleCho.WpfSuite.Controls.StateManagerGenerator
                     {{indentText}}        d.ReadLocalValue(Showing{{stateProperty}}Property) == DependencyProperty.UnsetValue ||
                     {{indentText}}        !animatable.IsLoaded)
                     {{indentText}}    {
+                    {{indentText}}        (d as FrameworkElement)?.BeginAnimation(Showing{{stateProperty}}ProxyProperty, null);
                     {{indentText}}        d.SetValue(Showing{{stateProperty}}PropertyKey, targetValue);
                     {{indentText}}        return;
                     {{indentText}}    }

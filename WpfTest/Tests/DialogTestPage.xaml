@@ -28,6 +28,8 @@
             <ws:StackPanel Spacing="4"
                            Orientation="Horizontal">
                 <ws:Button Content="Show Custom Message :"
+                           HoverBackground="Black"
+                           PressedBackground="Pink"
                            Command="{Binding ShowCustomMessageCommand}"/>
                 <ws:TextBox Placeholder="Custom message"
                             MinWidth="200"
@@ -53,6 +55,14 @@
                         <ws:CheckBox IsChecked="{Binding IsDialogOpen,Mode=TwoWay}"
                                      Content="Show Dialog"
                                      Margin="0 14 0 0"/>
+
+                        <ws:Button Content="Close"
+                                   HoverBackground="Pink"
+                                   PressedBackground="Red"
+                                   Click="Button_Click_1"/>
+
+                        <Button Content="Close"
+                                   Click="Button_Click_1"/>
                     </StackPanel>
                 </Border>
             </ws:Dialog>
